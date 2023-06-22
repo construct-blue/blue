@@ -8,12 +8,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Blue\\TrainsearchApi\\": "services/trainsearch/api/src"
+      "Blue\\TrainsearchApi\\": "services/trainsearch/api/src",
+      "Blue\\Example\\": "services/example/src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "BlueTest\\TrainsearchApi\\": "services/trainsearch/api/tests"
+      "BlueTest\\Example\\": "services/example/tests"
     }
   },
   "require-dev": {
