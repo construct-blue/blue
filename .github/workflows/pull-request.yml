@@ -1,15 +1,8 @@
-name: Deployment
-
-on:
-  push:
-    branches:
-      - main
-
+name: PHPUnit
+on: [pull_request]
 jobs:
-  deployment:
+  build:
     runs-on: ubuntu-22.04
-    environment:
-      name: production
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -31,18 +24,10 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --prefer-dist --no-progress --no-dev --classmap-authoritative
+        run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-      - name: Upload to server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.ftp_host }}
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
-          protocol: ftps
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/*.ts
-            composer.json
-            composer.lock
+      - name: Configure matchers
+        uses: mheap/phpunit-matcher-action@v1
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit --teamcity test
