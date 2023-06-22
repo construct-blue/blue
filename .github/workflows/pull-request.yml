@@ -1,4 +1,4 @@
-name: PHPUnit
+name: QA
 on: [pull_request]
 jobs:
   phpunit:
@@ -30,7 +30,7 @@ jobs:
         uses: mheap/phpunit-matcher-action@v1
 
       - name: Run tests
-        run: ./vendor/bin/phpunit --teamcity test
+        run: ./vendor/bin/phpunit --teamcity
 
   phpstan:
     runs-on: ubuntu-22.04
@@ -67,4 +67,4 @@ jobs:
       - name: Run static analysis
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: composer run-script phpstan -- --error-format=raw --no-progress | reviewdog -reporter=github-check -f=phpstan
+        run: ./vendor/bin/phpstan analyse --error-format=raw --no-progress | reviewdog -reporter=github-check -f=phpstan
