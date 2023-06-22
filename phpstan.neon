@@ -3,3 +3,4 @@ parameters:
 	paths:
 		- services/example/src
 		- services/example/tests
+		- services/trainsearch/api/src
