@@ -3,13 +3,13 @@ name: Deployment
 on:
   push:
     branches:
-      - main
+      - staging
 
 jobs:
   deployment:
     runs-on: ubuntu-22.04
     environment:
-      name: production
+      name: staging
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
