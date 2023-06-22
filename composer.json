@@ -1,0 +1,22 @@
+{
+  "require": {
+    "php": "^8.2",
+    "construct-blue/snappy-core": "dev-main",
+    "construct-blue/snappy-renderer": "dev-main",
+    "construct-blue/hafas-client-php": "dev-main",
+    "construct-blue/oebb-live-client": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "Blue\\TrainsearchApi\\": "services/trainsearch/api/src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BlueTest\\TrainsearchApi\\": "services/trainsearch/api/tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.2"
+  }
+}
