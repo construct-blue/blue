@@ -9,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 class GreeterTest extends TestCase
 {
+    /**
+     * @covers \Blue\Example\Greeter::greet
+     * @return void
+     */
     public function testGreet()
     {
         self::assertEquals('Hello world!', (new Greeter())->greet('world'));
