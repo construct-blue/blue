@@ -1,0 +1,13 @@
+{
+	"auth": {
+		"type": "AID",
+		"aid": "OWDL4fE4ixNiPBBm"
+	},
+	"client": {
+		"type": "IPH",
+		"id": "OEBB",
+		"v": "6030600",
+		"name": "oebbPROD-ADHOC"
+	},
+	"ver": "1.41"
+}

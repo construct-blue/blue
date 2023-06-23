@@ -1,0 +1,137 @@
+{
+  "userAgent": "hafas-client-php",
+  "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
+  "salt": "",
+  "defaultLanguage": "de",
+  "addMicMac": false,
+  "addChecksum": false,
+  "defaultTZOffset": 120,
+  "operators": [
+    {
+      "id": "nah",
+      "name": "Nahreisezug"
+    },
+    {
+      "id": "dbfern",
+      "name": "DB Fernverkehr AG",
+      "admin": "80"
+    },
+    {
+      "id": "oebb",
+      "name": "Österreichische Bundesbahnen",
+      "admin": "81"
+    },
+    {
+      "id": "cd",
+      "name": "Ceske Drahy",
+      "admin": "54"
+    },
+    {
+      "id": "sbb",
+      "name": "SBB",
+      "admin": "85"
+    },
+    {
+      "id": "cfr",
+      "name": "Rumänische Eisenbahnen Caile Ferate Romane",
+      "admin": "53"
+    },
+    {
+      "id": "ns",
+      "name": "Nederlandse Spoorwegen",
+      "admin": "84"
+    },
+    {
+      "id": "trenit",
+      "name": "Trenitalia",
+      "admin": "83"
+    },
+    {
+      "id": "mav",
+      "name": "MAV",
+      "admin": "55"
+    }
+  ],
+  "products": [
+    {
+      "id": "nationalExpress",
+      "mode": "train",
+      "bitmasks": [1],
+      "name": "InterCityExpress & RailJet",
+      "short": "ICE/RJ",
+      "default": true
+    },
+    {
+      "id": "national",
+      "mode": "train",
+      "bitmasks": [2, 4],
+      "name": "InterCity & EuroCity",
+      "short": "IC/EC",
+      "default": true
+    },
+    {
+      "id": "interregional",
+      "mode": "train",
+      "bitmasks": [8, 4096],
+      "name": "Durchgangszug & EuroNight",
+      "short": "D/EN",
+      "default": true
+    },
+    {
+      "id": "regional",
+      "mode": "train",
+      "bitmasks": [16],
+      "name": "Regional & RegionalExpress",
+      "short": "R/REX",
+      "default": true
+    },
+    {
+      "id": "suburban",
+      "mode": "train",
+      "bitmasks": [32],
+      "name": "S-Bahn",
+      "short": "S",
+      "default": true
+    },
+    {
+      "id": "bus",
+      "mode": "bus",
+      "bitmasks": [64],
+      "name": "Bus",
+      "short": "B",
+      "default": true
+    },
+    {
+      "id": "ferry",
+      "mode": "watercraft",
+      "bitmasks": [128],
+      "name": "Ferry",
+      "short": "F",
+      "default": true
+    },
+    {
+      "id": "subway",
+      "mode": "train",
+      "bitmasks": [256],
+      "name": "U-Bahn",
+      "short": "U",
+      "default": true
+    },
+    {
+      "id": "tram",
+      "mode": "train",
+      "bitmasks": [512],
+      "name": "Tram",
+      "short": "T",
+      "default": true
+    },
+    {
+      "id": "onCall",
+      "mode": null,
+      "bitmasks": [2048],
+      "name": "on-call transit, lifts, etc",
+      "short": "on-call/lift",
+      "default": true
+    }
+  ]
+}

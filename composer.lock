@@ -4,194 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b14723ff549b04a02becc6386f15de4",
+    "content-hash": "e95a2de3cde2ac31206768747e4f8946",
     "packages": [
-        {
-            "name": "construct-blue/hafas-client-php",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/construct-blue/hafas-client-php.git",
-                "reference": "0522994e1fd58c44590db4f0ef5caa0991397861"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/hafas-client-php/zipball/0522994e1fd58c44590db4f0ef5caa0991397861",
-                "reference": "0522994e1fd58c44590db4f0ef5caa0991397861",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.3",
-                "nesbot/carbon": "^2.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "HafasClient\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHP library for HAFAS public transport APIs (forked from mrkriskrisu/hafas-client-php).",
-            "support": {
-                "source": "https://github.com/construct-blue/hafas-client-php/tree/main"
-            },
-            "time": "2023-06-22T05:52:08+00:00"
-        },
-        {
-            "name": "construct-blue/oebb-live-client",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/construct-blue/oebb-live-client.git",
-                "reference": "b40af49eab8c53d1976fa33b604ce1a631abba2f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/oebb-live-client/zipball/b40af49eab8c53d1976fa33b604ce1a631abba2f",
-                "reference": "b40af49eab8c53d1976fa33b604ce1a631abba2f",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.7",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^10.2"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Blue\\OebbLive\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "support": {
-                "issues": "https://github.com/construct-blue/oebb-live-client/issues",
-                "source": "https://github.com/construct-blue/oebb-live-client/tree/main"
-            },
-            "time": "2023-06-22T18:29:56+00:00"
-        },
-        {
-            "name": "construct-blue/snappy-core",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/construct-blue/snappy-core.git",
-                "reference": "1f585c313842322bbe3ecbd00f41b68bd8ef663e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/snappy-core/zipball/1f585c313842322bbe3ecbd00f41b68bd8ef663e",
-                "reference": "1f585c313842322bbe3ecbd00f41b68bd8ef663e",
-                "shasum": ""
-            },
-            "require": {
-                "construct-blue/snappy-renderer": "dev-main",
-                "laminas/laminas-diactoros": "^3.0",
-                "laminas/laminas-httphandlerrunner": "^2.6",
-                "league/config": "^1.2",
-                "league/container": "^4.2",
-                "league/event": "^3.0",
-                "league/fractal": "^0.20.1",
-                "league/iso3166": "^4.2",
-                "league/monga": "^1.2",
-                "league/route": "^5.1",
-                "monolog/monolog": "^2.9",
-                "php": "^7.4 || ^8.0",
-                "psr/log": "^3.0.0"
-            },
-            "require-dev": {
-                "phpmd/phpmd": "^2.13",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^9.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Blue\\Snappy\\Core\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Robert Kleinschuster",
-                    "email": "snappy@kleinschuster.de",
-                    "homepage": "https://www.robs.social",
-                    "role": "Developer"
-                }
-            ],
-            "homepage": "https://github.com/construct-blue/snappy-core",
-            "support": {
-                "issues": "https://github.com/construct-blue/snappy-core/issues",
-                "source": "https://github.com/construct-blue/snappy-core/tree/main"
-            },
-            "time": "2023-06-18T10:20:45+00:00"
-        },
-        {
-            "name": "construct-blue/snappy-renderer",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/construct-blue/snappy-renderer.git",
-                "reference": "dfaf3ebe3cf92de4e72faede49d401471d705425"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/dfaf3ebe3cf92de4e72faede49d401471d705425",
-                "reference": "dfaf3ebe3cf92de4e72faede49d401471d705425",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "phpmd/phpmd": "^2.13",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^9.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Blue\\Snappy\\Renderer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Robert Kleinschuster",
-                    "email": "snappy@kleinschuster.de",
-                    "homepage": "https://www.robs.social",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A component oriented server side rendering engine for PHP",
-            "homepage": "https://github.com/construct-blue/snappy-renderer",
-            "support": {
-                "source": "https://github.com/construct-blue/snappy-renderer/tree/main"
-            },
-            "time": "2023-06-18T10:01:48+00:00"
-        },
         {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
@@ -4304,16 +4118,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "construct-blue/snappy-core": 20,
-        "construct-blue/snappy-renderer": 20,
-        "construct-blue/hafas-client-php": 20,
-        "construct-blue/oebb-live-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
