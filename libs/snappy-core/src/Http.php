@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Blue\Snappy\Core;
 
 use Blue\Snappy\Renderer\Renderer;
+use Exception;
+use League\Route\Http\Exception\BadRequestException;
+use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Server\RequestHandlerInterface;
 use Blue\Snappy\Core\Emitter\LaminasResponseEmitter;
 use Blue\Snappy\Core\Emitter\SapiResponseEmitter;
@@ -152,5 +155,29 @@ final class Http
             $requestFactory ?? new SapiServerRequestFactory(),
             new HtmlErrorHandler(new Renderer())
         );
+    }
+
+    /**
+     * @param string $message
+     * @param Exception|null $previous
+     * @param int $code
+     * @return never
+     * @throws BadRequestException
+     */
+    public static function throwBadRequest(string $message, ?Exception $previous = null, int $code = 0): never
+    {
+        throw new BadRequestException($message, $previous, $code);
+    }
+
+    /**
+     * @param string $message
+     * @param Exception|null $previous
+     * @param int $code
+     * @return never
+     * @throws NotFoundException
+     */
+    public static function throwNotFound(string $message, ?Exception $previous = null, int $code = 0): never
+    {
+        throw new NotFoundException($message, $previous, $code);
     }
 }

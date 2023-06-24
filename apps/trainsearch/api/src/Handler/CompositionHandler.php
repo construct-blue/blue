@@ -8,6 +8,7 @@ use Blue\HafasClient\Hafas;
 use Blue\HafasClient\Request\JourneyMatchRequest;
 use Blue\OebbLive\Client\OebbLiveClient;
 use Blue\OebbLive\OebbLive;
+use Blue\Snappy\Core\Http;
 use DateTime;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -38,6 +39,6 @@ class CompositionHandler implements RequestHandlerInterface
             return new JsonResponse($info);
         }
 
-        return new JsonResponse(['error' => 'Train not found.'], 404);
+        Http::throwNotFound('Train not found');
     }
 }
