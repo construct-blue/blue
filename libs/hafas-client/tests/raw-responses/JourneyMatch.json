@@ -1,0 +1,2110 @@
+{
+  "ver": "1.34",
+  "ext": "DB.R21.12.a",
+  "lang": "deu",
+  "id": "f52m8h46wcgqww8x",
+  "err": "OK",
+  "cInfo": {
+    "code": "OK"
+  },
+  "graph": {
+    "id": "standard",
+    "index": 0
+  },
+  "subGraph": {
+    "id": "global",
+    "index": 0
+  },
+  "view": {
+    "id": "standard",
+    "index": 0,
+    "type": "WGS84"
+  },
+  "svcResL": [
+    {
+      "meth": "JourneyMatch",
+      "err": "OK",
+      "res": {
+        "common": {
+          "locL": [
+            {
+              "lid": "A=1@O=Chur@X=9528934@Y=46853081@U=80@L=8509000@",
+              "type": "S",
+              "name": "Chur",
+              "icoX": 2,
+              "extId": "8509000",
+              "state": "F",
+              "crd": {
+                "x": 9528934,
+                "y": 46853081,
+                "floor": 0
+              },
+              "pCls": 63
+            },
+            {
+              "lid": "A=1@O=Basel SBB@X=7589548@Y=47547408@U=80@L=8500010@",
+              "type": "S",
+              "name": "Basel SBB",
+              "icoX": 2,
+              "extId": "8500010",
+              "state": "F",
+              "crd": {
+                "x": 7589548,
+                "y": 47547408,
+                "floor": 0
+              },
+              "pCls": 319
+            },
+            {
+              "lid": "A=1@O=Berlin Hbf (tief)@X=13369549@Y=52525589@U=80@L=8098160@",
+              "type": "S",
+              "name": "Berlin Hbf (tief)",
+              "icoX": 2,
+              "extId": "8098160",
+              "state": "F",
+              "crd": {
+                "x": 13368892,
+                "y": 52525850,
+                "z": 0,
+                "floor": 0
+              },
+              "pCls": 447,
+              "entry": true,
+              "mMastLocX": 3
+            },
+            {
+              "lid": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8011160@",
+              "type": "S",
+              "name": "Berlin Hbf",
+              "icoX": 2,
+              "extId": "8011160",
+              "state": "F",
+              "crd": {
+                "x": 13369629,
+                "y": 52524924,
+                "z": 0,
+                "floor": 0
+              },
+              "pCls": 447
+            },
+            {
+              "lid": "A=1@O=Hamburg-Altona@X=9935175@Y=53552697@U=80@L=8002553@",
+              "type": "S",
+              "name": "Hamburg-Altona",
+              "icoX": 2,
+              "extId": "8002553",
+              "state": "F",
+              "crd": {
+                "x": 9934860,
+                "y": 53552571,
+                "z": 0,
+                "floor": 0
+              },
+              "pCls": 63
+            },
+            {
+              "lid": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@",
+              "type": "S",
+              "name": "Hamburg Hbf",
+              "icoX": 2,
+              "extId": "8002549",
+              "state": "F",
+              "crd": {
+                "x": 10006360,
+                "y": 53553533,
+                "z": 0,
+                "floor": 0
+              },
+              "pCls": 191
+            },
+            {
+              "lid": "A=1@O=Z\u00fcrich HB@X=8540211@Y=47378177@U=80@L=8503000@",
+              "type": "S",
+              "name": "Z\u00fcrich HB",
+              "icoX": 2,
+              "extId": "8503000",
+              "state": "F",
+              "crd": {
+                "x": 8540211,
+                "y": 47378177,
+                "floor": 0
+              },
+              "pCls": 319
+            },
+            {
+              "lid": "A=1@O=Liestal@X=7731352@Y=47484376@U=80@L=8500023@",
+              "type": "S",
+              "name": "Liestal",
+              "icoX": 2,
+              "extId": "8500023",
+              "state": "F",
+              "crd": {
+                "x": 7731352,
+                "y": 47484376,
+                "floor": 0
+              },
+              "pCls": 319
+            }
+          ],
+          "prodL": [
+            {
+              "name": "ICE 70",
+              "number": "70",
+              "icoX": 1,
+              "cls": 1,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "ICE   70",
+                "num": "70",
+                "matchId": "70",
+                "catOut": "ICE",
+                "catOutS": "ICE",
+                "catOutL": "Intercity-Express",
+                "catIn": "ICE",
+                "catCode": "0",
+                "admin": "85____"
+              }
+            },
+            {
+              "name": "ICE 70",
+              "nameS": "20",
+              "number": "70",
+              "icoX": 1,
+              "cls": 1,
+              "oprX": 1,
+              "prodCtx": {
+                "name": "ICE   70",
+                "num": "70",
+                "line": "20",
+                "lineId": "0_80_____20",
+                "matchId": "20",
+                "catOut": "ICE",
+                "catOutS": "ICE",
+                "catOutL": "Intercity-Express",
+                "catIn": "ICE",
+                "catCode": "0",
+                "admin": "85____"
+              }
+            },
+            {
+              "name": "ICE 70",
+              "number": "70",
+              "icoX": 1,
+              "cls": 1,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "ICE   70",
+                "num": "70",
+                "matchId": "10070",
+                "catOut": "ICE",
+                "catOutS": "ICE",
+                "catOutL": "Intercity-Express",
+                "catIn": "ICE",
+                "catCode": "0",
+                "admin": "85____"
+              }
+            }
+          ],
+          "opL": [
+            {
+              "name": "SBB",
+              "icoX": 0
+            },
+            {
+              "name": "DB Fernverkehr AG",
+              "icoX": 3
+            }
+          ],
+          "icoL": [
+            {
+              "res": "DPN",
+              "txt": "SBB"
+            },
+            {
+              "res": "prod_gen"
+            },
+            {
+              "res": "ICE"
+            },
+            {
+              "res": "D",
+              "txt": "DB Fernverkehr AG"
+            }
+          ],
+          "lDrawStyleL": [
+            {
+              "sIcoX": 1,
+              "type": "SOLID"
+            },
+            {
+              "type": "SOLID"
+            }
+          ]
+        },
+        "jnyL": [
+          {
+            "jid": "1|332602|0|80|3042023",
+            "date": "20230403",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysB": "00000000000000000000000000007CF960000FFF7F7FF1E3FFFFFF3E7CF9FFE7CFFFFFFFFFFFFFFFFFFFFFFFFFF0"
+              }
+            ],
+            "pos": {
+              "x": 9684708,
+              "y": 50747577
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332602|0|80|3042023",
+            "date": "20230403",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysB": "00000000000000000000000000007CF960000FFF7F7FF1E3FFFFFF3E7CF9FFE7CFFFFFFFFFFFFFFFFFFFFFFFFFF0"
+              }
+            ],
+            "pos": {
+              "x": 9684708,
+              "y": 50747577
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072500"
+          },
+          {
+            "jid": "1|332603|0|80|11122022",
+            "date": "20221211",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 11. Dez ",
+                "sDaysB": "80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332603|0|80|11122022",
+            "date": "20221211",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 11. Dez ",
+                "sDaysB": "80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332604|0|80|8012023",
+            "date": "20230108",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 8., 21., 22. Jan ",
+                "sDaysB": "00000008006000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332604|0|80|8012023",
+            "date": "20230108",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 8., 21., 22. Jan ",
+                "sDaysB": "00000008006000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332605|0|80|22122022",
+            "date": "20221222",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 22. Dez 2022 bis 27. Jan 2023; nicht 7., 8., 21.,  22. Jan ",
+                "sDaysB": "001FFFE7FF9F00000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332605|0|80|22122022",
+            "date": "20221222",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 22. Dez 2022 bis 27. Jan 2023; nicht 7., 8., 21.,  22. Jan ",
+                "sDaysB": "001FFFE7FF9F00000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332606|0|80|28012023",
+            "date": "20230128",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 28., 29. Jan ",
+                "sDaysB": "000000000000C0000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332606|0|80|28012023",
+            "date": "20230128",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 28., 29. Jan ",
+                "sDaysB": "000000000000C0000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332607|0|80|7012023",
+            "date": "20230107",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 7. Jan ",
+                "sDaysB": "00000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332607|0|80|7012023",
+            "date": "20230107",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 7. Jan ",
+                "sDaysB": "00000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332608|0|80|11022023",
+            "date": "20230211",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 11. Feb ",
+                "sDaysB": "00000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332608|0|80|11022023",
+            "date": "20230211",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 11. Feb ",
+                "sDaysB": "00000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332609|0|80|13022023",
+            "date": "20230213",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 13. Feb ",
+                "sDaysB": "00000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332609|0|80|13022023",
+            "date": "20230213",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 13. Feb ",
+                "sDaysB": "00000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332610|0|80|30012023",
+            "date": "20230130",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 30. Jan bis 10. Feb 2023 Mo - Sa ",
+                "sDaysB": "0000000000003F7C0000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332610|0|80|30012023",
+            "date": "20230130",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 30. Jan bis 10. Feb 2023 Mo - Sa ",
+                "sDaysB": "0000000000003F7C0000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332611|0|80|5022023",
+            "date": "20230205",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 5. Feb ",
+                "sDaysB": "00000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332611|0|80|5022023",
+            "date": "20230205",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 5. Feb ",
+                "sDaysB": "00000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332612|0|80|4032023",
+            "date": "20230304",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 4. bis 12. M\u00e4r 2023 Sa, So ",
+                "sDaysB": "00000000000000000000183000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 10006909,
+              "y": 53552733
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332612|0|80|4032023",
+            "date": "20230304",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 5,
+                "aTimeS": "213900",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 4. bis 12. M\u00e4r 2023 Sa, So ",
+                "sDaysB": "00000000000000000000183000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 10006909,
+              "y": 53552733
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "063300"
+          },
+          {
+            "jid": "1|332613|0|80|12122022",
+            "date": "20221212",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 12. bis 21. Dez 2022, 14. Feb bis 3. M\u00e4r 2023,  6. bis 10. M\u00e4r 2023, 13. bis 24. M\u00e4r 2023,  27. bis 30. M\u00e4r 2023 ",
+                "sDaysB": "7FE00000000000007FFFE7CFFF3C0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332613|0|80|12122022",
+            "date": "20221212",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 12. bis 21. Dez 2022, 14. Feb bis 3. M\u00e4r 2023,  19. bis 24. M\u00e4r 2023, 27. bis 30. M\u00e4r 2023 ",
+                "sDaysB": "7FE00000000000007FFFE0003F3C0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332614|0|80|12022023",
+            "date": "20230212",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 12. Feb ",
+                "sDaysB": "00000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332614|0|80|12022023",
+            "date": "20230212",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 12. Feb ",
+                "sDaysB": "00000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332615|0|80|15072023",
+            "date": "20230715",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 15. Jul bis 27. Aug 2023 Sa, So; nicht 22. Jul, 12., 13. Aug ",
+                "sDaysB": "000000000000000000000000000000000000000000000000000000C0830600183000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332615|0|80|15072023",
+            "date": "20230715",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 15. Jul bis 27. Aug 2023 Sa, So; nicht 22. Jul, 12., 13. Aug ",
+                "sDaysB": "000000000000000000000000000000000000000000000000000000C0830600183000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072500"
+          },
+          {
+            "jid": "1|332616|0|80|26032023",
+            "date": "20230326",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 26. M\u00e4r ",
+                "sDaysB": "00000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332616|0|80|26032023",
+            "date": "20230326",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 26. M\u00e4r ",
+                "sDaysB": "00000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332617|0|80|25032023",
+            "date": "20230325",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 25. M\u00e4r ",
+                "sDaysB": "00000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332617|0|80|25032023",
+            "date": "20230325",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 4,
+                "aTimeS": "235700",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 25. M\u00e4r ",
+                "sDaysB": "00000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "085100"
+          },
+          {
+            "jid": "1|332618|0|80|18042023",
+            "date": "20230418",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 18. Apr ",
+                "sDaysB": "00000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332618|0|80|18042023",
+            "date": "20230418",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 18. Apr ",
+                "sDaysB": "00000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072700"
+          },
+          {
+            "jid": "1|332619|0|80|31032023",
+            "date": "20230331",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 31. M\u00e4r ",
+                "sDaysB": "00000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332619|0|80|31032023",
+            "date": "20230331",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 4,
+                "aTimeS": "215400",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 31. M\u00e4r ",
+                "sDaysB": "00000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "064800"
+          },
+          {
+            "jid": "1|332620|0|80|15042023",
+            "date": "20230415",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 6,
+                "aTimeS": "135300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 15. bis 23. Apr 2023 Sa, So ",
+                "sDaysB": "000000000000000000000000000000060C0000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "011600"
+          },
+          {
+            "jid": "1|332620|0|80|15042023",
+            "date": "20230415",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 6,
+                "dTimeS": "135900",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 15. bis 23. Apr 2023 Sa, So ",
+                "sDaysB": "000000000000000000000000000000060C0000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "083200"
+          },
+          {
+            "jid": "1|332621|0|80|8042023",
+            "date": "20230408",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 7,
+                "aTimeS": "144300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 8., 9. Apr ",
+                "sDaysB": "00000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "020600"
+          },
+          {
+            "jid": "1|332621|0|80|8042023",
+            "date": "20230408",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 7,
+                "dTimeS": "144500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 8., 9. Apr ",
+                "sDaysB": "00000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "074600"
+          },
+          {
+            "jid": "1|332622|0|80|16062023",
+            "date": "20230616",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 16. Jun ",
+                "sDaysB": "00000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332622|0|80|16062023",
+            "date": "20230616",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "231200",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 16. Jun ",
+                "sDaysB": "00000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "080600"
+          },
+          {
+            "jid": "1|332623|0|80|1042023",
+            "date": "20230401",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 1., 2. Apr ",
+                "sDaysB": "00000000000000000000000000018000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332623|0|80|1042023",
+            "date": "20230401",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 1., 2. Apr ",
+                "sDaysB": "00000000000000000000000000018000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072500"
+          },
+          {
+            "jid": "1|332624|0|80|24042023",
+            "date": "20230424",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 24. Apr bis 7. Mai 2023; nicht 29., 30. Apr ",
+                "sDaysB": "0000000000000000000000000000000003E7F0000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021800"
+          },
+          {
+            "jid": "1|332624|0|80|24042023",
+            "date": "20230424",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 24. Apr bis 7. Mai 2023; nicht 29., 30. Apr ",
+                "sDaysB": "0000000000000000000000000000000003E7F0000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072500"
+          },
+          {
+            "jid": "1|332625|0|80|29042023",
+            "date": "20230429",
+            "prodX": 2,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 7,
+                "aTimeS": "144300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 29., 30. Apr ",
+                "sDaysB": "00000000000000000000000000000000001800000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "020800"
+          },
+          {
+            "jid": "1|332625|0|80|29042023",
+            "date": "20230429",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 7,
+                "dTimeS": "144500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 29., 30. Apr ",
+                "sDaysB": "00000000000000000000000000000000001800000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "074600"
+          },
+          {
+            "jid": "1|332626|0|80|11062023",
+            "date": "20230611",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 7,
+                "aTimeS": "144300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 11. bis 18. Jun 2023 Sa, So ",
+                "sDaysB": "00000000000000000000000000000000000000000000020C00000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "020800"
+          },
+          {
+            "jid": "1|332626|0|80|11062023",
+            "date": "20230611",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 7,
+                "dTimeS": "144500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 11. bis 18. Jun 2023 Sa, So ",
+                "sDaysB": "00000000000000000000000000000000000000000000020C00000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "074600"
+          },
+          {
+            "jid": "1|332627|0|80|20052023",
+            "date": "20230520",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 20. Mai ",
+                "sDaysB": "00000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332627|0|80|20052023",
+            "date": "20230520",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "230500",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 20. Mai ",
+                "sDaysB": "00000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "075900"
+          },
+          {
+            "jid": "1|332628|0|80|21042023",
+            "date": "20230421",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 21. Apr ",
+                "sDaysB": "00000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072500"
+          },
+          {
+            "jid": "1|332629|0|80|28052023",
+            "date": "20230528",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 28. Mai ",
+                "sDaysB": "00000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332629|0|80|28052023",
+            "date": "20230528",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "224400",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 28. Mai ",
+                "sDaysB": "00000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "073800"
+          },
+          {
+            "jid": "1|332630|0|80|10062023",
+            "date": "20230610",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 7,
+                "aTimeS": "144300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 10. Jun ",
+                "sDaysB": "00000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "020800"
+          },
+          {
+            "jid": "1|332630|0|80|10062023",
+            "date": "20230610",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 7,
+                "dTimeS": "144500",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "231400",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 10. Jun ",
+                "sDaysB": "00000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "082900"
+          },
+          {
+            "jid": "1|332631|0|80|9062023",
+            "date": "20230609",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145300",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 9. Jun ",
+                "sDaysB": "00000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "021600"
+          },
+          {
+            "jid": "1|332631|0|80|9062023",
+            "date": "20230609",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "231400",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 9. Jun ",
+                "sDaysB": "00000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "080800"
+          },
+          {
+            "jid": "1|332632|0|80|22072023",
+            "date": "20230722",
+            "prodX": 0,
+            "stopL": [
+              {
+                "locX": 0,
+                "dTimeS": "123700",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 1,
+                "aTimeS": "145800",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 22. Jul ",
+                "sDaysB": "00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "022100"
+          },
+          {
+            "jid": "1|332632|0|80|22072023",
+            "date": "20230722",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 120
+              },
+              {
+                "locX": 2,
+                "aTimeS": "223100",
+                "aTZOffset": 120
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 22. Jul ",
+                "sDaysB": "00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 13369549,
+              "y": 52525589
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "072500"
+          },
+          {
+            "jid": "1|332613|0|80|6032023",
+            "date": "20230306",
+            "prodX": 1,
+            "stopL": [
+              {
+                "locX": 1,
+                "dTimeS": "150600",
+                "dTZOffset": 60
+              },
+              {
+                "locX": 5,
+                "aTimeS": "213900",
+                "aTZOffset": 60
+              }
+            ],
+            "sDaysL": [
+              {
+                "sDaysR": "f\u00e4hrt 12. bis 21. Dez 2022, 14. Feb bis 3. M\u00e4r 2023,  6. bis 10. M\u00e4r 2023, 13. bis 24. M\u00e4r 2023,  27. bis 30. M\u00e4r 2023 ",
+                "sDaysB": "7FE00000000000007FFFE7CFFF3C0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "pos": {
+              "x": 9935175,
+              "y": 53552697
+            },
+            "sumLDrawStyleX": 0,
+            "resLDrawStyleX": 1,
+            "durS": "063300"
+          }
+        ],
+        "fpB": "20221211",
+        "fpE": "20231209",
+        "planrtTS": "1687195751"
+      }
+    }
+  ]
+}
