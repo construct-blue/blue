@@ -12,6 +12,7 @@ readonly class Operator implements JsonSerializable
     public function __construct(
         public ?string $id = null,
         public ?string $name = null,
+        public ?string $displayName = null,
         public ?string $admin = null
     )
     {
@@ -23,6 +24,7 @@ readonly class Operator implements JsonSerializable
             'type' => 'operator',
             'id' => $this->id,
             'name' => $this->name,
+            'displayName' => $this->displayName,
             'admin' => $this->admin
         ];
     }

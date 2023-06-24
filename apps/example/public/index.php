@@ -7,6 +7,6 @@ require '../../../vendor/autoload.php';
 chdir(dirname(__DIR__));
 
 $api = Blue\Snappy\Core\Http::htmlApp();
-$api->onGET('index', '/', new Blue\TrainsearchApi\TripHandler());
+$api->onGET('index', '/', new Blue\Example\IndexHandler());
 
 $api->run();

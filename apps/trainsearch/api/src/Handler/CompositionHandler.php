@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Blue\TrainsearchApi;
+namespace Blue\TrainsearchApi\Handler;
 
+use Blue\HafasClient\Hafas;
+use Blue\HafasClient\Request\JourneyMatchRequest;
 use Blue\OebbLive\Client\OebbLiveClient;
 use Blue\OebbLive\OebbLive;
 use DateTime;
-use Blue\HafasClient\Hafas;
-use Blue\HafasClient\Request\JourneyMatchRequest;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

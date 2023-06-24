@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Blue\TrainsearchApi;
+namespace Blue\TrainsearchApi\Handler;
 
-use DateTime;
+use Blue\HafasClient\Exception\InvalidProfileException;
 use Blue\HafasClient\Hafas;
 use Blue\HafasClient\Helper\OperatorFilter;
 use Blue\HafasClient\Request\JourneyMatchRequest;
+use Blue\TrainsearchApi\Hafas\Exception\BadRequestException;
+use Blue\TrainsearchApi\Hafas\HafasRequest;
+use DateTime;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,27 +20,20 @@ class TripHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $query = urldecode($request->getAttribute('query'));
-        $profile = $request->getAttribute('profile', 'db');
-        $admin = $request->getQueryParams()['admin'] ?? null;
-        if ($profile == 'db') {
-            $hafas = Hafas::createDB();
-        } elseif ($profile == 'oebb') {
-            $hafas = Hafas::createOeBB();
-        } else {
-            return new Response\JsonResponse(['error' => 'Invalid profile.'], 400);
+        try {
+            $hafasRequest = new HafasRequest($request);
+            $hafas = Hafas::create($hafasRequest->getProfile());
+        } catch (BadRequestException|InvalidProfileException $exception) {
+            return new Response\JsonResponse(['error' => $exception->getMessage()], 400);
         }
 
-        $journeyRequest = new JourneyMatchRequest($query, false);
-        $journeyRequest->setAdmin($admin);
-
+        $journeyRequest = new JourneyMatchRequest($hafasRequest->getQuery(), false);
+        $journeyRequest->setAdmin($hafasRequest->getQuery());
         $journeyRequest->setFromWhen(new DateTime('today 00:00'));
         $journeyRequest->setUntilWhen(new DateTime('today 23:59'));
 
-        $operator = $request->getQueryParams()['operator'] ?? null;
-        if ($operator) {
-            $operator = (array)$operator;
-            $journeyRequest->setOperatorFilter(new OperatorFilter(...$operator));
+        if ($hafasRequest->getOperator()) {
+            $journeyRequest->setOperatorFilter(new OperatorFilter($hafasRequest->getOperator()));
         }
 
         $data = $hafas->tripsByName($journeyRequest);

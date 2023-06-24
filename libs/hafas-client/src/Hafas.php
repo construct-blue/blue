@@ -2,6 +2,7 @@
 
 namespace Blue\HafasClient;
 
+use Blue\HafasClient\Exception\InvalidProfileException;
 use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
@@ -22,6 +23,11 @@ class Hafas
     private Request $request;
     private Config $config;
 
+    public const PROFILES = [
+        'db',
+        'oebb'
+    ];
+
     /**
      * @param Config $config
      * @param Request $request
@@ -32,18 +38,41 @@ class Hafas
         $this->request = $request;
     }
 
-    public static function createDB(): Hafas
+    /**
+     * @return Config
+     */
+    public function getConfig(): Config
     {
-        $config = Config::fromFile(__DIR__ . "/../profiles/db/config.json");
-        $request = Request::fromFile(__DIR__ . "/../profiles/db/request.json");
+        return $this->config;
+    }
+
+    /**
+     * @throws InvalidProfileException
+     */
+    public static function create(string $profile): Hafas
+    {
+        if (!in_array($profile, self::PROFILES)) {
+            throw new InvalidProfileException('Invalid hafas profile.');
+        }
+        $config = Config::fromFile(__DIR__ . "/../profiles/$profile/config.json");
+        $request = Request::fromFile(__DIR__ . "/../profiles/$profile/request.json");
         return new Hafas($config, $request);
     }
 
+    /**
+     * @throws InvalidProfileException
+     */
+    public static function createDB(): Hafas
+    {
+        return self::create('db');
+    }
+
+    /**
+     * @throws InvalidProfileException
+     */
     public static function createOeBB(): Hafas
     {
-        $config = Config::fromFile(__DIR__ . "/../profiles/oebb/config.json");
-        $request = Request::fromFile(__DIR__ . "/../profiles/oebb/request.json");
-        return new Hafas($config, $request);
+        return self::create('oebb');
     }
 
 

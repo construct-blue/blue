@@ -5,39 +5,48 @@
   "defaultLanguage": "de",
   "addMicMac": false,
   "addChecksum": true,
+  "filterOperatorByAdminCode": false,
   "defaultTZOffset": 120,
   "operators": [
     {
       "id": "dbfern",
-      "name": "DB Fernverkehr AG"
+      "name": "DB Fernverkehr AG",
+      "displayName": "DB Fernverkehr"
     },
     {
       "id": "oebb",
-      "name": "Österreichische Bundesbahnen"
+      "name": "Österreichische Bundesbahnen",
+      "displayName": "ÖBB"
     },
     {
       "id": "cd",
-      "name": "Ceske Drahy"
+      "name": "Ceske Drahy",
+      "displayName": "ČD"
     },
     {
       "id": "sbb",
-      "name": "SBB"
+      "name": "SBB",
+      "displayName": "SBB"
     },
     {
       "id": "cfr",
-      "name": "Rumänische Eisenbahnen Caile Ferate Romane"
+      "name": "Rumänische Eisenbahnen Caile Ferate Romane",
+      "displayName": "CFR"
     },
     {
       "id": "ns",
-      "name": "Nederlandse Spoorwegen"
+      "name": "Nederlandse Spoorwegen",
+      "displayName": "NS (NL)"
     },
     {
       "id": "trenit",
-      "name": "Trenitalia"
+      "name": "Trenitalia",
+      "displayName": "Trenitalia"
     },
     {
       "id": "mav",
-      "name": "MAV"
+      "name": "MAV",
+      "displayName": "MÁV"
     }
   ],
   "products": [

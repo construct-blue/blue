@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Blue\HafasClient\Request;
 
+use Blue\HafasClient\Exception\InvalidFilterException;
+use Blue\HafasClient\Exception\ProductNotFoundException;
 use DateTime;
 use Blue\HafasClient\Helper\OperatorFilter;
 use Blue\HafasClient\Helper\ProductFilter;
@@ -104,6 +106,10 @@ class JourneyMatchRequest
         return $this;
     }
 
+    /**
+     * @param Config $config
+     * @return string[]
+     */
     private function getAdmins(Config $config): array
     {
         if (isset($this->operatorFilter)) {
@@ -127,7 +133,7 @@ class JourneyMatchRequest
     public function filter(Config $config, array $trips): array
     {
         $admins = $this->getAdmins($config);
-        if ($admins !== []) {
+        if ($config->isFilterOperatorByAdminCode() && $admins !== []) {
             foreach ($trips as $i => $trip) {
                 if (!in_array($trip->line->admin, $admins)) {
                     unset($trips[$i]);
@@ -137,6 +143,12 @@ class JourneyMatchRequest
         return array_values($trips);
     }
 
+    /**
+     * @param Config $config
+     * @return array<mixed>
+     * @throws InvalidFilterException
+     * @throws ProductNotFoundException
+     */
     public function toArray(Config $config): array
     {
         $data = [

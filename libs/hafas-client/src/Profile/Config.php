@@ -16,6 +16,7 @@ class Config
     private string $defaultLanguage;
     private bool $addMicMac;
     private bool $addChecksum;
+    private bool $filterOperatorByAdminCode;
     private int $defaultTZOffset;
 
     /** @var Product[] */
@@ -32,28 +33,30 @@ class Config
      * @param string $defaultLanguage
      * @param bool $addMicMac
      * @param bool $addChecksum
+     * @param bool $filterOperatorByAdminCode
      * @param int $defaultTZOffset
      * @param Product[] $products
      * @param Operator[] $operators
      */
     public function __construct(
-        string  $userAgent,
-        string  $endpoint,
+        string $userAgent,
+        string $endpoint,
         ?string $salt,
-        string  $defaultLanguage,
-        bool    $addMicMac,
-        bool    $addChecksum,
-        int     $defaultTZOffset,
-        array   $products,
-        array   $operators
-    )
-    {
+        string $defaultLanguage,
+        bool $addMicMac,
+        bool $addChecksum,
+        bool $filterOperatorByAdminCode,
+        int $defaultTZOffset,
+        array $products,
+        array $operators
+    ) {
         $this->userAgent = $userAgent;
         $this->endpoint = $endpoint;
         $this->salt = $salt;
         $this->defaultLanguage = $defaultLanguage;
         $this->addMicMac = $addMicMac;
         $this->addChecksum = $addChecksum;
+        $this->filterOperatorByAdminCode = $filterOperatorByAdminCode;
         $this->defaultTZOffset = $defaultTZOffset;
         $this->products = $products;
         $this->operators = $operators;
@@ -65,26 +68,29 @@ class Config
         return new Config(
             userAgent: $config->userAgent ?? 'hafas-php-client',
             endpoint: $config->endpoint,
-            salt: (string)$config->salt ?? '',
-            defaultLanguage: (string)$config->defaultLanguage ?? 'en',
-            addMicMac: (bool)$config->addMicMac ?? false,
-            addChecksum: (bool)$config->addChecksum ?? false,
-            defaultTZOffset: (int)$config->defaultTZOffset ?? 0,
+            salt: (string)($config->salt ?? ''),
+            defaultLanguage: (string)($config->defaultLanguage ?? 'en'),
+            addMicMac: (bool)($config->addMicMac ?? false),
+            addChecksum: (bool)($config->addChecksum ?? false),
+            filterOperatorByAdminCode: (bool)($config->filterOperatorByAdminCode ?? false),
+            defaultTZOffset: (int)($config->defaultTZOffset ?? 0),
             products: array_map(
                 fn(stdClass $product) => new Product(
-                    id: (string)$product->id ?? '',
-                    mode: (string)$product->mode ?? '',
+                    id: (string)($product->id ?? ''),
+                    mode: (string)($product->mode ?? ''),
                     bitmasks: array_map('intval', $product->bitmasks),
-                    name: (string)$product->name ?? '',
-                    short: (string)$product->short ?? '',
+                    name: (string)($product->name ?? ''),
+                    short: (string)($product->short ?? ''),
                     default: (bool)$product->default
                 ),
-                $config->products ?? []),
+                $config->products ?? []
+            ),
             operators: array_map(
                 fn(stdClass $operator) => new Operator(
-                    (string)$operator->id,
-                    (string)$operator->name,
-                    isset($operator->admin) ? (string)$operator->admin : null
+                    id: (string)$operator->id,
+                    name: (string)$operator->name,
+                    displayName: isset($operator->displayName) ? (string)$operator->displayName : null,
+                    admin: isset($operator->admin) ? (string)$operator->admin : null
                 ),
                 $config->operators ?? []
             )
@@ -137,6 +143,14 @@ class Config
     public function isAddChecksum(): bool
     {
         return $this->addChecksum;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterOperatorByAdminCode(): bool
+    {
+        return $this->filterOperatorByAdminCode;
     }
 
     /**
