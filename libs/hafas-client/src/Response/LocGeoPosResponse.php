@@ -34,7 +34,7 @@ class LocGeoPosResponse {
                         altitude: $location->crd->z ?? 0
                     )
             );
-            $stop->distance = $location?->dist;
+            #$stop->distance = $location?->dist;
             $data[]         = $stop;
         }
 
