@@ -28,11 +28,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["lit", "npm:2.7.5"],\
             ["ts-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:9.4.3"],\
+            ["tsconfig-paths-webpack-plugin", "npm:4.0.1"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"],\
             ["webpack", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.88.0"],\
+            ["webpack-assets-manifest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.0"],\
             ["webpack-cli", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.4"],\
-            ["webpack-manifest-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.0.0"],\
             ["workbox-webpack-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:7.0.0"]\
           ],\
           "linkType": "SOFT"\
@@ -2449,6 +2451,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@lit-labs/ssr-dom-shim", [\
+        ["npm:1.1.1", {\
+          "packageLocation": "./.yarn/cache/@lit-labs-ssr-dom-shim-npm-1.1.1-8b753a4141-7a7add78e3.zip/node_modules/@lit-labs/ssr-dom-shim/",\
+          "packageDependencies": [\
+            ["@lit-labs/ssr-dom-shim", "npm:1.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@lit/reactive-element", [\
+        ["npm:1.6.2", {\
+          "packageLocation": "./.yarn/cache/@lit-reactive-element-npm-1.6.2-1d20024e26-011a3ef093.zip/node_modules/@lit/reactive-element/",\
+          "packageDependencies": [\
+            ["@lit/reactive-element", "npm:1.6.2"],\
+            ["@lit-labs/ssr-dom-shim", "npm:1.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@npmcli/fs", [\
         ["npm:3.1.0", {\
           "packageLocation": "./.yarn/cache/@npmcli-fs-npm-3.1.0-0844a57978-a50a6818de.zip/node_modules/@npmcli/fs/",\
@@ -4760,6 +4781,40 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lit", [\
+        ["npm:2.7.5", {\
+          "packageLocation": "./.yarn/cache/lit-npm-2.7.5-bef28da03f-61a3f87c57.zip/node_modules/lit/",\
+          "packageDependencies": [\
+            ["lit", "npm:2.7.5"],\
+            ["@lit/reactive-element", "npm:1.6.2"],\
+            ["lit-element", "npm:3.3.2"],\
+            ["lit-html", "npm:2.7.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lit-element", [\
+        ["npm:3.3.2", {\
+          "packageLocation": "./.yarn/cache/lit-element-npm-3.3.2-4cb4695bd1-afe50825be.zip/node_modules/lit-element/",\
+          "packageDependencies": [\
+            ["lit-element", "npm:3.3.2"],\
+            ["@lit-labs/ssr-dom-shim", "npm:1.1.1"],\
+            ["@lit/reactive-element", "npm:1.6.2"],\
+            ["lit-html", "npm:2.7.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lit-html", [\
+        ["npm:2.7.4", {\
+          "packageLocation": "./.yarn/cache/lit-html-npm-2.7.4-e950aa5037-3809d62d8b.zip/node_modules/lit-html/",\
+          "packageDependencies": [\
+            ["lit-html", "npm:2.7.4"],\
+            ["@types/trusted-types", "npm:2.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["loader-runner", [\
         ["npm:4.3.0", {\
           "packageLocation": "./.yarn/cache/loader-runner-npm-4.3.0-9ca67df372-a90e00dee9.zip/node_modules/loader-runner/",\
@@ -4779,6 +4834,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lockfile", [\
+        ["npm:1.0.4", {\
+          "packageLocation": "./.yarn/cache/lockfile-npm-1.0.4-00301b5723-8de35aace8.zip/node_modules/lockfile/",\
+          "packageDependencies": [\
+            ["lockfile", "npm:1.0.4"],\
+            ["signal-exit", "npm:3.0.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lodash", [\
         ["npm:4.17.21", {\
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
@@ -4793,6 +4858,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash.debounce-npm-4.0.8-f1d6e09799-a3f527d22c.zip/node_modules/lodash.debounce/",\
           "packageDependencies": [\
             ["lodash.debounce", "npm:4.0.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash.get", [\
+        ["npm:4.4.2", {\
+          "packageLocation": "./.yarn/cache/lodash.get-npm-4.4.2-7bda64ed87-e403047ddb.zip/node_modules/lodash.get/",\
+          "packageDependencies": [\
+            ["lodash.get", "npm:4.4.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash.has", [\
+        ["npm:4.5.2", {\
+          "packageLocation": "./.yarn/cache/lodash.has-npm-4.5.2-0a10673e08-b3ec829a86.zip/node_modules/lodash.has/",\
+          "packageDependencies": [\
+            ["lodash.has", "npm:4.5.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4853,11 +4936,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["main", "workspace:."],\
+            ["lit", "npm:2.7.5"],\
             ["ts-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:9.4.3"],\
+            ["tsconfig-paths-webpack-plugin", "npm:4.0.1"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"],\
             ["webpack", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.88.0"],\
+            ["webpack-assets-manifest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.0"],\
             ["webpack-cli", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.4"],\
-            ["webpack-manifest-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.0.0"],\
             ["workbox-webpack-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:7.0.0"]\
           ],\
           "linkType": "SOFT"\
@@ -4948,6 +5033,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["minimatch", "npm:9.0.2"],\
             ["brace-expansion", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["minimist", [\
+        ["npm:1.2.8", {\
+          "packageLocation": "./.yarn/cache/minimist-npm-1.2.8-d7af7b1dce-75a6d645fb.zip/node_modules/minimist/",\
+          "packageDependencies": [\
+            ["minimist", "npm:1.2.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5867,6 +5961,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["strip-bom", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/strip-bom-npm-3.0.0-71e8f81ff9-8d50ff27b7.zip/node_modules/strip-bom/",\
+          "packageDependencies": [\
+            ["strip-bom", "npm:3.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["strip-comments", [\
         ["npm:2.0.1", {\
           "packageLocation": "./.yarn/cache/strip-comments-npm-2.0.1-7f4e6e5047-36cd122e1c.zip/node_modules/strip-comments/",\
@@ -6064,6 +6167,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/webpack",\
             "typescript",\
             "webpack"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tsconfig-paths", [\
+        ["npm:4.2.0", {\
+          "packageLocation": "./.yarn/cache/tsconfig-paths-npm-4.2.0-ac1edf8677-28c5f7bbbc.zip/node_modules/tsconfig-paths/",\
+          "packageDependencies": [\
+            ["tsconfig-paths", "npm:4.2.0"],\
+            ["json5", "npm:2.2.3"],\
+            ["minimist", "npm:1.2.8"],\
+            ["strip-bom", "npm:3.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tsconfig-paths-webpack-plugin", [\
+        ["npm:4.0.1", {\
+          "packageLocation": "./.yarn/cache/tsconfig-paths-webpack-plugin-npm-4.0.1-80479f0973-a09e765c49.zip/node_modules/tsconfig-paths-webpack-plugin/",\
+          "packageDependencies": [\
+            ["tsconfig-paths-webpack-plugin", "npm:4.0.1"],\
+            ["chalk", "npm:4.1.2"],\
+            ["enhanced-resolve", "npm:5.15.0"],\
+            ["tsconfig-paths", "npm:4.2.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6306,6 +6433,35 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["webpack-assets-manifest", [\
+        ["npm:5.1.0", {\
+          "packageLocation": "./.yarn/cache/webpack-assets-manifest-npm-5.1.0-fad26f5290-30b0929f6a.zip/node_modules/webpack-assets-manifest/",\
+          "packageDependencies": [\
+            ["webpack-assets-manifest", "npm:5.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/webpack-assets-manifest-virtual-200cc8be6a/0/cache/webpack-assets-manifest-npm-5.1.0-fad26f5290-30b0929f6a.zip/node_modules/webpack-assets-manifest/",\
+          "packageDependencies": [\
+            ["webpack-assets-manifest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.0"],\
+            ["@types/webpack", null],\
+            ["chalk", "npm:4.1.2"],\
+            ["deepmerge", "npm:4.3.1"],\
+            ["lockfile", "npm:1.0.4"],\
+            ["lodash.get", "npm:4.4.2"],\
+            ["lodash.has", "npm:4.5.2"],\
+            ["schema-utils", "npm:3.3.0"],\
+            ["tapable", "npm:2.2.1"],\
+            ["webpack", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.88.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/webpack",\
+            "webpack"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["webpack-cli", [\
         ["npm:5.1.4", {\
           "packageLocation": "./.yarn/cache/webpack-cli-npm-5.1.4-7be5b53b38-3a4ad0d034.zip/node_modules/webpack-cli/",\
@@ -6353,30 +6509,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["webpack-manifest-plugin", [\
-        ["npm:5.0.0", {\
-          "packageLocation": "./.yarn/cache/webpack-manifest-plugin-npm-5.0.0-d9c03b2f9d-864d68f908.zip/node_modules/webpack-manifest-plugin/",\
-          "packageDependencies": [\
-            ["webpack-manifest-plugin", "npm:5.0.0"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.0.0", {\
-          "packageLocation": "./.yarn/__virtual__/webpack-manifest-plugin-virtual-8a720b8a16/0/cache/webpack-manifest-plugin-npm-5.0.0-d9c03b2f9d-864d68f908.zip/node_modules/webpack-manifest-plugin/",\
-          "packageDependencies": [\
-            ["webpack-manifest-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.0.0"],\
-            ["@types/webpack", null],\
-            ["tapable", "npm:2.2.1"],\
-            ["webpack", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.88.0"],\
-            ["webpack-sources", "npm:2.3.1"]\
-          ],\
-          "packagePeers": [\
-            "@types/webpack",\
-            "webpack"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["webpack-merge", [\
         ["npm:5.9.0", {\
           "packageLocation": "./.yarn/cache/webpack-merge-npm-5.9.0-9110e650de-64fe2c23aa.zip/node_modules/webpack-merge/",\
@@ -6393,15 +6525,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/webpack-sources-npm-1.4.3-2b3a9b1de0-37463dad8d.zip/node_modules/webpack-sources/",\
           "packageDependencies": [\
             ["webpack-sources", "npm:1.4.3"],\
-            ["source-list-map", "npm:2.0.1"],\
-            ["source-map", "npm:0.6.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:2.3.1", {\
-          "packageLocation": "./.yarn/cache/webpack-sources-npm-2.3.1-fac7f75ad9-6fd67f2274.zip/node_modules/webpack-sources/",\
-          "packageDependencies": [\
-            ["webpack-sources", "npm:2.3.1"],\
             ["source-list-map", "npm:2.0.1"],\
             ["source-map", "npm:0.6.1"]\
           ],\

@@ -33,6 +33,13 @@ jobs:
       - name: Install dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --prefer-dist --no-progress --no-dev --classmap-authoritative
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '^18.0'
+
+      - name: Build JS
+        run: yarn install && yarn build
+
       - name: Upload to server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
