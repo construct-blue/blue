@@ -8,6 +8,6 @@
     "experimentalDecorators": true,
     "allowJs": true,
     "moduleResolution": "Node",
-    "baseUrl": ".",
+    "baseUrl": "."
   }
 }

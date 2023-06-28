@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blue\Example;
+namespace Blue\TrainsearchFrontend\Index;
 
 use Blue\Snappy\Core\Assets\AssetsLoader;
 use Blue\Snappy\Renderer\Renderer;
@@ -15,13 +15,7 @@ class IndexHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $assetsLoader = $request->getAttribute(AssetsLoader::class);
         $renderer = new Renderer();
-        return new HtmlResponse(
-            $renderer->render(
-                include 'app.php',
-                $renderer->args(['entrypoint' => $assetsLoader])
-            )
-        );
+        return new HtmlResponse($renderer->render(new IndexView($request->getAttribute(AssetsLoader::class))));
     }
 }

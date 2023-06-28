@@ -23,7 +23,8 @@
       "Blue\\Example\\": "apps/example/src",
       "Blue\\HafasClient\\": "libs/hafas-client/src",
       "Blue\\OebbLive\\": "libs/oebb-live-client/src",
-      "Blue\\TrainsearchApi\\": "apps/trainsearch/api/src"
+      "Blue\\TrainsearchApi\\": "apps/trainsearch/api/src",
+      "Blue\\TrainsearchFrontend\\": "apps/trainsearch/frontend/src"
     }
   },
   "autoload-dev": {
@@ -33,7 +34,8 @@
       "BlueTest\\Example\\": "apps/example/tests",
       "BlueTest\\HafasClient\\": "libs/hafas-client/tests",
       "BlueTest\\OebbLive\\": "libs/oebb-live-client/tests",
-      "BlueTest\\TrainsearchApi\\": "apps/trainsearch/api/tests"
+      "BlueTest\\TrainsearchApi\\": "apps/trainsearch/api/tests",
+      "BlueTest\\TrainsearchFrontend\\": "apps/trainsearch/frontend/tests"
     }
   },
   "require-dev": {

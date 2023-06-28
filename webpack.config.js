@@ -9,5 +9,12 @@ module.exports = [
         output: {
             path: path.resolve('./apps/example/public/static'),
         },
+    },
+    {
+        extends: path.resolve(__dirname, './base.webpack.config.js'),
+        entry: './apps/trainsearch/frontend/src/index.ts',
+        output: {
+            path: path.resolve('./apps/trainsearch/frontend/public/static'),
+        },
     }
 ];

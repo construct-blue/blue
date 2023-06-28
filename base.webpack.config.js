@@ -39,6 +39,7 @@ module.exports = {
         new WebpackAssetsManifest({
             publicPath: true,
             entrypoints: true,
+            integrity: true,
             entrypointsUseAssets: true,
         }),
         new WorkboxPlugin.GenerateSW({
