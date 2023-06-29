@@ -151,7 +151,7 @@ final class Http
         }
     }
 
-    public function initAssets(string $assetsManifest): void
+    public function initAssets(string $assetsManifest = 'assets-manifest.json'): void
     {
         $this->addMiddleware(new AssetsLoaderMiddleware(new AssetsLoader($assetsManifest)));
     }

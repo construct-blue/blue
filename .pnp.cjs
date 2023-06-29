@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["webpack", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.88.0"],\
             ["webpack-assets-manifest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.0"],\
             ["webpack-cli", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.4"],\
+            ["webpack-merge", "npm:5.9.0"],\
             ["workbox-webpack-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:7.0.0"]\
           ],\
           "linkType": "SOFT"\
@@ -4943,6 +4944,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["webpack", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.88.0"],\
             ["webpack-assets-manifest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.0"],\
             ["webpack-cli", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:5.1.4"],\
+            ["webpack-merge", "npm:5.9.0"],\
             ["workbox-webpack-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:7.0.0"]\
           ],\
           "linkType": "SOFT"\
