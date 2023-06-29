@@ -12,4 +12,7 @@ export class TrainSearchController implements ReactiveController {
     {
         return await this.client.trip(nr)
     }
+
+    hostUpdated() {
+    }
 }
