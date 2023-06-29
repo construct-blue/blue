@@ -1,0 +1,68 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: dark;
+    color: var(--grey);
+    background-color: var(--blue);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    --light-border: 1px solid var(--grey);
+
+
+    --grey: hsl(60, 4%, 68%);
+    --blue: hsl(228, 45%, 24%);
+    --red: hsl(5, 84%, 40%);
+    --orange: hsl(40, 100%, 49%);
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    overscroll-behavior: none;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    overscroll-behavior: none;
+    margin: 0;
+    display: flex;
+    font-size: 16px;
+    background: var(--blue);
+}
+
+
+
+* {
+    font-family: FrutigerNextPro-Regular, sans-serif;
+}
+
+@font-face {
+    font-family: "FrutigerNextPro-Regular";
+    src: url("./fonts/FrutigerNextPro-Regular.otf") format("opentype")
+}
+
+@font-face {
+    font-family: "FrutigerNextPro-Bold";
+    src: url("./fonts/FrutigerNextPro-Bold.otf") format("opentype")
+}
