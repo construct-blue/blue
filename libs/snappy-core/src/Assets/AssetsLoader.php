@@ -54,7 +54,8 @@ class AssetsLoader implements Renderable
         foreach ($decoded->entrypoints as $entrypointName => $data) {
             $this->entrypoints[$entrypointName] = new Entrypoint(
                 new Assets(
-                    js: array_map(fn(stdClass $js) => new Script($js->src, $js->integrity), $data->assets?->js ?? [])
+                    js: array_map(fn(stdClass $js) => new Script($js->src, $js->integrity), $data->assets?->js ?? []),
+                    css: array_map(fn(stdClass $css) => new Stylesheet($css->src, $css->integrity), $data->assets?->css ?? [])
                 )
             );
         }

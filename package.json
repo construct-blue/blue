@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.3",
     "tsconfig-paths-webpack-plugin": "^4.0.1",

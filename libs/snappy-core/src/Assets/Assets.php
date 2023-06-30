@@ -8,8 +8,9 @@ class Assets
 {
     /**
      * @param Script[] $js
+     * @param Stylesheet[] $css
      */
-    public function __construct(private array $js)
+    public function __construct(private array $js, private array $css)
     {
     }
 
@@ -19,5 +20,13 @@ class Assets
     public function getJs(): array
     {
         return $this->js;
+    }
+
+    /**
+     * @return Stylesheet[]
+     */
+    public function getCss(): array
+    {
+        return $this->css;
     }
 }
