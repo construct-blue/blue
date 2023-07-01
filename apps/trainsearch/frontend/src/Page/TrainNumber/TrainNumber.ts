@@ -2,6 +2,7 @@ import {css, html, LitElement, TemplateResult} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {TrainNumberController} from "./TrainNumberController";
 import './NumberInput'
+import './TrainList'
 import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
 import {ObjectContextProvider} from "../../Mixin/Context";
 
@@ -19,6 +20,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
     protected render(): TemplateResult {
         return html`
             <ts-number-input></ts-number-input>
+            <ts-list></ts-list>
             <span>${this.context.operator}</span>
             <pre>${JSON.stringify(this.context.train, null, 2)}</pre>
         `;
