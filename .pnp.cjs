@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@lit-labs/context", "npm:0.3.3"],\
             ["css-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:6.8.1"],\
             ["lit", "npm:2.7.5"],\
             ["mini-css-extract-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:2.7.6"],\
@@ -2451,6 +2452,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@jridgewell/trace-mapping", "npm:0.3.18"],\
             ["@jridgewell/resolve-uri", "npm:3.1.0"],\
             ["@jridgewell/sourcemap-codec", "npm:1.4.14"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@lit-labs/context", [\
+        ["npm:0.3.3", {\
+          "packageLocation": "./.yarn/cache/@lit-labs-context-npm-0.3.3-c3d5e5eb4d-3607a7f965.zip/node_modules/@lit-labs/context/",\
+          "packageDependencies": [\
+            ["@lit-labs/context", "npm:0.3.3"],\
+            ["@lit/reactive-element", "npm:1.6.2"],\
+            ["lit", "npm:2.7.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5044,6 +5056,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["main", "workspace:."],\
+            ["@lit-labs/context", "npm:0.3.3"],\
             ["css-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:6.8.1"],\
             ["lit", "npm:2.7.5"],\
             ["mini-css-extract-plugin", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:2.7.6"],\

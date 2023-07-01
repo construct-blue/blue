@@ -47,11 +47,22 @@ body {
     overscroll-behavior: none;
     margin: 0;
     display: flex;
+    flex-direction: column;
     font-size: 16px;
     background: var(--blue);
 }
 
+main, footer {
+    display: flex;
+}
 
+main {
+    flex-grow: 1;
+}
+
+main > *, footer > * {
+    flex-grow: 1;
+}
 
 * {
     font-family: FrutigerNextPro-Regular, sans-serif;
@@ -59,10 +70,10 @@ body {
 
 @font-face {
     font-family: "FrutigerNextPro-Regular";
-    src: url("./fonts/FrutigerNextPro-Regular.otf") format("opentype")
+    src: url("../../fonts/FrutigerNextPro-Regular.otf") format("opentype")
 }
 
 @font-face {
     font-family: "FrutigerNextPro-Bold";
-    src: url("./fonts/FrutigerNextPro-Bold.otf") format("opentype")
+    src: url("../../fonts/FrutigerNextPro-Bold.otf") format("opentype")
 }

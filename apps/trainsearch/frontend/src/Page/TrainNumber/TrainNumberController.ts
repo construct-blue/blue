@@ -1,7 +1,7 @@
 import {ReactiveController, ReactiveControllerHost} from "lit";
-import TrainSearchClient from "../Client/TrainSearchClient";
+import TrainSearchClient from "../../Client/TrainSearchClient";
 
-export class TrainSearchController implements ReactiveController {
+export class TrainNumberController implements ReactiveController {
     private client = new TrainSearchClient('https://trainsearch-api.local')
 
     constructor(private host: ReactiveControllerHost) {

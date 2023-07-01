@@ -20,6 +20,7 @@
     "build": "yarn webpack --mode=production"
   },
   "dependencies": {
+    "@lit-labs/context": "^0.3.3",
     "lit": "^2.7.5"
   }
 }

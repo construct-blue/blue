@@ -1,3 +1,4 @@
 import 'sw/sw'
-import './Index/IndexElement'
-import './index.css'
+import './Component/Layout/Layout.css'
+import './Page/TrainNumber/TrainNumber'
+import './Component/Navigation/Navigation'
