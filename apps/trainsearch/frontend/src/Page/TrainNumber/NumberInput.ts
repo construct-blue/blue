@@ -1,7 +1,7 @@
 import {html, LitElement, TemplateResult} from "lit";
 import {customElement, query} from "lit/decorators.js";
-import {ObjectContextConsumer} from "../../Mixin/Context";
-import {trainNumberContext} from "./TrainNumberContext";
+import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
+import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
 
 @customElement('ts-number-input')
 class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) {

@@ -4,7 +4,7 @@ import {TrainNumberController} from "./TrainNumberController";
 import './NumberInput'
 import './TrainList'
 import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
-import {ObjectContextProvider} from "../../Mixin/Context";
+import {ObjectContextProvider} from "libs/lit-helper/src/Mixin/ObjectContext";
 
 @customElement('ts-number')
 export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberContext, new TrainNumberContext()) {
@@ -21,7 +21,6 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
         return html`
             <ts-number-input></ts-number-input>
             <ts-list></ts-list>
-            <span>${this.context.operator}</span>
             <pre>${JSON.stringify(this.context.train, null, 2)}</pre>
         `;
     }
@@ -29,7 +28,6 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
     private async search(e: Event)
     {
         const input = e.target as HTMLInputElement
-
         this.context.train = await this.controller.trip(input.value)
     }
 }
