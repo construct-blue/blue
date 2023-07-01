@@ -4,7 +4,7 @@
     font-weight: 400;
 
     color-scheme: dark;
-    color: var(--grey);
+    color: white;
     background-color: var(--blue);
 
     font-synthesis: none;
@@ -58,6 +58,7 @@ main, footer {
 
 main {
     flex-grow: 1;
+    overflow: hidden;
 }
 
 main > *, footer > * {

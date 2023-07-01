@@ -1,8 +1,8 @@
-import {css, html, LitElement, TemplateResult} from "lit";
+import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {TrainNumberController} from "./TrainNumberController";
 import './NumberInput'
-import './TrainList'
+import './TrainDetails'
 import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
 import {ObjectContextProvider} from "libs/lit-helper/src/Mixin/ObjectContext";
 
@@ -11,23 +11,32 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
     private controller = new TrainNumberController(this)
 
     static styles = css`
-      pre {
-          overflow: scroll;
-          height: 300px;
-      }
+        :host(ts-number) {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
     `
+
+    protected async scheduleUpdate(): Promise<unknown> {
+        if (this.context.number && this.context.operator) {
+            try {
+                this.context.trip = await this.controller.trip(this.context.number, this.context.operator)
+            } catch (e) {
+                console.error(e)
+                this.context.trip = null
+            }
+        } else {
+            this.context.trip = null
+        }
+        return super.scheduleUpdate();
+    }
 
     protected render(): TemplateResult {
         return html`
             <ts-number-input></ts-number-input>
-            <ts-list></ts-list>
-            <pre>${JSON.stringify(this.context.train, null, 2)}</pre>
+            ${this.context.trip ? html`
+                <ts-details .trip="${this.context.trip}"></ts-details>` : nothing}
         `;
-    }
-
-    private async search(e: Event)
-    {
-        const input = e.target as HTMLInputElement
-        this.context.train = await this.controller.trip(input.value)
     }
 }

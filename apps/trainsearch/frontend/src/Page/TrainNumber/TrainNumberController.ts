@@ -8,9 +8,14 @@ export class TrainNumberController implements ReactiveController {
         host.addController(this)
     }
 
-    public async trip(nr: string)
+    public async trip(nr: string, operator: string)
     {
-        return await this.client.trip(nr)
+        return await this.client.trip(nr, operator)
+    }
+
+    public async operators()
+    {
+        return await this.client.operators()
     }
 
     hostUpdated() {
