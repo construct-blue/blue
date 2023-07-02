@@ -9,7 +9,7 @@ use Blue\Snappy\Renderer\Renderer;
 
 class LayoutView implements Renderable
 {
-    public function __construct(private $assets, private $view)
+    public function __construct(private $assets, private string $api, private $view)
     {
     }
 
@@ -26,7 +26,7 @@ class LayoutView implements Renderable
     {$renderer->placeholder('head')}
     {$renderer->render($this->assets)}
 </head>
-<body>
+<body data-api="$this->api">
       <main>
             {$renderer->render($this->view)}
       </main>

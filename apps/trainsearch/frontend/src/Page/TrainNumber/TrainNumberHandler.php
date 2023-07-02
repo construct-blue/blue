@@ -16,11 +16,18 @@ class TrainNumberHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if (str_ends_with($request->getUri()->getHost(), '.local')) {
+            $api = 'https://trainsearch-api.local';
+        } else {
+            $api = 'http://trainsearch-api.snappy.blue';
+        }
+
         $renderer = new Renderer();
         return new HtmlResponse(
             $renderer->render(
                 new LayoutView(
                     $request->getAttribute(AssetsLoader::class),
+                    $api,
                     '<ts-number></ts-number>'
                 )
             )

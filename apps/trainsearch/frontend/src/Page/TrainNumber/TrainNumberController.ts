@@ -2,7 +2,7 @@ import {ReactiveController, ReactiveControllerHost} from "lit";
 import TrainSearchClient from "../../Client/TrainSearchClient";
 
 export class TrainNumberController implements ReactiveController {
-    private client = new TrainSearchClient('https://trainsearch-api.local')
+    private client = new TrainSearchClient(document.body.dataset.api)
 
     constructor(private host: ReactiveControllerHost) {
         host.addController(this)
