@@ -1,4 +1,4 @@
-import {css, html, LitElement, TemplateResult} from "lit";
+import {css, html, LitElement, PropertyValues, TemplateResult} from "lit";
 import {customElement, query} from "lit/decorators.js";
 import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "./TrainNumberContext";
@@ -24,33 +24,35 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
     }
 
     static styles = css`
-      :host(ts-number-input) {
-        display: flex;
-        gap: 1px;
-      }
+        :host(ts-number-input) {
+            display: flex;
+            gap: 1px;
+        }
 
-      input {
-        flex-grow: 1;
-      }
+        input {
+            flex-grow: 1;
+        }
 
-      input, select {
-        padding: .5rem;
-        font-size: 1rem;
-        border-radius: 0;
-        border: none;
-      }
+        input, select {
+            padding: .5rem;
+            font-size: 1rem;
+            border-radius: 0;
+            border: none;
+        }
 
-      input:focus, select:focus {
-        outline: 1px solid white;
-      }
+        input:focus, select:focus {
+            outline: 1px solid white;
+        }
     `
 
     protected render(): TemplateResult {
         return html`
-            <input type="text" @keyup="${this.changeNumber}" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
+            <input type="text" @keyup="${this.changeNumber}" placeholder="Zugnummer" autocomplete="false"
+                   autocapitalize="off">
             <select @change="${this.changeOperator}">
-                <option disabled selected>-- Betreiber --</option>
-                ${this.operators.map(operator => html`<option value="${operator.id}">${operator.displayName}</option>`)}
+                <option>-- Betreiber --</option>
+                ${this.operators.map(operator => html`
+                    <option value="${operator.id}">${operator.displayName}</option>`)}
             </select>
         `;
     }
