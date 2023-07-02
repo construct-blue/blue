@@ -18,7 +18,7 @@ class Navigation extends LitElement {
 
     static styles = css`
         nav {
-            background: #1a1a1a;
+            background: var(--dark-grey);
             color: #d3d3d3;
             font-family: FrutigerNextPro-Bold, sans-serif;
             height: 3rem;
