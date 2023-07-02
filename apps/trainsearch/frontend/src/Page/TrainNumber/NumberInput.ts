@@ -31,6 +31,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
 
         input {
             flex-grow: 1;
+            width: 100%;
         }
 
         input, select {
@@ -47,13 +48,14 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
 
     protected render(): TemplateResult {
         return html`
-            <input type="text" @keyup="${this.changeNumber}" placeholder="Zugnummer" autocomplete="false"
+            <input type="text" @change="${this.changeNumber}" placeholder="Zugnummer" autocomplete="false"
                    autocapitalize="off">
             <select @change="${this.changeOperator}">
                 <option>-- Betreiber --</option>
                 ${this.operators.map(operator => html`
                     <option value="${operator.id}">${operator.displayName}</option>`)}
             </select>
+            <button @click="${this.changeNumber}">Suchen</button>
         `;
     }
 
