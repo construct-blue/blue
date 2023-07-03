@@ -11,12 +11,12 @@ const PROXY = 'pipedproxy.kavin.rocks';
 const API_FALLBACK = 'api.piped.yt';
 const PROXY_FALLBACK = 'proxy.piped.yt';
 
-const DEFAULT_LIMIT = 30;
+const DEFAULT_LIMIT = 5;
 const TIMEOUT = 15;
 const CACHE_TTL = 3600 * 3;
 const DEFAULT_QUALITY = '720p';
 const DEFAULT_MODE = 'subscriptions';
-const USE_APCU = true;
+const USE_APCU = false;
 const SUGGESTIONS = 2;
 const SUGGESTIONS_SOURCE_LIMIT = 2;
 
