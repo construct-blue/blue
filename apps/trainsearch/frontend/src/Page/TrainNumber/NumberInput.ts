@@ -8,7 +8,7 @@ import {TrainNumberController} from "./TrainNumberController";
 class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     @query('input')
     private input: HTMLInputElement
-    @query('select')
+    @query('select.operator')
     private select: HTMLSelectElement
 
     private controller = new TrainNumberController(this)
@@ -53,20 +53,17 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
                 <option value="db">DB</option>
             </select>
             <input type="text" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
-            <select @change="${this.changeOperator}">
+            <select class="operator">
                 <option>-- Betreiber --</option>
                 ${this.operators.filter(o => o.displayName).map(operator => html`
                     <option value="${operator.id}">${operator.displayName}</option>`)}
             </select>
-            <button @click="${this.changeNumber}">Suchen</button>
+            <button @click="${this.search}">Suchen</button>
         `;
     }
 
-    private changeOperator() {
+    private search() {
         this.context.operator = this.select.value
-    }
-
-    private changeNumber() {
         this.context.number = this.input.value
     }
 }
