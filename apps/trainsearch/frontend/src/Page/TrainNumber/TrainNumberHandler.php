@@ -19,7 +19,7 @@ class TrainNumberHandler implements RequestHandlerInterface
         if (str_ends_with($request->getUri()->getHost(), '.local')) {
             $api = 'https://trainsearch-api.local';
         } else {
-            $api = 'http://trainsearch-api.snappy.blue';
+            $api = 'https://trainsearch-api.snappy.blue';
         }
 
         $renderer = new Renderer();
