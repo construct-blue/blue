@@ -11,4 +11,5 @@ $api->onGET('trip', '/{profile}/trip/{query}', new Blue\TrainsearchApi\Handler\T
 $api->onGET('composition', '/oebb/composition/{query}', new Blue\TrainsearchApi\Handler\CompositionHandler());
 $api->onGET('operators', '/{profile}/operators', new Blue\TrainsearchApi\Handler\OperatorsHandler());
 $api->addMiddleware(new Blue\TrainsearchApi\AccessControlHeaderMiddleware());
+$api->addMiddleware(new Blue\Snappy\Core\Router\Middleware\ErrorHandlerMiddleware(new Blue\Snappy\Core\ErrorHandler\JsonErrorHandler()));
 $api->run();

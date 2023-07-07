@@ -52,10 +52,6 @@ class TripHandler implements RequestHandlerInterface
             Http::throwNotFound('Train not found');
         }
 
-        if (isset($data[1])) {
-            Http::throwBadRequest('Query did not result in a unique train.');
-        }
-
         return new Response\JsonResponse($hafas->trip($data[0]->id));
     }
 }

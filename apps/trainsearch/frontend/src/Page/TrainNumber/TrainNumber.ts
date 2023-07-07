@@ -38,7 +38,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
 
         if (this.context.number && this.context.operator) {
             try {
-                this.context.trip = await this.controller.trip(this.context.number, this.context.operator)
+                this.context.trip = await this.controller.trip(this.context.number, this.context.operator, this.context.source)
                 this.url.searchParams.set('number', this.context.number)
                 this.url.searchParams.set('operator', this.context.operator)
             } catch (e) {

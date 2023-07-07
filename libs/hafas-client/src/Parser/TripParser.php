@@ -93,6 +93,7 @@ class TripParser
                 arrivalDelay: $arrivalDelay,
                 departureDelay: $departureDelay,
                 reported: ($rawStop?->dProgType ?? null) === 'REPORTED',
+                progType: $rawStop?->dProgType ?? null,
                 border: $rawStop?->border ?? null,
                 remarks: $remarks
             );

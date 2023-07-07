@@ -49,6 +49,12 @@
       "admin": "84"
     },
     {
+      "id": "pkp",
+      "name": "PKP Intercity",
+      "displayName": "PKP Intercity",
+      "admin": "51"
+    },
+    {
       "id": "trenit",
       "name": "Trenitalia",
       "displayName": "Trenitalia",

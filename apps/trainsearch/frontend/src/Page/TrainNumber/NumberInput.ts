@@ -1,5 +1,5 @@
 import {css, html, LitElement, PropertyValues, TemplateResult} from "lit";
-import {customElement, query} from "lit/decorators.js";
+import {customElement, property, query} from "lit/decorators.js";
 import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "./TrainNumberContext";
 import {TrainNumberController} from "./TrainNumberController";
@@ -19,7 +19,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
     }[] = []
 
     protected async scheduleUpdate(): Promise<unknown> {
-        this.operators = await this.controller.operators();
+        this.operators = await this.controller.operators(this.context.source);
         return super.scheduleUpdate();
     }
 
@@ -48,11 +48,14 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
 
     protected render(): TemplateResult {
         return html`
-            <input type="text" @change="${this.changeNumber}" placeholder="Zugnummer" autocomplete="false"
-                   autocapitalize="off">
+            <select @change="${(e) => this.context.source = e.currentTarget.value}">
+                <option value="oebb">ÖBB</option>
+                <option value="db">DB</option>
+            </select>
+            <input type="text" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
             <select @change="${this.changeOperator}">
                 <option>-- Betreiber --</option>
-                ${this.operators.map(operator => html`
+                ${this.operators.filter(o => o.displayName).map(operator => html`
                     <option value="${operator.id}">${operator.displayName}</option>`)}
             </select>
             <button @click="${this.changeNumber}">Suchen</button>

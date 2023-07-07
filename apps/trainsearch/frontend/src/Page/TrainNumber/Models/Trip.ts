@@ -1,14 +1,10 @@
 export interface Trip {
     line: {
         name: string
-    }
+    },
+    date: string,
     stopovers: Stopover[]
-    remarks: {
-        type: string
-        code: string
-        prio: number
-        message: string
-    }[]
+    remarks: Remark[]
 }
 
 export interface Stopover {
@@ -16,8 +12,18 @@ export interface Stopover {
         id: string,
         name: string
     },
-    delay?: number,
+    departureDelay?: number,
+    arrivalDelay?: number,
     departure?: string
     arrival?: string
     reported: boolean
+    remarks: Remark[]
+
+}
+
+export interface Remark {
+    type: string
+    code: string
+    prio: number
+    message: string
 }

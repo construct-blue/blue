@@ -39,6 +39,11 @@
       "displayName": "NS (NL)"
     },
     {
+      "id": "pkp",
+      "name": "PKP Intercity",
+      "displayName": "PKP Intercity"
+    },
+    {
       "id": "trenit",
       "name": "Trenitalia",
       "displayName": "Trenitalia"

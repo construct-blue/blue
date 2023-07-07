@@ -2,13 +2,13 @@ export default class TrainSearchClient {
     constructor(private endpoint: string) {
     }
 
-    public async trip(nr: string, operator: string) {
-        const response = await fetch(`${this.endpoint}/db/trip/${nr}?operator=${operator}`)
+    public async trip(nr: string, operator: string, source: string) {
+        const response = await fetch(`${this.endpoint}/${source}/trip/${nr}?operator=${operator}`)
         return await response.json()
     }
 
-    public async operators() {
-        const response = await fetch(`${this.endpoint}/db/operators`)
+    public async operators(source: string) {
+        const response = await fetch(`${this.endpoint}/${source}/operators`)
         return await response.json()
     }
 }

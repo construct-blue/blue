@@ -6,6 +6,7 @@ import {Trip} from "./Models/Trip";
 import "./Timetable"
 import "./Remarks"
 import "./Collapsable"
+import {datetime} from "../../Directive/DateTime";
 @customElement('ts-details')
 class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     @property()
@@ -27,7 +28,7 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
 
     protected render(): TemplateResult {
         return html`
-            <h2>${this.trip.line.name}</h2>
+            <h2>${this.trip.line.name} <small style="color: var(--grey)">${datetime(this.trip.date, "date")}</small></h2>
             <ts-collapsable summary="Fahrplan" id="timetable">
                 <ts-timetable .trip="${this.trip}"></ts-timetable>
             </ts-collapsable>

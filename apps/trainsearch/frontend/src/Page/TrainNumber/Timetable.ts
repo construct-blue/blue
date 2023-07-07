@@ -1,6 +1,7 @@
 import {css, html, LitElement, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {Stopover, Trip} from "./Models/Trip";
+import {datetime} from "../../Directive/DateTime";
 
 @customElement('ts-timetable')
 class Timetable extends LitElement {
@@ -14,47 +15,81 @@ class Timetable extends LitElement {
     }
 
     static styles = css`
-        :host(ts-timetable) {
-            display: flex;
-            gap: 1rem;
-            flex-direction: column;
-        }
+      :host(ts-timetable) {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+      }
 
-        p {
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
+      p {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      span {
+        display: flex;
+        gap: .25rem;
+        align-items: center;
+      }
+
+      .red, .green {
+        font-size: 2.5rem;
+        line-height: 0;
+      }
+
+      .red {
+        color: var(--red);
+      }
+
+      .green {
+        color: var(--green);
+      }
+
+      .delay {
+        font-family: FrutigerNextPro-Bold, sans-serif;
+        font-weight: bold;
+      }
     `
 
     protected renderStopover(stopover: Stopover) {
         return html`
-            <p>${stopover.stop.name}<span>${this.formatStopoverTime(stopover)}</span></p>
+            <p>${stopover.stop.name}
+                <span>${this.formatStopoverTime(stopover)}</span>
+                <small style="color: var(--grey)">${stopover.remarks.map(remark => remark.message).join(', ')}</small>
+            </p>
         `
     }
 
     protected formatStopoverTime(stopover: Stopover) {
         const result = [];
         if (stopover.arrival) {
-            result.push(html`${this.formatTime(stopover.arrival)}`)
+            if (stopover.arrivalDelay && stopover.reported) {
+                result.push(html`<span class="red">•</span> ${datetime(stopover.arrival, "time")} <span class="delay">(+ ${stopover.arrivalDelay / 60})</span>`)
+            } else if (stopover.reported) {
+                result.push(html`<span class="green">•</span> ${datetime(stopover.arrival, "time")}`)
+            } else if (stopover.arrivalDelay) {
+                result.push(html`${datetime(stopover.arrival, "time")} <span class="delay">(+ ${stopover.arrivalDelay / 60})</span>`)
+            } else  {
+                result.push(html`${datetime(stopover.arrival, "time")}`)
+            }
         }
 
         if (stopover.departure) {
             if (result.length) {
                 result.push(html` - `)
             }
-            result.push(html`${this.formatTime(stopover.departure)}`)
-        }
-
-        if (stopover.delay) {
-            result.push(html` + ${stopover.delay}`)
+             if (stopover.departureDelay && stopover.reported) {
+                result.push(html`<span class="red">•</span> ${datetime(stopover.departure, "time")} <span class="delay">(+ ${stopover.departureDelay / 60})</span>`)
+            } else if (stopover.reported) {
+                result.push(html`<span class="green">•</span> ${datetime(stopover.departure, "time")}`)
+            } else if (stopover.departureDelay) {
+                result.push(html`${datetime(stopover.departure, "time")} <span class="delay">(+ ${stopover.departureDelay / 60})</span>`)
+            } else {
+                result.push(html`${datetime(stopover.departure, "time")}`)
+            }
         }
 
         return result;
-    }
-
-    protected formatTime(dateString: string) {
-        const date = new Date(dateString)
-        return date.toLocaleTimeString(undefined, {timeStyle: 'short'})
     }
 }
