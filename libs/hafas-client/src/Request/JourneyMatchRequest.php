@@ -6,6 +6,7 @@ namespace Blue\HafasClient\Request;
 
 use Blue\HafasClient\Exception\InvalidFilterException;
 use Blue\HafasClient\Exception\ProductNotFoundException;
+use Blue\HafasClient\Helper\UICPrefixFilter;
 use DateTime;
 use Blue\HafasClient\Helper\OperatorFilter;
 use Blue\HafasClient\Helper\ProductFilter;
@@ -17,6 +18,7 @@ class JourneyMatchRequest
 {
     private string $query;
     private ProductFilter $productFilter;
+    private UICPrefixFilter $uicPrefixFilter;
     private OperatorFilter $operatorFilter;
 
     /**
@@ -28,17 +30,6 @@ class JourneyMatchRequest
         $this->productFilter = new ProductFilter();
     }
 
-
-    /**
-     * @param string $query
-     * @return JourneyMatchRequest
-     */
-    public function setQuery(string $query): JourneyMatchRequest
-    {
-        $this->query = $query;
-        return $this;
-    }
-
     /**
      * @param ProductFilter $productFilter
      * @return JourneyMatchRequest
@@ -46,6 +37,16 @@ class JourneyMatchRequest
     public function setProductFilter(ProductFilter $productFilter): JourneyMatchRequest
     {
         $this->productFilter = $productFilter;
+        return $this;
+    }
+
+    /**
+     * @param UICPrefixFilter $uicPrefixFilter
+     * @return JourneyMatchRequest
+     */
+    public function setUicPrefixFilter(UICPrefixFilter $uicPrefixFilter): JourneyMatchRequest
+    {
+        $this->uicPrefixFilter = $uicPrefixFilter;
         return $this;
     }
 
@@ -91,6 +92,10 @@ class JourneyMatchRequest
 
         if (isset($this->operatorFilter)) {
             $data['req']['jnyFltrL'][] = $this->operatorFilter->filter($config);
+        }
+
+        if (isset($this->uicPrefixFilter)) {
+            $data['req']['jnyFltrL'][] = $this->uicPrefixFilter->filter();
         }
 
         return $data;

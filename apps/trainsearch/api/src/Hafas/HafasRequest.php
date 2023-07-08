@@ -12,6 +12,7 @@ class HafasRequest
     private string $profile;
     private string $query;
     private ?string $operator = null;
+    private ?int $uicPrefix = null;
 
     /**
      * @param ServerRequestInterface $request
@@ -31,6 +32,9 @@ class HafasRequest
         $queryParams = $request->getQueryParams();
         if (isset($queryParams['operator'])) {
             $this->operator = (string)$queryParams['operator'];
+        }
+        if (isset($queryParams['uicPrefix'])) {
+            $this->uicPrefix = (int)$queryParams['uicPrefix'];
         }
     }
 
@@ -56,5 +60,13 @@ class HafasRequest
     public function getOperator(): ?string
     {
         return $this->operator;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getUicPrefix(): ?int
+    {
+        return $this->uicPrefix;
     }
 }

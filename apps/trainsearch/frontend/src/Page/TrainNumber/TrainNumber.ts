@@ -26,7 +26,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
         this.addEventListener('search', async (e) => {
             e.stopPropagation()
             this.context.trip = null
-            this.context.trip = await this.controller.trip(this.context.number, this.context.operator, this.context.source)
+            this.context.trip = await this.controller.trip(this.context.number, this.context.uicPrefix, this.context.source)
         })
     }
 

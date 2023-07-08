@@ -7,6 +7,7 @@ namespace Blue\TrainsearchApi\Handler;
 use Blue\HafasClient\Exception\InvalidProfileException;
 use Blue\HafasClient\Hafas;
 use Blue\HafasClient\Helper\OperatorFilter;
+use Blue\HafasClient\Helper\UICPrefixFilter;
 use Blue\HafasClient\Request\JourneyMatchRequest;
 use Blue\Snappy\Core\Http;
 use Blue\TrainsearchApi\Hafas\Exception\BadRequestException;
@@ -41,6 +42,10 @@ class TripHandler implements RequestHandlerInterface
 
         if ($hafasRequest->getOperator()) {
             $journeyRequest->setOperatorFilter(new OperatorFilter($hafasRequest->getOperator()));
+        }
+
+        if ($hafasRequest->getUicPrefix()) {
+            $journeyRequest->setUicPrefixFilter(new UICPrefixFilter($hafasRequest->getUicPrefix()));
         }
 
         $data = $hafas->tripsByName($journeyRequest);

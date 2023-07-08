@@ -16,7 +16,6 @@ class Config
     private string $defaultLanguage;
     private bool $addMicMac;
     private bool $addChecksum;
-    private bool $filterOperatorByUICPrefix;
     private int $defaultTZOffset;
 
     /** @var Product[] */
@@ -33,7 +32,6 @@ class Config
      * @param string $defaultLanguage
      * @param bool $addMicMac
      * @param bool $addChecksum
-     * @param bool $filterOperatorByUICPrefix
      * @param int $defaultTZOffset
      * @param Product[] $products
      * @param Operator[] $operators
@@ -45,7 +43,6 @@ class Config
         string $defaultLanguage,
         bool $addMicMac,
         bool $addChecksum,
-        bool $filterOperatorByUICPrefix,
         int $defaultTZOffset,
         array $products,
         array $operators
@@ -56,7 +53,6 @@ class Config
         $this->defaultLanguage = $defaultLanguage;
         $this->addMicMac = $addMicMac;
         $this->addChecksum = $addChecksum;
-        $this->filterOperatorByUICPrefix = $filterOperatorByUICPrefix;
         $this->defaultTZOffset = $defaultTZOffset;
         $this->products = $products;
         $this->operators = $operators;
@@ -72,7 +68,6 @@ class Config
             defaultLanguage: (string)($config->defaultLanguage ?? 'en'),
             addMicMac: (bool)($config->addMicMac ?? false),
             addChecksum: (bool)($config->addChecksum ?? false),
-            filterOperatorByUICPrefix: (bool)($config->filterOperatorByUICPrefix ?? false),
             defaultTZOffset: (int)($config->defaultTZOffset ?? 0),
             products: array_map(
                 fn(stdClass $product) => new Product(
@@ -146,14 +141,6 @@ class Config
     }
 
     /**
-     * @return bool
-     */
-    public function isFilterOperatorByUICPrefix(): bool
-    {
-        return $this->filterOperatorByUICPrefix;
-    }
-
-    /**
      * @return int
      */
     public function getDefaultTZOffset(): int
@@ -175,5 +162,15 @@ class Config
     public function getOperators(): array
     {
         return $this->operators;
+    }
+
+    public function getUICPrefixes(): array
+    {
+        return [
+            '80' => 'DE',
+            '81' => 'AT',
+            '84' => 'NL',
+            '85' => 'CH',
+        ];
     }
 }

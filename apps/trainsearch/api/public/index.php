@@ -11,6 +11,7 @@ $api->onGET('trip', '/{profile}/trip/{query}', new Blue\TrainsearchApi\Handler\T
 $api->onGET('tripsearch', '/{profile}/tripsearch/{query}', new Blue\TrainsearchApi\Handler\TripSearchHandler());
 $api->onGET('composition', '/{profile}/composition/{query}', new Blue\TrainsearchApi\Handler\CompositionHandler());
 $api->onGET('operators', '/{profile}/operators', new Blue\TrainsearchApi\Handler\OperatorsHandler());
+$api->onGET('uicprefixes', '/{profile}/uicprefixes', new Blue\TrainsearchApi\Handler\UICPrefixHandler());
 $api->addMiddleware(new Blue\TrainsearchApi\AccessControlHeaderMiddleware());
 $api->addMiddleware(new Blue\Snappy\Core\Router\Middleware\ErrorHandlerMiddleware(new Blue\Snappy\Core\ErrorHandler\JsonErrorHandler()));
 $api->run();

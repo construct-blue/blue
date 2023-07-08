@@ -8,21 +8,21 @@ import {TrainNumberController} from "./TrainNumberController";
 class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     @query('input')
     private input: HTMLInputElement
-    @query('select.operator')
-    private selectOperator: HTMLSelectElement
+    @query('select.uicPrefix')
+    private selectUICPrefix: HTMLSelectElement
     @query('select.profile')
 
     private selectProfile: HTMLSelectElement
 
     private controller = new TrainNumberController(this)
 
-    private operators: {
-        id: string
-        displayName: string
+    private uicPrefixes: {
+        prefix: number
+        name: string
     }[] = []
 
     protected async scheduleUpdate(): Promise<unknown> {
-        this.operators = await this.controller.operators(this.context.source);
+        this.uicPrefixes = await this.controller.uicPrefixes(this.context.source);
         return super.scheduleUpdate();
     }
 
@@ -56,17 +56,17 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
                 <option value="db">DB</option>
             </select>
             <input type="number" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
-            <select class="operator">
-                <option value="">-- Betreiber --</option>
-                ${this.operators.filter(o => o.displayName).map(operator => html`
-                    <option value="${operator.id}" ?selected="${operator.id === this.context.operator}">${operator.displayName}</option>`)}
+            <select class="uicPrefix">
+                <option value="">-- UIC Prefix --</option>
+                ${this.uicPrefixes.map(uic => html`
+                    <option value="${uic.prefix}" ?selected="${uic.prefix === this.context.uicPrefix}">${uic.name}</option>`)}
             </select>
             <button @click="${this.search}">Suchen</button>
         `;
     }
 
     private search() {
-        this.context.operator = this.selectOperator.value
+        this.context.uicPrefix = Number.parseInt(this.selectUICPrefix.value)
         this.context.number = this.input.value
         this.context.source = this.selectProfile.value
         this.dispatchEvent(new CustomEvent('search', {composed: true, bubbles: true}))

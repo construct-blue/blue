@@ -6,6 +6,7 @@ export const trainNumberContext = createContext<TrainNumberContext>('trainNumber
 export class TrainNumberContext {
     source: string = 'oebb'
     operator?: string = 'oebb'
+    uicPrefix?: number = 81
     number?: string = null
     trip?: Trip = null
 }
