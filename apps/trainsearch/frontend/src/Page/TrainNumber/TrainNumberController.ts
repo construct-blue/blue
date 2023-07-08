@@ -18,6 +18,11 @@ export class TrainNumberController implements ReactiveController {
         return await this.client.operators(source)
     }
 
+    public async composition(nr: string, stationId: string, source: string)
+    {
+        return await this.client.compostion(nr, stationId, source)
+    }
+
     hostUpdated() {
     }
 }

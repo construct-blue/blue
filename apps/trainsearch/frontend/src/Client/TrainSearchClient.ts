@@ -11,4 +11,9 @@ export default class TrainSearchClient {
         const response = await fetch(`${this.endpoint}/${source}/operators`)
         return await response.json()
     }
+
+    public async compostion(nr: string, stationId: string, source: string) {
+        const response = await fetch(`${this.endpoint}/${source}/composition/${nr}?station=${stationId}`)
+        return await response.json();
+    }
 }

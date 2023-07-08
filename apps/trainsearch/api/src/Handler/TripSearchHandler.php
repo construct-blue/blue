@@ -18,7 +18,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TripHandler implements RequestHandlerInterface
+class TripSearchHandler implements RequestHandlerInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -49,9 +49,9 @@ class TripHandler implements RequestHandlerInterface
         $data = $hafas->tripsByName($journeyRequest);
 
         if (!isset($data[0]->id)) {
-            Http::throwNotFound('Train not found');
+            Http::throwNotFound('No result.');
         }
 
-        return new Response\JsonResponse($hafas->trip($data[0]->id));
+        return new Response\JsonResponse($data);
     }
 }

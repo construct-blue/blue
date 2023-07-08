@@ -1,6 +1,7 @@
 export interface Trip {
     line: {
         name: string
+        id: string
     },
     date: string,
     stopovers: Stopover[]

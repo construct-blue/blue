@@ -113,7 +113,7 @@ class TripParser
             direction: $rawJourney?->dirTxt ?? null,
             date: Time::parseDate($rawJourney->date),
             line: new Line(
-                id: $rawLine?->prodCtx?->lineId ?? $rawLine?->prodCtx?->matchId ?? '',
+                id: $rawLine?->prodCtx?->num ?? $rawLine?->prodCtx?->lineId ?? $rawLine?->prodCtx?->matchId ?? '',
                 name: $rawLine?->name ?? null,
                 category: isset($rawLine?->prodCtx?->catOut) ? trim($rawLine->prodCtx->catOut) : null,
                 number: $rawLine?->number ?? null,

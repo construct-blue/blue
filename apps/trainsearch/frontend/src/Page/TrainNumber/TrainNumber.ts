@@ -23,12 +23,8 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
     protected async scheduleUpdate(): Promise<unknown> {
 
         if (this.context.number && this.context.operator) {
-            try {
-                this.context.trip = await this.controller.trip(this.context.number, this.context.operator, this.context.source)
-            } catch (e) {
-                console.error(e)
-                this.context.trip = null
-            }
+            this.context.trip = null
+            this.context.trip = await this.controller.trip(this.context.number, this.context.operator, this.context.source)
         } else {
             this.context.trip = null
         }
@@ -41,7 +37,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
     }
 
 
-    protected render(): TemplateResult {
+    protected render() {
         return html`
             <ts-number-input></ts-number-input>
             ${this.context.trip ? html`
