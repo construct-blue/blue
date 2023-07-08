@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BlueTest\HafasClient\Parser;
 
-use Blue\HafasClient\Parser\ProductParser;
+use Blue\HafasClient\Parser\Part\ProductParser;
 use Blue\HafasClient\Profile\Config;
 use PHPUnit\Framework\TestCase;
 

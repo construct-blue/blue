@@ -19,14 +19,14 @@ readonly class Trip implements JsonSerializable
      * @param Remark[] $remarks
      */
     public function __construct(
-        public string    $id,
-        public ?string   $direction = null,
+        public string $id,
+        public ?string $direction = null,
         public ?DateTime $date = null,
-        public ?Line     $line = null,
-        public array     $stopovers = [],
-        public array     $remarks = []
-    )
-    {
+        public ?Line $line = null,
+        public array $stopovers = [],
+        public array $remarks = [],
+        public ?Stopover $origin = null
+    ) {
     }
 
     public function jsonSerialize(): array
@@ -34,6 +34,8 @@ readonly class Trip implements JsonSerializable
         return [
             'type' => 'trip',
             'id' => $this->id,
+            'direction' => $this->direction,
+            'origin' => $this->origin,
             'date' => $this->date?->format('Y-m-d') ?? null,
             'line' => $this->line ?? null,
             'stopovers' => $this->stopovers,

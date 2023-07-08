@@ -2,22 +2,21 @@
 
 declare(strict_types=1);
 
-namespace BlueTest\HafasClient\Response;
+namespace BlueTest\HafasClient\Parser;
 
-use Blue\HafasClient\Parser\TripParser;
+use Blue\HafasClient\Parser\JourneyMatchParser;
+use Blue\HafasClient\Parser\Part\TripParser;
 use Blue\HafasClient\Profile\Config;
-use Blue\HafasClient\Request\JourneyMatchRequest;
-use Blue\HafasClient\Response\JourneyMatchResponse;
 use PHPUnit\Framework\TestCase;
 
-class JourneyMatchResponseTest extends TestCase
+class JourneyMatchParserTest extends TestCase
 {
     public function testParse()
     {
         $rawResponse = json_decode(
             file_get_contents(__DIR__ . '/../raw-responses/JourneyMatch.json')
         );
-        $response = new JourneyMatchResponse(new TripParser(Config::fromFile(__DIR__ . '/../config/config.json')));
+        $response = new JourneyMatchParser(new TripParser(Config::fromFile(__DIR__ . '/../config/config.json')));
         $journeys = $response->parse($rawResponse);
         self::assertCount(62, $journeys);
         self::assertEquals('1|332602|0|80|3042023', $journeys[0]->id);

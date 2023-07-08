@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Blue\HafasClient\Request;
 
 use Blue\HafasClient\Exception\InvalidFilterException;
-use Blue\HafasClient\Exception\ProductNotFoundException;
-use Blue\HafasClient\Helper\UICPrefixFilter;
-use DateTime;
-use Blue\HafasClient\Helper\OperatorFilter;
-use Blue\HafasClient\Helper\ProductFilter;
+use Blue\HafasClient\Filter\OperatorFilter;
+use Blue\HafasClient\Filter\ProductFilter;
+use Blue\HafasClient\Filter\UICPrefixFilter;
 use Blue\HafasClient\Helper\Time;
-use Blue\HafasClient\Models\Trip;
 use Blue\HafasClient\Profile\Config;
+use DateTime;
 
-class JourneyMatchRequest
+class JourneyMatchRequest implements HafasRequestInterface
 {
     private string $query;
     private ProductFilter $productFilter;
@@ -65,7 +63,6 @@ class JourneyMatchRequest
      * @param Config $config
      * @return array<mixed>
      * @throws InvalidFilterException
-     * @throws ProductNotFoundException
      */
     public function toArray(Config $config): array
     {

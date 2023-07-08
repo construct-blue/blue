@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blue\HafasClient\Parser;
+namespace Blue\HafasClient\Parser\Part;
 
 use Blue\HafasClient\Models\Remark;
 

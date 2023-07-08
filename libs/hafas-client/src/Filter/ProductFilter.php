@@ -1,8 +1,7 @@
 <?php
 
-namespace Blue\HafasClient\Helper;
+namespace Blue\HafasClient\Filter;
 
-use Blue\HafasClient\Exception\ProductNotFoundException;
 use Blue\HafasClient\Exception\InvalidFilterException;
 use Blue\HafasClient\Profile\Config;
 
@@ -12,33 +11,7 @@ use Blue\HafasClient\Profile\Config;
  */
 class ProductFilter
 {
-    private $filter = [];
-
-    /**
-     * @param array $products
-     *
-     * @return int
-     * @throws InvalidFilterException
-     */
-    public function createBitmask(Config $config, array $products): int
-    {
-        $allProducts = [];
-        foreach ($config->getProducts() as $product) {
-            $allProducts[$product->id] = $product;
-        }
-
-        if (count($products) == 0) {
-            throw new InvalidFilterException();
-        }
-        $bitmask = 0;
-        foreach ($products as $product) {
-            if (isset($allProducts[$product])) {
-                $bitmask += array_sum($allProducts[$product]->bitmasks);
-            }
-        }
-        return $bitmask;
-    }
-
+    private array $filter = [];
 
     public function __construct()
     {
@@ -51,6 +24,33 @@ class ProductFilter
     }
 
     /**
+     * @param array $products
+     *
+     * @return int
+     * @throws InvalidFilterException
+     */
+    private function createBitmask(Config $config, array $products): int
+    {
+        $allProducts = [];
+        foreach ($config->getProducts() as $product) {
+            $allProducts[$product->id] = $product;
+        }
+
+        if (count($products) === 0) {
+            throw new InvalidFilterException();
+        }
+        $bitmask = 0;
+        foreach ($products as $product) {
+            if (isset($allProducts[$product])) {
+                $bitmask += array_sum($allProducts[$product]->bitmasks);
+            }
+        }
+        return $bitmask;
+    }
+
+
+    /**
+     * @param Config $config
      * @return array
      * @throws InvalidFilterException
      */

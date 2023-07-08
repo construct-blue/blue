@@ -8,6 +8,7 @@ use Blue\HafasClient\Exception\InvalidProfileException;
 use Blue\HafasClient\Filter\OperatorFilter;
 use Blue\HafasClient\Hafas;
 use Blue\HafasClient\Request\JourneyMatchRequest;
+use Blue\HafasClient\Request\LocMatchRequest;
 use Blue\Snappy\Core\Http;
 use Blue\TrainsearchApi\Hafas\Exception\BadRequestException;
 use Blue\TrainsearchApi\Hafas\HafasRequest;
@@ -17,7 +18,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TripSearchHandler implements RequestHandlerInterface
+class DeparturesHandler implements RequestHandlerInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -35,14 +36,13 @@ class TripSearchHandler implements RequestHandlerInterface
         } catch (BadRequestException|InvalidProfileException $exception) {
             Http::throwBadRequest($exception->getMessage(), $exception);
         }
-
-        $journeyRequest = new JourneyMatchRequest($hafasRequest->getQuery());
-
-        if ($hafasRequest->getOperator()) {
-            $journeyRequest->setOperatorFilter(new OperatorFilter($hafasRequest->getOperator()));
-        }
         try {
-            $data = $hafas->getTrips($journeyRequest);
+            $locations = $hafas->getLocation(new LocMatchRequest($hafasRequest->getQuery()));
+            if (!isset($locations[0]->id)) {
+                Http::throwNotFound('No result.');
+            }
+
+            $data = $hafas->getDepartures($locations[0]->id);
         } catch (\Throwable $exception) {
             return new Response\JsonResponse(['hafasError' => json_decode($exception->getMessage())], 500);
         }

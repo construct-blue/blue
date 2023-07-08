@@ -1,14 +1,13 @@
 <?php
 
-namespace Blue\HafasClient\Response;
+namespace Blue\HafasClient\Parser;
 
 use Blue\HafasClient\Exception\InvalidHafasResponse;
 use Blue\HafasClient\Models\Trip;
-use Blue\HafasClient\Parser\TripParser;
-use Blue\HafasClient\Request\JourneyMatchRequest;
+use Blue\HafasClient\Parser\Part\TripParser;
 use stdClass;
 
-class JourneyMatchResponse
+readonly class JourneyMatchParser implements HafasResponseParserInterface
 {
 
     public function __construct(private TripParser $parser)

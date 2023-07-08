@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace BlueTest\HafasClient\Response;
+namespace BlueTest\HafasClient\Parser;
 
-use Blue\HafasClient\Parser\TripParser;
+use Blue\HafasClient\Parser\JourneyDetailsParser;
+use Blue\HafasClient\Parser\Part\TripParser;
 use Blue\HafasClient\Profile\Config;
-use Blue\HafasClient\Response\JourneyDetailsResponse;
 use PHPUnit\Framework\TestCase;
 
-class JourneyDetailsResponseTest extends TestCase
+class JourneyDetailsParserTest extends TestCase
 {
     public function testParse()
     {
         $rawResponse = json_decode(file_get_contents(
             __DIR__ . '/../raw-responses/JourneyDetails-ICE28-running-with-delay.json'
         ));
-        $response = new JourneyDetailsResponse(new TripParser(Config::fromFile(__DIR__ . '/../config/config.json')));
+        $response = new JourneyDetailsParser(new TripParser(Config::fromFile(__DIR__ . '/../config/config.json')));
         $trip = $response->parse($rawResponse);
         self::assertEquals('ICE 28', $trip->line->name);
         self::assertEquals('ICE', $trip->line->product->short);

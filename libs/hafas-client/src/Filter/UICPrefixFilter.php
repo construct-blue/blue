@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blue\HafasClient\Helper;
+namespace Blue\HafasClient\Filter;
 
 class UICPrefixFilter
 {

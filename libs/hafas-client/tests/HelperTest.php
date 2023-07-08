@@ -7,9 +7,6 @@ namespace BlueTest\HafasClient;
 use Carbon\CarbonTimeZone;
 use PHPUnit\Framework\TestCase;
 use Blue\HafasClient\Helper\Time;
-use Blue\HafasClient\Helper\ProductFilter;
-use Blue\HafasClient\Exception\ProductNotFoundException;
-use Blue\HafasClient\Exception\InvalidFilterException;
 
 final class HelperTest extends TestCase
 {

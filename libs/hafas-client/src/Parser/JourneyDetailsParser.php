@@ -1,15 +1,15 @@
 <?php
 
-namespace Blue\HafasClient\Response;
+namespace Blue\HafasClient\Parser;
 
-use Blue\HafasClient\Parser\TripParser;
-use stdClass;
 use Blue\HafasClient\Exception\InvalidHafasResponse;
 use Blue\HafasClient\Models\Trip;
+use Blue\HafasClient\Parser\Part\TripParser;
+use stdClass;
 
-class JourneyDetailsResponse
+readonly class JourneyDetailsParser implements HafasResponseParserInterface
 {
-    public function __construct(private readonly TripParser $parser)
+    public function __construct(private TripParser $parser)
     {
     }
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BlueTest\HafasClient\Helper;
+namespace BlueTest\HafasClient\Filter;
 
-use Blue\HafasClient\Helper\OperatorFilter;
+use Blue\HafasClient\Filter\OperatorFilter;
 use Blue\HafasClient\Profile\Config;
 use PHPUnit\Framework\TestCase;
 

@@ -55,7 +55,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
                 <option value="oebb">ÖBB</option>
                 <option value="db">DB</option>
             </select>
-            <input type="number" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
+            <input type="text" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
             <select class="uicPrefix">
                 <option value="">-- UIC Prefix --</option>
                 ${this.uicPrefixes.map(uic => html`

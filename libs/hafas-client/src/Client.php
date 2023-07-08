@@ -2,12 +2,14 @@
 
 namespace Blue\HafasClient;
 
-use GuzzleHttp\Client;
+use Blue\HafasClient\Parser\HafasResponseParserInterface;
+use Blue\HafasClient\Request\HafasRequestInterface;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use Blue\HafasClient\Profile\Config;
 use stdClass;
 
-class Request
+class Client
 {
 
     private array $request;
@@ -20,26 +22,26 @@ class Request
         $this->request = $request;
     }
 
-    public static function fromFile(string $file): Request
+    public static function fromFile(string $file): Client
     {
-        return new Request(json_decode(file_get_contents($file), true));
+        return new Client(json_decode(file_get_contents($file), true));
     }
 
 
     /**
      * @param Config $config
-     * @param array $svcReqL
-     *
-     * @return stdClass
+     * @param HafasRequestInterface $request
+     * @param HafasResponseParserInterface $parser
+     * @return mixed
      * @throws GuzzleException
      */
-    public function request(Config $config, array $svcReqL): stdClass
+    public function request(Config $config, HafasRequestInterface $request, HafasResponseParserInterface $parser)
     {
-        $client = new Client();
+        $client = new GuzzleClient();
 
         $requestBody = [
             'lang' => $config->getDefaultLanguage(),
-            'svcReqL' => [$svcReqL],
+            'svcReqL' => [$request->toArray($config)],
             'client' => $this->request['client'],
             'ver' => $this->request['ver'],
             'auth' => $this->request['auth'],
@@ -71,7 +73,7 @@ class Request
             ]
 
         ]);
-        return json_decode($response->getBody()->getContents());
+        return $parser->parse(json_decode($response->getBody()->getContents()));
     }
 
     private function getMic(string $requestBody): string

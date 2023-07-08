@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Blue\TrainsearchApi\Handler;
 
 use Blue\HafasClient\Exception\InvalidProfileException;
+use Blue\HafasClient\Filter\OperatorFilter;
+use Blue\HafasClient\Filter\UICPrefixFilter;
 use Blue\HafasClient\Hafas;
-use Blue\HafasClient\Helper\OperatorFilter;
-use Blue\HafasClient\Helper\UICPrefixFilter;
 use Blue\HafasClient\Request\JourneyMatchRequest;
 use Blue\Snappy\Core\Http;
 use Blue\TrainsearchApi\Hafas\Exception\BadRequestException;
 use Blue\TrainsearchApi\Hafas\HafasRequest;
-use DateTime;
 use Laminas\Diactoros\Response;
 use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
@@ -48,14 +47,14 @@ class TripHandler implements RequestHandlerInterface
             $journeyRequest->setUicPrefixFilter(new UICPrefixFilter($hafasRequest->getUicPrefix()));
         }
 
-        $data = $hafas->tripsByName($journeyRequest);
+        $data = $hafas->getTrips($journeyRequest);
 
         if (!isset($data[0]->id)) {
             Http::throwNotFound('Train not found');
         }
 
         return new Response\JsonResponse(
-            $hafas->trip($data[0]->id),
+            $hafas->getTrip($data[0]->id),
             200,
             ['Cache-Control' => 'public, max-age=60, must-revalidate']
         );
