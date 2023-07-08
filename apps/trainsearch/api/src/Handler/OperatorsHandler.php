@@ -19,7 +19,11 @@ class OperatorsHandler implements RequestHandlerInterface
         try {
             $profile = $request->getAttribute('profile', '');
             $hafas = Hafas::create($profile);
-            return new JsonResponse($hafas->getConfig()->getOperators());
+            return new JsonResponse(
+                $hafas->getConfig()->getOperators(),
+                200,
+                ['Cache-Control' => 'public, max-age=86400, must-revalidate']
+            );
         } catch (InvalidProfileException $exception) {
             Http::throwBadRequest($exception->getMessage(), $exception);
         }

@@ -31,6 +31,10 @@ class CompositionHandler implements RequestHandlerInterface
             Http::throwNotFound($exception->getMessage(), $exception);
         }
 
-        return new JsonResponse($info);
+        return new JsonResponse(
+            $info,
+            200,
+            ['Cache-Control' => 'public, max-age=3600, must-revalidate']
+        );
     }
 }

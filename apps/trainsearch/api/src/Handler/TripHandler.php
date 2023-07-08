@@ -52,6 +52,10 @@ class TripHandler implements RequestHandlerInterface
             Http::throwNotFound('Train not found');
         }
 
-        return new Response\JsonResponse($hafas->trip($data[0]->id));
+        return new Response\JsonResponse(
+            $hafas->trip($data[0]->id),
+            200,
+            ['Cache-Control' => 'public, max-age=60, must-revalidate']
+        );
     }
 }
