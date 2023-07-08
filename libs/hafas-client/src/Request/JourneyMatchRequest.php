@@ -81,15 +81,10 @@ class JourneyMatchRequest
                 'onlyTN' => true,
                 'onlyRT' => false,
                 'onlyCR' => false,
-                'useAeqi' => false,
+                'useAeqi' => true,
                 'date' => Time::formatDate(new DateTime('today 00:00')),
                 'jnyFltrL' => [
                     $this->productFilter->filter($config),
-                    [
-                        'type' => 'NUM',
-                        'mode' => 'INC',
-                        'value' => $this->query
-                    ],
                 ],
             ],
         ];

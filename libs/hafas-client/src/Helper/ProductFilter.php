@@ -32,8 +32,8 @@ class ProductFilter
         }
         $bitmask = 0;
         foreach ($products as $product) {
-            if (array_key_exists($product, $allProducts)) {
-                $bitmask += $allProducts[$product]->bitmasks[0];
+            if (isset($allProducts[$product])) {
+                $bitmask += array_sum($allProducts[$product]->bitmasks);
             }
         }
         return $bitmask;
@@ -52,7 +52,7 @@ class ProductFilter
 
     /**
      * @return array
-     * @throws ProductNotFoundException|InvalidFilterException
+     * @throws InvalidFilterException
      */
     public function filter(Config $config): array
     {
