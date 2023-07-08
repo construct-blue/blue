@@ -17,6 +17,14 @@ class OebbLive
     {
     }
 
+    /**
+     * @param string $trainNr
+     * @param string $stationId
+     * @param DateTime $date
+     * @return Info
+     * @throws Exception\NotFoundException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function info(string $trainNr, string $stationId, DateTime $date): Info
     {
         $request = new InfoRequest($trainNr, $stationId, $date);

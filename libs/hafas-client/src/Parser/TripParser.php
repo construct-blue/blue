@@ -57,11 +57,11 @@ class TripParser
             ) : $plannedDeparture;
 
             $departureDelay = null;
-            if ($plannedDeparture < $departure) {
+            if ($departure && $plannedDeparture && $plannedDeparture < $departure) {
                 $departureDelay = $departure->diffInSeconds($plannedDeparture);
             }
             $arrivalDelay = null;
-            if ($plannedArrival < $arrival) {
+            if ($arrival && $plannedArrival && $plannedArrival < $arrival) {
                 $arrivalDelay = $arrival->diffInSeconds($plannedArrival);
             }
 

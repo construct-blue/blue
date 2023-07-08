@@ -54,7 +54,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
             </select>
             <input type="text" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
             <select class="operator">
-                <option>-- Betreiber --</option>
+                <option value="">-- Betreiber --</option>
                 ${this.operators.filter(o => o.displayName).map(operator => html`
                     <option value="${operator.id}">${operator.displayName}</option>`)}
             </select>

@@ -22,7 +22,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
 
     protected async scheduleUpdate(): Promise<unknown> {
 
-        if (this.context.number && this.context.operator) {
+        if (this.context.number) {
             this.context.trip = null
             this.context.trip = await this.controller.trip(this.context.number, this.context.operator, this.context.source)
         } else {
