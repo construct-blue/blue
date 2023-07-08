@@ -80,7 +80,7 @@ class JourneyMatchRequest
                 'extId' => $this->query,
                 'tripId' => null,
                 'onlyTN' => true,
-                'onlyRT' => false,
+                'onlyRT' => true,
                 'onlyCR' => false,
                 'useAeqi' => true,
                 'date' => Time::formatDate(new DateTime('today 00:00')),
