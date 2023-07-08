@@ -110,7 +110,7 @@ class Hafas
                 'date' => $timestamp->format('Ymd'),
                 'time' => $timestamp->format('His'),
                 'dur' => $duration,
-                'jnyFltrL' => [$filter->filter()]
+                'jnyFltrL' => [$filter->filter($this->config)]
             ],
             'meth' => 'StationBoard'
         ];
@@ -161,7 +161,7 @@ class Hafas
                 'date' => $timestamp->format('Ymd'),
                 'time' => $timestamp->format('His'),
                 'dur' => $duration,
-                'jnyFltrL' => [$filter->filter()]
+                'jnyFltrL' => [$filter->filter($this->config)]
             ],
             'meth' => 'StationBoard'
         ];
@@ -263,7 +263,7 @@ class Hafas
             $this->request->request($this->config, $request->toArray($this->config))
         );
 
-        return $request->filter($this->config, $trips);
+        return array_values($trips);
     }
 
     public function trip(string $id): Trip
@@ -291,12 +291,10 @@ class Hafas
      */
     public function searchTrips(
         string $query,
-        DateTime $fromWhen = null,
-        DateTime $untilWhen = null,
         ProductFilter $productFilter = null,
         OperatorFilter $operatorFilter = null
     ): array {
-        $journeyMatchRequest = new JourneyMatchRequest($query, false);
+        $journeyMatchRequest = new JourneyMatchRequest($query);
 
         if ($productFilter) {
             $journeyMatchRequest->setProductFilter($productFilter);
@@ -304,13 +302,6 @@ class Hafas
 
         if ($operatorFilter) {
             $journeyMatchRequest->setOperatorFilter($operatorFilter);
-        }
-
-        if ($fromWhen) {
-            $journeyMatchRequest->setFromWhen($fromWhen);
-        }
-        if ($untilWhen) {
-            $journeyMatchRequest->setUntilWhen($untilWhen);
         }
 
         return $this->tripsByName($journeyMatchRequest);

@@ -19,7 +19,7 @@ class JourneyDetailsResponse
     public function parse(stdClass $rawResponse): Trip
     {
         if (!isset($rawResponse->svcResL[0]->res->journey)) {
-            throw new InvalidHafasResponse();
+            throw new InvalidHafasResponse(json_encode($rawResponse));
         }
         $rawJourney = $rawResponse->svcResL[0]->res->journey;
         $rawCommon = $rawResponse->svcResL[0]->res->common;

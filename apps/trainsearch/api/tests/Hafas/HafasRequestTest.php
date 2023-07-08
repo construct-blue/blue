@@ -60,9 +60,8 @@ class HafasRequestTest extends TestCase
     public function testShouldCreateFromValidRequestWithOptionalParams()
     {
         $request = new HafasRequest(
-            self::createValidRequest()->withQueryParams(['operator' => 'dbfern', 'admin' => '80'])
+            self::createValidRequest()->withQueryParams(['operator' => 'dbfern'])
         );
         self::assertEquals('dbfern', $request->getOperator());
-        self::assertEquals('80', $request->getAdmin());
     }
 }

@@ -12,7 +12,6 @@ class HafasRequest
     private string $profile;
     private string $query;
     private ?string $operator = null;
-    private ?string $admin = null;
 
     /**
      * @param ServerRequestInterface $request
@@ -32,9 +31,6 @@ class HafasRequest
         $queryParams = $request->getQueryParams();
         if (isset($queryParams['operator'])) {
             $this->operator = (string)$queryParams['operator'];
-        }
-        if (isset($queryParams['admin'])) {
-            $this->admin = (string)$queryParams['admin'];
         }
     }
 
@@ -60,13 +56,5 @@ class HafasRequest
     public function getOperator(): ?string
     {
         return $this->operator;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getAdmin(): ?string
-    {
-        return $this->admin;
     }
 }

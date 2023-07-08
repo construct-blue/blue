@@ -1,4 +1,4 @@
-import {css, html, LitElement, TemplateResult} from "lit";
+import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {Stopover, Trip} from "./Models/Trip";
 import {datetime} from "../../Directive/DateTime";
@@ -56,7 +56,7 @@ class Timetable extends LitElement {
     protected renderStopover(stopover: Stopover) {
         return html`
             <p>
-                ${stopover.stop.name}
+                ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
                 <span>${this.formatStopoverTime(stopover)}</span>
                 <ts-composition station-id="${stopover.stop.id}"></ts-composition>
                 <small style="color: var(--grey)">${stopover.remarks.map(remark => remark.message).join(', ')}</small>

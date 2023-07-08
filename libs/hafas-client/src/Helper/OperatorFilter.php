@@ -16,14 +16,14 @@ class OperatorFilter
         $this->filter = $operator;
     }
 
-    public function admins(Config $config): array
+    public function getUICPrefixes(Config $config): array
     {
         $operators = $config->getOperators();
 
         $admins = [];
         foreach ($operators as $operator) {
-            if (isset($operator->admin) && in_array($operator->id, $this->filter)) {
-                $admins[] = $operator->admin;
+            if (isset($operator->uic) && in_array($operator->id, $this->filter)) {
+                $admins[] = $operator->uic;
             }
         }
         return $admins;
@@ -33,17 +33,25 @@ class OperatorFilter
     {
         $operators = $config->getOperators();
 
-        $filter = [];
-        foreach ($operators as $operator) {
-            if (!isset($operator->admin) && in_array($operator->id, $this->filter)) {
-                $filter[] = $operator->name;
+        if ($config->isFilterOperatorByUICPrefix()) {
+            return [
+                'type' => 'UIC',
+                'mode' => 'INC',
+                'value' => implode(',', $this->getUICPrefixes($config))
+            ];
+        } else {
+            $filter = [];
+            foreach ($operators as $operator) {
+                if (in_array($operator->id, $this->filter)) {
+                    $filter[] = $operator->name;
+                }
             }
-        }
 
-        return [
-            'type' => 'OP',
-            'mode' => 'INC',
-            'value' => implode(',', $filter)
-        ];
+            return [
+                'type' => 'OP',
+                'mode' => 'INC',
+                'value' => implode(',', $filter)
+            ];
+        }
     }
 }

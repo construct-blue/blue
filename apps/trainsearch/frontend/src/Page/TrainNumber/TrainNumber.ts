@@ -20,15 +20,17 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
         }
     `
 
-    protected async scheduleUpdate(): Promise<unknown> {
+    connectedCallback() {
+        super.connectedCallback();
 
-        if (this.context.number) {
+        this.addEventListener('search', async (e) => {
+            e.stopPropagation()
             this.context.trip = null
             this.context.trip = await this.controller.trip(this.context.number, this.context.operator, this.context.source)
-        } else {
-            this.context.trip = null
-        }
+        })
+    }
 
+    protected async scheduleUpdate(): Promise<unknown> {
         if (this.url.searchParams.get('test') == '1') {
             this.context.trip = testTrip
         }

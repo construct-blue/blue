@@ -14,6 +14,7 @@ export interface Stopover {
         name: string
     },
     departureDelay?: number,
+    departurePlatform?: string,
     arrivalDelay?: number,
     departure?: string
     arrival?: string

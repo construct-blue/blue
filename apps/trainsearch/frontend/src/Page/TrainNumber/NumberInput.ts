@@ -9,7 +9,10 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
     @query('input')
     private input: HTMLInputElement
     @query('select.operator')
-    private select: HTMLSelectElement
+    private selectOperator: HTMLSelectElement
+    @query('select.profile')
+
+    private selectProfile: HTMLSelectElement
 
     private controller = new TrainNumberController(this)
 
@@ -34,7 +37,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
             width: 100%;
         }
 
-        input, select {
+        input, select, button {
             padding: .5rem;
             font-size: 1rem;
             border-radius: 0;
@@ -48,22 +51,24 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
 
     protected render(): TemplateResult {
         return html`
-            <select @change="${(e) => this.context.source = e.currentTarget.value}">
+            <select class="profile" @change="${this.search}">
                 <option value="oebb">ÖBB</option>
                 <option value="db">DB</option>
             </select>
-            <input type="text" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
+            <input type="number" placeholder="Zugnummer" autocomplete="false" autocapitalize="off">
             <select class="operator">
                 <option value="">-- Betreiber --</option>
                 ${this.operators.filter(o => o.displayName).map(operator => html`
-                    <option value="${operator.id}">${operator.displayName}</option>`)}
+                    <option value="${operator.id}" ?selected="${operator.id === this.context.operator}">${operator.displayName}</option>`)}
             </select>
             <button @click="${this.search}">Suchen</button>
         `;
     }
 
     private search() {
-        this.context.operator = this.select.value
+        this.context.operator = this.selectOperator.value
         this.context.number = this.input.value
+        this.context.source = this.selectProfile.value
+        this.dispatchEvent(new CustomEvent('search', {composed: true, bubbles: true}))
     }
 }

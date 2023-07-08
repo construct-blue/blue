@@ -13,7 +13,7 @@ readonly class Operator implements JsonSerializable
         public ?string $id = null,
         public ?string $name = null,
         public ?string $displayName = null,
-        public ?string $admin = null
+        public ?string $uic = null
     )
     {
     }
@@ -25,7 +25,7 @@ readonly class Operator implements JsonSerializable
             'id' => $this->id,
             'name' => $this->name,
             'displayName' => $this->displayName,
-            'admin' => $this->admin
+            'uic' => $this->uic
         ];
     }
 

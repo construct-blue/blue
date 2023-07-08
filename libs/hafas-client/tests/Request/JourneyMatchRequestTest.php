@@ -18,7 +18,7 @@ class JourneyMatchRequestTest extends TestCase
     {
         $config = Config::fromFile(__DIR__ . '/../config/config.json');
 
-        $request = new JourneyMatchRequest('ICE 70', false);
+        $request = new JourneyMatchRequest('ICE 70');
         self::assertEquals([
             'cfg' => [
                 'polyEnc' => 'GPA',
@@ -29,7 +29,7 @@ class JourneyMatchRequestTest extends TestCase
                 'input' => 'ICE 70',
                 'onlyCR' => false,
                 'jnyFltrL' => [
-                    (new ProductFilter())->filter()
+                    (new ProductFilter())->filter($config)
                 ],
             ],
         ], $request->toArray($config));
@@ -39,11 +39,7 @@ class JourneyMatchRequestTest extends TestCase
     {
         $config = Config::fromFile(__DIR__ . '/../config/config.json');
 
-        $request = new JourneyMatchRequest('ICE 70', false);
-        $fromWhen = new DateTime('today 00:00');
-        $untilWhen = new DateTime('today 23:59');
-        $request->setFromWhen(new DateTime('today 00:00'));
-        $request->setUntilWhen(new DateTime('today 23:59'));
+        $request = new JourneyMatchRequest('ICE 70');
         self::assertEquals([
             'cfg' => [
                 'polyEnc' => 'GPA',
@@ -54,12 +50,9 @@ class JourneyMatchRequestTest extends TestCase
                 'input' => 'ICE 70',
                 'onlyCR' => false,
                 'jnyFltrL' => [
-                    (new ProductFilter())->filter()
+                    (new ProductFilter())->filter($config)
                 ],
-                'dateB' => Time::formatDate($fromWhen),
-                'timeB' => '000000',
-                'dateE' => Time::formatDate($untilWhen),
-                'timeE' => '235900',
+                'date' => Time::formatDate(new DateTime('today 00:00')),
             ],
         ], $request->toArray($config));
     }
@@ -80,7 +73,7 @@ class JourneyMatchRequestTest extends TestCase
                 'input' => 'ICE 70',
                 'onlyCR' => false,
                 'jnyFltrL' => [
-                    (new ProductFilter())->filter(),
+                    (new ProductFilter())->filter($config),
                     (new OperatorFilter('dbfern'))->filter($config)
                 ],
             ],

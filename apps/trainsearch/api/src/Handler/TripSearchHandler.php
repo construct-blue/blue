@@ -37,16 +37,16 @@ class TripSearchHandler implements RequestHandlerInterface
             Http::throwBadRequest($exception->getMessage(), $exception);
         }
 
-        $journeyRequest = new JourneyMatchRequest($hafasRequest->getQuery(), false);
-        $journeyRequest->setAdmin($hafasRequest->getAdmin());
-        $journeyRequest->setFromWhen(new DateTime('today 00:00'));
-        $journeyRequest->setUntilWhen(new DateTime('today 23:59'));
+        $journeyRequest = new JourneyMatchRequest($hafasRequest->getQuery());
 
         if ($hafasRequest->getOperator()) {
             $journeyRequest->setOperatorFilter(new OperatorFilter($hafasRequest->getOperator()));
         }
-
-        $data = $hafas->tripsByName($journeyRequest);
+        try {
+            $data = $hafas->tripsByName($journeyRequest);
+        } catch (\Throwable $exception) {
+            return new Response\JsonResponse(['hafasError' => json_decode($exception->getMessage())], 500);
+        }
 
         if (!isset($data[0]->id)) {
             Http::throwNotFound('No result.');

@@ -16,7 +16,7 @@ class Config
     private string $defaultLanguage;
     private bool $addMicMac;
     private bool $addChecksum;
-    private bool $filterOperatorByAdminCode;
+    private bool $filterOperatorByUICPrefix;
     private int $defaultTZOffset;
 
     /** @var Product[] */
@@ -33,7 +33,7 @@ class Config
      * @param string $defaultLanguage
      * @param bool $addMicMac
      * @param bool $addChecksum
-     * @param bool $filterOperatorByAdminCode
+     * @param bool $filterOperatorByUICPrefix
      * @param int $defaultTZOffset
      * @param Product[] $products
      * @param Operator[] $operators
@@ -45,7 +45,7 @@ class Config
         string $defaultLanguage,
         bool $addMicMac,
         bool $addChecksum,
-        bool $filterOperatorByAdminCode,
+        bool $filterOperatorByUICPrefix,
         int $defaultTZOffset,
         array $products,
         array $operators
@@ -56,7 +56,7 @@ class Config
         $this->defaultLanguage = $defaultLanguage;
         $this->addMicMac = $addMicMac;
         $this->addChecksum = $addChecksum;
-        $this->filterOperatorByAdminCode = $filterOperatorByAdminCode;
+        $this->filterOperatorByUICPrefix = $filterOperatorByUICPrefix;
         $this->defaultTZOffset = $defaultTZOffset;
         $this->products = $products;
         $this->operators = $operators;
@@ -72,7 +72,7 @@ class Config
             defaultLanguage: (string)($config->defaultLanguage ?? 'en'),
             addMicMac: (bool)($config->addMicMac ?? false),
             addChecksum: (bool)($config->addChecksum ?? false),
-            filterOperatorByAdminCode: (bool)($config->filterOperatorByAdminCode ?? false),
+            filterOperatorByUICPrefix: (bool)($config->filterOperatorByUICPrefix ?? false),
             defaultTZOffset: (int)($config->defaultTZOffset ?? 0),
             products: array_map(
                 fn(stdClass $product) => new Product(
@@ -90,7 +90,7 @@ class Config
                     id: (string)$operator->id,
                     name: (string)$operator->name,
                     displayName: isset($operator->displayName) ? (string)$operator->displayName : null,
-                    admin: isset($operator->admin) ? (string)$operator->admin : null
+                    uic: isset($operator->uic) ? (string)$operator->uic : null
                 ),
                 $config->operators ?? []
             )
@@ -148,9 +148,9 @@ class Config
     /**
      * @return bool
      */
-    public function isFilterOperatorByAdminCode(): bool
+    public function isFilterOperatorByUICPrefix(): bool
     {
-        return $this->filterOperatorByAdminCode;
+        return $this->filterOperatorByUICPrefix;
     }
 
     /**

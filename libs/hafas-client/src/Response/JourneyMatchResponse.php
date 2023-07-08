@@ -22,7 +22,7 @@ class JourneyMatchResponse
     public function parse(stdClass $rawResponse): array
     {
         if (!isset($rawResponse->svcResL[0]->res->jnyL)) {
-            throw new InvalidHafasResponse();
+            throw new InvalidHafasResponse(json_encode($rawResponse));
         }
 
         $rawCommon = $rawResponse->svcResL[0]->res->common;

@@ -5,7 +5,7 @@
   "defaultLanguage": "de",
   "addMicMac": false,
   "addChecksum": false,
-  "filterOperatorByAdminCode": true,
+  "filterOperatorByUICPrefix": true,
   "defaultTZOffset": 120,
   "operators": [
     {
@@ -16,55 +16,55 @@
       "id": "dbfern",
       "name": "DB Fernverkehr AG",
       "displayName": "DB",
-      "admin": "80"
+      "uic": "80"
     },
     {
       "id": "oebb",
       "name": "Österreichische Bundesbahnen",
       "displayName": "ÖBB",
-      "admin": "81"
+      "uic": "81"
     },
     {
       "id": "cd",
       "name": "Ceske Drahy",
       "displayName": "ČD",
-      "admin": "54"
+      "uic": "54"
     },
     {
       "id": "sbb",
       "name": "SBB",
       "displayName": "SBB",
-      "admin": "85"
+      "uic": "85"
     },
     {
       "id": "cfr",
       "name": "Rumänische Eisenbahnen Caile Ferate Romane",
       "displayName": "CFR",
-      "admin": "53"
+      "uic": "53"
     },
     {
       "id": "ns",
       "name": "Nederlandse Spoorwegen",
       "displayName": "NS (NL)",
-      "admin": "84"
+      "uic": "84"
     },
     {
       "id": "pkp",
       "name": "PKP Intercity",
       "displayName": "PKP Intercity",
-      "admin": "51"
+      "uic": "51"
     },
     {
       "id": "trenit",
       "name": "Trenitalia",
       "displayName": "Trenitalia",
-      "admin": "83"
+      "uic": "83"
     },
     {
       "id": "mav",
       "name": "MAV",
       "displayName": "MÁV",
-      "admin": "55"
+      "uic": "55"
     }
   ],
   "products": [
