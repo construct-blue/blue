@@ -39,13 +39,9 @@ class Client
     {
         $client = new GuzzleClient();
 
-        $requestBody = [
-            'lang' => $config->getDefaultLanguage(),
-            'svcReqL' => [$request->toArray($config)],
-            'client' => $this->request['client'],
-            'ver' => $this->request['ver'],
-            'auth' => $this->request['auth'],
-        ];
+        $requestBody = $this->request;
+        $requestBody['lang'] = $config->getDefaultLanguage();
+        $requestBody['svcReqL'] = [$request->toArray($config)];
 
         if (isset($this->request['ext'])) {
             $requestBody['ext'] = $this->request['ext'];

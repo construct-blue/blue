@@ -26,7 +26,7 @@ class Remarks extends LitElement {
         color: var(--grey);
       }
 
-      p.M {
+      p.M, p.R {
         color: var(--orange);
       }
 

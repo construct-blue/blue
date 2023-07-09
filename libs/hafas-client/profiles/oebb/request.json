@@ -1,13 +1,16 @@
 {
-	"auth": {
-		"type": "AID",
-		"aid": "OWDL4fE4ixNiPBBm"
-	},
-	"client": {
-		"type": "IPH",
-		"id": "OEBB",
-		"v": "6030600",
-		"name": "oebbPROD-ADHOC"
-	},
-	"ver": "1.41"
+  "auth": {
+    "type": "AID",
+    "aid": "5vHavmuWPWIfetEe"
+  },
+  "client": {
+    "id": "OEBB",
+    "type": "WEB",
+    "l": "vs_webapp",
+    "name": "webapp"
+  },
+  "ext": "OEBB.11",
+  "formatted": false,
+  "id": "ng2kvncw24xq8y8x",
+  "ver": "1.32"
 }
