@@ -32,7 +32,16 @@ export class Compostion extends ObjectContextConsumer(LitElement)(trainNumberCon
             return nothing
         }
         return html`
-            <small>${this.compostion.vehicles.map(v => `${v.ranking}: ${v.type} ${v.uicNumber}`).join(', ')}</small>
+            <small>${this.compostion.vehicles.map(v => `${v.ranking ? v.ranking + ': ' : ''}${v.type} ${this.formatUIC(v.uicNumber)}`).join(', ')}</small>
         `;
+    }
+
+    private formatUIC(uic: string)
+    {
+        return uic.substring(0, 2)
+                + ' ' + uic.substring(2, 4)
+                + ' ' + uic.substring(4, 8)
+                + ' ' + uic.substring(8, 11)
+                + '-' + uic.substring(11)
     }
 }
