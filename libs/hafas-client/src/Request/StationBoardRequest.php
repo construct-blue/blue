@@ -20,15 +20,16 @@ class StationBoardRequest implements HafasRequestInterface
 
     public function toArray(Config $config): array
     {
+        $dateTime = new DateTime('now');
         $data = [
             'req' => [
                 'type' => $this->type,
                 'stbLoc' => [
                     'lid' => 'A=1@L=' . $this->id . '@',
                 ],
-                'maxJny' => 5,
-                'date' => Time::formatDate(new DateTime('today 00:00')),
-                'time' => Time::formatTime(new DateTime('now')),
+                'maxJny' => 10,
+                'date' => Time::formatDate($dateTime),
+                'time' => Time::formatTime($dateTime),
                 'dur' => -1,
                 'jnyFltrL' => [
                     $this->productFilter->filter($config)
