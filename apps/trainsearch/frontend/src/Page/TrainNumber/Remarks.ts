@@ -1,29 +1,33 @@
 import {css, html, LitElement, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
-import {Trip} from "./Models/Trip";
+import {Remark, Trip} from "./Models/Trip";
 
 @customElement('ts-remarks')
 class Remarks extends LitElement {
     @property()
-    public trip: Trip
+    public remarks: Remark[]
+
+    @property({type: Boolean})
+    public muted: boolean
 
     static styles = css`
       :host(ts-remarks) {
         display: flex;
         flex-direction: column;
+        gap: .25rem;
       }
 
       p {
         margin: 0;
-        padding: .25rem 1rem;
-        border-bottom: 1px solid black;
-        background: var(--grey);
-        color: black;
+        padding: 0;
+      }
+
+      p.muted {
+        color: var(--grey);
       }
 
       p.M {
-        background: var(--orange);
-        color: black;
+        color: var(--orange);
       }
 
       p:last-of-type {
@@ -33,7 +37,7 @@ class Remarks extends LitElement {
 
     protected render(): TemplateResult {
         return html`
-            ${this.trip.remarks.map(remark => html`<p class="${remark.type}">${remark.message}</p>`)}
+            ${this.remarks.map(remark => html`<p class="${remark.type}${this.muted ? ' muted' : ''}">&#9758; ${remark.message}</p>`)}
         `;
     }
 }

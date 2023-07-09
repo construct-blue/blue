@@ -76,7 +76,7 @@ class Timetable extends LitElement {
                 <span>${this.formatStopoverTime(stopover)}</span>
                 ${stopover.changedLine ? html`<span>&rarr; ${stopover.changedLine.name}</span>` : nothing}
                 <ts-composition station-id="${stopover.stop.id}"></ts-composition>
-                <small style="color: var(--grey)">${stopover.remarks.map(remark => remark.message).join(', ')}</small>
+                <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
             </p>
         `
     }

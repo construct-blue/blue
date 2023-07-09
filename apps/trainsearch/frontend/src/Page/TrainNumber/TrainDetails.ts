@@ -33,7 +33,7 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
                 <ts-timetable .trip="${this.trip}"></ts-timetable>
             </ts-collapsable>
             <ts-collapsable summary="Infos" id="remarks">
-                <ts-remarks .trip="${this.trip}"></ts-remarks>
+                <ts-remarks .remarks="${this.trip.remarks}"></ts-remarks>
             </ts-collapsable>
         `;
     }
