@@ -21,7 +21,10 @@ class UICPrefixHandler implements RequestHandlerInterface
             $hafas = Hafas::create($profile);
 
             $uicPrefixes = [];
-
+            $uicPrefixes[] = [
+                'prefix' => '0',
+                'name' => '-',
+            ];
             foreach ($hafas->getConfig()->getUICPrefixes() as $prefix => $name) {
                 $uicPrefixes[] = [
                     'prefix' => $prefix,

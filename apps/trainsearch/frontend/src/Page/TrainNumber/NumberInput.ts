@@ -4,6 +4,7 @@ import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "./TrainNumberContext";
 import {TrainNumberController} from "./TrainNumberController";
 import {Trip} from "./Models/Trip";
+import {datetime} from "../../Directive/DateTime";
 
 @customElement('ts-number-input')
 class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) {
@@ -48,6 +49,8 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
             position: absolute;
             display: flex;
             flex-direction: column;
+            overflow: auto;
+            max-height: 50vh;
         }
 
         input, select, button {
@@ -95,7 +98,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
         return html`
             <div class="autocomplete">
                 ${this.autcompleteTrips.map(trip => html`
-                    <button @click="${() => this.details(trip.id)}">${trip.line.name}</button>
+                    <button @click="${() => this.details(trip.id)}">${trip.line.name} ${datetime(trip.stopovers[0].plannedDeparture, 'time')}<br><small>&rarr; ${trip.stopovers[1].stop.name}</small></button>
                 `)}
             </div>
         `

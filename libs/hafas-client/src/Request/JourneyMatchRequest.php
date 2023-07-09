@@ -19,6 +19,11 @@ class JourneyMatchRequest implements HafasRequestInterface
     private UICPrefixFilter $uicPrefixFilter;
     private OperatorFilter $operatorFilter;
 
+    private bool $onlyRT = true;
+    private bool $onlyTN = true;
+
+
+
     /**
      * @param string $query
      */
@@ -58,6 +63,25 @@ class JourneyMatchRequest implements HafasRequestInterface
         return $this;
     }
 
+    /**
+     * @param bool $onlyRT
+     * @return JourneyMatchRequest
+     */
+    public function setOnlyRT(bool $onlyRT): JourneyMatchRequest
+    {
+        $this->onlyRT = $onlyRT;
+        return $this;
+    }
+
+    /**
+     * @param bool $onlyTN
+     * @return JourneyMatchRequest
+     */
+    public function setOnlyTN(bool $onlyTN): JourneyMatchRequest
+    {
+        $this->onlyTN = $onlyTN;
+        return $this;
+    }
 
     /**
      * @param Config $config
@@ -76,8 +100,8 @@ class JourneyMatchRequest implements HafasRequestInterface
                 'input' => $this->query,
                 'extId' => $this->query,
                 'tripId' => null,
-                'onlyTN' => true,
-                'onlyRT' => true,
+                'onlyTN' => $this->onlyTN,
+                'onlyRT' => $this->onlyRT,
                 'onlyCR' => false,
                 'useAeqi' => true,
                 'date' => Time::formatDate(new DateTime('today 00:00')),

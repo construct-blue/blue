@@ -38,6 +38,8 @@ class TripSearchHandler implements RequestHandlerInterface
         }
 
         $journeyRequest = new JourneyMatchRequest($hafasRequest->getQuery());
+        $journeyRequest->setOnlyTN(false);
+        $journeyRequest->setOnlyRT(false);
 
         if ($hafasRequest->getOperator()) {
             $journeyRequest->setOperatorFilter(new OperatorFilter($hafasRequest->getOperator()));

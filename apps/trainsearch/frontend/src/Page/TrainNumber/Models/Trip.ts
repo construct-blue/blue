@@ -22,6 +22,7 @@ export interface Stopover {
     departurePlatform?: string,
     arrivalDelay?: number,
     departure?: string
+    plannedDeparture?: string
     arrival?: string
     reported: boolean
     remarks: Remark[]
