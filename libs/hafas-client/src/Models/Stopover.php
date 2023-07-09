@@ -43,6 +43,7 @@ readonly class Stopover implements JsonSerializable
         public ?bool $reported = null,
         public ?string $progType = null,
         public ?bool $border = null,
+        public ?Line $changedLine = null,
         public array $remarks = []
     ) {
     }
@@ -67,6 +68,7 @@ readonly class Stopover implements JsonSerializable
             'progType' => $this->progType,
             'border' => $this->border,
             'remarks' => $this->remarks,
+            'changedLine' => $this->changedLine
         ];
     }
 

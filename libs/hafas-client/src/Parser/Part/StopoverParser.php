@@ -12,10 +12,13 @@ use stdClass;
 
 class StopoverParser
 {
+    public function __construct(private LineParser $lineParser, private RemarksParser $remarksParser)
+    {
+    }
+
 
     public function parse(stdClass $rawCommon, stdClass $rawStop, stdClass $rawJourney, int $index, float $defaultTZOffset): Stopover
     {
-        $remarksParser = new RemarksParser();
 
         $rawLoc = $rawCommon->locL[$rawStop->locX];
         $plannedArrival = isset($rawStop->aTimeS) ? Time::parseDatetime(
@@ -52,7 +55,15 @@ class StopoverParser
         $arrivalPlatform = $rawStop?->aPlatfR ?? $rawStop?->aPltfR?->txt ?? $arrivalPlatformPlanned;
         $departurePlatformPlanned = $rawStop?->dPlatfS ?? $rawStop?->dPltfS?->txt ?? null;
         $departurePlatform = $rawStop?->dPlatfR ?? $rawStop?->dPltfR?->txt ?? $departurePlatformPlanned;
-        $remarks = $remarksParser->parse($rawStop->msgL ?? [], $rawCommon->remL ?? []);
+        $remarks = $this->remarksParser->parse($rawStop->msgL ?? [], $rawCommon->remL ?? []);
+
+        $changedLine = null;
+        if (isset($rawStop->dProdX) && isset($rawStop->aProdX) && $rawStop->dProdX != $rawStop->aProdX) {
+            if (isset($rawCommon->prodL[$rawStop->dProdX])) {
+                $dProd = $rawCommon->prodL[$rawStop->dProdX];
+                $changedLine = $this->lineParser->parse($dProd, $rawCommon);
+            }
+        }
 
         return new Stopover(
             stop: new Stop(
@@ -78,6 +89,7 @@ class StopoverParser
             reported: ($rawStop?->dProgType ?? null) === 'REPORTED',
             progType: $rawStop?->dProgType ?? null,
             border: $rawStop?->border ?? null,
+            changedLine: $changedLine,
             remarks: $remarks
         );
     }

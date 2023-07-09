@@ -24,11 +24,10 @@ class TripParser
         $remarksParser = new RemarksParser();
         $productParser = new ProductParser($this->config);
         $operatorParser = new OperatorParser($this->config);
-        $stopoverParser = new StopoverParser();
-
+        $lineParser = new LineParser($productParser, $operatorParser);
+        $stopoverParser = new StopoverParser($lineParser, $remarksParser);
         $defaultTZOffset = $this->config->getDefaultTZOffset();
         $rawLine = $rawCommon->prodL[$rawJourney->prodX];
-        $rawLineOperator = $rawCommon->opL[$rawLine->oprX ?? 0] ?? null;
 
         $stopovers = [];
         if (isset($rawJourney->stopL)) {
@@ -42,29 +41,14 @@ class TripParser
 
         $remarks = $remarksParser->parse($rawJourney->msgL ?? [], $rawCommon->remL ?? []);
 
-        $admin = null;
-        if (isset($rawLine?->prodCtx?->admin) && $rawLine?->prodCtx?->admin) {
-            $admin = trim((string)$rawLine?->prodCtx?->admin, '_');
-        }
-
-        $product = $productParser->parse((int)$rawLine->cls ?? 0)[0] ?? null;
-
+        $line = $lineParser->parse($rawLine, $rawCommon);
         return new Trip(
             id: $rawJourney?->jid ?? '',
             direction: $rawJourney?->dirTxt ?? null,
             date: Time::parseDate($rawJourney->date),
-            line: new Line(
-                id: $rawLine?->prodCtx?->num ?? $rawLine?->prodCtx?->lineId ?? $rawLine?->prodCtx?->matchId ?? '',
-                name: $rawLine?->name ?? null,
-                category: isset($rawLine?->prodCtx?->catOut) ? trim($rawLine->prodCtx->catOut) : null,
-                number: $rawLine?->number ?? null,
-                mode: $product?->mode,
-                product: $product,
-                operator: $operatorParser->parse($rawLineOperator),
-                admin: $admin,
-            ),
+            line: $line,
             stopovers: $stopovers,
-            remarks: $remarks,
+            remarks: $remarks
         );
     }
 }
