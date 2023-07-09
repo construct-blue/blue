@@ -27,7 +27,7 @@ class RemarksParser
                 type: $rawMessage?->type ?? null,
                 code: $rawMessage?->code ?? null,
                 prio: $rawMessage?->prio ?? null,
-                message: $rawMessage?->txtN ?? null,
+                message: strip_tags($rawMessage?->txtN ?? ''),
             );
         }
         return $remarks;
