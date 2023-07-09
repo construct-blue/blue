@@ -1,4 +1,5 @@
 export interface Trip {
+    id: string,
     line: {
         name: string
         id: string

@@ -28,6 +28,13 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
             this.context.trip = null
             this.context.trip = await this.controller.trip(this.context.number, this.context.uicPrefix, this.context.source)
         })
+
+        this.addEventListener('details', async (e: CustomEvent) => {
+            e.stopPropagation()
+            console.log(e)
+            this.context.trip = null
+            this.context.trip = await this.controller.tripdetails(e.detail, this.context.source)
+        })
     }
 
     protected async scheduleUpdate(): Promise<unknown> {

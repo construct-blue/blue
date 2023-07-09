@@ -13,6 +13,16 @@ export class TrainNumberController implements ReactiveController {
         return await this.client.trip(nr, uicPrefix, profile)
     }
 
+    public async tripdetails(id: string, profile: string)
+    {
+        return await this.client.tripdetails(id, profile)
+    }
+
+    public async tripsearch(nr: string, uicPrefix: number, profile: string, controller: AbortController)
+    {
+        return await this.client.tripsearch(nr, uicPrefix, profile, controller)
+    }
+
     public async operators(profile: string)
     {
         return await this.client.operators(profile)

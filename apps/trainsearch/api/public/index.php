@@ -8,6 +8,7 @@ chdir(dirname(__DIR__));
 
 $api = Blue\Snappy\Core\Http::jsonApi();
 $api->onGET('trip', '/{profile}/trip/{query}', new Blue\TrainsearchApi\Handler\TripHandler());
+$api->onGET('tripdetails', '/{profile}/tripdetails/{query}', new Blue\TrainsearchApi\Handler\TripDetailsHandler());
 $api->onGET('tripsearch', '/{profile}/tripsearch/{query}', new Blue\TrainsearchApi\Handler\TripSearchHandler());
 $api->onGET('location', '/{profile}/location/{query}', new Blue\TrainsearchApi\Handler\LocationHandler());
 $api->onGET('departures', '/{profile}/departures/{query}', new Blue\TrainsearchApi\Handler\DeparturesHandler());

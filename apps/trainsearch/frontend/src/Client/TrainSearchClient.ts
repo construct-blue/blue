@@ -10,6 +10,23 @@ export default class TrainSearchClient {
         return await response.json()
     }
 
+    public async tripdetails(id: string, profile: string) {
+        id = encodeURIComponent(id)
+        const response = await fetch(`${this.endpoint}/${profile}/tripdetails/${id}`)
+        if (!response.ok) {
+            return null;
+        }
+        return await response.json()
+    }
+
+    public async tripsearch(nr: string, uicPrefix: number, profile: string, controller: AbortController) {
+
+        const response = await fetch(`${this.endpoint}/${profile}/tripsearch/${nr}?uicPrefix=${uicPrefix}`, {signal: controller.signal})
+        if (!response.ok) {
+            return null;
+        }
+        return await response.json()
+    }
     public async operators(profile: string) {
         const response = await fetch(`${this.endpoint}/${profile}/operators`)
         if (!response.ok) {
