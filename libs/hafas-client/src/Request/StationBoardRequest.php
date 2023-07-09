@@ -8,6 +8,7 @@ use Blue\HafasClient\Filter\ProductFilter;
 use Blue\HafasClient\Helper\Time;
 use Blue\HafasClient\Profile\Config;
 use DateTime;
+use DateTimeZone;
 
 class StationBoardRequest implements HafasRequestInterface
 {
@@ -20,7 +21,7 @@ class StationBoardRequest implements HafasRequestInterface
 
     public function toArray(Config $config): array
     {
-        $dateTime = new DateTime('now');
+        $dateTime = new DateTime('now', new DateTimeZone('Europe/Vienna'));
         $data = [
             'req' => [
                 'type' => $this->type,
