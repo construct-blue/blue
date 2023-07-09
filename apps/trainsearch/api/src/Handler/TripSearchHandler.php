@@ -59,6 +59,10 @@ class TripSearchHandler implements RequestHandlerInterface
             Http::throwNotFound('No result.');
         }
 
-        return new Response\JsonResponse($data);
+        return new Response\JsonResponse(
+            $data,
+            200,
+            ['Cache-Control' => 'public, max-age=86400, must-revalidate']
+        );
     }
 }
