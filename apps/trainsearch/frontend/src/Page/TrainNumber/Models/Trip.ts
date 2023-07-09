@@ -1,12 +1,14 @@
 export interface Trip {
     id: string,
-    line: {
-        name: string
-        id: string
-    },
+    line: Line,
     date: string,
     stopovers: Stopover[]
     remarks: Remark[]
+}
+
+export interface Line {
+    name: string
+    id: string
 }
 
 export interface Stopover {
@@ -14,6 +16,8 @@ export interface Stopover {
         id: string,
         name: string
     },
+    requestStop?: boolean,
+    changedLine?: Line
     departureDelay?: number,
     departurePlatform?: string,
     arrivalDelay?: number,

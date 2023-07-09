@@ -12,6 +12,11 @@ class Timetable extends LitElement {
     protected render(): TemplateResult {
         return html`
             ${this.trip.stopovers.map(stopover => this.renderStopover(stopover))}
+            <ul>
+                <li><span class="green">•</span> = punktlich gemeldet</li>
+                <li><span class="red">•</span> = verspätet gemeldet</li>
+                <li><span>&#10005;</span> = Bedarfshalt</li>
+            </ul>
         `;
     }
 
@@ -33,7 +38,18 @@ class Timetable extends LitElement {
             gap: .25rem;
             align-items: center;
         }
-
+        
+        ul span {
+            display: inline-flex;
+            width: 1.5rem;
+        }
+        
+        li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        
         .red, .green {
             font-size: 2.5rem;
             line-height: 0;
@@ -58,6 +74,7 @@ class Timetable extends LitElement {
             <p>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
                 <span>${this.formatStopoverTime(stopover)}</span>
+                ${stopover.changedLine ? html`<span>&rarr; ${stopover.changedLine.name}</span>` : nothing}
                 <ts-composition station-id="${stopover.stop.id}"></ts-composition>
                 <small style="color: var(--grey)">${stopover.remarks.map(remark => remark.message).join(', ')}</small>
             </p>
@@ -66,7 +83,9 @@ class Timetable extends LitElement {
 
     protected formatStopoverTime(stopover: Stopover) {
         const result = [];
-        if (stopover.arrival) {
+        if (stopover.requestStop) {
+            result.push(html`&#10005;`)
+        } else if (stopover.arrival) {
             if (stopover.arrivalDelay && stopover.reported) {
                 result.push(html`<span class="red">•</span> ${datetime(stopover.arrival, "time")} <span class="delay">(+ ${stopover.arrivalDelay / 60}
                     )</span>`)

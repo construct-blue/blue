@@ -17,9 +17,13 @@ class StopoverParser
     }
 
 
-    public function parse(stdClass $rawCommon, stdClass $rawStop, stdClass $rawJourney, int $index, float $defaultTZOffset): Stopover
-    {
-
+    public function parse(
+        stdClass $rawCommon,
+        stdClass $rawStop,
+        stdClass $rawJourney,
+        int $index,
+        float $defaultTZOffset
+    ): Stopover {
         $rawLoc = $rawCommon->locL[$rawStop->locX];
         $plannedArrival = isset($rawStop->aTimeS) ? Time::parseDatetime(
             $rawJourney->date,
@@ -57,6 +61,21 @@ class StopoverParser
         $departurePlatform = $rawStop?->dPlatfR ?? $rawStop?->dPltfR?->txt ?? $departurePlatformPlanned;
         $remarks = $this->remarksParser->parse($rawStop->msgL ?? [], $rawCommon->remL ?? []);
 
+
+        $requestStop = null;
+        if (isset($rawCommon->remL)) {
+            foreach ($rawCommon->remL as $rawRemark) {
+                if (($rawRemark->code ?? '') == 'BH') {
+                    if (str_contains($rawRemark->txtN ?? '', $rawLoc?->name ?? '')) {
+                        $requestStop = true;
+                        break;
+                    } else {
+                        $requestStop = false;
+                    }
+                }
+            }
+        }
+
         $changedLine = null;
         if (isset($rawStop->dProdX) && isset($rawStop->aProdX) && $rawStop->dProdX != $rawStop->aProdX) {
             if (isset($rawCommon->prodL[$rawStop->dProdX])) {
@@ -82,6 +101,7 @@ class StopoverParser
             plannedDeparture: $plannedDeparture,
             departure: $departure,
             departurePlatform: $departurePlatform,
+            requestStop: $requestStop,
             isCancelled: isset($rawStop?->aCncl) || isset($rawStop?->dCnl),
             delay: $departureDelay ?? $arrivalDelay,
             arrivalDelay: $arrivalDelay,
