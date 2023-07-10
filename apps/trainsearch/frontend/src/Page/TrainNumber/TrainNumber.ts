@@ -41,15 +41,6 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
         this.context.stations = await this.controller.stations(this.context.source)
     }
 
-    protected async scheduleUpdate(): Promise<unknown> {
-        if (this.url.searchParams.get('test') == '1') {
-            this.context.trip = testTrip
-        }
-
-        return super.scheduleUpdate();
-    }
-
-
     protected render() {
         return html`
             <ts-number-input></ts-number-input>
