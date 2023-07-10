@@ -39,6 +39,15 @@ class TripParser
             $stopovers[] = $stopoverParser->parse($rawCommon, $rawJourney->stbStop, $rawJourney, 0, $defaultTZOffset);
         }
 
+
+        $foreign = true;
+        foreach ($stopovers as $stopover) {
+            if (str_starts_with($stopover->stop->id, $this->config->getNationalUICPrefix())) {
+                $foreign = false;
+                break;
+            }
+        }
+
         $remarks = $remarksParser->parse($rawJourney->msgL ?? [], $rawCommon->remL ?? []);
 
         $line = $lineParser->parse($rawLine, $rawCommon);
@@ -48,7 +57,8 @@ class TripParser
             date: Time::parseDate($rawJourney->date),
             line: $line,
             stopovers: $stopovers,
-            remarks: $remarks
+            remarks: $remarks,
+            foreign: $foreign
         );
     }
 }

@@ -49,4 +49,13 @@ export default class TrainSearchClient {
         }
         return await response.json();
     }
+
+    public async stations(profile: string)
+    {
+        const response = await fetch(`${this.endpoint}/${profile}/composition/stations`)
+        if (!response.ok) {
+            return null;
+        }
+        return await response.json();
+    }
 }

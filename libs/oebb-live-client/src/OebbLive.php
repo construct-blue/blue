@@ -31,4 +31,10 @@ class OebbLive
         $raw = $this->client->get($request->getEndpoint(), $request->getParams());
         return (new InfoResponse($raw))->parse();
     }
+
+    public function stations(): array
+    {
+        $raw = $this->client->get('/assets/assets/stations.json', []);
+        return array_column($raw, 'name', 'eva');
+    }
 }

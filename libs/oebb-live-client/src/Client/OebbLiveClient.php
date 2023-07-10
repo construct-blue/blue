@@ -14,7 +14,7 @@ use stdClass;
 
 class OebbLiveClient
 {
-    private const ENDPOINT = "https://live.oebb.at/backend";
+    private const ENDPOINT = "https://live.oebb.at";
 
     private const USER_AGENT = 'oebb-live-client';
 
@@ -25,7 +25,7 @@ class OebbLiveClient
      * @throws GuzzleException
      * @throws NotFoundException
      */
-    public function get(string $endpoint, array $params): stdClass
+    public function get(string $endpoint, array $params): stdClass|array
     {
 
         $client = new Client();

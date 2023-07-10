@@ -13,6 +13,7 @@ $api->onGET('tripsearch', '/{profile}/tripsearch/{query}', new Blue\TrainsearchA
 $api->onGET('location', '/{profile}/location/{query}', new Blue\TrainsearchApi\Handler\LocationHandler());
 $api->onGET('departures', '/{profile}/departures/{query}', new Blue\TrainsearchApi\Handler\DeparturesHandler());
 $api->onGET('arrivals', '/{profile}/arrivals/{query}', new Blue\TrainsearchApi\Handler\ArrivalsHandler());
+$api->onGET('composition-stations', '/{profile}/composition/stations', new Blue\TrainsearchApi\Handler\CompositionStationsHandler());
 $api->onGET('composition', '/{profile}/composition/{query}', new Blue\TrainsearchApi\Handler\CompositionHandler());
 $api->onGET('operators', '/{profile}/operators', new Blue\TrainsearchApi\Handler\OperatorsHandler());
 $api->onGET('uicprefixes', '/{profile}/uicprefixes', new Blue\TrainsearchApi\Handler\UICPrefixHandler());

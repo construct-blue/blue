@@ -3,6 +3,7 @@
   "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
   "salt": "6264493855566A34304B356676787766",
   "defaultLanguage": "de",
+  "nationalUICPrefix": "80",
   "addMicMac": false,
   "addChecksum": true,
   "defaultTZOffset": 120,

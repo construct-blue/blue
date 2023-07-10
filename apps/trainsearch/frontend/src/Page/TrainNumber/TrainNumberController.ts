@@ -38,6 +38,11 @@ export class TrainNumberController implements ReactiveController {
         return await this.client.compostion(nr, stationId, source)
     }
 
+    public async stations(profile: string)
+    {
+        return await this.client.stations(profile)
+    }
+
     hostUpdated() {
     }
 }

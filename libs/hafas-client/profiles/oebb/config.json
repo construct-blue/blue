@@ -3,6 +3,7 @@
   "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
   "salt": "",
   "defaultLanguage": "de",
+  "nationalUICPrefix": "81",
   "addMicMac": false,
   "addChecksum": false,
   "defaultTZOffset": 120,

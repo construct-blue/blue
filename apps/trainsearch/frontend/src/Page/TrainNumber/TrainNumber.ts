@@ -31,10 +31,14 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
 
         this.addEventListener('details', async (e: CustomEvent) => {
             e.stopPropagation()
-            console.log(e)
             this.context.trip = null
             this.context.trip = await this.controller.tripdetails(e.detail, this.context.source)
         })
+    }
+
+    protected async firstUpdated(_changedProperties: PropertyValues) {
+        super.firstUpdated(_changedProperties);
+        this.context.stations = await this.controller.stations(this.context.source)
     }
 
     protected async scheduleUpdate(): Promise<unknown> {

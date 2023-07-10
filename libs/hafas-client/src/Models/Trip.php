@@ -25,7 +25,8 @@ readonly class Trip implements JsonSerializable
         public ?Line $line = null,
         public array $stopovers = [],
         public array $remarks = [],
-        public ?Stopover $origin = null
+        public ?Stopover $origin = null,
+        public ?bool $foreign = null
     ) {
     }
 
@@ -40,6 +41,7 @@ readonly class Trip implements JsonSerializable
             'line' => $this->line ?? null,
             'stopovers' => $this->stopovers,
             'remarks' => $this->remarks,
+            'foreign' => $this->foreign
         ];
     }
 

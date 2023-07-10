@@ -9,4 +9,10 @@ export class TrainNumberContext {
     uicPrefix?: number = 81
     number?: string = null
     trip?: Trip = null
+    stations = null
+
+    get hasComposition(): boolean
+    {
+        return this.source === 'oebb';
+    }
 }

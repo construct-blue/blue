@@ -14,6 +14,7 @@ class Config
     private string $endpoint;
     private ?string $salt;
     private string $defaultLanguage;
+    private string $nationalUICPrefix;
     private bool $addMicMac;
     private bool $addChecksum;
     private int $defaultTZOffset;
@@ -41,6 +42,7 @@ class Config
         string $endpoint,
         ?string $salt,
         string $defaultLanguage,
+        string $nationalUICPrefix,
         bool $addMicMac,
         bool $addChecksum,
         int $defaultTZOffset,
@@ -51,6 +53,7 @@ class Config
         $this->endpoint = $endpoint;
         $this->salt = $salt;
         $this->defaultLanguage = $defaultLanguage;
+        $this->nationalUICPrefix = $nationalUICPrefix;
         $this->addMicMac = $addMicMac;
         $this->addChecksum = $addChecksum;
         $this->defaultTZOffset = $defaultTZOffset;
@@ -66,6 +69,7 @@ class Config
             endpoint: $config->endpoint,
             salt: (string)($config->salt ?? ''),
             defaultLanguage: (string)($config->defaultLanguage ?? 'en'),
+            nationalUICPrefix: (string)($config->nationalUICPrefix ?? ''),
             addMicMac: (bool)($config->addMicMac ?? false),
             addChecksum: (bool)($config->addChecksum ?? false),
             defaultTZOffset: (int)($config->defaultTZOffset ?? 0),
@@ -122,6 +126,14 @@ class Config
     public function getDefaultLanguage(): string
     {
         return $this->defaultLanguage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNationalUICPrefix(): string
+    {
+        return $this->nationalUICPrefix;
     }
 
     /**

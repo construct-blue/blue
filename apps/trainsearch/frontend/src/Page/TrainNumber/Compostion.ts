@@ -23,7 +23,10 @@ export class Compostion extends ObjectContextConsumer(LitElement)(trainNumberCon
 
     protected async scheduleUpdate(): Promise<unknown> {
         this.compostion = null
-        this.compostion = await this.controller.composition(this.context.trip.line.id, this.stationId, this.context.source)
+        const lastStopover = this.context.trip.stopovers[this.context.trip.stopovers.length - 1]
+        if (this.context.hasComposition && !this.context.trip.foreign && this.stationId !== lastStopover.stop.id && this.context.stations && Object.keys(this.context.stations).includes(this.stationId)) {
+            this.compostion = await this.controller.composition(this.context.trip.line.id, this.stationId, this.context.source)
+        }
         return super.scheduleUpdate();
     }
 

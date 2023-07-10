@@ -28,6 +28,6 @@ class InfoRequest
 
     public function getEndpoint(): string
     {
-        return '/info';
+        return '/backend/info';
     }
 }
