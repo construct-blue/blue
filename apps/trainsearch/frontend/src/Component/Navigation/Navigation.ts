@@ -9,8 +9,6 @@ class Navigation extends LitElement {
             <nav>
                 <ul>
                     <li><a href="/" class="selected">Zug</a></li>
-                    <li><a href="/">Station</a></li>
-                    <li><a href="/">Fahrzeug</a></li>
                 </ul>
             </nav>
         `;
