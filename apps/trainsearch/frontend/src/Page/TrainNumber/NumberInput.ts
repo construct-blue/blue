@@ -158,11 +158,18 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
     private details(tripId: string) {
         this.blurAutocomplete()
         this.context.source = this.selectProfile.value
+        this.context.number = this.input.value
         this.dispatchEvent(new CustomEvent('details', {composed: true, bubbles: true, detail: tripId}))
 
-        localStorage.setItem('trainNumber', this.context.number)
-        localStorage.setItem('profile', this.context.source)
-        localStorage.setItem('uicPrefix', this.context.uicPrefix.toString())
+        if (this.context.number) {
+            localStorage.setItem('trainNumber', this.context.number)
+        }
+        if (this.context.source) {
+            localStorage.setItem('profile', this.context.source)
+        }
+        if (this.context.uicPrefix) {
+            localStorage.setItem('uicPrefix', this.context.uicPrefix.toString())
+        }
     }
 
     private onChange() {
@@ -171,9 +178,15 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
         this.context.number = this.input.value
         this.context.source = this.selectProfile.value
 
-        localStorage.setItem('trainNumber', this.context.number)
-        localStorage.setItem('profile', this.context.source)
-        localStorage.setItem('uicPrefix', this.context.uicPrefix.toString())
+        if (this.context.number) {
+            localStorage.setItem('trainNumber', this.context.number)
+        }
+        if (this.context.source) {
+            localStorage.setItem('profile', this.context.source)
+        }
+        if (this.context.uicPrefix) {
+            localStorage.setItem('uicPrefix', this.context.uicPrefix.toString())
+        }
 
         this.context.trip = null
     }
