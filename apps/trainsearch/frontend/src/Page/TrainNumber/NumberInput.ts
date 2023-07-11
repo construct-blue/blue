@@ -159,6 +159,10 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
         this.blurAutocomplete()
         this.context.source = this.selectProfile.value
         this.dispatchEvent(new CustomEvent('details', {composed: true, bubbles: true, detail: tripId}))
+
+        localStorage.setItem('trainNumber', this.context.number)
+        localStorage.setItem('profile', this.context.source)
+        localStorage.setItem('uicPrefix', this.context.uicPrefix.toString())
     }
 
     private onChange() {

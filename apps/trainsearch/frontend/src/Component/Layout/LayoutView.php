@@ -23,6 +23,7 @@ class LayoutView implements Renderable
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="noindex, nofollow">
     <title>{$renderer->placeholder('title')}</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
     {$renderer->placeholder('head')}
     {$renderer->render($this->assets)}
 </head>
