@@ -113,7 +113,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
                     </option>`)}
             </select>
             <div class="input">
-                <input type="text" @keyup="${this.autocomplete}" @focus="${this.autocomplete}" placeholder="Zugnummer"
+                <input type="text" inputmode="numeric" @keyup="${this.autocomplete}" @focus="${this.autocomplete}" placeholder="Zugnummer"
                        autocomplete="false"
                        autocapitalize="off">
                 ${this.renderAutocomplete()}
