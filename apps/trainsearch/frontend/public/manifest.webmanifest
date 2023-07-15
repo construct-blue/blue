@@ -1,6 +1,6 @@
 {
-    "name": "TrainSearch",
-    "short_name": "TrainSearch",
+    "name": "Zugsuche",
+    "short_name": "Zugsuche",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#222D59"

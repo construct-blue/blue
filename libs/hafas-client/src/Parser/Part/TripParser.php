@@ -31,7 +31,6 @@ class TripParser
 
         $stopovers = [];
         if (isset($rawJourney->stopL)) {
-            // stbStop
             foreach ($rawJourney->stopL as $index => $rawStop) {
                 $stopovers[] = $stopoverParser->parse($rawCommon, $rawStop, $rawJourney, $index, $defaultTZOffset);
             }

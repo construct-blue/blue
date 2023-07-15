@@ -3,12 +3,13 @@ export interface Trip {
     line: Line,
     date: string,
     stopovers: Stopover[]
-    foreign: boolean
+    foreign?: boolean
     remarks: Remark[]
 }
 
 export interface Line {
     name: string
+    trainName?: string
     id: string
 }
 

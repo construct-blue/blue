@@ -1,4 +1,4 @@
-import {css, html, LitElement, TemplateResult} from "lit";
+import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "./TrainNumberContext";
@@ -21,14 +21,19 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
         padding: 1rem 0;
       }
 
-      h2 {
+      h2, h3 {
         margin: 0;
+      }
+
+      small {
+        color: var(--grey)
       }
     `
 
     protected render(): TemplateResult {
         return html`
-            <h2>${this.trip.line.name} <small style="color: var(--grey)">${datetime(this.trip.date, "date")}</small></h2>
+            <h2>${this.trip.line.name} <small>${datetime(this.trip.date, "date")}</small></h2>
+            ${this.trip.line.trainName ? html`<h3>${this.trip.line.trainName}</h3>` : nothing}
             <ts-collapsable summary="Fahrplan" id="timetable">
                 <ts-timetable .trip="${this.trip}"></ts-timetable>
             </ts-collapsable>

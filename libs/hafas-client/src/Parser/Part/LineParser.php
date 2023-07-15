@@ -20,12 +20,25 @@ class LineParser
             $admin = trim((string)$rawLine?->prodCtx?->admin, '_');
         }
 
+        $trainName = null;
+        if (isset($rawCommon->remL)) {
+            foreach ($rawCommon->remL as $rawRemark) {
+                $code = $rawRemark->code ?? null;
+                $type = $rawRemark->type ?? null;
+                if ($code === 'ZN' && $type === 'I' && isset($rawRemark->txtN)) {
+                    $trainName = $rawRemark->txtN;
+                    break;
+                }
+            }
+        }
+
         $product = $this->productParser->parse((int)$rawLine->cls ?? 0)[0] ?? null;
 
         $rawLineOperator = $rawCommon->opL[$rawLine->oprX ?? 0] ?? null;
         return new Line(
             id: $rawLine?->prodCtx?->num ?? $rawLine?->prodCtx?->lineId ?? $rawLine?->prodCtx?->matchId ?? '',
             name: $rawLine?->name ?? null,
+            trainName: $trainName,
             category: isset($rawLine?->prodCtx?->catOut) ? trim($rawLine->prodCtx->catOut) : null,
             number: $rawLine?->number ?? null,
             mode: $product?->mode,

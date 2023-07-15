@@ -11,6 +11,7 @@ readonly class Line implements \JsonSerializable
     public function __construct(
         public string    $id,
         public ?string   $name = null,
+        public ?string   $trainName = null,
         public ?string   $category = null,
         public ?string   $number = null,
         public ?string   $mode = null,
@@ -28,6 +29,7 @@ readonly class Line implements \JsonSerializable
             'type' => 'line',
             'id' => $this->id,
             'name' => $this->name,
+            'trainName' => $this->trainName,
             'category' => $this->category,
             'number' => $this->number,
             'mode' => $this->mode,
