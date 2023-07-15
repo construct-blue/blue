@@ -1,7 +1,7 @@
 import {css, html, LitElement, nothing, PropertyValues, TemplateResult} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {TrainNumberController} from "./TrainNumberController";
-import './NumberInput'
+import './TrainNumberForm'
 import './TrainDetails'
 import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
 import {ObjectContextProvider} from "libs/lit-helper/src/Mixin/ObjectContext";
@@ -43,7 +43,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
 
     protected render() {
         return html`
-            <ts-number-input></ts-number-input>
+            <ts-number-form></ts-number-form>
             ${this.context.trip ? html`
                 <ts-details .trip="${this.context.trip}"></ts-details>` : nothing}
         `;

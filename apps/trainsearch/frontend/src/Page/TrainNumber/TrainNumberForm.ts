@@ -6,8 +6,8 @@ import {TrainNumberController} from "./TrainNumberController";
 import {Trip} from "./Models/Trip";
 import {datetime} from "../../Directive/DateTime";
 
-@customElement('ts-number-input')
-class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) {
+@customElement('ts-number-form')
+class TrainNumberForm extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     @query('input')
     private input: HTMLInputElement
     @query('select.uicPrefix')
@@ -49,7 +49,7 @@ class NumberInput extends ObjectContextConsumer(LitElement)(trainNumberContext) 
     }
 
     static styles = css`
-        :host(ts-number-input) {
+        :host(ts-number-form) {
             display: flex;
             gap: 1px;
         }

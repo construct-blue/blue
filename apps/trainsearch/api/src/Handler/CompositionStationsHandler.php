@@ -25,7 +25,7 @@ class CompositionStationsHandler implements RequestHandlerInterface
         return new JsonResponse(
             $stations,
             200,
-            ['Cache-Control' => 'public, max-age=3600, must-revalidate']
+            ['Cache-Control' => 'public, max-age=604800, must-revalidate']
         );
     }
 }

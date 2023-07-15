@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Blue\TrainsearchApi\Handler;
 
 use Blue\HafasClient\Exception\InvalidProfileException;
-use Blue\HafasClient\Filter\OperatorFilter;
 use Blue\HafasClient\Hafas;
-use Blue\HafasClient\Request\JourneyMatchRequest;
 use Blue\HafasClient\Request\LocMatchRequest;
 use Blue\Snappy\Core\Http;
 use Blue\TrainsearchApi\Hafas\Exception\BadRequestException;
@@ -51,6 +49,10 @@ class ArrivalsHandler implements RequestHandlerInterface
             Http::throwNotFound('No result.');
         }
 
-        return new Response\JsonResponse($data);
+        return new Response\JsonResponse(
+            $data,
+            200,
+            ['Cache-Control' => 'public, max-age=60, must-revalidate']
+        );
     }
 }

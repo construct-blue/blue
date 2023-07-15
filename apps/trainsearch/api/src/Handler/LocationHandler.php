@@ -46,6 +46,10 @@ class LocationHandler implements RequestHandlerInterface
             Http::throwNotFound('No result.');
         }
 
-        return new Response\JsonResponse($data);
+        return new Response\JsonResponse(
+            $data,
+            200,
+            ['Cache-Control' => 'public, max-age=604800, must-revalidate']
+        );
     }
 }
