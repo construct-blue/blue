@@ -109,8 +109,7 @@ class TrainNumberForm extends ObjectContextConsumer(LitElement)(trainNumberConte
             </select>
             <select class="uicPrefix" @change="${this.onChange}">
                 ${this.uicPrefixes.map(uic => html`
-                    <option value="${uic.prefix}" ?selected="${uic.prefix === this.context.uicPrefix}">${uic.name}
-                    </option>`)}
+                    <option value="${uic.prefix}" ?selected="${uic.prefix === this.context.uicPrefix}">${uic.name}</option>`)}
             </select>
             <div class="input">
                 <input type="text" inputmode="numeric" @keyup="${this.autocomplete}" @focus="${this.autocomplete}" placeholder="Zugnummer"
