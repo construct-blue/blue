@@ -3,20 +3,24 @@ import {customElement, property} from "lit/decorators.js";
 import {TrainNumberController} from "../../Page/TrainNumber/TrainNumberController";
 import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
+import {Composition} from "../../Models/Composition";
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "ts-composition": TrainComposition;
+    }
+}
+
 
 @customElement('ts-composition')
-export class Compostion extends ObjectContextConsumer(LitElement)(trainNumberContext) {
+export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     private controller = new TrainNumberController(this)
 
     @property({attribute: 'station-id'})
     public stationId: string
-    private compostion: {
-        vehicles: {
-            uicNumber: string,
-            type: string,
-            ranking: number
-        }[]
-    } = null
+
+    @property()
+    private compostion: Composition = null
 
     static styles = css`
     `

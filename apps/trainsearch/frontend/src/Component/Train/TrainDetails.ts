@@ -7,6 +7,14 @@ import "./Timetable"
 import "./Remarks"
 import "../Common/Collapsable"
 import {datetime} from "../../Directive/DateTime";
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "ts-details": TrainDetails;
+    }
+}
+
+
 @customElement('ts-details')
 class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     @property()

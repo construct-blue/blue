@@ -2,7 +2,13 @@ import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {Stopover, Trip} from "../../Models/Trip";
 import {datetime} from "../../Directive/DateTime";
-import './Compostion';
+import './TrainComposition';
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "ts-timetable": Timetable;
+    }
+}
 
 @customElement('ts-timetable')
 class Timetable extends LitElement {

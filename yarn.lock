@@ -2051,6 +2051,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@web-types/lit@npm:^2.0.0-3":
+  version: 2.0.0-3
+  resolution: "@web-types/lit@npm:2.0.0-3"
+  checksum: b299951a87d457e5927927ab4289a4ee41e3e682300c6f674d961a6294cd257d18cad6607c93a3f6ae2363bb823cdff69452968e6241418291061e2018a48346
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.11.6, @webassemblyjs/ast@npm:^1.11.5":
   version: 1.11.6
   resolution: "@webassemblyjs/ast@npm:1.11.6"
@@ -5094,6 +5101,7 @@ __metadata:
   dependencies:
     "@lit-labs/context": ^0.3.3
     "@types/jest": ^29.5.2
+    "@web-types/lit": ^2.0.0-3
     css-loader: ^6.8.1
     jest: ^29.5.0
     jest-environment-jsdom: ^29.5.0

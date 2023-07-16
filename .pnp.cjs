@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@lit-labs/context", "npm:0.3.3"],\
             ["@types/jest", "npm:29.5.2"],\
+            ["@web-types/lit", "npm:2.0.0-3"],\
             ["css-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:6.8.1"],\
             ["jest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:29.5.0"],\
             ["jest-environment-jsdom", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:29.5.0"],\
@@ -3418,6 +3419,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-yargs-parser-npm-21.0.0-c8a3b32c52-b2f4c8d12a.zip/node_modules/@types/yargs-parser/",\
           "packageDependencies": [\
             ["@types/yargs-parser", "npm:21.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@web-types/lit", [\
+        ["npm:2.0.0-3", {\
+          "packageLocation": "./.yarn/cache/@web-types-lit-npm-2.0.0-3-0a8fa0db6e-b299951a87.zip/node_modules/@web-types/lit/",\
+          "packageDependencies": [\
+            ["@web-types/lit", "npm:2.0.0-3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7104,6 +7114,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["main", "workspace:."],\
             ["@lit-labs/context", "npm:0.3.3"],\
             ["@types/jest", "npm:29.5.2"],\
+            ["@web-types/lit", "npm:2.0.0-3"],\
             ["css-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:6.8.1"],\
             ["jest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:29.5.0"],\
             ["jest-environment-jsdom", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:29.5.0"],\
