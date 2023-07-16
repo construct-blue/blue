@@ -7,6 +7,18 @@ declare global {
     }
 }
 
+interface SelectEventInit extends EventInit {
+    value: string
+}
+
+export class SelectEvent extends Event {
+    public value: string
+
+    constructor(type: string, eventInitDict: SelectEventInit) {
+        super(type, eventInitDict);
+        this.value = eventInitDict.value
+    }
+}
 
 @customElement('ts-select')
 class Select extends LitElement {
@@ -18,6 +30,14 @@ class Select extends LitElement {
 
     @query('select')
     private input: HTMLSelectElement
+
+    onchange = (e: Event) => {
+        e.stopPropagation()
+        this.dispatchEvent(new SelectEvent(
+                'change',
+                {composed: true, bubbles: true, value: this.input.value}
+        ))
+    }
 
     protected render() {
         return html`
