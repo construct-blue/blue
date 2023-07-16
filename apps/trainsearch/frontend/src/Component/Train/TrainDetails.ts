@@ -1,11 +1,11 @@
 import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
-import {trainNumberContext} from "./TrainNumberContext";
-import {Trip} from "./Models/Trip";
+import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
+import {Trip} from "../../Models/Trip";
 import "./Timetable"
 import "./Remarks"
-import "./Collapsable"
+import "../Common/Collapsable"
 import {datetime} from "../../Directive/DateTime";
 @customElement('ts-details')
 class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext) {

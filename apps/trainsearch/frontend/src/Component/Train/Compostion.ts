@@ -1,8 +1,8 @@
 import {css, html, LitElement, nothing} from "lit";
 import {customElement, property} from "lit/decorators.js";
-import {TrainNumberController} from "./TrainNumberController";
+import {TrainNumberController} from "../../Page/TrainNumber/TrainNumberController";
 import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
-import {trainNumberContext} from "./TrainNumberContext";
+import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
 
 @customElement('ts-composition')
 export class Compostion extends ObjectContextConsumer(LitElement)(trainNumberContext) {

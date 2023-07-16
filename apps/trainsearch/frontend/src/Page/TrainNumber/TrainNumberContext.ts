@@ -1,5 +1,5 @@
 import {createContext} from "@lit-labs/context";
-import {Trip} from "./Models/Trip";
+import {Trip} from "../../Models/Trip";
 
 export const trainNumberContext = createContext<TrainNumberContext>('trainNumberContext')
 

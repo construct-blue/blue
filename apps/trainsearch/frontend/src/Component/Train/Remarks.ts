@@ -1,6 +1,6 @@
 import {css, html, LitElement, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
-import {Remark, Trip} from "./Models/Trip";
+import {Remark, Trip} from "../../Models/Trip";
 
 @customElement('ts-remarks')
 class Remarks extends LitElement {

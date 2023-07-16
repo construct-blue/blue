@@ -1,6 +1,6 @@
 import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
-import {Stopover, Trip} from "./Models/Trip";
+import {Stopover, Trip} from "../../Models/Trip";
 import {datetime} from "../../Directive/DateTime";
 import './Compostion';
 

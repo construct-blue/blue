@@ -3,7 +3,7 @@ import {customElement, query, state} from "lit/decorators.js";
 import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "./TrainNumberContext";
 import {TrainNumberController} from "./TrainNumberController";
-import {Trip} from "./Models/Trip";
+import {Trip} from "../../Models/Trip";
 import {datetime} from "../../Directive/DateTime";
 
 @customElement('ts-number-form')

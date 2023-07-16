@@ -1,17 +1,14 @@
-import {css, html, LitElement, nothing, PropertyValues, TemplateResult} from "lit";
-import {customElement, state} from "lit/decorators.js";
+import {css, html, LitElement, nothing, PropertyValues} from "lit";
+import {customElement} from "lit/decorators.js";
 import {TrainNumberController} from "./TrainNumberController";
 import './TrainNumberForm'
-import './TrainDetails'
+import '../../Component/Train/TrainDetails'
 import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
 import {ObjectContextProvider} from "libs/lit-helper/src/Mixin/ObjectContext";
-import {testTrip} from "./Models/TestTrip";
 
 @customElement('ts-number')
 export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberContext, new TrainNumberContext()) {
     private controller = new TrainNumberController(this)
-
-    private url: URL = new URL(document.location.href)
 
     static styles = css`
         :host(ts-number) {
