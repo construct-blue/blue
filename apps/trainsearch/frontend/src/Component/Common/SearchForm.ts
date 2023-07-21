@@ -7,7 +7,7 @@ import {SelectEvent} from "./Select";
 @customElement('ts-search-form')
 class SearchForm extends LitElement {
     @property({type: Array})
-    private profiles = [
+    public profiles = [
         {
             id: 'oebb',
             name: 'ÖBB'
@@ -19,7 +19,7 @@ class SearchForm extends LitElement {
     ]
 
     @property({type: Array})
-    private uicPrefixes = [
+    public uicPrefixes = [
         {
             id: '81',
             name: 'AT'
@@ -27,10 +27,23 @@ class SearchForm extends LitElement {
     ];
 
     @property({type: String})
-    private profile: string = 'oebb'
+    public profile: string = 'oebb'
 
     @property({type: String})
-    private uicPrefix: string = '81'
+    public uicPrefix: string = '81'
+
+    public results = [
+        {
+            id: '1',
+            name: 'First Result',
+            description: 'asdfasdf'
+        },
+        {
+            id: '2',
+            name: 'Second Result',
+            description: 'fasdfasd'
+        }
+    ]
 
     protected render() {
         return html`
@@ -38,7 +51,7 @@ class SearchForm extends LitElement {
                        @change="${(event: SelectEvent) => this.profile = event.value}"></ts-select>
             <ts-select .options="${this.uicPrefixes}" .value="${this.uicPrefix}"
                        @change="${(event: SelectEvent) => this.uicPrefix = event.value}"></ts-select>
-            <ts-search-input></ts-search-input>
+            <ts-search-input .suggestions="${this.results}"></ts-search-input>
         `;
     }
 }
