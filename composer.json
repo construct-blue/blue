@@ -14,12 +14,14 @@
     "league/monga": "^1.2",
     "league/iso3166": "^4.2",
     "psr/log": "^3.0.0",
-    "monolog/monolog": "^2.9"
+    "monolog/monolog": "^2.9",
+    "smarty/smarty": "^4.3"
   },
   "autoload": {
     "psr-4": {
       "Blue\\Snappy\\Core\\": "libs/snappy-core/src",
       "Blue\\Snappy\\Renderer\\": "libs/snappy-renderer/src",
+      "Blue\\Snappy\\Renderer\\Strategy\\Smarty\\": "libs/snappy-renderer-smarty/src",
       "Blue\\Example\\": "apps/example/src",
       "Blue\\HafasClient\\": "libs/hafas-client/src",
       "Blue\\OebbLive\\": "libs/oebb-live-client/src",
@@ -31,6 +33,7 @@
     "psr-4": {
       "BlueTest\\Snappy\\Core\\": "libs/snappy-core/tests",
       "BlueTest\\Snappy\\Renderer\\": "libs/snappy-renderer/tests",
+      "BlueTest\\Snappy\\Renderer\\Strategy\\Smarty\\": "libs/snappy-renderer-smarty/tests",
       "BlueTest\\Example\\": "apps/example/tests",
       "BlueTest\\HafasClient\\": "libs/hafas-client/tests",
       "BlueTest\\OebbLive\\": "libs/oebb-live-client/tests",
