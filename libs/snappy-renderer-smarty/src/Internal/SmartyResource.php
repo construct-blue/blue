@@ -15,6 +15,8 @@ use SmartyException;
  */
 class SmartyResource extends Smarty_Internal_Resource_Php
 {
+    public const NAME = 'renderer';
+
     public function renderUncompiled(Smarty_Template_Source $source, Smarty_Internal_Template $_template): void
     {
         if (!$source->exists) {

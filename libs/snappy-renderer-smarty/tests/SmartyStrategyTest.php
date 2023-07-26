@@ -22,7 +22,9 @@ class SmartyStrategyTest extends TestCase
     {
         $template = new SmartyTemplate(__DIR__ . '/templates/heading.tpl');
 
-        $renderer = new Renderer(new SmartyStrategy(new InvalidViewStrategy()));
+        $smartyStrategy = new SmartyStrategy(new InvalidViewStrategy());
+        $smartyStrategy->addTemplateDir(__DIR__ . '/templates');
+        $renderer = new Renderer($smartyStrategy);
 
         $result = $renderer->render($template, $renderer->args([
             'heading' => 'Hello world!',
@@ -45,7 +47,33 @@ HTML;
     {
         $template = new SmartyTemplate(__DIR__ . '/templates/renderable.tpl');
 
-        $renderer = new Renderer(new ClosureStrategy(new SmartyStrategy(new InvalidViewStrategy())));
+        $smartyStrategy = new SmartyStrategy(new InvalidViewStrategy());
+        $smartyStrategy->addTemplateDir(__DIR__ . '/templates');
+
+        $renderer = new Renderer(new ClosureStrategy($smartyStrategy));
+
+        $result = $renderer->render($template);
+
+        $expected = <<<HTML
+<h1>Hello world!</h1>
+<p>Greetings from Smarty.</p>
+HTML;
+        self::assertEquals($expected, $result);
+    }
+
+
+    /**
+     * @return void
+     * @throws RenderException
+     */
+    public function testShouldAllowRenderablesInNestedSubTemplates()
+    {
+        $template = new SmartyTemplate(__DIR__ . '/templates/parent.tpl');
+
+        $smartyStrategy = new SmartyStrategy(new InvalidViewStrategy());
+        $smartyStrategy->addTemplateDir(__DIR__ . '/templates');
+
+        $renderer = new Renderer(new ClosureStrategy($smartyStrategy));
 
         $result = $renderer->render($template);
 
@@ -63,8 +91,10 @@ HTML;
     public function testShouldOverrideGlobalArguments()
     {
         $template = new SmartyTemplate(__DIR__ . '/templates/heading.tpl');
+        $smartyStrategy = new SmartyStrategy(new InvalidViewStrategy());
+        $smartyStrategy->addTemplateDir(__DIR__ . '/templates');
 
-        $renderer = new Renderer(new SmartyStrategy(new InvalidViewStrategy()));
+        $renderer = new Renderer($smartyStrategy);
         $template->assign('heading', 'Hello there!');
         $result = $renderer->render($template, $renderer->args([
             'heading' => 'Hello world!',

@@ -41,15 +41,21 @@ class SmartyInternalTemplate extends Smarty_Internal_Template
 
     private function inferTemplateResourceType(string $templateResource): string
     {
-        if (str_contains($templateResource, ':')) {
+        [$name, $type] = SmartyResource::parseResourceName($templateResource, $this->smarty->default_resource_type);
+
+        if ($type !== $this->smarty->default_resource_type) {
             return $templateResource;
         }
 
-        if (str_ends_with($templateResource, '.tpl')) {
-            $templateResource = 'file:' . $templateResource;
+        if (str_ends_with($name, '.php')) {
+            return SmartyResource::NAME . ':' . $name;
         }
 
-        return $templateResource;
+        if (str_ends_with($name, '.tpl')) {
+            return 'file:' . $name;
+        }
+
+        return $name;
     }
 
     public function _subTemplateRender(

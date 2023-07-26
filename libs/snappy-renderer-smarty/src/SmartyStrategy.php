@@ -19,9 +19,15 @@ class SmartyStrategy extends Strategy\Base\PipelineStrategy
     {
         parent::init();
         $this->smarty = new Smarty();
+        $this->smarty->enableSecurity();
         $this->smarty->template_class = SmartyInternalTemplate::class;
-        $this->smarty->default_resource_type = SmartyResource::class;
-        $this->smarty->registerResource(SmartyResource::class, new SmartyResource());
+        $this->smarty->registerResource(SmartyResource::NAME, new SmartyResource());
+    }
+
+    public function addTemplateDir(string $dir, string $key = null): self
+    {
+        $this->smarty->addTemplateDir($dir, $key);
+        return $this;
     }
 
     public function execute($view, Renderer $renderer, $data): string
