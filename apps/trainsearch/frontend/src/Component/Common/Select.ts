@@ -31,8 +31,9 @@ class Select extends LitElement {
     @query('select')
     private input: HTMLSelectElement
 
-    onchange = (e: Event) => {
+    private onChange(e: Event) {
         e.stopPropagation()
+        this.value = this.input.value
         this.dispatchEvent(new SelectEvent(
                 'change',
                 {composed: true, bubbles: true, value: this.input.value}
@@ -41,7 +42,7 @@ class Select extends LitElement {
 
     protected render() {
         return html`
-            <select>
+            <select @change="${this.onChange}">
                 ${this.options.map(value => html`
                     <option value="${value.id}">${value.name}</option>`
                 )}

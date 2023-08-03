@@ -27,6 +27,7 @@ export default class TrainSearchClient {
         }
         return await response.json()
     }
+
     public async operators(profile: string) {
         const response = await fetch(`${this.endpoint}/${profile}/operators`)
         if (!response.ok) {
@@ -42,6 +43,7 @@ export default class TrainSearchClient {
         }
         return await response.json()
     }
+
     public async compostion(nr: string, stationId: string, profile: string) {
         const response = await fetch(`${this.endpoint}/${profile}/composition/${nr}?station=${stationId}`)
         if (!response.ok) {
@@ -50,8 +52,7 @@ export default class TrainSearchClient {
         return await response.json();
     }
 
-    public async stations(profile: string)
-    {
+    public async stations(profile: string) {
         const response = await fetch(`${this.endpoint}/${profile}/composition/stations`)
         if (!response.ok) {
             return null;
@@ -59,5 +60,11 @@ export default class TrainSearchClient {
         return await response.json();
     }
 
-
+    public async location(query: string, uicPrefix: string, profile: string, controller: AbortController) {
+        const response = await fetch(`${this.endpoint}/${profile}/location/${query}?uicPrefix=${uicPrefix}`, {signal: controller.signal})
+        if (!response.ok) {
+            return null;
+        }
+        return await response.json();
+    }
 }

@@ -3,15 +3,24 @@ import {customElement, property, query, state} from "lit/decorators.js";
 
 interface SearchEventInit extends EventInit {
     value: string
+    id?: string
 }
 
-class SearchEvent extends Event {
+export class SearchInputEvent extends Event {
     public value: string
+    public id?: string
 
     constructor(type: string, eventInitDict: SearchEventInit) {
         super(type, eventInitDict);
         this.value = eventInitDict.value
+        this.id = eventInitDict.id
     }
+}
+
+export interface SearchSuggestion
+{
+    id: string,
+    name: string
 }
 
 @customElement('ts-search-input')
@@ -23,7 +32,7 @@ class SearchInput extends LitElement {
     public placeholder: string = ''
 
     @property({type: Array})
-    public suggestions: { id: string, name: string }[];
+    public suggestions: SearchSuggestion[];
 
     @query('input')
     private input: HTMLInputElement
@@ -40,6 +49,9 @@ class SearchInput extends LitElement {
             display: flex;
             flex-direction: column;
             position: absolute;
+            max-height: 50vh;
+            overflow: auto;
+            z-index: 1;
             left: 0;
             top: 100%;
             border-radius: .25rem;
@@ -107,16 +119,16 @@ class SearchInput extends LitElement {
 
     private changeKeyword() {
         this.value = this.input.value
-        this.dispatchEvent(new SearchEvent(
+        this.dispatchEvent(new SearchInputEvent(
                 'suggest',
                 {composed: true, bubbles: true, value: this.input.value}
         ))
     }
 
     private clickSuggestion(suggestion) {
-        this.dispatchEvent(new SearchEvent(
+        this.dispatchEvent(new SearchInputEvent(
                 'change',
-                {composed: true, bubbles: true, value: suggestion.id}
+                {composed: true, bubbles: true, value: suggestion.name, id: suggestion.id}
         ))
         this.focused = false;
     }

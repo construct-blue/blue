@@ -3,9 +3,35 @@ import {customElement, property} from "lit/decorators.js";
 import "./Select"
 import "./SearchInput"
 import {SelectEvent} from "./Select";
+import {SearchInputEvent, SearchSuggestion} from "./SearchInput";
+import TrainSearchClient from "../../Client/TrainSearchClient";
+
+interface SearchEventInit extends EventInit {
+    value: string
+    id?: string
+    profile: string
+    uicPrefix: string
+}
+
+export class SearchFormEvent extends Event {
+    public value: string
+    public id?: string
+    public profile: string
+    public uicPrefix: string
+
+    constructor(type: string, eventInitDict: SearchEventInit) {
+        super(type, eventInitDict);
+        this.value = eventInitDict.value
+        this.id = eventInitDict.id
+        this.profile = eventInitDict.profile
+        this.uicPrefix = eventInitDict.uicPrefix
+    }
+}
 
 @customElement('ts-search-form')
 class SearchForm extends LitElement {
+    private client = new TrainSearchClient(document.body.dataset.api)
+
     @property({type: Array})
     public profiles = [
         {
@@ -19,12 +45,7 @@ class SearchForm extends LitElement {
     ]
 
     @property({type: Array})
-    public uicPrefixes = [
-        {
-            id: '81',
-            name: 'AT'
-        }
-    ];
+    public uicPrefixes = [];
 
     @property({type: String})
     public profile: string = 'oebb'
@@ -32,26 +53,73 @@ class SearchForm extends LitElement {
     @property({type: String})
     public uicPrefix: string = '81'
 
-    public results = [
-        {
-            id: '1',
-            name: 'First Result',
-            description: 'asdfasdf'
-        },
-        {
-            id: '2',
-            name: 'Second Result',
-            description: 'fasdfasd'
-        }
-    ]
+    @property({type: String})
+    public value: string = ''
+
+    @property({type: Array})
+    public suggestions: SearchSuggestion[] = []
+
+    protected async scheduleUpdate(): Promise<unknown> {
+        this.uicPrefixes = await this.client.uicPrefixes(this.profile)
+        return super.scheduleUpdate();
+    }
 
     protected render() {
         return html`
             <ts-select .options="${this.profiles}" .value="${this.profile}"
-                       @change="${(event: SelectEvent) => this.profile = event.value}"></ts-select>
-            <ts-select .options="${this.uicPrefixes}" .value="${this.uicPrefix}"
-                       @change="${(event: SelectEvent) => this.uicPrefix = event.value}"></ts-select>
-            <ts-search-input .suggestions="${this.results}"></ts-search-input>
+                       @change="${this.onChangeProfile}"></ts-select>
+            <ts-select .options="${this.uicPrefixes.map(uicPrefix => {
+                return {id: uicPrefix.prefix, name: uicPrefix.name}
+            })}" .value="${this.uicPrefix}"
+                       @change="${this.onChangeUicProfix}"></ts-select>
+            <ts-search-input @suggest="${this.onSuggest}" @change="${this.onChange}"
+                             .suggestions="${this.suggestions}"
+            ></ts-search-input>
         `;
+    }
+
+    private onChangeProfile(event: SelectEvent)
+    {
+        event.stopPropagation()
+        this.profile = event.value
+        this.dispatchEvent(new SearchFormEvent('suggest', {
+            value: this.value,
+            profile: this.profile,
+            uicPrefix: this.uicPrefix
+        }))
+    }
+
+    private onChangeUicProfix(event: SelectEvent)
+    {
+        event.stopPropagation()
+        this.uicPrefix = event.value
+        this.dispatchEvent(new SearchFormEvent('suggest', {
+            value: this.value,
+            profile: this.profile,
+            uicPrefix: this.uicPrefix
+        }))
+    }
+
+    private onSuggest(event: SearchInputEvent)
+    {
+        event.stopPropagation()
+        this.value = event.value
+        this.dispatchEvent(new SearchFormEvent(event.type, {
+            value: event.value,
+            profile: this.profile,
+            uicPrefix: this.uicPrefix
+        }))
+    }
+
+    private onChange(event: SearchInputEvent)
+    {
+        event.stopPropagation()
+        this.value = event.value
+        this.dispatchEvent(new SearchFormEvent(event.type, {
+            value: event.value,
+            id: event.id,
+            profile: this.profile,
+            uicPrefix: this.uicPrefix
+        }))
     }
 }
