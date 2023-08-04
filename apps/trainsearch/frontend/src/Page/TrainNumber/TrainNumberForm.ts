@@ -142,7 +142,9 @@ class TrainNumberForm extends ObjectContextConsumer(LitElement)(trainNumberConte
 
     private async autocomplete() {
         this.autocompleteTrips = null
-        this.autocompleteAbortController.abort()
+        if (!this.autocompleteAbortController.signal.aborted) {
+            this.autocompleteAbortController.abort()
+        }
         this.autocompleteAbortController = new AbortController()
         if (this.input.value && this.selectProfile.value) {
             this.autocompleteTrips = await this.controller.tripsearch(

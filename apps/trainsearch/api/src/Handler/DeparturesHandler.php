@@ -37,12 +37,7 @@ class DeparturesHandler implements RequestHandlerInterface
             Http::throwBadRequest($exception->getMessage(), $exception);
         }
         try {
-            $locations = $hafas->getLocation(new LocMatchRequest($hafasRequest->getQuery()));
-            if (!isset($locations[0]->id)) {
-                Http::throwNotFound('No result.');
-            }
-
-            $data = $hafas->getDepartures($locations[0]->id);
+            $data = $hafas->getDepartures($hafasRequest->getQuery());
         } catch (\Throwable $exception) {
             return new Response\JsonResponse(['hafasError' => json_decode($exception->getMessage())], 500);
         }

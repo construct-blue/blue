@@ -49,7 +49,7 @@ class TripParser
 
         $remarks = $remarksParser->parse($rawJourney->msgL ?? [], $rawCommon->remL ?? []);
 
-        $line = $lineParser->parse($rawLine, $rawCommon);
+        $line = $lineParser->parse($rawLine, $rawJourney, $rawCommon);
         return new Trip(
             id: $rawJourney?->jid ?? '',
             direction: $rawJourney?->dirTxt ?? null,

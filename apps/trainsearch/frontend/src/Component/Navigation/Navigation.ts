@@ -1,4 +1,4 @@
-import {css, html, LitElement, TemplateResult} from "lit";
+import {css, html, LitElement, PropertyValues, TemplateResult} from "lit";
 import {customElement} from "lit/decorators.js";
 
 
@@ -8,10 +8,20 @@ class Navigation extends LitElement {
         return html`
             <nav>
                 <ul>
-                    <li><a href="/" class="selected">Zug</a></li>
+                    <li><a href="/">Zug</a></li>
+                    <li><a href="/station">Abfahrten</a></li>
                 </ul>
             </nav>
         `;
+    }
+
+    protected updated(_changedProperties: PropertyValues) {
+        super.updated(_changedProperties);
+        this.shadowRoot.querySelectorAll('a').forEach(anchor => {
+            if (anchor.getAttribute('href') === window.location.pathname) {
+                anchor.classList.add('selected')
+            }
+        })
     }
 
     static styles = css`

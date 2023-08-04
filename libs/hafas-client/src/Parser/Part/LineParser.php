@@ -13,7 +13,7 @@ class LineParser
     {
     }
 
-    public function parse(stdClass $rawLine, stdClass $rawCommon): Line
+    public function parse(stdClass $rawLine, stdClass $rawJourney, stdClass $rawCommon): Line
     {
         $admin = null;
         if (isset($rawLine?->prodCtx?->admin) && $rawLine?->prodCtx?->admin) {
@@ -21,8 +21,16 @@ class LineParser
         }
 
         $trainName = null;
-        if (isset($rawCommon->remL)) {
-            foreach ($rawCommon->remL as $rawRemark) {
+        if (
+            isset($rawCommon->remL) && is_array($rawCommon->remL)
+            && isset($rawJourney->msgL) && is_array($rawJourney->msgL)
+        ) {
+            foreach ($rawJourney->msgL as $message) {
+                if (!isset($message->remX)) {
+                    continue;
+                }
+                $rawRemark = $rawCommon->remL[$message->remX];
+
                 $code = $rawRemark->code ?? null;
                 $type = $rawRemark->type ?? null;
                 if ($code === 'ZN' && $type === 'I' && isset($rawRemark->txtN)) {

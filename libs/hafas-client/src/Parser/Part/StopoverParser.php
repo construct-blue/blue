@@ -80,7 +80,7 @@ class StopoverParser
         if (isset($rawStop->dProdX) && isset($rawStop->aProdX) && $rawStop->dProdX != $rawStop->aProdX) {
             if (isset($rawCommon->prodL[$rawStop->dProdX])) {
                 $dProd = $rawCommon->prodL[$rawStop->dProdX];
-                $changedLine = $this->lineParser->parse($dProd, $rawCommon);
+                $changedLine = $this->lineParser->parse($dProd, $rawJourney, $rawCommon);
             }
         }
 

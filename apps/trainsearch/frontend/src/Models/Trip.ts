@@ -2,6 +2,7 @@ export interface Trip {
     id: string,
     line: Line,
     date: string,
+    direction: string,
     stopovers: Stopover[]
     foreign?: boolean
     remarks: Remark[]
