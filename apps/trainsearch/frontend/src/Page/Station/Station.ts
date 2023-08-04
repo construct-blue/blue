@@ -70,6 +70,7 @@ class Station extends LitElement {
 
     private async onChange(event: SearchFormEvent)
     {
+        this.selected = null;
         this.profile = event.profile
         this.uicPrefix = event.uicPrefix
         this.stationName = event.value
