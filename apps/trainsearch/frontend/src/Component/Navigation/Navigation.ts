@@ -51,6 +51,7 @@ class Navigation extends LitElement {
         a {
             display: block;
             text-decoration: none;
+            color: inherit;
         }
 
         a:visited {

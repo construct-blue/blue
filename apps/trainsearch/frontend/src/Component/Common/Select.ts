@@ -1,4 +1,4 @@
-import {html, LitElement, PropertyValues} from "lit";
+import {css, html, LitElement, PropertyValues} from "lit";
 import {customElement, property, query} from "lit/decorators.js";
 
 declare global {
@@ -30,6 +30,20 @@ class Select extends LitElement {
 
     @query('select')
     private input: HTMLSelectElement
+
+    static styles = css`
+      :host(ts-select) {
+        display: flex;
+      }
+
+      select {
+        font-size: 1rem;
+        padding: .5rem;
+        background: #2a2a2a;
+        border-radius: .25rem;
+        border: none;
+      }
+    `
 
     private onChange(e: Event) {
         e.stopPropagation()

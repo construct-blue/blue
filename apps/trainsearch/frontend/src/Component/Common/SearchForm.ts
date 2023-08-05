@@ -1,4 +1,4 @@
-import {html, LitElement} from "lit";
+import {css, html, LitElement} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import "./Select"
 import "./SearchInput"
@@ -58,6 +58,17 @@ class SearchForm extends LitElement {
 
     @property({type: Array})
     public suggestions: SearchSuggestion[] = []
+
+    static styles = css`
+      :host(ts-search-form) {
+        display: flex;
+        gap: .25rem;
+      }
+
+      ts-search-input {
+        flex-grow: 1;
+      }
+    `
 
     protected async scheduleUpdate(): Promise<unknown> {
         this.uicPrefixes = await this.client.uicPrefixes(this.profile)

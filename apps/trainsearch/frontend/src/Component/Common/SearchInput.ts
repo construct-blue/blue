@@ -43,35 +43,46 @@ class SearchInput extends LitElement {
     static styles = css`
         :host {
             position: relative;
+            display: flex;
         }
 
         div {
             display: flex;
+            gap: 1px;
             flex-direction: column;
             position: absolute;
+            font-size: 1rem;
             max-height: 50vh;
             overflow: auto;
             z-index: 1;
             left: 0;
-            top: 100%;
+            top: calc(100% + .5rem);
             border-radius: .25rem;
-            background: var(--dark-grey);
+            background: #a2a2a2;
             color: #fff;
         }
 
         input {
-            padding: .25rem;
+            flex-grow: 1;
+            padding: .5rem;
             border-radius: .25rem;
             font-size: 1rem;
-            background: var(--dark-grey);
+            background: #2a2a2a;
             color: #fff;
             border: none;
         }
-        
+
         button {
             border: none;
+            margin: 0;
             padding: .5rem;
-            background: none;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background: #0c0c0c;
         }
     `
 
