@@ -30,7 +30,9 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
     `
 
     protected async scheduleUpdate(): Promise<unknown> {
-        this.compostion = await this.controller.composition(this.stopover.line.id, this.stopover.stop.id, this.profile)
+        if (this.stopover.line) {
+            this.compostion = await this.controller.composition(this.stopover.line.id, this.stopover.stop.id, this.profile)
+        }
         return super.scheduleUpdate();
     }
 

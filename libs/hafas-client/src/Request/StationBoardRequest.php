@@ -17,8 +17,6 @@ class StationBoardRequest implements HafasRequestInterface
     public function __construct(private string $type, private string $id)
     {
         $this->productFilter = new ProductFilter();
-        $this->productFilter->add('subway');
-        $this->productFilter->add('tram');
     }
 
     public function toArray(Config $config): array
