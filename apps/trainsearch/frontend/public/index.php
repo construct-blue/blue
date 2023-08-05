@@ -8,5 +8,6 @@ chdir(dirname(__DIR__));
 
 $http = Blue\Snappy\Core\Http::htmlApp();
 $http->initAssets();
-$http->onGET('ts-number', '/', new Blue\TrainsearchFrontend\Page\TrainNumber\TrainNumberHandler());
+$http->onGET('ts-number', '/train', new Blue\TrainsearchFrontend\Page\TrainNumber\TrainNumberHandler());
 $http->onGET('ts-station', '/station', new Blue\TrainsearchFrontend\Page\Station\StationHandler());
+$http->onGET('ts-home', '/', new Blue\TrainsearchFrontend\Page\Home\HomeHandler());

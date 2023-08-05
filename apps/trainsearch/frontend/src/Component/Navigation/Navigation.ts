@@ -8,7 +8,8 @@ class Navigation extends LitElement {
         return html`
             <nav>
                 <ul>
-                    <li><a href="/">Zug</a></li>
+                    <li><a href="/">Favoriten</a></li>
+                    <li><a href="/train">Zug</a></li>
                     <li><a href="/station">Abfahrten</a></li>
                 </ul>
             </nav>

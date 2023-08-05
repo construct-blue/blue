@@ -60,8 +60,8 @@ export default class TrainSearchClient {
         return await response.json();
     }
 
-    public async location(query: string, uicPrefix: number, profile: string, controller: AbortController) {
-        const response = await fetch(`${this.endpoint}/${profile}/location/${query}?uicPrefix=${uicPrefix}`, {signal: controller.signal})
+    public async location(query: string, profile: string, controller: AbortController) {
+        const response = await fetch(`${this.endpoint}/${profile}/location/${query}`, {signal: controller.signal})
         if (!response.ok) {
             return null;
         }
