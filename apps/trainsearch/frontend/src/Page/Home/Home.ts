@@ -80,7 +80,7 @@ class Home extends LitElement {
             return html`
                 <h1>${this.stationName}</h1>
                 <span>
-                    <button @click="${this.onClickBack}">&larr; Zurück</button>
+                    <button @click="${this.onClickBack}">&larr; Favoriten</button>
                                     ${this.renderFavoriteButton()}
                 </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
