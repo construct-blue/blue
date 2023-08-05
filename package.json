@@ -3,6 +3,7 @@
   "packageManager": "yarn@3.6.0",
   "private": true,
   "devDependencies": {
+    "@lit-app/state": "^0.8.4",
     "@types/jest": "^29.5.2",
     "@web-types/lit": "^2.0.0-3",
     "css-loader": "^6.8.1",

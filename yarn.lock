@@ -1710,6 +1710,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lit-app/state@npm:^0.8.4":
+  version: 0.8.4
+  resolution: "@lit-app/state@npm:0.8.4"
+  dependencies:
+    "@lit/reactive-element": ^1.6.1
+  checksum: 5f1e2c8259b2190e18dee773ac928cf5b4d496629ee778d15f78a0cdb4b88da4d746a55b8be4570e8fdb831f5a1af4bccb3061dd3b3a7df8b0091eafc3ce64cf
+  languageName: node
+  linkType: hard
+
 "@lit-labs/context@npm:^0.3.3":
   version: 0.3.3
   resolution: "@lit-labs/context@npm:0.3.3"
@@ -1733,6 +1742,15 @@ __metadata:
   dependencies:
     "@lit-labs/ssr-dom-shim": ^1.0.0
   checksum: 011a3ef0933fda86ec726d29ebc14e829e2f1ba23eca8ed8ed4d5c6f2a102c55cc6986000c5f4c8c3d0c549bc671f5d84d00ce91adc5bbd95970eec3662c0a92
+  languageName: node
+  linkType: hard
+
+"@lit/reactive-element@npm:^1.6.1":
+  version: 1.6.3
+  resolution: "@lit/reactive-element@npm:1.6.3"
+  dependencies:
+    "@lit-labs/ssr-dom-shim": ^1.0.0
+  checksum: 79b58631c38effeabad090070324431da8a22cf0ff665f5e4de35e4d791f984742b3d340c9c7fce996d1124a8da95febc582471b4c237236c770b1300b56ef6e
   languageName: node
   linkType: hard
 
@@ -5099,6 +5117,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "main@workspace:."
   dependencies:
+    "@lit-app/state": ^0.8.4
     "@lit-labs/context": ^0.3.3
     "@types/jest": ^29.5.2
     "@web-types/lit": ^2.0.0-3

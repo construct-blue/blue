@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@lit-app/state", "npm:0.8.4"],\
             ["@lit-labs/context", "npm:0.3.3"],\
             ["@types/jest", "npm:29.5.2"],\
             ["@web-types/lit", "npm:2.0.0-3"],\
@@ -2990,6 +2991,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@lit-app/state", [\
+        ["npm:0.8.4", {\
+          "packageLocation": "./.yarn/cache/@lit-app-state-npm-0.8.4-10f5eb872d-5f1e2c8259.zip/node_modules/@lit-app/state/",\
+          "packageDependencies": [\
+            ["@lit-app/state", "npm:0.8.4"],\
+            ["@lit/reactive-element", "npm:1.6.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@lit-labs/context", [\
         ["npm:0.3.3", {\
           "packageLocation": "./.yarn/cache/@lit-labs-context-npm-0.3.3-c3d5e5eb4d-3607a7f965.zip/node_modules/@lit-labs/context/",\
@@ -3015,6 +3026,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@lit-reactive-element-npm-1.6.2-1d20024e26-011a3ef093.zip/node_modules/@lit/reactive-element/",\
           "packageDependencies": [\
             ["@lit/reactive-element", "npm:1.6.2"],\
+            ["@lit-labs/ssr-dom-shim", "npm:1.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:1.6.3", {\
+          "packageLocation": "./.yarn/cache/@lit-reactive-element-npm-1.6.3-4828441e51-79b58631c3.zip/node_modules/@lit/reactive-element/",\
+          "packageDependencies": [\
+            ["@lit/reactive-element", "npm:1.6.3"],\
             ["@lit-labs/ssr-dom-shim", "npm:1.1.1"]\
           ],\
           "linkType": "HARD"\
@@ -7112,6 +7131,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["main", "workspace:."],\
+            ["@lit-app/state", "npm:0.8.4"],\
             ["@lit-labs/context", "npm:0.3.3"],\
             ["@types/jest", "npm:29.5.2"],\
             ["@web-types/lit", "npm:2.0.0-3"],\

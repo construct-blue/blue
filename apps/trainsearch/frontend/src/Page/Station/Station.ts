@@ -1,5 +1,5 @@
 import {css, html, LitElement, nothing, PropertyValues} from "lit";
-import {customElement, property, state} from "lit/decorators.js";
+import {customElement, state} from "lit/decorators.js";
 import TrainSearchClient from "../../Client/TrainSearchClient";
 import "../../Component/Common/SearchForm"
 import {SearchSuggestion} from "../../Component/Common/SearchInput";
@@ -9,9 +9,31 @@ import '../../Component/Train/TripList'
 import '../../Component/Train/TrainDetails'
 import {TripEvent} from "../../Component/Train/TripList";
 import {Favorites} from "../../Models/Favorites";
+import {State, property, query, storage} from "@lit-app/state";
+import {StateController} from "@lit-app/state/src/state-controller";
+
+class StationState extends State {
+    @query({parameter: 'value'})
+    @storage({key: 'value', prefix: 'departure'})
+    @property({value: ''})
+    value: string
+
+    @query({parameter: 'profile'})
+    @storage({key: 'profile', prefix: 'departure'})
+    @property({value: 'oebb'})
+    profile: string
+
+    @query({parameter: 'uicPrefix'})
+    @storage({key: 'uicPrefix', prefix: 'departure'})
+    @property({value: '81'})
+    uicPrefix: string
+}
+
+const stationState = new StationState();
 
 @customElement('ts-station')
 class Station extends LitElement {
+    private stateController = new StateController(this, stationState)
     private client = new TrainSearchClient(document.body.dataset.api)
     private favorites = Favorites.fromStorage(localStorage)
     private abortController = new AbortController()
@@ -30,9 +52,6 @@ class Station extends LitElement {
 
     @state()
     private selected: Trip
-
-    @property()
-    public profile: string
 
     static styles = css`
         :host(ts-station) {
@@ -57,7 +76,11 @@ class Station extends LitElement {
     protected render() {
         return html`
             <ts-search-form .suggestions="${this.suggestions}" @suggest="${this.onSuggest}"
-                            @change="${this.onChange}"></ts-search-form>
+                            @change="${this.onChange}"
+                            .value="${stationState.value}"
+                            .uicPrefix="${stationState.uicPrefix}"
+                            .profile="${stationState.profile}"
+            ></ts-search-form>
             ${this.selected ?
                     html`
                         <h1>
@@ -73,7 +96,7 @@ class Station extends LitElement {
     private renderSelected() {
         if (this.selected) {
             return html`
-                <ts-details profile="${this.profile}" .trip="${this.selected}"></ts-details>`
+                <ts-details profile="${stationState.profile}" .trip="${this.selected}"></ts-details>`
         } else {
             return html`
                 ${this.renderFavoriteButton()}
@@ -95,7 +118,7 @@ class Station extends LitElement {
     }
 
     private onClickAddToFavorites() {
-        this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: this.profile})
+        this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: stationState.profile})
         this.favorites.save(localStorage)
         this.requestUpdate()
     }
@@ -108,12 +131,25 @@ class Station extends LitElement {
 
     private async onSelect(event: TripEvent) {
         this.selected = null;
-        this.selected = await this.client.tripdetails(event.trip.id, this.profile)
+        this.selected = await this.client.tripdetails(event.trip.id, stationState.profile)
+    }
+
+    protected firstUpdated(_changedProperties: PropertyValues) {
+        super.firstUpdated(_changedProperties);
+        if (stationState.value) {
+            this.refreshSuggestions()
+        }
     }
 
     private async onSuggest(event: SearchFormEvent) {
+        stationState.value = event.value
+        stationState.profile = event.profile
+        await this.refreshSuggestions()
+    }
+
+    private async refreshSuggestions() {
         this.suggestions = []
-        if (!event.value) {
+        if (!stationState.value) {
             this.departures = null
             this.stationName = null
             this.stationId = null
@@ -125,13 +161,12 @@ class Station extends LitElement {
         }
 
         this.abortController = new AbortController()
-        this.suggestions = await this.client.location(event.value, event.profile, this.abortController)
+        this.suggestions = await this.client.location(stationState.value, stationState.profile, this.abortController)
     }
 
     private async onChange(event: SearchFormEvent) {
         this.selected = null;
         this.departures = null;
-        this.profile = event.profile
         this.stationName = event.value
         this.stationId = event.id
         this.departures = await this.client.departures(event.id, event.profile)

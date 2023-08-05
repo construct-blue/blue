@@ -3,6 +3,7 @@ import {customElement, property} from "lit/decorators.js";
 import {repeat} from "lit/directives/repeat.js";
 import {Trip} from "../../Models/Trip";
 import './StopoverTime'
+import {lineName} from "../../Directive/LineName";
 
 interface TripEventInit extends EventInit {
     trip: Trip
@@ -64,7 +65,7 @@ class TripList extends LitElement {
             return repeat(this.trips, trip => trip.id, trip => html`
                 <button @click="${() => this.onClick(trip)}">
                     <span>
-                        ${trip.line.category}&nbsp;${trip.line.number}${trip.line.number !== trip.line.id ? html`&nbsp;<small>${trip.line.id}</small>` : nothing}${trip.line.trainName ? html` <small>${trip.line.trainName}</small>` : nothing}
+                        ${lineName(trip.line)}
                     </span>
                     <ts-stopover-time .stopover="${trip.stopovers[0]}"></ts-stopover-time>
                     <span>
