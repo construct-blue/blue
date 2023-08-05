@@ -53,7 +53,11 @@ class Home extends LitElement {
             border: none;
             color: #fff;
             border-radius: 4px;
-            padding: .25rem;
+            padding: .5rem;
+        }
+        span {
+            display: flex;
+            justify-content: space-between;
         }
     `
 
@@ -67,18 +71,18 @@ class Home extends LitElement {
     protected render() {
         if (this.trip) {
             return html`
-                <h2>
+                <span>
                     <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName}</button>
-                </h2>
+                </span>
                 <ts-details profile="${this.profile}" .trip="${this.trip}"></ts-details>
             `
         } else if (this.departures) {
             return html`
                 <h1>${this.stationName}</h1>
-                <h2>
+                <span>
                     <button @click="${this.onClickBack}">&larr; Zurück</button>
-                </h2>
-                ${this.renderFavoriteButton()}
+                                    ${this.renderFavoriteButton()}
+                </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
             `
         } else {

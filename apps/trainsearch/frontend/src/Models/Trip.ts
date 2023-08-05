@@ -28,6 +28,7 @@ export interface Stopover {
     departure?: string
     plannedDeparture?: string
     arrival?: string
+    plannedArrival?: string
     reported: boolean
     remarks: Remark[]
 

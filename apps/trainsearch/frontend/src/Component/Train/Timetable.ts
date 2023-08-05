@@ -3,6 +3,7 @@ import {customElement, property} from "lit/decorators.js";
 import {Stopover, Trip} from "../../Models/Trip";
 import {datetime} from "../../Directive/DateTime";
 import './TrainComposition';
+import './StopoverTime'
 import TrainSearchClient from "../../Client/TrainSearchClient";
 
 declare global {
@@ -94,7 +95,7 @@ class Timetable extends LitElement {
             return html`
             <p>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
-                <span>${this.formatStopoverTime(stopover)}</span>
+                <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${stopover.changedLine ? html`<span>&rarr; ${stopover.line.name}</span>` : nothing}
                 ${this.renderComposition(stopover)}
                 <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
