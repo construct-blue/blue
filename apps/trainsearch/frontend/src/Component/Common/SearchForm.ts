@@ -63,14 +63,23 @@ class SearchForm extends LitElement {
     public suggestions: SearchSuggestion[] = []
 
     static styles = css`
-      :host(ts-search-form) {
-        display: flex;
-        gap: .25rem;
-      }
+        :host(ts-search-form) {
+            display: flex;
+            gap: .25rem;
+        }
 
-      ts-search-input {
-        flex-grow: 1;
-      }
+        ts-search-input {
+            flex-grow: 1;
+        }
+
+        button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1;
+            background: none;
+        }
     `
 
     protected async scheduleUpdate(): Promise<unknown> {
@@ -90,12 +99,12 @@ class SearchForm extends LitElement {
                 })}" .value="${this.uicPrefix}" @change="${this.onChangeUicProfix}"></ts-select>` : nothing}
             <ts-search-input @suggest="${this.onSuggest}" @change="${this.onChange}"
                              .suggestions="${this.suggestions}"
+                             .value="${this.value}"
             ></ts-search-input>
         `;
     }
 
-    private onChangeProfile(event: SelectEvent)
-    {
+    private onChangeProfile(event: SelectEvent) {
         event.stopPropagation()
         this.profile = event.value
         this.dispatchEvent(new SearchFormEvent('suggest', {
@@ -105,8 +114,7 @@ class SearchForm extends LitElement {
         }))
     }
 
-    private onChangeUicProfix(event: SelectEvent)
-    {
+    private onChangeUicProfix(event: SelectEvent) {
         event.stopPropagation()
         this.uicPrefix = event.value
         this.dispatchEvent(new SearchFormEvent('suggest', {
@@ -116,8 +124,7 @@ class SearchForm extends LitElement {
         }))
     }
 
-    private onSuggest(event: SearchInputEvent)
-    {
+    private onSuggest(event: SearchInputEvent) {
         event.stopPropagation()
         this.value = event.value
         this.dispatchEvent(new SearchFormEvent(event.type, {
@@ -127,10 +134,8 @@ class SearchForm extends LitElement {
         }))
     }
 
-    private onChange(event: SearchInputEvent)
-    {
+    private onChange(event: SearchInputEvent) {
         event.stopPropagation()
-        this.value = event.value
         this.dispatchEvent(new SearchFormEvent(event.type, {
             value: event.value,
             id: event.id,

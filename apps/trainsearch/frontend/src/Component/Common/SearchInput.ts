@@ -65,13 +65,23 @@ class SearchInput extends LitElement {
         input {
             flex-grow: 1;
             padding: .5rem;
-            border-radius: .25rem;
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
             font-size: 1rem;
             background: #2a2a2a;
             color: #fff;
             border: none;
         }
 
+        input ~ button {
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+        }
+
+        input:focus ~ button {
+            z-index: -1;
+        }
+        
         button {
             border: none;
             margin: 0;
@@ -107,10 +117,16 @@ class SearchInput extends LitElement {
                    .value="${this.value}"
                    @focus="${() => this.focused = true}"
                    @keyup="${this.changeKeyword}">
+            <button @click="${this.onDelete}">&larrb;</button>
             ${this.renderSuggestions()}
         `;
     }
 
+
+    private onDelete() {
+        this.input.value = ''
+        this.changeKeyword()
+    }
 
     private renderSuggestions() {
         if (this.focused && this.suggestions && this.suggestions.length) {

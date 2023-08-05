@@ -78,6 +78,9 @@ class Station extends LitElement {
     private async onSuggest(event: SearchFormEvent) {
         this.suggestions = []
         if (!event.value) {
+            this.departures = null
+            this.stationName = null
+            this.selected = null
             return;
         }
         if (!this.abortController.signal.aborted) {
