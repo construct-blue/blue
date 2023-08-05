@@ -12,11 +12,13 @@ use DateTimeZone;
 
 class StationBoardRequest implements HafasRequestInterface
 {
-    private ProductFilter $productFilter;
+    public ProductFilter $productFilter;
 
     public function __construct(private string $type, private string $id)
     {
         $this->productFilter = new ProductFilter();
+        $this->productFilter->add('subway');
+        $this->productFilter->add('tram');
     }
 
     public function toArray(Config $config): array
@@ -28,7 +30,7 @@ class StationBoardRequest implements HafasRequestInterface
                 'stbLoc' => [
                     'lid' => 'A=1@L=' . $this->id . '@',
                 ],
-                'maxJny' => 10,
+                'maxJny' => 30,
                 'date' => Time::formatDate($dateTime),
                 'time' => Time::formatTime($dateTime),
                 'dur' => -1,

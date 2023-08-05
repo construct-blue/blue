@@ -23,6 +23,12 @@ class ProductFilter
         $this->filter[] = 'suburban';
     }
 
+    public function add(string $type): self
+    {
+        $this->filter[] = $type;
+        return $this;
+    }
+
     /**
      * @param array $products
      *
