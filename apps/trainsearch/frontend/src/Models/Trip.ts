@@ -20,7 +20,8 @@ export interface Stopover {
         name: string
     },
     requestStop?: boolean,
-    changedLine?: Line
+    changedLine?: boolean
+    line?: Line,
     departureDelay?: number,
     departurePlatform?: string,
     arrivalDelay?: number,

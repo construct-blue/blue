@@ -20,6 +20,9 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
     @property()
     public trip: Trip
 
+    @property()
+    public profile: string
+
     static styles = css`
       :host(ts-details) {
         overflow: scroll;
@@ -43,7 +46,7 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
             <h2>${this.trip.line.name} <small>${datetime(this.trip.date, "date")}</small></h2>
             ${this.trip.line.trainName ? html`<h3>${this.trip.line.trainName}</h3>` : nothing}
             <ts-collapsable summary="Fahrplan" id="timetable">
-                <ts-timetable .trip="${this.trip}"></ts-timetable>
+                <ts-timetable .trip="${this.trip}" profile="${this.profile}"></ts-timetable>
             </ts-collapsable>
             <ts-collapsable summary="Infos" id="remarks">
                 <ts-remarks .remarks="${this.trip.remarks}"></ts-remarks>

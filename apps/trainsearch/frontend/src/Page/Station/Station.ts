@@ -46,24 +46,26 @@ class Station extends LitElement {
 
     private renderSelected(){
         if (this.selected) {
-            return html`<ts-details .trip="${this.selected}"></ts-details>`
+            return html`<ts-details profile="${this.profile}" .trip="${this.selected}"></ts-details>`
         }
         return nothing;
     }
 
     private async onSelect(event: TripEvent)
     {
+        this.selected = null;
         this.selected = await this.client.tripdetails(event.trip.id, this.profile)
     }
 
     private async onSuggest(event: SearchFormEvent) {
+        this.suggestions = []
         if (!event.value) {
-            this.suggestions = []
             return;
         }
         if (!this.abortController.signal.aborted) {
             this.abortController.abort()
         }
+
         this.abortController = new AbortController()
         this.suggestions = await this.client.location(event.value, Number.parseInt(event.uicPrefix), event.profile, this.abortController)
     }
@@ -71,6 +73,7 @@ class Station extends LitElement {
     private async onChange(event: SearchFormEvent)
     {
         this.selected = null;
+        this.departures = null;
         this.profile = event.profile
         this.uicPrefix = event.uicPrefix
         this.stationName = event.value

@@ -3,6 +3,7 @@ import {customElement, property} from "lit/decorators.js";
 import {Stopover, Trip} from "../../Models/Trip";
 import {datetime} from "../../Directive/DateTime";
 import './TrainComposition';
+import TrainSearchClient from "../../Client/TrainSearchClient";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -12,8 +13,20 @@ declare global {
 
 @customElement('ts-timetable')
 class Timetable extends LitElement {
+    private client = new TrainSearchClient(document.body.dataset.api)
+
     @property()
     public trip: Trip
+
+    @property({type: String})
+    public profile: string
+
+    private stations = []
+
+    protected async scheduleUpdate():  Promise<unknown> {
+        this.stations = await this.client.stations(this.profile)
+        return super.scheduleUpdate();
+    }
 
     protected render(): TemplateResult {
         return html`
@@ -76,15 +89,26 @@ class Timetable extends LitElement {
     `
 
     protected renderStopover(stopover: Stopover) {
-        return html`
+
+
+            return html`
             <p>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
                 <span>${this.formatStopoverTime(stopover)}</span>
-                ${stopover.changedLine ? html`<span>&rarr; ${stopover.changedLine.name}</span>` : nothing}
-                <ts-composition station-id="${stopover.stop.id}"></ts-composition>
+                ${stopover.changedLine ? html`<span>&rarr; ${stopover.line.name}</span>` : nothing}
+                ${this.renderComposition(stopover)}
                 <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
             </p>
         `
+    }
+
+    private renderComposition(stopover: Stopover)
+    {
+        const lastStopover = this.trip.stopovers[this.trip.stopovers.length - 1]
+        if (this.profile === 'oebb' && !this.trip.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
+            return html`<ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
+        }
+        return nothing;
     }
 
     protected formatStopoverTime(stopover: Stopover) {

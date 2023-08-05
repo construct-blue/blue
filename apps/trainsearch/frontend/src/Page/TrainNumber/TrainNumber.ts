@@ -33,16 +33,11 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
         })
     }
 
-    protected async firstUpdated(_changedProperties: PropertyValues) {
-        super.firstUpdated(_changedProperties);
-        this.context.stations = await this.controller.stations(this.context.source)
-    }
-
     protected render() {
         return html`
             <ts-number-form></ts-number-form>
             ${this.context.trip ? html`
-                <ts-details .trip="${this.context.trip}"></ts-details>` : nothing}
+                <ts-details .trip="${this.context.trip}" profile="${this.context.source}"></ts-details>` : nothing}
         `;
     }
 }

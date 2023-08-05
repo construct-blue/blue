@@ -19,7 +19,7 @@ readonly class LocMatchRequest implements HafasRequestInterface
                 'input' => [
                     'field' => 'S',
                     'loc' => [
-                        'name' => $this->query,
+                        'name' => $this->query . '?',
                         'type' => $this->type
                     ]
                 ]

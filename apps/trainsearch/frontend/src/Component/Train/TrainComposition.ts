@@ -4,6 +4,7 @@ import {TrainNumberController} from "../../Page/TrainNumber/TrainNumberControlle
 import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
 import {Composition} from "../../Models/Composition";
+import {Stopover} from "../../Models/Trip";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -16,8 +17,11 @@ declare global {
 export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNumberContext) {
     private controller = new TrainNumberController(this)
 
-    @property({attribute: 'station-id'})
-    public stationId: string
+    @property({type: String})
+    public profile: string
+
+    @property({type: Object})
+    public stopover: Stopover
 
     @property()
     private compostion: Composition = null
@@ -26,11 +30,7 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
     `
 
     protected async scheduleUpdate(): Promise<unknown> {
-        this.compostion = null
-        const lastStopover = this.context.trip.stopovers[this.context.trip.stopovers.length - 1]
-        if (this.context.hasComposition && !this.context.trip.foreign && this.stationId !== lastStopover.stop.id && this.context.stations && Object.keys(this.context.stations).includes(this.stationId)) {
-            this.compostion = await this.controller.composition(this.context.trip.line.id, this.stationId, this.context.source)
-        }
+        this.compostion = await this.controller.composition(this.stopover.line.id, this.stopover.stop.id, this.profile)
         return super.scheduleUpdate();
     }
 
@@ -43,8 +43,7 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
         `;
     }
 
-    private formatUIC(uic: string)
-    {
+    private formatUIC(uic: string) {
         return uic.substring(0, 2)
                 + ' ' + uic.substring(2, 4)
                 + ' ' + uic.substring(4, 8)

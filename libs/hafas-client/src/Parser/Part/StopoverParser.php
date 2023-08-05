@@ -77,10 +77,14 @@ class StopoverParser
         }
 
         $changedLine = null;
-        if (isset($rawStop->dProdX) && isset($rawStop->aProdX) && $rawStop->dProdX != $rawStop->aProdX) {
+        if (isset($rawStop->dProdX) && isset($rawStop->aProdX)) {
+            $changedLine = $rawStop->dProdX != $rawStop->aProdX;
+        }
+        $line = null;
+        if (isset($rawStop->dProdX) && isset($rawStop->aProdX)) {
             if (isset($rawCommon->prodL[$rawStop->dProdX])) {
                 $dProd = $rawCommon->prodL[$rawStop->dProdX];
-                $changedLine = $this->lineParser->parse($dProd, $rawJourney, $rawCommon);
+                $line = $this->lineParser->parse($dProd, $rawJourney, $rawCommon);
             }
         }
 
@@ -109,6 +113,7 @@ class StopoverParser
             reported: ($rawStop?->dProgType ?? null) === 'REPORTED',
             progType: $rawStop?->dProgType ?? null,
             border: $rawStop?->border ?? null,
+            line: $line,
             changedLine: $changedLine,
             remarks: $remarks
         );
