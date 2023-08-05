@@ -10,6 +10,8 @@ export interface Trip {
 
 export interface Line {
     name: string
+    category: string
+    number: string
     trainName?: string
     id: string
 }

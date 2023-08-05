@@ -64,7 +64,7 @@ class TripList extends LitElement {
             return repeat(this.trips, trip => trip.id, trip => html`
                 <button @click="${() => this.onClick(trip)}">
                     <span>
-                        ${trip.line.name}${trip.line.trainName ? html` <small>${trip.line.trainName}</small>` : nothing}
+                        ${trip.line.category}&nbsp;${trip.line.number}${trip.line.number !== trip.line.id ? html`&nbsp;<small>${trip.line.id}</small>` : nothing}${trip.line.trainName ? html` <small>${trip.line.trainName}</small>` : nothing}
                     </span>
                     <ts-stopover-time .stopover="${trip.stopovers[0]}"></ts-stopover-time>
                     <span>
