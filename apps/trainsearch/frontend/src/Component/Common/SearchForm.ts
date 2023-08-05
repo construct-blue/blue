@@ -1,4 +1,4 @@
-import {css, html, LitElement} from "lit";
+import {css, html, LitElement, nothing} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import "./Select"
 import "./SearchInput"
@@ -44,6 +44,9 @@ class SearchForm extends LitElement {
         }
     ]
 
+    @property({type: Boolean, attribute: 'uic-select'})
+    public uicSelect = false
+
     @property({type: Array})
     public uicPrefixes = [];
 
@@ -71,7 +74,9 @@ class SearchForm extends LitElement {
     `
 
     protected async scheduleUpdate(): Promise<unknown> {
-        this.uicPrefixes = await this.client.uicPrefixes(this.profile)
+        if (this.uicSelect) {
+            this.uicPrefixes = await this.client.uicPrefixes(this.profile)
+        }
         return super.scheduleUpdate();
     }
 
@@ -79,10 +84,10 @@ class SearchForm extends LitElement {
         return html`
             <ts-select .options="${this.profiles}" .value="${this.profile}"
                        @change="${this.onChangeProfile}"></ts-select>
-            <ts-select .options="${this.uicPrefixes.map(uicPrefix => {
-                return {id: uicPrefix.prefix, name: uicPrefix.name}
-            })}" .value="${this.uicPrefix}"
-                       @change="${this.onChangeUicProfix}"></ts-select>
+            ${this.uicPrefixes.length ? html`
+                <ts-select .options="${this.uicPrefixes.map(uicPrefix => {
+                    return {id: uicPrefix.prefix, name: uicPrefix.name}
+                })}" .value="${this.uicPrefix}" @change="${this.onChangeUicProfix}"></ts-select>` : nothing}
             <ts-search-input @suggest="${this.onSuggest}" @change="${this.onChange}"
                              .suggestions="${this.suggestions}"
             ></ts-search-input>

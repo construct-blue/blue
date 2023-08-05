@@ -29,17 +29,33 @@ class Station extends LitElement {
     private profile: string
 
     static styles = css`
-        :host(ts-station) {
-            display: flex;
-            flex-direction: column;
-        }
+      :host(ts-station) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1 {
+        margin: .5rem 0;
+      }
+
+      button {
+        font-size: 1rem;
+        background: var(--dark-grey);
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        padding: .25rem;
+      }
     `
 
     protected render() {
         return html`
             <ts-search-form .suggestions="${this.suggestions}" @suggest="${this.onSuggest}" @change="${this.onChange}"></ts-search-form>
-            <h1>${this.stationName}</h1>
-            <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
+            ${this.selected ? 
+                    html`<h1><button @click="${() => this.selected = null}">< ${this.stationName}</button></h1>` : 
+                    html`<h1>${this.stationName}</h1>`
+        }
+
             ${this.renderSelected()}
         `
     }
@@ -47,6 +63,8 @@ class Station extends LitElement {
     private renderSelected(){
         if (this.selected) {
             return html`<ts-details profile="${this.profile}" .trip="${this.selected}"></ts-details>`
+        } else {
+            return html`<ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>`
         }
         return nothing;
     }
