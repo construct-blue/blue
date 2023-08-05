@@ -52,7 +52,7 @@ class Station extends LitElement {
         return html`
             <ts-search-form .suggestions="${this.suggestions}" @suggest="${this.onSuggest}" @change="${this.onChange}"></ts-search-form>
             ${this.selected ? 
-                    html`<h1><button @click="${() => this.selected = null}">< ${this.stationName}</button></h1>` : 
+                    html`<h1><button @click="${() => this.selected = null}">&larr; ${this.stationName}</button></h1>` : 
                     html`<h1>${this.stationName}</h1>`
         }
 
