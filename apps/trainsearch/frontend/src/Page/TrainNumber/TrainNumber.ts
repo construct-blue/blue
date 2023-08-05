@@ -10,7 +10,7 @@ import {lineName} from "../../Directive/LineName";
 import {datetime} from "../../Directive/DateTime";
 
 import {State, property, query, storage} from "@lit-app/state";
-import {StateController} from "@lit-app/state/src/state-controller";
+import {StateController} from "@lit-app/state/src/state-controller.js";
 
 class TrainNumberState extends State {
     @query({parameter: 'value'})

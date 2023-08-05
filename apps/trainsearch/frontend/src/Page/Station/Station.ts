@@ -10,7 +10,7 @@ import '../../Component/Train/TrainDetails'
 import {TripEvent} from "../../Component/Train/TripList";
 import {Favorites} from "../../Models/Favorites";
 import {State, property, query, storage} from "@lit-app/state";
-import {StateController} from "@lit-app/state/src/state-controller";
+import {StateController} from "@lit-app/state/src/state-controller.js";
 
 class StationState extends State {
     @query({parameter: 'value'})
