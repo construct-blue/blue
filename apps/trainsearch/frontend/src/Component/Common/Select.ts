@@ -39,6 +39,7 @@ class Select extends LitElement {
       select {
         font-size: 1rem;
         padding: .5rem;
+        color: inherit;
         background: #2a2a2a;
         border-radius: .25rem;
         border: none;
