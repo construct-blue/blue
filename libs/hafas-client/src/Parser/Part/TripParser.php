@@ -5,10 +5,6 @@ declare(strict_types=1);
 namespace Blue\HafasClient\Parser\Part;
 
 use Blue\HafasClient\Helper\Time;
-use Blue\HafasClient\Models\Line;
-use Blue\HafasClient\Models\Location;
-use Blue\HafasClient\Models\Stop;
-use Blue\HafasClient\Models\Stopover;
 use Blue\HafasClient\Models\Trip;
 use Blue\HafasClient\Profile\Config;
 use stdClass;
@@ -50,9 +46,15 @@ class TripParser
         $remarks = $remarksParser->parse($rawJourney->msgL ?? [], $rawCommon->remL ?? []);
 
         $line = $lineParser->parse($rawLine, $rawJourney, $rawCommon);
+
+        $direction = null;
+        if (isset($rawJourney->dirTxt)) {
+            $direction = (new StopNameParser())->parse($rawJourney->dirTxt);
+        }
+
         return new Trip(
             id: $rawJourney?->jid ?? '',
-            direction: $rawJourney?->dirTxt ?? null,
+            direction: $direction,
             date: Time::parseDate($rawJourney->date),
             line: $line,
             stopovers: $stopovers,

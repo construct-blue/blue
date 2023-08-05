@@ -89,10 +89,14 @@ class StopoverParser
             $line = $this->lineParser->parse($aProd, $rawJourney, $rawCommon);
         }
 
+        $name = $rawLoc?->name ?? '';
+
+        $name = (new StopNameParser())->parse($name);
+
         return new Stopover(
             stop: new Stop(
                 id: $rawLoc?->extId ?? '',
-                name: $rawLoc?->name ?? '',
+                name: $name,
                 location: new Location(
                     latitude: $rawLoc?->crd?->y / 1000000,
                     longitude: $rawLoc?->crd?->x / 1000000,

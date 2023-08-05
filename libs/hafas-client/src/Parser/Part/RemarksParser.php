@@ -23,11 +23,17 @@ class RemarksParser
             }
             $rawMessage = $remL[$message->remX];
 
+            $text = $rawMessage?->txtN ?? '';
+
+            if (str_starts_with($text, '<s>')) {
+                continue;
+            }
+
             $remarks[] = new Remark(
                 type: $rawMessage?->type ?? null,
                 code: $rawMessage?->code ?? null,
                 prio: $rawMessage?->prio ?? null,
-                message: strip_tags($rawMessage?->txtN ?? ''),
+                message: strip_tags($text),
             );
         }
         return $remarks;
