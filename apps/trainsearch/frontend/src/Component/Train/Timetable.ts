@@ -1,10 +1,9 @@
 import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {classMap} from "lit/directives/class-map.js"
-import {customElement, property} from "lit/decorators.js";
+import {customElement, property, state} from "lit/decorators.js";
 import {Stopover, Trip} from "../../Models/Trip";
 import './TrainComposition';
 import './StopoverTime'
-import TrainSearchClient from "../../Client/TrainSearchClient";
 import {lineName} from "../../Directive/LineName";
 import {TrainSearchController} from "../../Client/TrainSearchController";
 
@@ -29,7 +28,20 @@ class Timetable extends LitElement {
 
     private stations = []
 
+    @state()
+    private compositions = []
+
     protected async scheduleUpdate(): Promise<unknown> {
+        if (this.stationId && !this.compositions.includes(this.stationId)) {
+            this.compositions.push(this.stationId)
+        }
+        if (this.compositions.length == 0) {
+            this.compositions.push(this.trip.stopovers[0].stop.id)
+            const ids = this.trip.stopovers
+                    .filter(stopover => stopover.changedLine)
+                    .map(stopover => stopover.stop.id)
+            this.compositions.push(...ids)
+        }
         this.stations = await this.controller.stations(this.profile)
         return super.scheduleUpdate();
     }
@@ -84,6 +96,15 @@ class Timetable extends LitElement {
             align-items: center;
         }
 
+        button {
+            font-size: 1rem;
+            background: var(--dark-grey);
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: .25rem;
+        }
+        
         .red, .green {
             font-size: 2.5rem;
             line-height: 0;
@@ -118,9 +139,18 @@ class Timetable extends LitElement {
     private renderComposition(stopover: Stopover) {
         const lastStopover = this.trip.stopovers[this.trip.stopovers.length - 1]
         if (this.stations && this.profile === 'oebb' && !this.trip.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
+            if (!this.compositions.includes(stopover.stop.id)) {
+                return html`
+                <button @click="${() => this.onClickShowComposition(stopover)}">Wagenreihung anzeigen</button>`;
+            }
             return html`
                 <ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
         }
         return nothing;
+    }
+
+    private onClickShowComposition(stopover: Stopover) {
+        this.compositions.push(stopover.stop.id)
+        this.requestUpdate()
     }
 }
