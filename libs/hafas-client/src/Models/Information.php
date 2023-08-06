@@ -9,6 +9,7 @@ use JsonSerializable;
 readonly class Information implements JsonSerializable
 {
     public function __construct(
+        public string $id,
         public string $head,
         public string $text,
     ) {
@@ -17,6 +18,7 @@ readonly class Information implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'head' => $this->head,
             'text' => $this->text
         ];

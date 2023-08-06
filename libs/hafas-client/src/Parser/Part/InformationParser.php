@@ -28,16 +28,18 @@ class InformationParser
                 continue;
             }
 
-            $head = $rawMessage?->text ?? '';
-            $text = $rawMessage?->head ?? '';
+            $head = $rawMessage?->head ?? '';
+            $text = $rawMessage?->text ?? '';
+            $id = $rawMessage?->hid ?? '';
 
             if (str_starts_with($text, '<s>') || str_starts_with($head, '<s>')) {
                 continue;
             }
 
             $infos[] = new Information(
-                head: $head,
-                text: $text,
+                id: $id,
+                head: strip_tags($head),
+                text: strip_tags($text),
             );
         }
         return $infos;

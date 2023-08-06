@@ -6,6 +6,7 @@ export interface Trip {
     stopovers: Stopover[]
     foreign?: boolean
     remarks: Remark[]
+    infos: Information[]
 }
 
 export interface Line {
@@ -40,7 +41,7 @@ export interface Stopover {
     plannedArrival?: string
     reported: boolean
     remarks: Remark[]
-
+    infos: Information[]
 }
 
 export interface Remark {
@@ -48,4 +49,10 @@ export interface Remark {
     code: string
     prio: number
     message: string
+}
+
+export interface Information {
+    id: string,
+    head: string,
+    text: string
 }
