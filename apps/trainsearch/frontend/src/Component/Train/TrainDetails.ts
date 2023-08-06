@@ -1,7 +1,5 @@
 import {css, html, LitElement, nothing, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
-import {ObjectContextConsumer} from "libs/lit-helper/src/Mixin/ObjectContext";
-import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
 import {Trip} from "../../Models/Trip";
 import "./Timetable"
 import "./Remarks"
@@ -18,7 +16,7 @@ declare global {
 
 
 @customElement('ts-details')
-class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext) {
+class TrainDetails extends LitElement {
     @property()
     public trip: Trip
 

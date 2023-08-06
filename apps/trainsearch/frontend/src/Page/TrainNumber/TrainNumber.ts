@@ -2,8 +2,6 @@ import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {TrainSearchController} from "../../Client/TrainSearchController";
 import '../../Component/Train/TrainDetails'
-import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
-import {ObjectContextProvider} from "libs/lit-helper/src/Mixin/ObjectContext";
 import {SearchFormEvent} from "../../Component/Common/SearchForm";
 import {Trip} from "../../Models/Trip";
 import {lineName} from "../../Directive/LineName";
@@ -32,7 +30,7 @@ class TrainNumberState extends State {
 const tnState = new TrainNumberState();
 
 @customElement('ts-number')
-export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberContext, new TrainNumberContext()) {
+export class TrainNumber extends LitElement {
     private stateController = new StateController(this, tnState)
     private controller = new TrainSearchController(this)
 

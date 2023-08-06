@@ -3,8 +3,6 @@ import {customElement, property} from "lit/decorators.js";
 import {unsafeHTML} from "lit/directives/unsafe-html.js";
 import {classMap} from "lit/directives/class-map.js";
 import {TrainSearchController} from "../../Client/TrainSearchController";
-import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
-import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
 import {Composition} from "../../Models/Composition";
 import {Stopover} from "../../Models/Trip";
 
@@ -16,7 +14,7 @@ declare global {
 
 
 @customElement('ts-composition')
-export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNumberContext) {
+export class TrainComposition extends LitElement {
     private controller = new TrainSearchController(this)
 
     @property({type: String})
