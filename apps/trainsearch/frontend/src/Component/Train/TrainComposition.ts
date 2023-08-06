@@ -31,6 +31,7 @@ export class TrainComposition extends LitElement {
         display: flex;
         flex-direction: column;
         height: 2.5rem;
+        font-family: FrutigerNextPro-Regular, sans-serif;
       }
 
       p {
