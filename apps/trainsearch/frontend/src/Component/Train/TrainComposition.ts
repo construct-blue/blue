@@ -28,12 +28,29 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
     private compostion: Composition = null
 
     static styles = css`
-      :host {
-        display: flex;
-        overflow: auto;
-        font-size: .75rem;
-        gap: .25rem;
-      }
+        :host(ts-composition) {
+            display: flex;
+            flex-wrap: wrap;
+            overflow: scroll;
+            font-size: .75rem;
+            gap: .25rem;
+        }
+
+        span {
+            padding: .25rem;
+            border: 1px solid var(--light-border);
+            border-top-left-radius: .5rem;
+            border-top-right-radius: .5rem;
+            background: var(--green);
+        }
+        
+        span.TFZ {
+            background: var(--grey);
+        }
+
+        b {
+            font-family: FrutigerNextPro-Bold, sans-serif;
+        }
     `
 
     protected async scheduleUpdate(): Promise<unknown> {
@@ -48,7 +65,9 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
             return nothing
         }
         return html`
-           ${this.compostion.vehicles.map(v => html`${v.ranking ? html`${v.ranking}:&nbsp;` : nothing}${v.type}<br>${this.formatUIC(v.uicNumber)}`).map(vehicle => html`<span>${vehicle}</span>`)}
+            ${this.compostion.vehicles.map(v =>
+                    html`<span class="${v.type}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
+                    <br>${this.formatUIC(v.uicNumber)}</span>`)}
         `;
     }
 
