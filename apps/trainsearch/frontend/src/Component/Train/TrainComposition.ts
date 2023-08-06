@@ -1,6 +1,7 @@
 import {css, html, LitElement, nothing} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {unsafeHTML} from "lit/directives/unsafe-html.js";
+import {classMap} from "lit/directives/class-map.js";
 import {TrainNumberController} from "../../Page/TrainNumber/TrainNumberController";
 import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
@@ -44,9 +45,23 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
             background: var(--green);
         }
         
-        span.TFZ {
+        span.low {
+            background: var(--green);
+        }
+
+        span.medium {
+            background: var(--orange);
+        }
+
+        span.high {
+            background: var(--red);
+        }
+        
+        span.TFZ, 
+        span.locked {
             background: var(--grey);
         }
+        
 
         b {
             font-family: FrutigerNextPro-Bold, sans-serif;
@@ -66,7 +81,7 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
         }
         return html`
             ${this.compostion.vehicles.map(v =>
-                    html`<span class="${v.type}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
+                    html`<span class="${classMap({locked: v.locked || ['TFZ', 'DDm'].includes(v.type), low: v.load < 33, medium: v.load >= 33 && v.load <= 66, high: v.load > 66})}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
                     <br>${this.formatUIC(v.uicNumber)}</span>`)}
         `;
     }
