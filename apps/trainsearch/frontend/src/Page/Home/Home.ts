@@ -137,7 +137,8 @@ class Home extends LitElement {
             id: '',
             date: '',
             foreign: null,
-            remarks: []
+            remarks: [],
+            infos: [],
         }
         const trips = await this.client.tripsearch(`${line.category} ${line.id}`, uicPrefix, profile, new AbortController())
         if (trips.length) {
