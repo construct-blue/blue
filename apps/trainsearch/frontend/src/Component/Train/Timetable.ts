@@ -56,9 +56,10 @@ class Timetable extends LitElement {
             display: flex;
             flex-direction: column;
         }
-        
+
         p.selected {
-            background: var(--dark-grey);
+            background: rgba(255, 255, 255, 0.20);
+            border: 1px solid #fff;
             padding: .25rem;
             border-radius: .25rem;
             font-family: FrutigerNextPro-Bold, sans-serif;
@@ -70,18 +71,18 @@ class Timetable extends LitElement {
             gap: .25rem;
             align-items: center;
         }
-        
+
         ul span {
             display: inline-flex;
             width: 1.5rem;
         }
-        
+
         li {
             list-style: none;
             display: flex;
             align-items: center;
         }
-        
+
         .red, .green {
             font-size: 2.5rem;
             line-height: 0;

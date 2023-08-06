@@ -39,12 +39,13 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
 
         span {
             padding: .25rem;
+            line-height: 1.05;
             border: 1px solid var(--light-border);
             border-top-left-radius: .5rem;
             border-top-right-radius: .5rem;
-            background: var(--green);
+            background: var(--s-bahn-blue);
         }
-        
+
         span.low {
             background: var(--green);
         }
@@ -56,12 +57,12 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
         span.high {
             background: var(--red);
         }
-        
-        span.TFZ, 
+
+        span.TFZ,
         span.locked {
             background: var(--grey);
         }
-        
+
 
         b {
             font-family: FrutigerNextPro-Bold, sans-serif;
@@ -81,7 +82,7 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
         }
         return html`
             ${this.compostion.vehicles.map(v =>
-                    html`<span class="${classMap({locked: v.locked || ['TFZ', 'DDm'].includes(v.type), low: v.load < 33, medium: v.load >= 33 && v.load <= 66, high: v.load > 66})}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
+                    html`<span class="${classMap({locked: v.locked || ['TFZ', 'DDm'].includes(v.type), low: v.load && v.load < 33, medium: v.load >= 33 && v.load <= 66, high: v.load > 66})}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
                     <br>${this.formatUIC(v.uicNumber)}</span>`)}
         `;
     }
