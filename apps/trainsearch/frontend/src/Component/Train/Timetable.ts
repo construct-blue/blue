@@ -35,8 +35,10 @@ class Timetable extends LitElement {
         if (this.stationId && !this.compositions.includes(this.stationId)) {
             this.compositions.push(this.stationId)
         }
-        if (this.compositions.length == 0) {
-            this.compositions.push(this.trip.stopovers[0].stop.id)
+        if (this.compositions.length == 0 && this.trip.stopovers.length) {
+            if (this.trip.stopovers[0]) {
+                this.compositions.push(this.trip.stopovers[0].stop.id)
+            }
             const ids = this.trip.stopovers
                     .filter(stopover => stopover.changedLine)
                     .map(stopover => stopover.stop.id)
@@ -128,8 +130,8 @@ class Timetable extends LitElement {
         return html`
             <p class=${classMap({selected: stopover.stop.id == this.stationId})}>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})` : nothing}
-                <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${stopover.changedLine ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
+                <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${this.renderComposition(stopover)}
                 <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
             </p>
