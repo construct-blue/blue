@@ -89,7 +89,7 @@ export class TrainComposition extends LitElement {
 
     protected render() {
         if (!this.compostion?.vehicles) {
-            return nothing
+            return html`Wagenreihung nicht verfügbar.`
         }
         return html`
             <p>
