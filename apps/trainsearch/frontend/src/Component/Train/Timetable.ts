@@ -105,6 +105,7 @@ class Timetable extends LitElement {
             color: #fff;
             border-radius: 4px;
             padding: .25rem;
+            align-self: end;
         }
         
         .red, .green {
@@ -143,7 +144,7 @@ class Timetable extends LitElement {
         if (this.stations && this.profile === 'oebb' && !this.trip.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
             if (!this.compositions.includes(stopover.stop.id)) {
                 return html`
-                <button @click="${() => this.onClickShowComposition(stopover)}">Wagenreihung anzeigen</button>`;
+                    <button @click="${() => this.onClickShowComposition(stopover)}"><i style="font-family: oebb-symbols">W</i></button>`;
             }
             return html`
                 <ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
