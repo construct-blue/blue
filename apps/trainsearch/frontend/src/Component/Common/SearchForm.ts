@@ -89,13 +89,27 @@ class SearchForm extends LitElement {
         return super.scheduleUpdate();
     }
 
+    private getFlagEmoji(countryCode) {
+        if (countryCode === '-') {
+            return '';
+        }
+        if (countryCode == 'UK') {
+            return '🇬🇧';
+        }
+        const codePoints = countryCode
+                .toUpperCase()
+                .split('')
+                .map(char => 127397 + char.charCodeAt());
+        return String.fromCodePoint(...codePoints);
+    }
+
     protected render() {
         return html`
             <ts-select font-family="oebb-light-symbols" .options="${this.profiles}" .value="${this.profile}"
                        @change="${this.onChangeProfile}"></ts-select>
             ${this.uicPrefixes.length ? html`
                 <ts-select .options="${this.uicPrefixes.map(uicPrefix => {
-                    return {id: uicPrefix.prefix, name: uicPrefix.name}
+                    return {id: uicPrefix.prefix, name: this.getFlagEmoji(uicPrefix.name) + uicPrefix.name}
                 })}" .value="${this.uicPrefix}" @change="${this.onChangeUicProfix}"></ts-select>` : nothing}
             <ts-search-input @suggest="${this.onSuggest}" @change="${this.onChange}"
                              .suggestions="${this.suggestions}"

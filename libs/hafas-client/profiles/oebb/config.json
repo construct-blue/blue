@@ -18,6 +18,16 @@
       "displayName": "DB"
     },
     {
+      "id": "s-bahn-berlin",
+      "name": "S-Bahn Berlin",
+      "displayName": "S-Bahn Berlin"
+    },
+    {
+      "id": "s-bahn-hamburg",
+      "name": "S-Bahn Hamburg",
+      "displayName": "S-Bahn Hamburg"
+    },
+    {
       "id": "oebb",
       "name": "Österreichische Bundesbahnen",
       "displayName": "ÖBB"

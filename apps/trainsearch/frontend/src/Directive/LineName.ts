@@ -19,6 +19,10 @@ class LineName extends Directive {
         'S': 'S',
     };
 
+    private dbCategories = {
+        'S': 'i'
+    }
+
     private mavCategories = {
         'NJ': 'Ɵ',
         'RJ': 'Ń',
@@ -41,6 +45,10 @@ class LineName extends Directive {
 
         if (operator == 'cd' && category == 'CD') {
             category = 'IC'
+        }
+
+        if (['s-bahn-berlin', 's-bahn-hamburg'].includes(operator) && this.dbCategories[category]) {
+            return html`<i style="font-family: db-symbols">${this.dbCategories[category]}</i>`;
         }
 
         if (this.oebbCategories[category]) {
