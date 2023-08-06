@@ -11,6 +11,12 @@ export interface Trip {
 export interface Line {
     name: string
     category: string
+    operator: {
+        id: string
+    },
+    product: {
+        id: string
+    }
     number: string
     trainName?: string
     id: string

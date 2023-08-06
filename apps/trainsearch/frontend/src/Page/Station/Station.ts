@@ -75,6 +75,7 @@ class Station extends LitElement {
 
     protected render() {
         return html`
+            <h1><i style="font-family: mav-symbols">ȫ</i> Abfahrten</h1>
             <ts-search-form .suggestions="${this.suggestions}" @suggest="${this.onSuggest}"
                             @change="${this.onChange}"
                             .value="${stationState.value}"

@@ -8,9 +8,9 @@ class Navigation extends LitElement {
         return html`
             <nav>
                 <ul>
-                    <li><a href="/">Favoriten</a></li>
-                    <li><a href="/train">Zug</a></li>
-                    <li><a href="/station">Abfahrten</a></li>
+                    <li><a href="/"><i style="font-family: oebb-symbols">Ð</i>Favoriten</a></li>
+                    <li><a href="/train"><i style="font-family: oebb-symbols">–</i>Zug</a></li>
+                    <li><a href="/station"><i style="font-family: mav-symbols">ȫ</i>Abfahrten</a></li>
                 </ul>
             </nav>
         `;
@@ -28,11 +28,10 @@ class Navigation extends LitElement {
     static styles = css`
         nav {
             background: var(--dark-grey);
-            padding-bottom: 1.5rem;
+            padding-bottom: 2rem;
             color: #d3d3d3;
             font-family: FrutigerNextPro-Bold, sans-serif;
             font-size: 1.25rem;
-            height: 3rem;
             display: flex;
         }
 
@@ -52,7 +51,9 @@ class Navigation extends LitElement {
         }
 
         a {
-            display: block;
+            padding-top: .5rem;
+            display: flex;
+            flex-direction: column;
             text-decoration: none;
             color: inherit;
         }

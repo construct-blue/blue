@@ -80,3 +80,18 @@ main > *, footer > * {
     font-family: "FrutigerNextPro-Bold";
     src: url("../../fonts/FrutigerNextPro-Bold.otf") format("opentype")
 }
+
+@font-face {
+    font-family: "oebb-symbols";
+    src: url("../../fonts/oebb.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "oebb-light-symbols";
+    src: url("../../fonts/oebb-light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "mav-symbols";
+    src: url("../../fonts/mav.ttf") format("truetype");
+}

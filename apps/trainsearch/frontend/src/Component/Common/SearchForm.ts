@@ -36,11 +36,11 @@ class SearchForm extends LitElement {
     public profiles = [
         {
             id: 'oebb',
-            name: 'ÖBB'
+            name: 'o'
         },
         {
             id: 'db',
-            name: 'DB'
+            name: 'ø'
         }
     ]
 
@@ -91,7 +91,7 @@ class SearchForm extends LitElement {
 
     protected render() {
         return html`
-            <ts-select .options="${this.profiles}" .value="${this.profile}"
+            <ts-select font-family="oebb-light-symbols" .options="${this.profiles}" .value="${this.profile}"
                        @change="${this.onChangeProfile}"></ts-select>
             ${this.uicPrefixes.length ? html`
                 <ts-select .options="${this.uicPrefixes.map(uicPrefix => {

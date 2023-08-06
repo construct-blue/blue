@@ -31,6 +31,9 @@ class Select extends LitElement {
     @query('select')
     private input: HTMLSelectElement
 
+    @property({attribute: 'font-family'})
+    public fontFamily: string = 'inherit'
+
     static styles = css`
       :host(ts-select) {
         display: flex;
@@ -57,7 +60,7 @@ class Select extends LitElement {
 
     protected render() {
         return html`
-            <select @change="${this.onChange}">
+            <select style="font-family: ${this.fontFamily}" @change="${this.onChange}">
                 ${this.options.map(value => html`
                     <option value="${value.id}">${value.name}</option>`
                 )}

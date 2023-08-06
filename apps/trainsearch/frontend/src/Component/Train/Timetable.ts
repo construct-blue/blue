@@ -5,6 +5,7 @@ import {datetime} from "../../Directive/DateTime";
 import './TrainComposition';
 import './StopoverTime'
 import TrainSearchClient from "../../Client/TrainSearchClient";
+import {lineName} from "../../Directive/LineName";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -96,7 +97,7 @@ class Timetable extends LitElement {
             <p>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
                 <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
-                ${stopover.changedLine ? html`<span>&rarr; ${stopover.line.name}</span>` : nothing}
+                ${stopover.changedLine ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
                 ${this.renderComposition(stopover)}
                 <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
             </p>
@@ -110,43 +111,5 @@ class Timetable extends LitElement {
             return html`<ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
         }
         return nothing;
-    }
-
-    protected formatStopoverTime(stopover: Stopover) {
-        const result = [];
-        if (stopover.requestStop) {
-            result.push(html`&#10005;`)
-        } else if (stopover.arrival) {
-            if (stopover.arrivalDelay && stopover.reported) {
-                result.push(html`<span class="red">•</span> ${datetime(stopover.arrival, "time")} <span class="delay">(+ ${stopover.arrivalDelay / 60}
-                    )</span>`)
-            } else if (stopover.reported) {
-                result.push(html`<span class="green">•</span> ${datetime(stopover.arrival, "time")}`)
-            } else if (stopover.arrivalDelay) {
-                result.push(html`${datetime(stopover.arrival, "time")} <span
-                        class="delay">(+ ${stopover.arrivalDelay / 60})</span>`)
-            } else {
-                result.push(html`${datetime(stopover.arrival, "time")}`)
-            }
-        }
-
-        if (stopover.departure) {
-            if (result.length) {
-                result.push(html` - `)
-            }
-            if (stopover.departureDelay && stopover.reported) {
-                result.push(html`<span class="red">•</span> ${datetime(stopover.departure, "time")} <span class="delay">(+ ${stopover.departureDelay / 60}
-                    )</span>`)
-            } else if (stopover.reported) {
-                result.push(html`<span class="green">•</span> ${datetime(stopover.departure, "time")}`)
-            } else if (stopover.departureDelay) {
-                result.push(html`${datetime(stopover.departure, "time")} <span
-                        class="delay">(+ ${stopover.departureDelay / 60})</span>`)
-            } else {
-                result.push(html`${datetime(stopover.departure, "time")}`)
-            }
-        }
-
-        return result;
     }
 }

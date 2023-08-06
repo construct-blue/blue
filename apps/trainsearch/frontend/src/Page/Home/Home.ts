@@ -48,13 +48,22 @@ class Home extends LitElement {
         }
 
         button {
+            display: flex;
             font-size: 1rem;
+            text-align: left;
             background: var(--dark-grey);
             border: none;
             color: #fff;
             border-radius: 4px;
             padding: .5rem;
         }
+        
+        i {
+            width: 2rem;
+            align-self: end;
+            text-align: center;
+        }
+        
         span {
             display: flex;
             justify-content: space-between;
@@ -87,16 +96,29 @@ class Home extends LitElement {
             `
         } else {
             return html`
-                <h1>Favoriten</h1>
+                <h1><i style="font-family: oebb-symbols">Ð</i> Favoriten</h1>
                 <div>
                     ${this.favorites.locations.map(location => html`
                         <button @click="${() => this.onClickLocation(location)}">
-                            ${location.name} (${location.profile})
+                            ${this.formatProfile(location.profile)} ${location.name}
                         </button>
                     `)}
                 </div>
             `
         }
+    }
+
+    private formatProfile(profile: string)
+    {
+        if (profile === 'oebb') {
+            return html`<i style="font-family: oebb-light-symbols">o</i>`
+        }
+
+        if (profile === 'db') {
+            return html`<i style="font-family: oebb-light-symbols">ø</i>`
+        }
+
+        return `(${profile})`;
     }
 
     private renderFavoriteButton() {

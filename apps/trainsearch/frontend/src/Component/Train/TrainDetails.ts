@@ -7,6 +7,7 @@ import "./Timetable"
 import "./Remarks"
 import "../Common/Collapsable"
 import {datetime} from "../../Directive/DateTime";
+import {lineName} from "../../Directive/LineName";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -32,6 +33,11 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
         padding: 1rem 0;
       }
 
+      h2 {
+        display: flex;
+        justify-content: space-between;
+      }
+
       h2, h3 {
         margin: 0;
       }
@@ -43,7 +49,7 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
 
     protected render(): TemplateResult {
         return html`
-            <h2>${this.trip.line.name} <small>${datetime(this.trip.date, "date")}</small></h2>
+            <h2><span>${lineName(this.trip.line)}</span> <small>${datetime(this.trip.date, "date")}</small></h2>
             ${this.trip.line.trainName ? html`<h3>${this.trip.line.trainName}</h3>` : nothing}
             <ts-collapsable summary="Fahrplan" id="timetable">
                 <ts-timetable .trip="${this.trip}" profile="${this.profile}"></ts-timetable>

@@ -49,6 +49,10 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
             display: flex;
             flex-direction: column;
         }
+
+        h1 {
+            margin: .5rem 0;
+        }
     `
 
     connectedCallback() {
@@ -63,6 +67,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
 
     protected render() {
         return html`
+            <h1><i style="font-family: oebb-symbols">–</i>Zug</h1>
             <ts-search-form .suggestions="${this.suggestions}" @suggest="${this.onSuggest}"
                             @change="${this.onChange}" uic-select 
                             .value="${tnState.value}"
