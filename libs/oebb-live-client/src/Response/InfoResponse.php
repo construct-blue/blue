@@ -16,13 +16,17 @@ class InfoResponse
 
     public function parse(): Info
     {
-        return new Info(array_map(
-                fn($wagon) => new Vehicle(
-                    uicNumber: $wagon->uicNumber ?? '',
-                    type: $wagon->kind ?? '',
-                    ranking: (int)($wagon->ranking ?? 0)
-                ),
-                $this->raw->train?->wagons ?? [])
-        );
+        $vehicles = [];
+        foreach ($this->raw->train?->wagons ?? [] as $index => $wagon) {
+            $vehicles[] = new Vehicle(
+                uicNumber: $wagon->uicNumber ?? '',
+                type: $wagon->kind ?? '',
+                ranking: (int)($wagon->ranking ?? 0),
+                locked: isset($wagon->isLocked) ? (bool)$wagon->isLocked : null,
+                load: isset($this->raw?->load?->stats[$index]?->ratio) ? round($this->raw->load->stats[$index]->ratio * 100) : null
+            );
+        }
+
+        return new Info($vehicles);
     }
 }
