@@ -16,14 +16,23 @@ class InfoResponse
 
     public function parse(): Info
     {
+        $load = [];
+
+        foreach ($this->raw?->load?->stats ?? [] as $stat) {
+            if (isset($stat->ranking) && isset($stat->ratio)) {
+                $load[(int)$stat->ranking] = round($stat->ratio * 100);
+            }
+        }
+
         $vehicles = [];
         foreach ($this->raw->train?->wagons ?? [] as $index => $wagon) {
+            $ranking = (int)($wagon->ranking ?? 0);
             $vehicles[] = new Vehicle(
                 uicNumber: $wagon->uicNumber ?? '',
                 type: $wagon->kind ?? '',
-                ranking: (int)($wagon->ranking ?? 0),
+                ranking: $ranking,
                 locked: isset($wagon->isLocked) ? (bool)$wagon->isLocked : null,
-                load: isset($this->raw?->load?->stats[$index]?->ratio) ? round($this->raw->load->stats[$index]->ratio * 100) : null
+                load: $load[$ranking] ?? null
             );
         }
 
