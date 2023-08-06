@@ -35,7 +35,7 @@ class Timetable extends LitElement {
         if (this.stationId && !this.compositions.includes(this.stationId)) {
             this.compositions.push(this.stationId)
         }
-        if (this.compositions.length == 0 && this.trip.stopovers.length) {
+        if (this.trip.stopovers && this.trip.stopovers.length) {
             if (this.trip.stopovers[0]) {
                 this.compositions.push(this.trip.stopovers[0].stop.id)
             }
