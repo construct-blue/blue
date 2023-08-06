@@ -95,7 +95,7 @@ export class TrainComposition extends LitElement {
             <p>
                 <b>&larr;</b>
                 ${this.compostion.vehicles.map(v =>
-                        html`<span class="${classMap({locked: v.locked || ['TFZ', 'DDm'].includes(v.type), low: v.load && v.load < 33, medium: v.load >= 33 && v.load <= 66, high: v.load > 66})}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
+                        html`<span class="${classMap({locked: v.locked || ['TFZ', 'DDm'].includes(v.type), low: v.load !== null && v.load < 33, medium: v.load >= 33 && v.load <= 66, high: v.load > 66})}">${v.ranking ? html`<b>${v.ranking}</b>:&nbsp;` : nothing}${v.type}
                     <br>${this.formatUIC(v.uicNumber)}</span>`)}
             </p>
         `;
