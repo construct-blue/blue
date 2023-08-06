@@ -70,7 +70,7 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
                 <ts-timetable .trip="${this.trip}" profile="${this.profile}" station-id="${this.stationId}"></ts-timetable>
             </ts-collapsable>
             ${this.trip.infos ? this.trip.infos.map(info =>
-                    html`<ts-collapsable summary="${info.head}" id="${info.id}">${info.text}</ts-collapsable>`) : nothing}
+                    html`<ts-collapsable warning summary="${info.head}" id="${info.id}">${info.text}</ts-collapsable>`) : nothing}
             <ts-collapsable summary="Infos" id="remarks">
                 <ts-remarks .remarks="${this.trip.remarks}"></ts-remarks>
             </ts-collapsable>

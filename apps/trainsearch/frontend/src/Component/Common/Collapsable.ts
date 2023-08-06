@@ -1,5 +1,6 @@
 import {css, html, LitElement, PropertyValues, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
+import {classMap} from "lit/directives/class-map.js";
 
 @customElement('ts-collapsable')
 class Collapsable extends LitElement {
@@ -9,11 +10,19 @@ class Collapsable extends LitElement {
     @property()
     public open: boolean
 
+    @property({type: Boolean})
+    public warning: boolean
+
     static styles = css`
         summary {
             padding: .5rem;
             background: var(--dark-grey);
             border-bottom: var(--light-border);
+        }
+
+        summary.warning {
+            background: var(--orange);
+            color: var(--dark-grey);
         }
         
         details {
@@ -33,7 +42,7 @@ class Collapsable extends LitElement {
     protected render(): TemplateResult {
         return html`
             <details ?open="${this.open}" @toggle="${e => this.open = e.target.open}">
-                <summary>${this.summary}</summary>
+                <summary class="${classMap({warning: this.warning})}">${this.summary}</summary>
                 <section>
                     <slot></slot>
                 </section>
