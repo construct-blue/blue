@@ -17,6 +17,9 @@ readonly class Trip implements JsonSerializable
      * @param Line|null $line
      * @param Stopover[] $stopovers
      * @param Remark[] $remarks
+     * @param Information[] $infos
+     * @param Stopover|null $origin
+     * @param bool|null $foreign
      */
     public function __construct(
         public string $id,
@@ -25,6 +28,7 @@ readonly class Trip implements JsonSerializable
         public ?Line $line = null,
         public array $stopovers = [],
         public array $remarks = [],
+        public array $infos = [],
         public ?Stopover $origin = null,
         public ?bool $foreign = null
     ) {
@@ -41,6 +45,7 @@ readonly class Trip implements JsonSerializable
             'line' => $this->line ?? null,
             'stopovers' => $this->stopovers,
             'remarks' => $this->remarks,
+            'infos' => $this->infos,
             'foreign' => $this->foreign
         ];
     }

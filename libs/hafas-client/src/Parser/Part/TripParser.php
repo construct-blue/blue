@@ -18,6 +18,7 @@ class TripParser
     public function parse(stdClass $rawCommon, stdClass $rawJourney): Trip
     {
         $remarksParser = new RemarksParser();
+        $informationParser = new InformationParser();
         $productParser = new ProductParser($this->config);
         $operatorParser = new OperatorParser($this->config);
         $lineParser = new LineParser($productParser, $operatorParser);
@@ -44,7 +45,7 @@ class TripParser
         }
 
         $remarks = $remarksParser->parse($rawJourney->msgL ?? [], $rawCommon->remL ?? []);
-
+        $infos = $informationParser->parse($rawJourney->msgL ?? [], $rawCommon->himL ?? []);
         $line = $lineParser->parse($rawLine, $rawJourney, $rawCommon);
 
         $direction = null;
@@ -59,6 +60,8 @@ class TripParser
             line: $line,
             stopovers: $stopovers,
             remarks: $remarks,
+            infos: $infos,
+            origin: $stopovers[0] ?? null,
             foreign: $foreign
         );
     }
