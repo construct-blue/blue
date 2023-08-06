@@ -22,7 +22,7 @@ class TripParser
         $productParser = new ProductParser($this->config);
         $operatorParser = new OperatorParser($this->config);
         $lineParser = new LineParser($productParser, $operatorParser);
-        $stopoverParser = new StopoverParser($lineParser, $remarksParser);
+        $stopoverParser = new StopoverParser($lineParser, $remarksParser, $informationParser);
         $defaultTZOffset = $this->config->getDefaultTZOffset();
         $rawLine = $rawCommon->prodL[$rawJourney->prodX];
 

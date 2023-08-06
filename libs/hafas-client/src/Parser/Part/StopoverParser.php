@@ -12,7 +12,7 @@ use stdClass;
 
 class StopoverParser
 {
-    public function __construct(private LineParser $lineParser, private RemarksParser $remarksParser)
+    public function __construct(private LineParser $lineParser, private RemarksParser $remarksParser, private InformationParser $informationParser)
     {
     }
 
@@ -60,6 +60,7 @@ class StopoverParser
         $departurePlatformPlanned = $rawStop?->dPlatfS ?? $rawStop?->dPltfS?->txt ?? null;
         $departurePlatform = $rawStop?->dPlatfR ?? $rawStop?->dPltfR?->txt ?? $departurePlatformPlanned;
         $remarks = $this->remarksParser->parse($rawStop->msgL ?? [], $rawCommon->remL ?? []);
+        $infos = $this->informationParser->parse($rawStop->msgL ?? [], $rawCommon->himL ?? []);
 
 
         $requestStop = null;
@@ -120,7 +121,8 @@ class StopoverParser
             border: $rawStop?->border ?? null,
             line: $line,
             changedLine: $changedLine,
-            remarks: $remarks
+            remarks: $remarks,
+            infos: $infos,
         );
     }
 }

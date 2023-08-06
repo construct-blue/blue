@@ -19,13 +19,18 @@ readonly class Stopover implements JsonSerializable
      * @param DateTime|null $plannedDeparture
      * @param DateTime|null $departure
      * @param string|null $departurePlatform
+     * @param bool|null $requestStop
      * @param bool|null $isCancelled
      * @param int|null $delay
      * @param int|null $arrivalDelay
      * @param int|null $departureDelay
      * @param bool|null $reported
+     * @param string|null $progType
      * @param bool|null $border
+     * @param Line|null $line
+     * @param bool|null $changedLine
      * @param Remark[] $remarks
+     * @param Information[] $infos
      */
     public function __construct(
         public Stop $stop,
@@ -46,7 +51,8 @@ readonly class Stopover implements JsonSerializable
         public ?bool $border = null,
         public ?Line $line = null,
         public ?bool $changedLine = null,
-        public array $remarks = []
+        public array $remarks = [],
+        public array $infos = []
     ) {
     }
 
@@ -71,6 +77,7 @@ readonly class Stopover implements JsonSerializable
             'progType' => $this->progType,
             'border' => $this->border,
             'remarks' => $this->remarks,
+            'infos' => $this->infos,
             'line' => $this->line,
             'changedLine' => $this->changedLine,
         ];
