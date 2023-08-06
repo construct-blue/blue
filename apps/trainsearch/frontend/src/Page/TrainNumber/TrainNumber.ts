@@ -1,6 +1,6 @@
 import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, state} from "lit/decorators.js";
-import {TrainNumberController} from "./TrainNumberController";
+import {TrainSearchController} from "../../Client/TrainSearchController";
 import '../../Component/Train/TrainDetails'
 import {TrainNumberContext, trainNumberContext} from "./TrainNumberContext";
 import {ObjectContextProvider} from "libs/lit-helper/src/Mixin/ObjectContext";
@@ -11,7 +11,6 @@ import {datetime} from "../../Directive/DateTime";
 
 import {State, property, query, storage} from "@lit-app/state";
 import {StateController} from "@lit-app/state/src/state-controller.js";
-import {Favorites} from "../../Models/Favorites";
 
 class TrainNumberState extends State {
     @query({parameter: 'value'})
@@ -35,9 +34,7 @@ const tnState = new TrainNumberState();
 @customElement('ts-number')
 export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberContext, new TrainNumberContext()) {
     private stateController = new StateController(this, tnState)
-
-    private controller = new TrainNumberController(this)
-    private abortController = new AbortController()
+    private controller = new TrainSearchController(this)
 
     @state()
     private trip: Trip
@@ -101,22 +98,22 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
             this.trip = null
             return;
         }
-        if (!this.abortController.signal.aborted) {
-            this.abortController.abort()
-        }
 
-        this.abortController = new AbortController()
-        const trips: Trip[] = (await this.controller.tripsearch(tnState.value, Number.parseInt(tnState.uicPrefix), tnState.profile, this.abortController))
-        this.suggestions = trips.map(trip => {
-            return {
-                id: trip.id, name:
-                        html`${lineName(trip.line)}&nbsp;${datetime(trip.stopovers[0].plannedDeparture, 'time')}
+        this.controller.abort()
+        const trips: Trip[] = (await this.controller.tripsearch(tnState.value, Number.parseInt(tnState.uicPrefix), tnState.profile))
+        if (trips) {
+            this.suggestions = trips.map(trip => {
+                return {
+                    id: trip.id, name:
+                            html`${lineName(trip.line)}&nbsp;${datetime(trip.stopovers[0].plannedDeparture, 'time')}
                         <br>&rarr;&nbsp;${trip.stopovers[1].stop.name}`
-            }
-        })
+                }
+            })
+        }
     }
 
     private async onChange(event: SearchFormEvent) {
+        this.controller.abort()
         this.trip = null;
         this.trip = await this.controller.tripdetails(event.id, event.profile)
         tnState.profile = event.profile

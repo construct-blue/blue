@@ -2,78 +2,49 @@ export default class TrainSearchClient {
     constructor(private endpoint: string) {
     }
 
-    public async trip(nr: string, uicPrefix: number, profile: string) {
-        const response = await fetch(`${this.endpoint}/${profile}/trip/${nr}?uicPrefix=${uicPrefix}`)
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json()
-    }
-
-    public async tripdetails(id: string, profile: string) {
+    public async tripdetails(id: string, profile: string, controller: AbortController) {
         id = encodeURIComponent(id)
-        const response = await fetch(`${this.endpoint}/${profile}/tripdetails/${id}`)
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json()
+        return await this.fetch(`${this.endpoint}/${profile}/tripdetails/${id}`, controller)
     }
 
     public async tripsearch(nr: string, uicPrefix: number, profile: string, controller: AbortController) {
-
-        const response = await fetch(`${this.endpoint}/${profile}/tripsearch/${nr}?uicPrefix=${uicPrefix}`, {signal: controller.signal})
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json()
+        return await this.fetch(`${this.endpoint}/${profile}/tripsearch/${nr}?uicPrefix=${uicPrefix}`, controller)
     }
 
-    public async operators(profile: string) {
-        const response = await fetch(`${this.endpoint}/${profile}/operators`)
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json()
-    }
-
-    public async uicPrefixes(profile: string) {
-        const response = await fetch(`${this.endpoint}/${profile}/uicprefixes`)
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json()
+    public async uicPrefixes(profile: string, controller: AbortController) {
+        return await this.fetch(`${this.endpoint}/${profile}/uicprefixes`, controller)
     }
 
     public async compostion(nr: string, stationId: string, dateTime: string, profile: string, controller: AbortController) {
         const date = new Date(dateTime)
-        const response = await fetch(`${this.endpoint}/${profile}/composition/${nr}?station=${stationId}&date=${date.toISOString()}`, {signal: controller.signal})
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json();
+        return await this.fetch(`${this.endpoint}/${profile}/composition/${nr}?station=${stationId}&date=${date.toISOString()}`, controller)
     }
 
-    public async stations(profile: string) {
-        const response = await fetch(`${this.endpoint}/${profile}/composition/stations`)
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json();
+    public async stations(profile: string, controller: AbortController) {
+        return await this.fetch(`${this.endpoint}/${profile}/composition/stations`, controller)
     }
 
     public async location(query: string, profile: string, controller: AbortController) {
-        const response = await fetch(`${this.endpoint}/${profile}/location/${query}`, {signal: controller.signal})
-        if (!response.ok) {
-            return null;
-        }
-        return await response.json();
+        return await this.fetch(`${this.endpoint}/${profile}/location/${query}`, controller)
     }
 
-    public async departures(id: string, profile: string) {
-        const response = await fetch(`${this.endpoint}/${profile}/departures/${id}`)
-        if (!response.ok) {
-            return null;
+    public async departures(id: string, profile: string, controller: AbortController) {
+        return await this.fetch(`${this.endpoint}/${profile}/departures/${id}`, controller)
+    }
+
+    private async fetch(input, controller: AbortController)
+    {
+        try {
+            const response = await fetch(input, {signal: controller.signal})
+            if (!response.ok) {
+                return null;
+            }
+            return await response.json();
+        } catch (err) {
+            if (err instanceof DOMException && err.name == 'AbortError') {
+                return null;
+            }
+            throw err;
         }
-        return await response.json();
     }
 }

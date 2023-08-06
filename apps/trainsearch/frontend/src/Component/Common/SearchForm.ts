@@ -5,6 +5,7 @@ import "./SearchInput"
 import {SelectEvent} from "./Select";
 import {SearchInputEvent, SearchSuggestion} from "./SearchInput";
 import TrainSearchClient from "../../Client/TrainSearchClient";
+import {TrainSearchController} from "../../Client/TrainSearchController";
 
 interface SearchEventInit extends EventInit {
     value: string
@@ -30,7 +31,7 @@ export class SearchFormEvent extends Event {
 
 @customElement('ts-search-form')
 class SearchForm extends LitElement {
-    private client = new TrainSearchClient(document.body.dataset.api)
+    private controller = new TrainSearchController(this)
 
     @property({type: Array})
     public profiles = [
@@ -84,7 +85,7 @@ class SearchForm extends LitElement {
 
     protected async scheduleUpdate(): Promise<unknown> {
         if (this.uicSelect) {
-            this.uicPrefixes = await this.client.uicPrefixes(this.profile)
+            this.uicPrefixes = await this.controller.uicPrefixes(this.profile)
         }
         return super.scheduleUpdate();
     }

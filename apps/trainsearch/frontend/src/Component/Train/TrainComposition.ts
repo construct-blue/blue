@@ -2,7 +2,7 @@ import {css, html, LitElement, nothing} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {unsafeHTML} from "lit/directives/unsafe-html.js";
 import {classMap} from "lit/directives/class-map.js";
-import {TrainNumberController} from "../../Page/TrainNumber/TrainNumberController";
+import {TrainSearchController} from "../../Client/TrainSearchController";
 import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
 import {Composition} from "../../Models/Composition";
@@ -17,7 +17,7 @@ declare global {
 
 @customElement('ts-composition')
 export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNumberContext) {
-    private controller = new TrainNumberController(this)
+    private controller = new TrainSearchController(this)
 
     @property({type: String})
     public profile: string

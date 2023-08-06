@@ -11,6 +11,7 @@ import {TripEvent} from "../../Component/Train/TripList";
 import {Favorites} from "../../Models/Favorites";
 import {State, property, query, storage} from "@lit-app/state";
 import {StateController} from "@lit-app/state/src/state-controller.js";
+import {TrainSearchController} from "../../Client/TrainSearchController";
 
 class StationState extends State {
     @query({parameter: 'value'})
@@ -34,9 +35,8 @@ const stationState = new StationState();
 @customElement('ts-station')
 class Station extends LitElement {
     private stateController = new StateController(this, stationState)
-    private client = new TrainSearchClient(document.body.dataset.api)
+    private controller = new TrainSearchController(this)
     private favorites = Favorites.fromStorage(localStorage)
-    private abortController = new AbortController()
 
     @state()
     private suggestions: SearchSuggestion[] = []
@@ -88,7 +88,7 @@ class Station extends LitElement {
             ${this.selected ?
                     html`
                         <h1>
-                            <button @click="${() => this.selected = null}">&larr; ${this.stationName}</button>
+                            <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
                         </h1>` :
                     html`<h1>${this.stationName}</h1>`
             }
@@ -121,6 +121,12 @@ class Station extends LitElement {
         }
     }
 
+    private onClickBack()
+    {
+        this.selected = null
+        this.controller.abort()
+    }
+
     private onClickAddToFavorites() {
         this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: stationState.profile})
         this.favorites.save(localStorage)
@@ -136,7 +142,7 @@ class Station extends LitElement {
     private async onSelect(event: TripEvent) {
         this.selected = event.trip;
         this.stationIdMarked = event.trip.stopovers[0].stop.id
-        this.selected = await this.client.tripdetails(event.trip.id, stationState.profile)
+        this.selected = await this.controller.tripdetails(event.trip.id, stationState.profile)
     }
 
     protected firstUpdated(_changedProperties: PropertyValues) {
@@ -162,19 +168,17 @@ class Station extends LitElement {
             this.selected = null
             return;
         }
-        if (!this.abortController.signal.aborted) {
-            this.abortController.abort()
-        }
 
-        this.abortController = new AbortController()
-        this.suggestions = await this.client.location(stationState.value, stationState.profile, this.abortController)
+        this.controller.abort()
+        this.suggestions = await this.controller.location(stationState.value, stationState.profile)
     }
 
     private async onChange(event: SearchFormEvent) {
+        this.controller.abort()
         this.selected = null;
         this.departures = null;
         this.stationName = event.value
         this.stationId = event.id
-        this.departures = await this.client.departures(event.id, event.profile)
+        this.departures = await this.controller.departures(event.id, event.profile)
     }
 }

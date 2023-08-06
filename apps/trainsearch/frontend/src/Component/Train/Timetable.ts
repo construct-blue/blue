@@ -6,6 +6,7 @@ import './TrainComposition';
 import './StopoverTime'
 import TrainSearchClient from "../../Client/TrainSearchClient";
 import {lineName} from "../../Directive/LineName";
+import {TrainSearchController} from "../../Client/TrainSearchController";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -15,7 +16,7 @@ declare global {
 
 @customElement('ts-timetable')
 class Timetable extends LitElement {
-    private client = new TrainSearchClient(document.body.dataset.api)
+    private controller = new TrainSearchController(this)
 
     @property()
     public trip: Trip
@@ -28,8 +29,8 @@ class Timetable extends LitElement {
 
     private stations = []
 
-    protected async scheduleUpdate():  Promise<unknown> {
-        this.stations = await this.client.stations(this.profile)
+    protected async scheduleUpdate(): Promise<unknown> {
+        this.stations = await this.controller.stations(this.profile)
         return super.scheduleUpdate();
     }
 
@@ -103,9 +104,9 @@ class Timetable extends LitElement {
     `
 
     protected renderStopover(stopover: Stopover) {
-            return html`
+        return html`
             <p class=${classMap({selected: stopover.stop.id == this.stationId})}>
-                ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
+                ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})` : nothing}
                 <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${stopover.changedLine ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
                 ${this.renderComposition(stopover)}
@@ -114,11 +115,11 @@ class Timetable extends LitElement {
         `
     }
 
-    private renderComposition(stopover: Stopover)
-    {
+    private renderComposition(stopover: Stopover) {
         const lastStopover = this.trip.stopovers[this.trip.stopovers.length - 1]
-        if (this.profile === 'oebb' && !this.trip.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
-            return html`<ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
+        if (this.stations && this.profile === 'oebb' && !this.trip.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
+            return html`
+                <ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
         }
         return nothing;
     }

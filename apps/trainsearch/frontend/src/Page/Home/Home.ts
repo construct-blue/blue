@@ -1,18 +1,18 @@
 import {css, html, LitElement} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {Favorites} from "../../Models/Favorites";
-import TrainSearchClient from "../../Client/TrainSearchClient";
 import {Line, Trip} from "../../Models/Trip";
 import {Location} from "../../Models/Location";
 import '../../Component/Train/TripList'
 import '../../Component/Train/TrainDetails'
 import {TripEvent} from "../../Component/Train/TripList";
 import {lineName} from "../../Directive/LineName";
+import {TrainSearchController} from "../../Client/TrainSearchController";
 
 @customElement('ts-home')
 class Home extends LitElement {
     private favorites: Favorites = Favorites.fromStorage(localStorage)
-    private client = new TrainSearchClient(document.body.dataset.api)
+    private controller = new TrainSearchController(this)
 
     @state()
     private stationName: string
@@ -140,10 +140,10 @@ class Home extends LitElement {
             remarks: [],
             infos: [],
         }
-        const trips = await this.client.tripsearch(`${line.category} ${line.id}`, uicPrefix, profile, new AbortController())
-        if (trips.length) {
+        const trips = await this.controller.tripsearch(`${line.category} ${line.id}`, uicPrefix, profile)
+        if (trips && trips.length) {
             this.trip = trips[0]
-            this.trip = await this.client.tripdetails(trips[0].id, profile)
+            this.trip = await this.controller.tripdetails(trips[0].id, profile)
         }
     }
 
@@ -187,11 +187,12 @@ class Home extends LitElement {
     private async onSelect(event: TripEvent) {
         this.trip = event.trip;
         this.stationIdMarked = event.trip.stopovers[0].stop.id
-        this.trip = await this.client.tripdetails(event.trip.id, this.profile)
+        this.trip = await this.controller.tripdetails(event.trip.id, this.profile)
     }
 
     private onClickBackToLocation() {
         this.trip = null
+        this.controller.abort()
     }
 
     private onClickBack() {
@@ -200,6 +201,7 @@ class Home extends LitElement {
         this.stationId = null
         this.stationIdMarked = null
         this.profile = null
+        this.controller.abort()
     }
 
     private async onClickLocation(location: Location) {
@@ -207,6 +209,6 @@ class Home extends LitElement {
         this.stationId = location.id
         this.stationName = location.name
         this.departures = []
-        this.departures = await this.client.departures(location.id, location.profile)
+        this.departures = await this.controller.departures(location.id, location.profile)
     }
 }
