@@ -65,7 +65,6 @@ class TrainDetails extends ObjectContextConsumer(LitElement)(trainNumberContext)
     protected render(): TemplateResult {
         return html`
             <h2><span>${lineName(this.trip.line)}</span> <small>${datetime(this.trip.date, "date")}</small></h2>
-            ${this.trip.line.trainName ? html`<h3>${this.trip.line.trainName}</h3>` : nothing}
             ${this.renderFavoriteButton()}
             <ts-collapsable summary="Fahrplan" id="timetable">
                 <ts-timetable .trip="${this.trip}" profile="${this.profile}" station-id="${this.stationId}"></ts-timetable>
