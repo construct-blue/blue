@@ -2,11 +2,12 @@ import {css, html, LitElement} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {Favorites} from "../../Models/Favorites";
 import TrainSearchClient from "../../Client/TrainSearchClient";
-import {Trip} from "../../Models/Trip";
+import {Line, Trip} from "../../Models/Trip";
 import {Location} from "../../Models/Location";
 import '../../Component/Train/TripList'
 import '../../Component/Train/TrainDetails'
 import {TripEvent} from "../../Component/Train/TripList";
+import {lineName} from "../../Directive/LineName";
 
 @customElement('ts-home')
 class Home extends LitElement {
@@ -20,6 +21,9 @@ class Home extends LitElement {
     private stationId: string
 
     @state()
+    private stationIdMarked: string
+
+    @state()
     private profile: string
 
     @state()
@@ -29,45 +33,54 @@ class Home extends LitElement {
     private trip: Trip = null
 
     static styles = css`
-        :host(ts-home) {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
+      :host(ts-home) {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+      }
 
-        h1 {
-            margin: .5rem 0;
-        }
+      h1 {
+        margin: .5rem 0;
+      }
 
-        div {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-            overflow: scroll;
-            padding: .5rem 0;
-        }
+      h2 {
+        display: flex;
+        margin: .25rem 0;
+      }
 
-        button {
-            display: flex;
-            font-size: 1rem;
-            text-align: left;
-            background: var(--dark-grey);
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            padding: .5rem;
-        }
-        
-        i {
-            width: 2rem;
-            align-self: end;
-            text-align: center;
-        }
-        
-        span {
-            display: flex;
-            justify-content: space-between;
-        }
+      i {
+        width: 2rem;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        overflow: scroll;
+        padding: .5rem 0;
+      }
+
+      button {
+        display: flex;
+        font-size: 1rem;
+        text-align: left;
+        background: var(--dark-grey);
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        padding: .5rem;
+      }
+
+      i {
+        width: 2rem;
+        align-self: end;
+        text-align: center;
+      }
+
+      span {
+        display: flex;
+        justify-content: space-between;
+      }
     `
 
     connectedCallback() {
@@ -81,9 +94,9 @@ class Home extends LitElement {
         if (this.trip) {
             return html`
                 <span>
-                    <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName}</button>
+                    <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
                 </span>
-                <ts-details profile="${this.profile}" .trip="${this.trip}"></ts-details>
+                <ts-details profile="${this.profile}" .trip="${this.trip}" station-id="${this.stationIdMarked}"></ts-details>
             `
         } else if (this.departures) {
             return html`
@@ -98,9 +111,16 @@ class Home extends LitElement {
             return html`
                 <h1><i style="font-family: oebb-symbols">Ð</i> Favoriten</h1>
                 <div>
+                    <h2><i style="font-family: mav-symbols">ȫ</i>&nbsp;Abfahrten</h2>
                     ${this.favorites.locations.map(location => html`
                         <button @click="${() => this.onClickLocation(location)}">
-                            ${this.formatProfile(location.profile)} ${location.name}
+                            ${this.formatProfile(location.profile)}&nbsp;${location.name}
+                        </button>
+                    `)}
+                    <h2><i style="font-family: oebb-symbols">–</i>&nbsp;Züge</h2>
+                    ${this.favorites.lines.map(line => html`
+                        <button @click="${() => this.onClickLine(line.line, line.profile, line.direction, line.uicPrefix)}">
+                            ${this.formatProfile(line.profile)}&nbsp;${lineName(line.line)}&nbsp;&rarr;&nbsp;${line.direction}
                         </button>
                     `)}
                 </div>
@@ -108,8 +128,25 @@ class Home extends LitElement {
         }
     }
 
-    private formatProfile(profile: string)
-    {
+    private async onClickLine(line: Line, profile: string, direction: string, uicPrefix: number) {
+        this.profile = profile
+        this.trip = {
+            line: line,
+            direction: direction,
+            stopovers: [],
+            id: '',
+            date: '',
+            foreign: null,
+            remarks: []
+        }
+        const trips = await this.client.tripsearch(`${line.category} ${line.id}`, uicPrefix, profile, new AbortController())
+        if (trips.length) {
+            this.trip = trips[0]
+            this.trip = await this.client.tripdetails(trips[0].id, profile)
+        }
+    }
+
+    private formatProfile(profile: string) {
         if (profile === 'oebb') {
             return html`<i style="font-family: oebb-light-symbols">o</i>`
         }
@@ -147,7 +184,8 @@ class Home extends LitElement {
 
 
     private async onSelect(event: TripEvent) {
-        this.trip = null;
+        this.trip = event.trip;
+        this.stationIdMarked = event.trip.stopovers[0].stop.id
         this.trip = await this.client.tripdetails(event.trip.id, this.profile)
     }
 
@@ -159,6 +197,7 @@ class Home extends LitElement {
         this.departures = null
         this.stationName = null
         this.stationId = null
+        this.stationIdMarked = null
         this.profile = null
     }
 
@@ -166,6 +205,7 @@ class Home extends LitElement {
         this.profile = location.profile
         this.stationId = location.id
         this.stationName = location.name
+        this.departures = []
         this.departures = await this.client.departures(location.id, location.profile)
     }
 }

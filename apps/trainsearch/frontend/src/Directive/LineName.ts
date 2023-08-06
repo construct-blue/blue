@@ -62,7 +62,6 @@ class LineName extends Directive {
     }
 
     render(line: Line) {
-        console.log(line)
         return html`
             ${this.formatCategory(line.category, line.operator.id, line.product.id)}&nbsp;${line.number}${line.number !== line.id ?
                     html`&nbsp;<small>${line.id}</small>` : nothing}${line.trainName ?

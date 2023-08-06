@@ -17,7 +17,7 @@ class LineParser
     {
         $admin = null;
         if (isset($rawLine?->prodCtx?->admin) && $rawLine?->prodCtx?->admin) {
-            $admin = trim((string)$rawLine?->prodCtx?->admin, '_');
+            $admin = substr(trim((string)$rawLine?->prodCtx?->admin, '_'), 0, 2);
         }
 
         $trainName = null;

@@ -1,7 +1,7 @@
 import {css, html, LitElement, nothing, TemplateResult} from "lit";
+import {classMap} from "lit/directives/class-map.js"
 import {customElement, property} from "lit/decorators.js";
 import {Stopover, Trip} from "../../Models/Trip";
-import {datetime} from "../../Directive/DateTime";
 import './TrainComposition';
 import './StopoverTime'
 import TrainSearchClient from "../../Client/TrainSearchClient";
@@ -22,6 +22,9 @@ class Timetable extends LitElement {
 
     @property({type: String})
     public profile: string
+
+    @property({type: String, attribute: 'station-id'})
+    public stationId: string = ''
 
     private stations = []
 
@@ -52,6 +55,14 @@ class Timetable extends LitElement {
             margin: 0;
             display: flex;
             flex-direction: column;
+        }
+        
+        p.selected {
+            background: var(--dark-grey);
+            padding: .25rem;
+            border-radius: .25rem;
+            font-family: FrutigerNextPro-Bold, sans-serif;
+            font-weight: bold;
         }
 
         span {
@@ -91,10 +102,8 @@ class Timetable extends LitElement {
     `
 
     protected renderStopover(stopover: Stopover) {
-
-
             return html`
-            <p>
+            <p class=${classMap({selected: stopover.stop.id == this.stationId})}>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})`: nothing}
                 <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${stopover.changedLine ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}

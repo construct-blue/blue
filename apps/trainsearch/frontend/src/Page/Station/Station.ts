@@ -48,6 +48,9 @@ class Station extends LitElement {
     public stationId: string;
 
     @state()
+    public stationIdMarked: string;
+
+    @state()
     private departures: Trip[] = []
 
     @state()
@@ -97,7 +100,7 @@ class Station extends LitElement {
     private renderSelected() {
         if (this.selected) {
             return html`
-                <ts-details profile="${stationState.profile}" .trip="${this.selected}"></ts-details>`
+                <ts-details profile="${stationState.profile}" .trip="${this.selected}" station-id="${this.stationIdMarked}"></ts-details>`
         } else {
             return html`
                 ${this.renderFavoriteButton()}
@@ -131,7 +134,8 @@ class Station extends LitElement {
     }
 
     private async onSelect(event: TripEvent) {
-        this.selected = null;
+        this.selected = event.trip;
+        this.stationIdMarked = event.trip.stopovers[0].stop.id
         this.selected = await this.client.tripdetails(event.trip.id, stationState.profile)
     }
 
@@ -154,6 +158,7 @@ class Station extends LitElement {
             this.departures = null
             this.stationName = null
             this.stationId = null
+            this.stationIdMarked = null
             this.selected = null
             return;
         }

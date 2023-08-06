@@ -11,6 +11,7 @@ import {datetime} from "../../Directive/DateTime";
 
 import {State, property, query, storage} from "@lit-app/state";
 import {StateController} from "@lit-app/state/src/state-controller.js";
+import {Favorites} from "../../Models/Favorites";
 
 class TrainNumberState extends State {
     @query({parameter: 'value'})
@@ -69,7 +70,7 @@ export class TrainNumber extends ObjectContextProvider(LitElement)(trainNumberCo
         return html`
             <h1><i style="font-family: oebb-symbols">–</i>Zug</h1>
             <ts-search-form .suggestions="${this.suggestions}" @suggest="${this.onSuggest}"
-                            @change="${this.onChange}" uic-select 
+                            @change="${this.onChange}" uic-select
                             .value="${tnState.value}"
                             .uicPrefix="${tnState.uicPrefix}"
                             .profile="${tnState.profile}"

@@ -20,6 +20,7 @@ export interface Line {
     number: string
     trainName?: string
     id: string
+    admin: string
 }
 
 export interface Stopover {

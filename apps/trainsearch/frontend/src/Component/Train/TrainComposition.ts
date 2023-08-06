@@ -1,5 +1,6 @@
 import {css, html, LitElement, nothing} from "lit";
 import {customElement, property} from "lit/decorators.js";
+import {unsafeHTML} from "lit/directives/unsafe-html.js";
 import {TrainNumberController} from "../../Page/TrainNumber/TrainNumberController";
 import {ObjectContextConsumer} from "../../../../../../libs/lit-helper/src/Mixin/ObjectContext";
 import {trainNumberContext} from "../../Page/TrainNumber/TrainNumberContext";
@@ -27,6 +28,12 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
     private compostion: Composition = null
 
     static styles = css`
+      :host {
+        display: flex;
+        overflow: auto;
+        font-size: .75rem;
+        gap: .25rem;
+      }
     `
 
     protected async scheduleUpdate(): Promise<unknown> {
@@ -41,15 +48,15 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
             return nothing
         }
         return html`
-            <small>${this.compostion.vehicles.map(v => `${v.ranking ? v.ranking + ': ' : ''}${v.type} ${this.formatUIC(v.uicNumber)}`).join(', ')}</small>
+           ${this.compostion.vehicles.map(v => html`${v.ranking ? html`${v.ranking}:&nbsp;` : nothing}${v.type}<br>${this.formatUIC(v.uicNumber)}`).map(vehicle => html`<span>${vehicle}</span>`)}
         `;
     }
 
     private formatUIC(uic: string) {
-        return uic.substring(0, 2)
-                + ' ' + uic.substring(2, 4)
-                + ' ' + uic.substring(4, 8)
-                + ' ' + uic.substring(8, 11)
-                + '-' + uic.substring(11)
+        return unsafeHTML(uic.substring(0, 2)
+                + '&nbsp;' + uic.substring(2, 4)
+                + '&nbsp;' + uic.substring(4, 8)
+                + '&nbsp;' + uic.substring(8, 11)
+                + '&nbsp;' + uic.substring(11))
     }
 }

@@ -62,7 +62,7 @@ class Select extends LitElement {
         return html`
             <select style="font-family: ${this.fontFamily}" @change="${this.onChange}">
                 ${this.options.map(value => html`
-                    <option value="${value.id}">${value.name}</option>`
+                    <option style="font-family: ${this.fontFamily}" value="${value.id}">${value.name}</option>`
                 )}
             </select>
         `
