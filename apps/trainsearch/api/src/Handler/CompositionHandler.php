@@ -20,6 +20,7 @@ class CompositionHandler implements RequestHandlerInterface
     {
         $query = urldecode($request->getAttribute('query'));
         $station = $request->getQueryParams()['station'];
+        $date = $request->getQueryParams()['date'] ?? null;
         $live = new OebbLive(new OebbLiveClient());
 
         $stations = $live->stations();
@@ -31,7 +32,7 @@ class CompositionHandler implements RequestHandlerInterface
             $info = $live->info(
                 $query,
                 $station,
-                new DateTime('today 00:00')
+                $date ? new DateTime($date) : new DateTime('today 00:00')
             );
         } catch (NotFoundException $exception) {
             Http::throwNotFound($exception->getMessage(), $exception);

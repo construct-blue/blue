@@ -44,8 +44,9 @@ export default class TrainSearchClient {
         return await response.json()
     }
 
-    public async compostion(nr: string, stationId: string, profile: string, controller: AbortController) {
-        const response = await fetch(`${this.endpoint}/${profile}/composition/${nr}?station=${stationId}`, {signal: controller.signal})
+    public async compostion(nr: string, stationId: string, dateTime: string, profile: string, controller: AbortController) {
+        const date = new Date(dateTime)
+        const response = await fetch(`${this.endpoint}/${profile}/composition/${nr}?station=${stationId}&date=${date.toISOString()}`, {signal: controller.signal})
         if (!response.ok) {
             return null;
         }

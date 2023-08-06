@@ -71,7 +71,8 @@ export class TrainComposition extends ObjectContextConsumer(LitElement)(trainNum
 
     protected async scheduleUpdate(): Promise<unknown> {
         if (this.stopover.line) {
-            this.compostion = await this.controller.composition(this.stopover.line.id, this.stopover.stop.id, this.profile)
+            const date = this.stopover.departure ?? this.stopover.arrival
+            this.compostion = await this.controller.composition(this.stopover.line.id, this.stopover.stop.id, date, this.profile)
         }
         return super.scheduleUpdate();
     }

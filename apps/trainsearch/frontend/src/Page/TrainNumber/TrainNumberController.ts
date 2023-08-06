@@ -30,10 +30,10 @@ export class TrainNumberController implements ReactiveController {
         return await this.client.uicPrefixes(profile)
     }
 
-    public async composition(nr: string, stationId: string, source: string) {
+    public async composition(nr: string, stationId: string, date: string, source: string) {
         const controller = new AbortController()
         this.controllers.push(controller)
-        return await this.client.compostion(nr, stationId, source, controller)
+        return await this.client.compostion(nr, stationId, date, source, controller)
     }
 
     public async stations(profile: string) {
