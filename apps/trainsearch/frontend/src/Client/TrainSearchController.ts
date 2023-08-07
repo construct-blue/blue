@@ -30,12 +30,12 @@ export class TrainSearchController implements ReactiveController {
         return await this.client.stations(profile, this.getController())
     }
 
-    async location(value: any, profile: any, controller?: AbortController) {
-        return this.client.location(value, profile, this.getController(controller))
+    public async location(value: any, profile: any, controller?: AbortController) {
+        return await this.client.location(value, profile, this.getController(controller))
     }
 
-    async departures(id: string, profile: string) {
-        return this.client.departures(id, profile, this.getController());
+    public async departures(id: string, profile: string) {
+        return await this.client.departures(id, profile, this.getController());
     }
 
     private getController(controller?: AbortController) {
@@ -44,8 +44,7 @@ export class TrainSearchController implements ReactiveController {
         return controller;
     }
 
-    public abort()
-    {
+    public abort() {
         this.controllers.forEach(controller => {
             if (!controller.signal.aborted) {
                 controller.abort()

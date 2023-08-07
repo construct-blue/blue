@@ -1,6 +1,5 @@
 import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, state} from "lit/decorators.js";
-import TrainSearchClient from "../../Client/TrainSearchClient";
 import "../../Component/Common/SearchForm"
 import {SearchSuggestion} from "../../Component/Common/SearchInput";
 import {SearchFormEvent} from "../../Component/Common/SearchForm";
@@ -59,6 +58,9 @@ class Station extends LitElement {
     @state()
     private profile: string
 
+    @state()
+    private loading: boolean = false
+
     static styles = css`
         :host(ts-station) {
             display: flex;
@@ -83,11 +85,11 @@ class Station extends LitElement {
             justify-content: space-between;
             gap: .25rem;
         }
-        
+
         span button {
             padding: .5rem;
         }
-        
+
         span span {
             justify-content: end;
         }
@@ -120,7 +122,8 @@ class Station extends LitElement {
                         <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
                         <span>
                             ${this.renderFavoriteButton()}
-                            <button @click="${this.onClickRefresh}">&circlearrowright;</button>
+                            <ts-reload-button ?spin="${this.loading}"
+                                              @click="${this.onClickRefresh}"></ts-reload-button>
                         </span>
                     </span>
                 </ts-details>`
@@ -131,7 +134,8 @@ class Station extends LitElement {
                     <span>
                         ${this.renderFavoriteButton()}
                         ${this.stationId ? html`
-                            <button @click="${this.onClickRefresh}">&circlearrowright;</button>` : nothing}
+                            <ts-reload-button ?spin="${this.loading}"
+                                              @click="${this.onClickRefresh}"></ts-reload-button>` : nothing}
                     </span>
                 </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
@@ -234,6 +238,7 @@ class Station extends LitElement {
     }
 
     private async onClickRefresh() {
+        this.loading = true;
         if (this.selected) {
             this.controller.abort()
             this.selected = await this.controller.tripdetails(this.selected.id, stationState.profile)
@@ -241,5 +246,6 @@ class Station extends LitElement {
             this.controller.abort()
             this.departures = await this.controller.departures(this.stationId, this.profile)
         }
+        this.loading = false;
     }
 }

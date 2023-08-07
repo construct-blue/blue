@@ -8,6 +8,7 @@ import '../../Component/Train/TrainDetails'
 import {TripEvent} from "../../Component/Train/TripList";
 import {lineName} from "../../Directive/LineName";
 import {TrainSearchController} from "../../Client/TrainSearchController";
+import "../../Component/Common/ReloadButton"
 
 @customElement('ts-home')
 class Home extends LitElement {
@@ -31,6 +32,9 @@ class Home extends LitElement {
 
     @state()
     private trip: Trip = null
+
+    @state()
+    private loading: boolean = false
 
     static styles = css`
         :host(ts-home) {
@@ -103,7 +107,7 @@ class Home extends LitElement {
                         <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
                         <span style="gap: .5rem">
                             ${this.renderFavoriteButton()}
-                            <button @click="${this.onClickRefresh}">&circlearrowright;</button>
+                            <ts-reload-button ?spin="${this.loading}" @click="${this.onClickRefresh}"></ts-reload-button>
                         </span>
                     </span>
                 </ts-details>
@@ -115,7 +119,7 @@ class Home extends LitElement {
                     <button @click="${this.onClickBack}">&larr; Favoriten</button>
                     <span style="gap: .5rem">
                         ${this.renderFavoriteButton()}
-                        <button @click="${this.onClickRefresh}">&circlearrowright;</button>
+                        <ts-reload-button ?spin="${this.loading}" @click="${this.onClickRefresh}"></ts-reload-button>
                     </span>
                 </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
@@ -245,12 +249,20 @@ class Home extends LitElement {
     }
 
     private async onClickRefresh() {
-        if (this.trip) {
+        this.loading  = true;
+        if (this.trip?.id) {
             this.controller.abort()
-            this.trip = await this.controller.tripdetails(this.trip.id, this.profile)
+            const trip = await this.controller.tripdetails(this.trip.id, this.profile);
+            if (trip) {
+                this.trip = trip;
+            }
         } else if (this.stationId && this.profile) {
             this.controller.abort()
-            this.departures = await this.controller.departures(this.stationId, this.profile)
+            const departures = await this.controller.departures(this.stationId, this.profile);
+            if (departures) {
+                this.departures = departures
+            }
         }
+        this.loading = false;
     }
 }

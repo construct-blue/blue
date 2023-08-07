@@ -41,6 +41,8 @@ export class TrainNumber extends LitElement {
     @state()
     private suggestions
 
+    @state()
+    private loading: boolean = false
 
     static styles = css`
         :host(ts-number) {
@@ -99,7 +101,9 @@ export class TrainNumber extends LitElement {
                         <span></span>
                         <span>
                         ${this.renderFavoriteButton()}
-                        <button @click="${this.onClickRefresh}">&circlearrowright;</button>
+                            <ts-reload-button ?spin="${this.loading}"
+                                              @click="${this.onClickRefresh}"></ts-reload-button>
+
                         </span>
                     </span>
                 </ts-details>` : nothing}

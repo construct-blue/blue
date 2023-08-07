@@ -32,8 +32,7 @@ export default class TrainSearchClient {
         return await this.fetch(`${this.endpoint}/${profile}/departures/${id}`, controller)
     }
 
-    private async fetch(input, controller: AbortController)
-    {
+    private async fetch(input, controller: AbortController) {
         try {
             const response = await fetch(input, {signal: controller.signal})
             if (!response.ok) {
