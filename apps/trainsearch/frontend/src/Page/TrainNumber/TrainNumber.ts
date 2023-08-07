@@ -105,7 +105,7 @@ export class TrainNumber extends LitElement {
                     id: trip.id, name:
                             html`${lineName(trip.line)}
                             <br><small>${datetime(trip.stopovers[0].plannedDeparture)}</small>
-                            <br>${trip.stopovers[0].stop.name}&rarr;&nbsp;${trip.stopovers[1].stop.name}
+                            <br>${trip.stopovers[0].stop.name}&nbsp;&rarr;&nbsp;${trip.stopovers[1].stop.name}
                             `
                 }
             })
