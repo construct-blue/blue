@@ -5,13 +5,13 @@ import {classMap} from "lit/directives/class-map.js";
 @customElement('ts-reload-button')
 class ReloadButton extends LitElement {
     @property({type: Boolean})
-    public spin: boolean = false;
+    public loading: boolean = false;
 
     static styles = css`
       button {
         display: flex;
         font-size: 1rem;
-        text-align: left;
+        text-align: center;
         background: var(--dark-grey);
         border: none;
         color: #fff;
@@ -33,6 +33,6 @@ class ReloadButton extends LitElement {
       }
     `
     protected render() {
-        return html`<button><span class="${classMap({spin: this.spin})}">&circlearrowright;</span></button>`;
+        return html`<button><span class="${classMap({spin: this.loading})}">&circlearrowright;</span></button>`;
     }
 }

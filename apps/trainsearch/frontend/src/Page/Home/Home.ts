@@ -107,7 +107,7 @@ class Home extends LitElement {
                         <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
                         <span style="gap: .5rem">
                             ${this.renderFavoriteButton()}
-                            <ts-reload-button ?spin="${this.loading}" @click="${this.onClickRefresh}"></ts-reload-button>
+                            <ts-reload-button ?loading="${this.loading}" @click="${this.onClickRefresh}"></ts-reload-button>
                         </span>
                     </span>
                 </ts-details>
@@ -119,7 +119,7 @@ class Home extends LitElement {
                     <button @click="${this.onClickBack}">&larr; Favoriten</button>
                     <span style="gap: .5rem">
                         ${this.renderFavoriteButton()}
-                        <ts-reload-button ?spin="${this.loading}" @click="${this.onClickRefresh}"></ts-reload-button>
+                        <ts-reload-button ?loading="${this.loading}" @click="${this.onClickRefresh}"></ts-reload-button>
                     </span>
                 </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
@@ -245,10 +245,13 @@ class Home extends LitElement {
         this.stationId = location.id
         this.stationName = location.name
         this.departures = []
-        this.departures = await this.controller.departures(location.id, location.profile)
+        this.departures = await this.controller.departures(location.id, location.profile) ?? []
     }
 
     private async onClickRefresh() {
+        if (this.loading) {
+            return;
+        }
         this.loading  = true;
         if (this.trip?.id) {
             this.controller.abort()

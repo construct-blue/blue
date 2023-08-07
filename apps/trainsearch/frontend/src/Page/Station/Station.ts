@@ -122,7 +122,7 @@ class Station extends LitElement {
                         <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
                         <span>
                             ${this.renderFavoriteButton()}
-                            <ts-reload-button ?spin="${this.loading}"
+                            <ts-reload-button ?loading="${this.loading}"
                                               @click="${this.onClickRefresh}"></ts-reload-button>
                         </span>
                     </span>
@@ -134,7 +134,7 @@ class Station extends LitElement {
                     <span>
                         ${this.renderFavoriteButton()}
                         ${this.stationId ? html`
-                            <ts-reload-button ?spin="${this.loading}"
+                            <ts-reload-button ?loading="${this.loading}"
                                               @click="${this.onClickRefresh}"></ts-reload-button>` : nothing}
                     </span>
                 </span>
@@ -238,6 +238,9 @@ class Station extends LitElement {
     }
 
     private async onClickRefresh() {
+        if (this.loading) {
+            return;
+        }
         this.loading = true;
         if (this.selected) {
             this.controller.abort()

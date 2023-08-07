@@ -101,7 +101,7 @@ export class TrainNumber extends LitElement {
                         <span></span>
                         <span>
                         ${this.renderFavoriteButton()}
-                            <ts-reload-button ?spin="${this.loading}"
+                            <ts-reload-button ?loading="${this.loading}"
                                               @click="${this.onClickRefresh}"></ts-reload-button>
 
                         </span>
@@ -177,10 +177,15 @@ export class TrainNumber extends LitElement {
     }
 
     private async onClickRefresh() {
+        if (this.loading) {
+            return;
+        }
+        this.loading = true;
         if (this.trip) {
             this.controller.abort()
             this.trip = await this.controller.tripdetails(this.trip.id, tnState.profile)
         }
+        this.loading = false;
     }
 }
 
