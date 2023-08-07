@@ -223,7 +223,10 @@ class Home extends LitElement {
     private async onSelect(event: TripEvent) {
         this.trip = event.trip;
         this.stationIdMarked = event.trip.stopovers[0].stop.id
-        this.trip = await this.controller.tripdetails(event.trip.id, this.profile)
+        const trip = await this.controller.tripdetails(event.trip.id, this.profile)
+        if (trip) {
+            this.trip = trip
+        }
     }
 
     private onClickBackToLocation() {
