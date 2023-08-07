@@ -94,6 +94,10 @@ class SearchInput extends LitElement {
         button:hover {
             background: #0c0c0c;
         }
+        
+        small {
+            color: var(--grey)
+        }
     `
 
     onclick = e => e.stopPropagation()

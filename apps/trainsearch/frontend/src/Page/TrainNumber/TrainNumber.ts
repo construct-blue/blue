@@ -103,8 +103,10 @@ export class TrainNumber extends LitElement {
             this.suggestions = trips.map(trip => {
                 return {
                     id: trip.id, name:
-                            html`${lineName(trip.line)}&nbsp;${datetime(trip.stopovers[0].plannedDeparture, 'time')}
-                        <br>&rarr;&nbsp;${trip.stopovers[1].stop.name}`
+                            html`${lineName(trip.line)}
+                            <br><small>${datetime(trip.stopovers[0].plannedDeparture)}</small>
+                            <br>${trip.stopovers[0].stop.name}&rarr;&nbsp;${trip.stopovers[1].stop.name}
+                            `
                 }
             })
         }

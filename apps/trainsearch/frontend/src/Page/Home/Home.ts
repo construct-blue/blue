@@ -81,6 +81,10 @@ class Home extends LitElement {
         display: flex;
         justify-content: space-between;
       }
+
+      small {
+        color: var(--grey)
+      }
     `
 
     connectedCallback() {
