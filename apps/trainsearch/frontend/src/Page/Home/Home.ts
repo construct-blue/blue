@@ -103,6 +103,7 @@ class Home extends LitElement {
                         <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
                         <span style="gap: .5rem">
                             ${this.renderFavoriteButton()}
+                            <button @click="${this.onClickRefresh}">&circlearrowright;</button>
                         </span>
                     </span>
                 </ts-details>
@@ -244,7 +245,10 @@ class Home extends LitElement {
     }
 
     private async onClickRefresh() {
-        if (this.stationId && this.profile) {
+        if (this.trip) {
+            this.controller.abort()
+            this.trip = await this.controller.tripdetails(this.trip.id, this.profile)
+        } else if (this.stationId && this.profile) {
             this.controller.abort()
             this.departures = await this.controller.departures(this.stationId, this.profile)
         }

@@ -62,6 +62,16 @@ export class TrainNumber extends LitElement {
             border-radius: 4px;
             padding: .5rem;
         }
+        
+        span {
+            display: flex;
+            justify-content: space-between;
+            gap: .25rem;
+        }
+
+        span span {
+            justify-content: end;
+        }
     `
 
     connectedCallback() {
@@ -86,7 +96,11 @@ export class TrainNumber extends LitElement {
             ${this.trip ? html`
                 <ts-details .trip="${this.trip}" profile="${tnState.profile}">
                     <span>
+                        <span></span>
+                        <span>
                         ${this.renderFavoriteButton()}
+                        <button @click="${this.onClickRefresh}">&circlearrowright;</button>
+                        </span>
                     </span>
                 </ts-details>` : nothing}
         `;
@@ -156,6 +170,13 @@ export class TrainNumber extends LitElement {
         this.favorites.deleteLine(this.trip.line)
         this.favorites.save(localStorage)
         this.requestUpdate()
+    }
+
+    private async onClickRefresh() {
+        if (this.trip) {
+            this.controller.abort()
+            this.trip = await this.controller.tripdetails(this.trip.id, tnState.profile)
+        }
     }
 }
 

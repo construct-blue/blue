@@ -60,28 +60,37 @@ class Station extends LitElement {
     private profile: string
 
     static styles = css`
-      :host(ts-station) {
-        display: flex;
-        flex-direction: column;
-      }
+        :host(ts-station) {
+            display: flex;
+            flex-direction: column;
+        }
 
-      h1, h2 {
-        margin: .5rem 0;
-      }
+        h1, h2 {
+            margin: .5rem 0;
+        }
 
-      button {
-        font-size: 1rem;
-        background: var(--dark-grey);
-        border: none;
-        color: #fff;
-        border-radius: 4px;
-        padding: .25rem;
-      }
+        button {
+            font-size: 1rem;
+            background: var(--dark-grey);
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: .25rem;
+        }
 
-      span {
-        display: flex;
-        justify-content: space-between;
-      }
+        span {
+            display: flex;
+            justify-content: space-between;
+            gap: .25rem;
+        }
+        
+        span button {
+            padding: .5rem;
+        }
+        
+        span span {
+            justify-content: end;
+        }
     `
 
     protected render() {
@@ -107,18 +116,24 @@ class Station extends LitElement {
             return html`
                 <ts-details profile="${stationState.profile}" .trip="${this.selected}"
                             station-id="${this.stationIdMarked}">
-                     <span>
-                         <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
-                         ${this.renderFavoriteButton()}
+                    <span>
+                        <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
+                        <span>
+                            ${this.renderFavoriteButton()}
+                            <button @click="${this.onClickRefresh}">&circlearrowright;</button>
+                        </span>
                     </span>
                 </ts-details>`
         } else {
             return html`
-                <div>
-                    ${this.renderFavoriteButton()}
-                    ${this.stationId ? html`
-                        <button @click="${this.onClickRefresh}">&circlearrowright;</button>` : nothing}
-                </div>
+                <span>
+                    <span></span>
+                    <span>
+                        ${this.renderFavoriteButton()}
+                        ${this.stationId ? html`
+                            <button @click="${this.onClickRefresh}">&circlearrowright;</button>` : nothing}
+                    </span>
+                </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
             `
         }
@@ -219,7 +234,10 @@ class Station extends LitElement {
     }
 
     private async onClickRefresh() {
-        if (this.stationId && this.profile) {
+        if (this.selected) {
+            this.controller.abort()
+            this.selected = await this.controller.tripdetails(this.selected.id, stationState.profile)
+        } else if (this.stationId && this.profile) {
             this.controller.abort()
             this.departures = await this.controller.departures(this.stationId, this.profile)
         }
