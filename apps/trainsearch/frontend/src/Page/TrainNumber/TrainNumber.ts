@@ -9,6 +9,7 @@ import {datetime} from "../../Directive/DateTime";
 
 import {State, property, query, storage} from "@lit-app/state";
 import {StateController} from "@lit-app/state/src/state-controller.js";
+import {Favorites} from "../../Models/Favorites";
 
 class TrainNumberState extends State {
     @query({parameter: 'value'})
@@ -33,6 +34,7 @@ const tnState = new TrainNumberState();
 export class TrainNumber extends LitElement {
     private stateController = new StateController(this, tnState)
     private controller = new TrainSearchController(this)
+    private favorites = Favorites.fromStorage(localStorage)
 
     @state()
     private trip: Trip
@@ -48,6 +50,17 @@ export class TrainNumber extends LitElement {
 
         h1 {
             margin: .5rem 0;
+        }
+
+        button {
+            display: flex;
+            font-size: 1rem;
+            text-align: left;
+            background: var(--dark-grey);
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: .5rem;
         }
     `
 
@@ -71,7 +84,11 @@ export class TrainNumber extends LitElement {
                             .profile="${tnState.profile}"
             ></ts-search-form>
             ${this.trip ? html`
-                <ts-details .trip="${this.trip}" profile="${tnState.profile}"></ts-details>` : nothing}
+                <ts-details .trip="${this.trip}" profile="${tnState.profile}">
+                    <span>
+                        ${this.renderFavoriteButton()}
+                    </span>
+                </ts-details>` : nothing}
         `;
     }
 
@@ -117,6 +134,28 @@ export class TrainNumber extends LitElement {
         this.trip = null;
         this.trip = await this.controller.tripdetails(event.id, event.profile)
         tnState.profile = event.profile
+    }
+
+    private renderFavoriteButton() {
+        if (this.favorites.hasLine(this.trip.line)) {
+            return html`
+                <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
+        } else {
+            return html`
+                <button @click="${() => this.onClickAddToFavorites()}" style="color: grey">&starf;</button>`
+        }
+    }
+
+    private onClickAddToFavorites() {
+        this.favorites.addLine(tnState.profile, Number.parseInt(this.trip.line.admin), this.trip.direction, this.trip.line)
+        this.favorites.save(localStorage)
+        this.requestUpdate()
+    }
+
+    private onClickDeleteToFavorites() {
+        this.favorites.deleteLine(this.trip.line)
+        this.favorites.save(localStorage)
+        this.requestUpdate()
     }
 }
 

@@ -97,11 +97,15 @@ class Home extends LitElement {
     protected render() {
         if (this.trip) {
             return html`
-                <span>
-                    <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
-                </span>
                 <ts-details profile="${this.profile}" .trip="${this.trip}"
-                            station-id="${this.stationIdMarked}"></ts-details>
+                            station-id="${this.stationIdMarked}">
+                    <span>
+                        <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
+                        <span style="gap: .5rem">
+                            ${this.renderFavoriteButton()}
+                        </span>
+                    </span>
+                </ts-details>
             `
         } else if (this.departures) {
             return html`
@@ -168,7 +172,15 @@ class Home extends LitElement {
     }
 
     private renderFavoriteButton() {
-        if (this.stationId) {
+        if (this.trip?.line) {
+            if (this.favorites.hasLine(this.trip.line)) {
+                return html`
+                    <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
+            } else {
+                return html`
+                    <button @click="${() => this.onClickAddToFavorites()}" style="color: grey">&starf;</button>`
+            }
+        } else if (this.stationId) {
             if (this.favorites.hasLocation(this.stationId)) {
                 return html`
                     <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
@@ -180,13 +192,24 @@ class Home extends LitElement {
     }
 
     private onClickAddToFavorites() {
-        this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: this.profile})
+
+        if (this.trip?.line) {
+            this.favorites.addLine(this.profile, Number.parseInt(this.trip.line.admin), this.trip.direction, this.trip.line)
+        } else if (this.stationId) {
+            this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: this.profile})
+        }
+
         this.favorites.save(localStorage)
         this.requestUpdate()
     }
 
     private onClickDeleteToFavorites() {
-        this.favorites.deleteLocation(this.stationId)
+        if (this.trip?.line) {
+            this.favorites.deleteLine(this.trip.line)
+        } else if (this.stationId) {
+            this.favorites.deleteLocation(this.stationId)
+        }
+
         this.favorites.save(localStorage)
         this.requestUpdate()
     }

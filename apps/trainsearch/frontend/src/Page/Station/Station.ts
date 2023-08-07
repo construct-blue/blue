@@ -60,23 +60,28 @@ class Station extends LitElement {
     private profile: string
 
     static styles = css`
-        :host(ts-station) {
-            display: flex;
-            flex-direction: column;
-        }
+      :host(ts-station) {
+        display: flex;
+        flex-direction: column;
+      }
 
-        h1 {
-            margin: .5rem 0;
-        }
+      h1, h2 {
+        margin: .5rem 0;
+      }
 
-        button {
-            font-size: 1rem;
-            background: var(--dark-grey);
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            padding: .25rem;
-        }
+      button {
+        font-size: 1rem;
+        background: var(--dark-grey);
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        padding: .25rem;
+      }
+
+      span {
+        display: flex;
+        justify-content: space-between;
+      }
     `
 
     protected render() {
@@ -89,11 +94,8 @@ class Station extends LitElement {
                             .profile="${stationState.profile}"
             ></ts-search-form>
             ${this.selected ?
-                    html`
-                        <h1>
-                            <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
-                        </h1>` :
-                    html`<h1>${this.stationName}</h1>`
+                    nothing :
+                    html`<h2>${this.stationName}</h2>`
             }
 
             ${this.renderSelected()}
@@ -104,7 +106,12 @@ class Station extends LitElement {
         if (this.selected) {
             return html`
                 <ts-details profile="${stationState.profile}" .trip="${this.selected}"
-                            station-id="${this.stationIdMarked}"></ts-details>`
+                            station-id="${this.stationIdMarked}">
+                     <span>
+                         <button @click="${this.onClickBack}">&larr; ${this.stationName}</button>
+                         ${this.renderFavoriteButton()}
+                    </span>
+                </ts-details>`
         } else {
             return html`
                 <div>
@@ -118,7 +125,15 @@ class Station extends LitElement {
     }
 
     private renderFavoriteButton() {
-        if (this.stationId) {
+        if (this.selected?.line) {
+            if (this.favorites.hasLine(this.selected.line)) {
+                return html`
+                    <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
+            } else {
+                return html`
+                    <button @click="${() => this.onClickAddToFavorites()}" style="color: grey">&starf;</button>`
+            }
+        } else if (this.stationId) {
             if (this.favorites.hasLocation(this.stationId)) {
                 return html`
                     <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
@@ -129,21 +144,33 @@ class Station extends LitElement {
         }
     }
 
-    private onClickBack() {
-        this.selected = null
-        this.controller.abort()
-    }
-
     private onClickAddToFavorites() {
-        this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: stationState.profile})
+
+        if (this.selected?.line) {
+            this.favorites.addLine(this.profile, Number.parseInt(this.selected.line.admin), this.selected.direction, this.selected.line)
+        } else if (this.stationId) {
+            this.favorites.addLocation({id: this.stationId, name: this.stationName, profile: this.profile})
+        }
+
         this.favorites.save(localStorage)
         this.requestUpdate()
     }
 
     private onClickDeleteToFavorites() {
-        this.favorites.deleteLocation(this.stationId)
+        if (this.selected?.line) {
+            this.favorites.deleteLine(this.selected.line)
+        } else if (this.stationId) {
+            this.favorites.deleteLocation(this.stationId)
+        }
+
         this.favorites.save(localStorage)
         this.requestUpdate()
+    }
+
+
+    private onClickBack() {
+        this.selected = null
+        this.controller.abort()
     }
 
     private async onSelect(event: TripEvent) {
