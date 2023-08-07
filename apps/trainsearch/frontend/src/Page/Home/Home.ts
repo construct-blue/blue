@@ -33,58 +33,58 @@ class Home extends LitElement {
     private trip: Trip = null
 
     static styles = css`
-      :host(ts-home) {
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-      }
+        :host(ts-home) {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
 
-      h1 {
-        margin: .5rem 0;
-      }
+        h1 {
+            margin: .5rem 0;
+        }
 
-      h2 {
-        display: flex;
-        margin: .25rem 0;
-      }
+        h2 {
+            display: flex;
+            margin: .25rem 0;
+        }
 
-      i {
-        width: 2rem;
-      }
+        i {
+            width: 2rem;
+        }
 
-      div {
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-        overflow: scroll;
-        padding: .5rem 0;
-      }
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            overflow: scroll;
+            padding: .5rem 0;
+        }
 
-      button {
-        display: flex;
-        font-size: 1rem;
-        text-align: left;
-        background: var(--dark-grey);
-        border: none;
-        color: #fff;
-        border-radius: 4px;
-        padding: .5rem;
-      }
+        button {
+            display: flex;
+            font-size: 1rem;
+            text-align: left;
+            background: var(--dark-grey);
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: .5rem;
+        }
 
-      i {
-        width: 2rem;
-        align-self: end;
-        text-align: center;
-      }
+        i {
+            width: 2rem;
+            align-self: end;
+            text-align: center;
+        }
 
-      span {
-        display: flex;
-        justify-content: space-between;
-      }
+        span {
+            display: flex;
+            justify-content: space-between;
+        }
 
-      small {
-        color: var(--grey)
-      }
+        small {
+            color: var(--grey)
+        }
     `
 
     connectedCallback() {
@@ -100,7 +100,8 @@ class Home extends LitElement {
                 <span>
                     <button @click="${this.onClickBackToLocation}">&larr; ${this.stationName ? this.stationName : 'Favoriten'}</button>
                 </span>
-                <ts-details profile="${this.profile}" .trip="${this.trip}" station-id="${this.stationIdMarked}"></ts-details>
+                <ts-details profile="${this.profile}" .trip="${this.trip}"
+                            station-id="${this.stationIdMarked}"></ts-details>
             `
         } else if (this.departures) {
             return html`
@@ -109,14 +110,14 @@ class Home extends LitElement {
                     <button @click="${this.onClickBack}">&larr; Favoriten</button>
                     <span style="gap: .5rem">
                         ${this.renderFavoriteButton()}
-                        <button @click="${this.onClickRefresh}">Aktualisieren</button>
+                        <button @click="${this.onClickRefresh}">&circlearrowright;</button>
                     </span>
                 </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
             `
         } else {
             return html`
-                <h1><i style="font-family: oebb-symbols">Ð</i> Favoriten</h1>
+                <h1>&starf; Favoriten</h1>
                 <div>
                     <h2><i style="font-family: mav-symbols">ȫ</i>&nbsp;Abfahrten</h2>
                     ${this.favorites.locations.map(location => html`
@@ -170,10 +171,10 @@ class Home extends LitElement {
         if (this.stationId) {
             if (this.favorites.hasLocation(this.stationId)) {
                 return html`
-                    <button @click="${() => this.onClickDeleteToFavorites()}">Aus Favoriten löschen</button>`
+                    <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
             } else {
                 return html`
-                    <button @click="${() => this.onClickAddToFavorites()}">Zu Favoriten hinzufügen</button>`
+                    <button @click="${() => this.onClickAddToFavorites()}" style="color: grey">&starf;</button>`
             }
         }
     }
@@ -219,8 +220,7 @@ class Home extends LitElement {
         this.departures = await this.controller.departures(location.id, location.profile)
     }
 
-    private async onClickRefresh()
-    {
+    private async onClickRefresh() {
         if (this.stationId && this.profile) {
             this.controller.abort()
             this.departures = await this.controller.departures(this.stationId, this.profile)

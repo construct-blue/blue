@@ -103,13 +103,14 @@ class Station extends LitElement {
     private renderSelected() {
         if (this.selected) {
             return html`
-                <ts-details profile="${stationState.profile}" .trip="${this.selected}" station-id="${this.stationIdMarked}"></ts-details>`
+                <ts-details profile="${stationState.profile}" .trip="${this.selected}"
+                            station-id="${this.stationIdMarked}"></ts-details>`
         } else {
             return html`
                 <div>
                     ${this.renderFavoriteButton()}
                     ${this.stationId ? html`
-                        <button @click="${this.onClickRefresh}">Aktualisieren</button>` : nothing}
+                        <button @click="${this.onClickRefresh}">&circlearrowright;</button>` : nothing}
                 </div>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
             `
@@ -120,16 +121,15 @@ class Station extends LitElement {
         if (this.stationId) {
             if (this.favorites.hasLocation(this.stationId)) {
                 return html`
-                    <button @click="${() => this.onClickDeleteToFavorites()}">Aus Favoriten löschen</button>`
+                    <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
             } else {
                 return html`
-                    <button @click="${() => this.onClickAddToFavorites()}">Zu Favoriten hinzufügen</button>`
+                    <button @click="${() => this.onClickAddToFavorites()}" style="color: grey">&starf;</button>`
             }
         }
     }
 
-    private onClickBack()
-    {
+    private onClickBack() {
         this.selected = null
         this.controller.abort()
     }
@@ -191,8 +191,7 @@ class Station extends LitElement {
         this.departures = await this.controller.departures(event.id, event.profile)
     }
 
-    private async onClickRefresh()
-    {
+    private async onClickRefresh() {
         if (this.stationId && this.profile) {
             this.controller.abort()
             this.departures = await this.controller.departures(this.stationId, this.profile)

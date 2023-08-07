@@ -121,7 +121,7 @@ class SearchInput extends LitElement {
                    .value="${this.value}"
                    @focus="${() => this.focused = true}"
                    @keyup="${this.changeKeyword}">
-            <button @click="${this.onDelete}">&larrb;</button>
+            <button @click="${this.onDelete}">&#9003;</button>
             ${this.renderSuggestions()}
         `;
     }

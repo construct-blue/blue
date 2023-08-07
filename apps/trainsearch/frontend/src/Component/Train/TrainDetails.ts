@@ -63,7 +63,9 @@ class TrainDetails extends LitElement {
     protected render(): TemplateResult {
         return html`
             <h2><span>${lineName(this.trip.line)}</span> <small>${datetime(this.trip.date, "date")}</small></h2>
-            ${this.renderFavoriteButton()}
+            <div>
+                ${this.renderFavoriteButton()}
+            </div>
             <ts-collapsable summary="Fahrplan" id="timetable">
                 <ts-timetable .trip="${this.trip}" profile="${this.profile}" station-id="${this.stationId}"></ts-timetable>
             </ts-collapsable>
@@ -78,12 +80,11 @@ class TrainDetails extends LitElement {
     private renderFavoriteButton() {
         if (this.favorites.hasLine(this.trip.line)) {
             return html`
-                <button @click="${() => this.onClickDeleteToFavorites()}">Aus Favoriten löschen</button>`
+                <button @click="${() => this.onClickDeleteToFavorites()}" style="color: yellow">&starf;</button>`
         } else {
             return html`
-                <button @click="${() => this.onClickAddToFavorites()}">Zu Favoriten hinzufügen</button>`
+                <button @click="${() => this.onClickAddToFavorites()}" style="color: grey">&starf;</button>`
         }
-
     }
 
     private onClickAddToFavorites() {
