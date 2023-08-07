@@ -56,6 +56,9 @@ class Station extends LitElement {
     @state()
     private selected: Trip
 
+    @state()
+    private profile: string
+
     static styles = css`
         :host(ts-station) {
             display: flex;
@@ -103,7 +106,11 @@ class Station extends LitElement {
                 <ts-details profile="${stationState.profile}" .trip="${this.selected}" station-id="${this.stationIdMarked}"></ts-details>`
         } else {
             return html`
-                ${this.renderFavoriteButton()}
+                <div>
+                    ${this.renderFavoriteButton()}
+                    ${this.stationId ? html`
+                        <button @click="${this.onClickRefresh}">Aktualisieren</button>` : nothing}
+                </div>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
             `
         }
@@ -166,6 +173,7 @@ class Station extends LitElement {
             this.stationId = null
             this.stationIdMarked = null
             this.selected = null
+            this.profile = null
             return;
         }
 
@@ -179,6 +187,15 @@ class Station extends LitElement {
         this.departures = null;
         this.stationName = event.value
         this.stationId = event.id
+        this.profile = event.profile
         this.departures = await this.controller.departures(event.id, event.profile)
+    }
+
+    private async onClickRefresh()
+    {
+        if (this.stationId && this.profile) {
+            this.controller.abort()
+            this.departures = await this.controller.departures(this.stationId, this.profile)
+        }
     }
 }

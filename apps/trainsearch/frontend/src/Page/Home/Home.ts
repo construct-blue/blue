@@ -107,7 +107,10 @@ class Home extends LitElement {
                 <h1>${this.stationName}</h1>
                 <span>
                     <button @click="${this.onClickBack}">&larr; Favoriten</button>
-                                    ${this.renderFavoriteButton()}
+                    <span style="gap: .5rem">
+                        ${this.renderFavoriteButton()}
+                        <button @click="${this.onClickRefresh}">Aktualisieren</button>
+                    </span>
                 </span>
                 <ts-trip-list .trips="${this.departures}" @select="${this.onSelect}"></ts-trip-list>
             `
@@ -214,5 +217,13 @@ class Home extends LitElement {
         this.stationName = location.name
         this.departures = []
         this.departures = await this.controller.departures(location.id, location.profile)
+    }
+
+    private async onClickRefresh()
+    {
+        if (this.stationId && this.profile) {
+            this.controller.abort()
+            this.departures = await this.controller.departures(this.stationId, this.profile)
+        }
     }
 }
