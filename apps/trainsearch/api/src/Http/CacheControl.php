@@ -8,6 +8,6 @@ class CacheControl
 {
     public static function getHeaderValue(int $seconds): string
     {
-        return "public, max-age=$seconds, s-maxage=$seconds, stale-while-revalidate=10";
+        return "public, max-age=$seconds, s-maxage=$seconds, must-revalidate";
     }
 }
