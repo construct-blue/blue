@@ -68,10 +68,10 @@ class TripList extends LitElement {
         .soon {
             display: inline-block;
             align-self: center;
-            background: var(--green);
-            width: .5rem;
-            height: .5rem;
-            border-radius: .5rem;
+            background: var(--grey);
+            width: .75rem;
+            height: .75rem;
+            border-radius: .75rem;
             animation: fade 2s linear infinite;
         }
         
@@ -79,15 +79,22 @@ class TripList extends LitElement {
             background: var(--orange);
         }
 
+        .green.soon {
+            background: var(--green);
+        }
+
         @keyframes fade {
             0% {
-                opacity: 0;
+                opacity: .25;
             }
-            50% {
+            45% {
+                opacity: 1;
+            }
+            55% {
                 opacity: 1;
             }
             100% {
-                opacity: 0;
+                opacity: .25;
             }
         }
     `
@@ -132,7 +139,7 @@ class TripList extends LitElement {
                 <button @click="${() => this.onClick(trip)}"
                         class="${classMap({missed: this.missed(trip)})}">
                     <span>
-                        ${this.soon(trip) ? html`<span class="soon${this.soon(trip, 60) ? ' very' : ''}"></span>` : nothing}${lineName(trip.line)}
+                        ${this.soon(trip) ? html`<span class="soon${this.soon(trip, 300) ? ' green' : ''}${this.soon(trip, 60) ? ' very' : ''}"></span>` : nothing}${lineName(trip.line)}
                     </span>
                     <ts-stopover-time .stopover="${trip.stopovers[0]}"></ts-stopover-time>
                     <span>
