@@ -4,6 +4,7 @@ import {repeat} from "lit/directives/repeat.js";
 import {Trip} from "../../Models/Trip";
 import './StopoverTime'
 import {lineName} from "../../Directive/LineName";
+import {classMap} from "lit/directives/class-map.js";
 
 interface TripEventInit extends EventInit {
     trip: Trip
@@ -57,13 +58,19 @@ class TripList extends LitElement {
       small {
         color: var(--grey)
       }
+
+      .missed {
+        color: var(--grey)
+      }
     `
 
     protected render() {
 
         if (this.trips) {
             return repeat(this.trips, trip => trip.id, trip => html`
-                <button @click="${() => this.onClick(trip)}">
+                <button @click="${() => this.onClick(trip)}" 
+                        class="${classMap({missed: trip.stopovers[0]?.departure 
+                                    && Date.now().valueOf() > (new Date(trip.stopovers[0].departure)).valueOf()})}">
                     <span>
                         ${lineName(trip.line)}
                     </span>
