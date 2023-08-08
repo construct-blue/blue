@@ -8,6 +8,7 @@ use Blue\OebbLive\Client\OebbLiveClient;
 use Blue\OebbLive\Exception\NotFoundException;
 use Blue\OebbLive\OebbLive;
 use Blue\Snappy\Core\Http;
+use Blue\TrainsearchApi\Http\CacheControl;
 use DateTime;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -25,7 +26,7 @@ class CompositionStationsHandler implements RequestHandlerInterface
         return new JsonResponse(
             $stations,
             200,
-            ['Cache-Control' => 'public, max-age=604800, must-revalidate']
+            ['Cache-Control' => CacheControl::getHeaderValue(604800)]
         );
     }
 }

@@ -12,6 +12,7 @@ use Blue\HafasClient\Request\JourneyMatchRequest;
 use Blue\Snappy\Core\Http;
 use Blue\TrainsearchApi\Hafas\Exception\BadRequestException;
 use Blue\TrainsearchApi\Hafas\HafasRequest;
+use Blue\TrainsearchApi\Http\CacheControl;
 use Laminas\Diactoros\Response;
 use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
@@ -62,7 +63,7 @@ class TripSearchHandler implements RequestHandlerInterface
         return new Response\JsonResponse(
             $data,
             200,
-            ['Cache-Control' => 'public, max-age=86400, must-revalidate']
+            ['Cache-Control' => CacheControl::getHeaderValue(86400)]
         );
     }
 }

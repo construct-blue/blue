@@ -7,6 +7,7 @@ namespace Blue\TrainsearchApi\Handler;
 use Blue\HafasClient\Exception\InvalidProfileException;
 use Blue\HafasClient\Hafas;
 use Blue\Snappy\Core\Http;
+use Blue\TrainsearchApi\Http\CacheControl;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,7 +23,7 @@ class OperatorsHandler implements RequestHandlerInterface
             return new JsonResponse(
                 $hafas->getConfig()->getOperators(),
                 200,
-                ['Cache-Control' => 'public, max-age=604800, must-revalidate']
+                ['Cache-Control' => CacheControl::getHeaderValue(604800)]
             );
         } catch (InvalidProfileException $exception) {
             Http::throwBadRequest($exception->getMessage(), $exception);
