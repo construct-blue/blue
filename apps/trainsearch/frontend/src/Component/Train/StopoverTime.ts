@@ -21,16 +21,19 @@ class StopoverTime extends LitElement {
       }
 
       .red, .green {
-        font-size: 2.5rem;
-        line-height: 0;
+        display: inline-block;
+        width: .5rem;
+        height: .5rem;
+        border-radius: .5rem;
+        align-self: center;
       }
 
       .red {
-        color: var(--red);
+        background: var(--red);
       }
 
       .green {
-        color: var(--green);
+        background: var(--green);
       }
 
       .delay {
@@ -68,12 +71,12 @@ class StopoverTime extends LitElement {
         const result = []
         if (delay && reported) {
             result.push(html`
-                <span class="red">•</span>&nbsp;
+                <span class="red"></span>&nbsp;
                 <s>${datetime(planned, "time")}</s>&nbsp;/&nbsp;${datetime(current, "time")}&nbsp;
                 <span class="delay">(+${delay / 60})</span>`)
         } else if (reported) {
             result.push(html`
-                <span class="green">•</span>&nbsp;${datetime(current, "time")}
+                <span class="green"></span>&nbsp;${datetime(current, "time")}
             `)
         } else if (delay) {
             result.push(html`

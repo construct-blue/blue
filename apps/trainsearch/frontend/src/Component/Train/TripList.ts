@@ -1,4 +1,4 @@
-import {css, html, LitElement, nothing} from "lit";
+import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {repeat} from "lit/directives/repeat.js";
 import {Trip} from "../../Models/Trip";
@@ -24,55 +24,115 @@ class TripList extends LitElement {
     @property({type: Array<Trip>})
     public trips: Trip[]
 
+    private interval
+
     static styles = css`
-      :host(ts-trip-list) {
-        overflow: scroll;
-        display: flex;
-        gap: .5rem;
-        flex-direction: column;
-        padding: 1rem 0;
-      }
+        :host(ts-trip-list) {
+            overflow: scroll;
+            display: flex;
+            gap: .5rem;
+            flex-direction: column;
+            padding: 1rem 0;
+        }
 
-      button {
-        font-size: 1rem;
-        background: var(--dark-grey);
-        text-align: left;
-        border: none;
-        color: #fff;
-        border-radius: 4px;
-        padding: .25rem;
-        display: flex;
-        flex-wrap: wrap;
-      }
+        button {
+            font-size: 1rem;
+            background: var(--dark-grey);
+            text-align: left;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: .25rem;
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-      button span {
-        flex: 1 0 0;
-      }
-
-
-      button span:last-of-type {
-        flex: 1 0 100%
-      }
+        button span {
+            flex: 1 0 0;
+        }
 
 
-      small {
-        color: var(--grey)
-      }
+        button span:last-of-type {
+            flex: 1 0 100%
+        }
 
-      .missed {
-        color: var(--grey)
-      }
+
+        small {
+            color: var(--grey)
+        }
+
+        .missed {
+            color: var(--grey)
+        }
+
+        .soon {
+            display: inline-block;
+            align-self: center;
+            background: var(--green);
+            width: .5rem;
+            height: .5rem;
+            border-radius: .5rem;
+            animation: fade 2s linear infinite;
+        }
+        
+        .very.soon {
+            background: var(--orange);
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     `
+
+    private missed(trip: Trip) {
+        return trip.stopovers[0]?.departure && (new Date(trip.stopovers[0].departure)).valueOf() < Date.now();
+    }
+
+    private seconds(trip: Trip) {
+        if (!trip.stopovers[0]?.departure) {
+            return false;
+        }
+        const milliseconds = (new Date(trip.stopovers[0].departure)).valueOf() - Date.now();
+        if (!milliseconds) {
+            return false;
+        }
+        return milliseconds / 1000;
+    }
+
+    private soon(trip: Trip, threshold: number = 600) {
+        const seconds = this.seconds(trip);
+        if (!seconds) {
+            return false;
+        }
+        return seconds < threshold;
+    }
+
+    protected firstUpdated(_changedProperties: PropertyValues) {
+        super.firstUpdated(_changedProperties);
+        this.interval = setInterval(() => this.requestUpdate(), 60)
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        clearInterval(this.interval)
+    }
 
     protected render() {
 
         if (this.trips) {
             return repeat(this.trips, trip => trip.id, trip => html`
-                <button @click="${() => this.onClick(trip)}" 
-                        class="${classMap({missed: trip.stopovers[0]?.departure 
-                                    && Date.now().valueOf() > (new Date(trip.stopovers[0].departure)).valueOf()})}">
+                <button @click="${() => this.onClick(trip)}"
+                        class="${classMap({missed: this.missed(trip)})}">
                     <span>
-                        ${lineName(trip.line)}
+                        ${this.soon(trip) ? html`<span class="soon${this.soon(trip, 60) ? ' very' : ''}"></span>` : nothing}${lineName(trip.line)}
                     </span>
                     <ts-stopover-time .stopover="${trip.stopovers[0]}"></ts-stopover-time>
                     <span>
