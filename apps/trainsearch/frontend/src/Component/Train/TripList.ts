@@ -74,13 +74,13 @@ class TripList extends LitElement {
             border-radius: .75rem;
             animation: fade 2s linear infinite;
         }
-        
-        .very.soon {
-            background: var(--orange);
-        }
 
         .green.soon {
             background: var(--green);
+        }
+        
+        .very.soon {
+            background: var(--orange);
         }
 
         @keyframes fade {
