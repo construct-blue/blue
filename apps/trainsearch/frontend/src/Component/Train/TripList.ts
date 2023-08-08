@@ -101,7 +101,7 @@ class TripList extends LitElement {
             return false;
         }
         const milliseconds = (new Date(trip.stopovers[0].departure)).valueOf() - Date.now();
-        if (!milliseconds) {
+        if (milliseconds <= 0) {
             return false;
         }
         return milliseconds / 1000;
