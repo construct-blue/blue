@@ -126,7 +126,7 @@ class TripList extends LitElement {
 
     protected firstUpdated(_changedProperties: PropertyValues) {
         super.firstUpdated(_changedProperties);
-        this.interval = setInterval(() => this.requestUpdate(), 60)
+        this.interval = setInterval(() => this.requestUpdate(), 15)
     }
 
     disconnectedCallback() {

@@ -5,7 +5,7 @@ import {DeparturesController} from "./DeparturesController";
 import {SearchFormEvent} from "../../Component/Common/SearchForm";
 import {departuresState} from "./DeparturesState";
 import {Client} from "../../Client/Client";
-import "../../Component/Train/LocationBoard"
+import "../../Component/Trip/LocationBoard"
 
 @customElement('ts-departures')
 export class Departures extends LitElement {

@@ -2,7 +2,7 @@ import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, property, state} from "lit/decorators.js";
 import {Location} from "../../Models/Location";
 import './TripList'
-import './TrainDetails'
+import './TripDetails'
 import '../Common/ReloadButton'
 import '../Common/FavoriteButton'
 import {TripEvent} from "./TripList";
@@ -73,7 +73,7 @@ class LocationBoard extends LitElement {
                 <span>
                     <button @click="${() => this.controller.onBack()}">&larr; ${this.location?.name ? this.location.name : 'Zurück'}</button>
                     <span style="gap: .5rem">
-                         <ts-favorite-button></ts-favorite-button>
+                        <ts-favorite-button></ts-favorite-button>
                         <ts-reload-button @click="${() => this.controller.onRefresh()}"
                                           ?loading="${this.controller.loading}">
                         </ts-reload-button>

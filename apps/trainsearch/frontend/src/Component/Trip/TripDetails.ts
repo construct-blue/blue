@@ -9,13 +9,13 @@ import {lineName} from "../../Directive/LineName";
 
 declare global {
     interface HTMLElementTagNameMap {
-        "ts-details": TrainDetails;
+        "ts-details": TripDetails;
     }
 }
 
 
 @customElement('ts-details')
-class TrainDetails extends LitElement {
+class TripDetails extends LitElement {
     @property()
     public trip: Trip|null = null
 

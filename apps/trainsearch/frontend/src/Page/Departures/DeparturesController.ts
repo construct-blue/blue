@@ -4,7 +4,7 @@ import {Location} from "../../Models/Location";
 import {LocationSearchContext} from "../../Context/LocationSearchContext";
 import {LocationSearchContextUpdater} from "../../ContextUpdater/LocationSearchContextUpdater";
 import {DeparturesState} from "./DeparturesState";
-import {StateController} from "@lit-app/state/src/state-controller";
+import {StateController} from "@lit-app/state/src/state-controller.js";
 import {ClientInterface} from "../../Client/ClientInterface";
 
 export class DeparturesController implements ReactiveController {

@@ -8,6 +8,7 @@ export const trip4711: Trip = {
         number: '3',
         category: 'S',
         admin: '81',
+        trainName: null,
         operator: {id: 'oebb'},
         product: {id: 'suburban'},
     },

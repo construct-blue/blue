@@ -6,15 +6,24 @@ export class LocationBoardContextUpdater {
     }
 
     async update(context: LocationBoardContext): Promise<LocationBoardContext> {
-        const updatedContext = new LocationBoardContext(
-                context.profile,
-                context.location,
-                await this.client.departures(context.profile, context.location)
-        )
+        this.client.abort()
 
-        if (context.selectedTrip) {
-            updatedContext.selectTrip(await this.client.trip(context.profile, context.selectedTrip.id))
+        try {
+            const updatedContext = new LocationBoardContext(
+                    context.profile,
+                    context.location,
+                    await this.client.departures(context.profile, context.location)
+            )
+
+            if (context.selectedTrip) {
+                updatedContext.selectTrip(await this.client.trip(context.profile, context.selectedTrip.id))
+            }
+            return updatedContext;
+        } catch (e) {
+            if (e === 'Aborted by user!') {
+                return context;
+            }
+            throw e
         }
-        return updatedContext;
     }
 }

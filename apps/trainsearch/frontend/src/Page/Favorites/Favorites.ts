@@ -1,7 +1,7 @@
 import {css, html, LitElement} from "lit";
 import {customElement, state} from "lit/decorators.js";
-import '../../Component/Train/TripList'
-import '../../Component/Train/TrainDetails'
+import '../../Component/Trip/TripList'
+import '../../Component/Trip/TripDetails'
 import "../../Component/Common/ReloadButton"
 
 @customElement('ts-home')

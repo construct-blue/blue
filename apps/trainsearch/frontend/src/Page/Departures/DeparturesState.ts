@@ -1,6 +1,6 @@
-import {State} from "@lit-app/state/src/state";
-import {property} from "@lit-app/state/src/decorators/property";
-import {storage} from "@lit-app/state/src/decorators/storage";
+import {State} from "@lit-app/state/src/state.js";
+import {property} from "@lit-app/state/src/decorators/property.js";
+import {storage} from "@lit-app/state/src/decorators/storage.js";
 import {Location} from "../../Models/Location";
 
 export class DeparturesState extends State {

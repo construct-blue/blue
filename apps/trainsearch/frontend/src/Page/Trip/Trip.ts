@@ -1,6 +1,6 @@
 import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement} from "lit/decorators.js";
-import '../../Component/Train/TrainDetails'
+import '../../Component/Trip/TripDetails'
 
 @customElement('ts-trip')
 export class TripView extends LitElement {

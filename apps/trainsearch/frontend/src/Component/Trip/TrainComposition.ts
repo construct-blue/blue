@@ -1,4 +1,4 @@
-import {css, html, LitElement, nothing} from "lit";
+import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {unsafeHTML} from "lit/directives/unsafe-html.js";
 import {classMap} from "lit/directives/class-map.js";
@@ -79,6 +79,11 @@ export class TrainComposition extends LitElement {
             font-family: FrutigerNextPro-Bold, sans-serif;
         }
     `
+
+    protected willUpdate(_changedProperties: PropertyValues) {
+        super.willUpdate(_changedProperties);
+        console.log(this.stopover)
+    }
 
     protected async scheduleUpdate(): Promise<unknown> {
         if (this.stopover && this.stopover.line) {
