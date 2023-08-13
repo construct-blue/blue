@@ -65,7 +65,6 @@ export class Departures extends LitElement {
         if (this.controller.location) {
             result.push(html`
                 <ts-location-board .location="${this.controller.location}" .profile="${this.controller.profile}">
-                    <button @click="${this.controller.onBack}">&larr; ${this.controller.location.name}</button>
                 </ts-location-board>`
             )
         }
