@@ -18,7 +18,7 @@ class Navigation extends LitElement {
 
     protected updated(_changedProperties: PropertyValues) {
         super.updated(_changedProperties);
-        this.shadowRoot.querySelectorAll('a').forEach(anchor => {
+        this.shadowRoot?.querySelectorAll('a').forEach(anchor => {
             if (anchor.getAttribute('href') === window.location.pathname) {
                 anchor.classList.add('selected')
             }

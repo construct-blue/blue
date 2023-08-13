@@ -17,8 +17,7 @@ export class SearchInputEvent extends Event {
     }
 }
 
-export interface SearchSuggestion
-{
+export interface SearchSuggestion {
     id: string,
     name: string
 }
@@ -32,10 +31,10 @@ class SearchInput extends LitElement {
     public placeholder: string = ''
 
     @property({type: Array})
-    public suggestions: SearchSuggestion[];
+    public suggestions: SearchSuggestion[] = [];
 
     @query('input')
-    private input: HTMLInputElement
+    private input!: HTMLInputElement
 
     @state()
     private focused: boolean = false
@@ -81,7 +80,7 @@ class SearchInput extends LitElement {
         input:focus ~ button {
             z-index: -1;
         }
-        
+
         button {
             border: none;
             margin: 0;
@@ -94,13 +93,13 @@ class SearchInput extends LitElement {
         button:hover {
             background: #0c0c0c;
         }
-        
+
         small {
             color: var(--grey)
         }
     `
 
-    onclick = e => e.stopPropagation()
+    onclick = (e: Event) => e.stopPropagation()
 
     private onOutsideClick = () => this.focused = false
 
@@ -120,7 +119,7 @@ class SearchInput extends LitElement {
                    .placeholder="${this.placeholder}"
                    .value="${this.value}"
                    @focus="${() => this.focused = true}"
-                   @keyup="${this.changeKeyword}">
+                   @input="${this.changeKeyword}">
             <button @click="${this.onDelete}">&#9003;</button>
             ${this.renderSuggestions()}
         `;
@@ -128,7 +127,9 @@ class SearchInput extends LitElement {
 
 
     private onDelete() {
-        this.input.value = ''
+        if (this.input) {
+            this.input.value = ''
+        }
         this.changeKeyword()
     }
 
@@ -149,14 +150,14 @@ class SearchInput extends LitElement {
     }
 
     private changeKeyword() {
-        this.value = this.input.value
+        this.value = this.input?.value ?? ''
         this.dispatchEvent(new SearchInputEvent(
                 'suggest',
-                {composed: true, bubbles: true, value: this.input.value}
+                {composed: true, bubbles: true, value: this.input?.value ?? ''}
         ))
     }
 
-    private clickSuggestion(suggestion) {
+    private clickSuggestion(suggestion: SearchSuggestion) {
         this.dispatchEvent(new SearchInputEvent(
                 'change',
                 {composed: true, bubbles: true, value: suggestion.name, id: suggestion.id}

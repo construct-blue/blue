@@ -1,14 +1,14 @@
 import {css, html, LitElement, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
-import {Remark, Trip} from "../../Models/Trip";
+import {Remark} from "../../Models/Remark";
 
 @customElement('ts-remarks')
 class Remarks extends LitElement {
     @property()
-    public remarks: Remark[]
+    public remarks: Remark[] = []
 
     @property({type: Boolean})
-    public muted: boolean
+    public muted: boolean = false
 
     static styles = css`
       :host(ts-remarks) {

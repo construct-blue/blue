@@ -26,13 +26,10 @@ class Select extends LitElement {
     public options: { id: string, name: string }[] = []
 
     @property({type: String})
-    public value: string
+    public value: string  = ''
 
     @query('select')
-    private input: HTMLSelectElement
-
-    @property({attribute: 'font-family'})
-    public fontFamily: string = 'inherit'
+    private input!: HTMLSelectElement
 
     static styles = css`
       :host(ts-select) {
@@ -51,18 +48,18 @@ class Select extends LitElement {
 
     private onChange(e: Event) {
         e.stopPropagation()
-        this.value = this.input.value
+        this.value = this.input?.value ?? ''
         this.dispatchEvent(new SelectEvent(
                 'change',
-                {composed: true, bubbles: true, value: this.input.value}
+                {composed: true, bubbles: true, value: this.input?.value ?? ''}
         ))
     }
 
     protected render() {
         return html`
-            <select style="font-family: ${this.fontFamily}" @change="${this.onChange}">
+            <select @change="${this.onChange}">
                 ${this.options.map(value => html`
-                    <option style="font-family: ${this.fontFamily}" value="${value.id}">${value.name}</option>`
+                    <option value="${value.id}">${value.name}</option>`
                 )}
             </select>
         `
@@ -70,6 +67,8 @@ class Select extends LitElement {
 
     protected updated(_changedProperties: PropertyValues) {
         super.updated(_changedProperties);
-        this.input.value = this.value
+        if (this.input) {
+            this.input.value = this.value
+        }
     }
 }

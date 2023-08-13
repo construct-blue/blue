@@ -5,13 +5,13 @@ import {classMap} from "lit/directives/class-map.js";
 @customElement('ts-collapsable')
 class Collapsable extends LitElement {
     @property()
-    public summary: string
+    public summary: string = ''
 
     @property()
-    public open: boolean
+    public open: boolean = false
 
     @property({type: Boolean})
-    public warning: boolean
+    public warning: boolean = false
 
     static styles = css`
         summary {
@@ -41,7 +41,7 @@ class Collapsable extends LitElement {
 
     protected render(): TemplateResult {
         return html`
-            <details ?open="${this.open}" @toggle="${e => this.open = e.target.open}">
+            <details ?open="${this.open}" @toggle="${(e: Event) => this.open = (e.target as HTMLDetailsElement).open}">
                 <summary class="${classMap({warning: this.warning})}">${this.summary}</summary>
                 <section>
                     <slot></slot>

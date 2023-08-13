@@ -11,20 +11,22 @@ interface TripEventInit extends EventInit {
 }
 
 export class TripEvent extends Event {
-    trip: Trip
+    trip: Trip|null = null
 
     constructor(type: string, eventInitDict?: TripEventInit) {
         super(type, eventInitDict);
-        this.trip = eventInitDict.trip
+        if (eventInitDict) {
+            this.trip = eventInitDict.trip
+        }
     }
 }
 
 @customElement('ts-trip-list')
 class TripList extends LitElement {
     @property({type: Array<Trip>})
-    public trips: Trip[]
+    public trips: Trip[] = []
 
-    private interval
+    private interval: any = null
 
     static styles = css`
         :host(ts-trip-list) {
@@ -137,7 +139,7 @@ class TripList extends LitElement {
         if (this.trips) {
             return repeat(this.trips, trip => trip.id, trip => html`
                 <button @click="${() => this.onClick(trip)}"
-                        class="${classMap({missed: this.missed(trip)})}">
+                        class="${classMap({missed: !!this.missed(trip)})}">
                     <span>
                         ${this.soon(trip) ? html`<span class="soon${this.soon(trip, 300) ? ' green' : ''}${this.soon(trip, 60) ? ' very' : ''}"></span>` : nothing}${lineName(trip.line)}
                     </span>

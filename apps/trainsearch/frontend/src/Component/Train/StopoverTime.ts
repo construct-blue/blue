@@ -1,13 +1,13 @@
 import {css, html, LitElement} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {datetime} from "../../Directive/DateTime";
-import {Stopover} from "../../Models/Trip";
+import {Stopover} from "../../Models/Stopover";
 
 @customElement('ts-stopover-time')
 class StopoverTime extends LitElement {
 
     @property({type: Object})
-    public stopover: Stopover
+    public stopover: Stopover|null = null
 
 
     static styles = css`
@@ -50,24 +50,24 @@ class StopoverTime extends LitElement {
     protected render() {
 
         const result = [];
-        if (this.stopover.requestStop) {
+        if (this.stopover && this.stopover.requestStop) {
             result.push(html`&#10005;`)
-        } else if (this.stopover.arrival) {
-            result.push(this.renderTimeInfo(this.stopover.arrival, this.stopover.plannedArrival, this.stopover.arrivalDelay, this.stopover.reported))
+        } else if (this.stopover && this.stopover.arrival) {
+            result.push(this.renderTimeInfo(this.stopover.arrival, this.stopover.plannedArrival ?? '', this.stopover.arrivalDelay ?? 0, this.stopover.reported))
         }
 
-        if (this.stopover.departure) {
+        if (this.stopover && this.stopover.departure) {
             if (result.length) {
                 result.push(html`&nbsp;-&nbsp;`)
             }
-            result.push(this.renderTimeInfo(this.stopover.departure, this.stopover.plannedDeparture, this.stopover.departureDelay, this.stopover.reported))
+            result.push(this.renderTimeInfo(this.stopover.departure, this.stopover.plannedDeparture ?? '', this.stopover.departureDelay ?? 0, this.stopover.reported))
         }
 
         return result;
     }
 
 
-    private renderTimeInfo(current, planned, delay, reported) {
+    private renderTimeInfo(current: string, planned: string, delay: number, reported: boolean) {
         const result = []
         if (delay && reported) {
             result.push(html`

@@ -1,9 +1,9 @@
 import {Directive, directive} from 'lit/async-directive.js';
-import {Line} from "../Models/Trip";
 import {html, nothing} from "lit";
+import {Line} from "../Models/Line";
 
 class LineName extends Directive {
-    private oebbCategories = {
+    private oebbCategories: any  = {
         'IC': '+',
         'EC': '*',
         'EN': 'μ',
@@ -19,11 +19,11 @@ class LineName extends Directive {
         'S': 'S',
     };
 
-    private dbCategories = {
+    private dbCategories: any = {
         'S': 'i'
     }
 
-    private mavCategories = {
+    private mavCategories: any = {
         'NJ': 'Ɵ',
         'RJ': 'Ń',
         'RJX': 'ƭ',

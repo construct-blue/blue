@@ -1,8 +1,10 @@
 import {ReactiveController, ReactiveControllerHost} from "lit";
 import TrainSearchClient from "./TrainSearchClient";
+import {Favorites} from "../Models/Favorites";
 
 export class TrainSearchController implements ReactiveController {
-    private client = new TrainSearchClient(document.body.dataset.api)
+    private client = new TrainSearchClient(document.body.dataset.api ?? '')
+    public favorites = Favorites.fromStorage(localStorage)
 
     private controllers: AbortController[] = [];
 
@@ -38,10 +40,12 @@ export class TrainSearchController implements ReactiveController {
         return await this.client.departures(id, profile, this.getController());
     }
 
-    private getController(controller?: AbortController) {
+    private getController(controller?: AbortController): AbortController {
         controller = controller ?? new AbortController()
-        this.controllers.push(controller)
-        return controller;
+        if (controller) {
+            this.controllers.push(controller)
+        }
+        return controller as AbortController;
     }
 
     public abort() {

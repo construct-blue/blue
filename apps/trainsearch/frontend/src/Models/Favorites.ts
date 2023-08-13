@@ -1,11 +1,11 @@
 import {Location} from "./Location";
-import {Line} from "./Trip";
+import {Line} from "./Line";
 
 export class Favorites {
     locations: Location[] = []
     lines: { profile: string, uicPrefix: number, direction: string, line: Line }[] = []
 
-    constructor(data) {
+    constructor(data: any) {
         if (data && data.locations) {
             this.locations = data.locations
         }
@@ -18,7 +18,10 @@ export class Favorites {
         this.locations.push(location)
     }
 
-    hasLocation(id: string): boolean {
+    hasLocation(id: string|null): boolean {
+        if (null === id) {
+            return false;
+        }
         return this.locations.filter(location => location.id === id).length > 0
     }
 
@@ -30,7 +33,10 @@ export class Favorites {
         this.lines.push({profile: profile, uicPrefix: uicPrefix, direction: direction, line: line})
     }
 
-    hasLine(line: Line) {
+    hasLine(line: Line|null) {
+        if (null === line) {
+            return false;
+        }
         return this.lines.filter(l => this.compareLine(l.line, line)).length > 0;
     }
 
@@ -48,7 +54,7 @@ export class Favorites {
     }
 
     static fromStorage(storage: Storage) {
-        return new Favorites(JSON.parse(storage.getItem('favorites')))
+        return new Favorites(JSON.parse(storage.getItem('favorites') ?? '{}'))
     }
 
     save(storage: Storage) {

@@ -4,8 +4,7 @@ import "./Select"
 import "./SearchInput"
 import {SelectEvent} from "./Select";
 import {SearchInputEvent, SearchSuggestion} from "./SearchInput";
-import TrainSearchClient from "../../Client/TrainSearchClient";
-import {TrainSearchController} from "../../Client/TrainSearchController";
+import {UicPrefix} from "../../Models/UicPrefix";
 
 interface SearchEventInit extends EventInit {
     value: string
@@ -31,25 +30,20 @@ export class SearchFormEvent extends Event {
 
 @customElement('ts-search-form')
 class SearchForm extends LitElement {
-    private controller = new TrainSearchController(this)
-
     @property({type: Array})
     public profiles = [
         {
             id: 'oebb',
-            name: 'o'
+            name: 'ÖBB'
         },
         {
             id: 'db',
-            name: 'ø'
+            name: 'DB'
         }
     ]
 
-    @property({type: Boolean, attribute: 'uic-select'})
-    public uicSelect = false
-
     @property({type: Array})
-    public uicPrefixes = [];
+    public uicPrefixes: UicPrefix[] = [];
 
     @property({type: String})
     public profile: string = 'oebb'
@@ -83,14 +77,7 @@ class SearchForm extends LitElement {
         }
     `
 
-    protected async scheduleUpdate(): Promise<unknown> {
-        if (this.uicSelect) {
-            this.uicPrefixes = await this.controller.uicPrefixes(this.profile)
-        }
-        return super.scheduleUpdate();
-    }
-
-    private getFlagEmoji(countryCode) {
+    private getFlagEmoji(countryCode: string) {
         if (countryCode === '-') {
             return '';
         }
@@ -100,7 +87,7 @@ class SearchForm extends LitElement {
         const codePoints = countryCode
                 .toUpperCase()
                 .split('')
-                .map(char => 127397 + char.charCodeAt());
+                .map(char => 127397 + char.charCodeAt(0));
         return String.fromCodePoint(...codePoints);
     }
 

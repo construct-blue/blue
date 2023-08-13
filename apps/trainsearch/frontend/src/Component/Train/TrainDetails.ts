@@ -1,4 +1,4 @@
-import {css, html, LitElement, nothing, TemplateResult} from "lit";
+import {css, html, LitElement, nothing} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {Trip} from "../../Models/Trip";
 import "./Timetable"
@@ -6,7 +6,6 @@ import "./Remarks"
 import "../Common/Collapsable"
 import {datetime} from "../../Directive/DateTime";
 import {lineName} from "../../Directive/LineName";
-import {Favorites} from "../../Models/Favorites";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -18,13 +17,13 @@ declare global {
 @customElement('ts-details')
 class TrainDetails extends LitElement {
     @property()
-    public trip: Trip
+    public trip: Trip|null = null
 
     @property({type: String, attribute: 'station-id'})
     public stationId: string = ''
 
     @property()
-    public profile: string
+    public profile: string = ''
 
     static styles = css`
       :host(ts-details) {
@@ -58,9 +57,12 @@ class TrainDetails extends LitElement {
       }
     `
 
-    protected render(): TemplateResult {
+    protected render() {
+        if (!this.trip) {
+            return nothing;
+        }
         return html`
-            <h2><span>${lineName(this.trip.line)}</span> <small>${datetime(this.trip.date, "date")}</small></h2>
+            <h2><span>${lineName(this.trip.line)}</span> <small>${datetime(this.trip.date.toString(), "date")}</small></h2>
             <slot></slot>
             <ts-collapsable summary="Fahrplan" id="timetable">
                 <ts-timetable .trip="${this.trip}" profile="${this.profile}" station-id="${this.stationId}"></ts-timetable>

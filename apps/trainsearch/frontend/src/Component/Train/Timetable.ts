@@ -1,11 +1,12 @@
-import {css, html, LitElement, nothing, TemplateResult} from "lit";
+import {css, html, LitElement, nothing} from "lit";
 import {classMap} from "lit/directives/class-map.js"
 import {customElement, property, state} from "lit/decorators.js";
-import {Stopover, Trip} from "../../Models/Trip";
+import {Trip} from "../../Models/Trip";
 import './TrainComposition';
 import './StopoverTime'
 import {lineName} from "../../Directive/LineName";
 import {TrainSearchController} from "../../Client/TrainSearchController";
+import {Stopover} from "../../Models/Stopover";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -18,10 +19,10 @@ class Timetable extends LitElement {
     private controller = new TrainSearchController(this)
 
     @property()
-    public trip: Trip
+    public trip: Trip|null = null
 
     @property({type: String})
-    public profile: string
+    public profile: string = ''
 
     @property({type: String, attribute: 'station-id'})
     public stationId: string = ''
@@ -29,13 +30,13 @@ class Timetable extends LitElement {
     private stations = []
 
     @state()
-    private compositions = []
+    private compositions: string[] = []
 
     protected async scheduleUpdate(): Promise<unknown> {
         if (this.stationId && !this.compositions.includes(this.stationId)) {
             this.compositions.push(this.stationId)
         }
-        if (this.trip.stopovers && this.trip.stopovers.length) {
+        if (this.trip && this.trip.stopovers && this.trip.stopovers.length) {
             if (this.trip.stopovers[0]) {
                 this.compositions.push(this.trip.stopovers[0].stop.id)
             }
@@ -48,7 +49,10 @@ class Timetable extends LitElement {
         return super.scheduleUpdate();
     }
 
-    protected render(): TemplateResult {
+    protected render() {
+        if (!this.trip) {
+            return nothing;
+        }
         return html`
             ${this.trip.stopovers.map(stopover => this.renderStopover(stopover))}
             <ul>
@@ -131,7 +135,7 @@ class Timetable extends LitElement {
         return html`
             <p class=${classMap({selected: stopover.stop.id == this.stationId})}>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})` : nothing}
-                ${stopover.changedLine ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
+                ${stopover.changedLine && stopover.line ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
                 <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${this.renderComposition(stopover)}
                 <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
@@ -140,8 +144,8 @@ class Timetable extends LitElement {
     }
 
     private renderComposition(stopover: Stopover) {
-        const lastStopover = this.trip.stopovers[this.trip.stopovers.length - 1]
-        if (this.stations && this.profile === 'oebb' && !this.trip.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
+        const lastStopover = this.trip?.stopovers[this.trip.stopovers.length - 1]
+        if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
             if (!this.compositions.includes(stopover.stop.id)) {
                 return html`
                     <button @click="${() => this.onClickShowComposition(stopover)}"><i style="font-family: oebb-symbols">W</i></button>`;
