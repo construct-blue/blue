@@ -10,7 +10,7 @@ describe('TripDetailsContextUpdater', () => {
         const contextUpdater = new TripDetailsContextUpdater(new TestClient(
                 {
                     departures: [],
-                    locationSearch: [],
+                    stops: [],
                     trip: Object.assign({}, trip4711, {direction: 'Graz Ostbahnhof'})
                 }
         ));

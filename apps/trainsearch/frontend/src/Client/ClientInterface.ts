@@ -6,5 +6,6 @@ export interface ClientInterface {
     trip(profile: string, id: string): Promise<Trip>
     tripSearch(profile: string, uicPrefix: string, query: string): Promise<Trip[]>
     locationSearch(profile: string, keyword: string): Promise<Stop[]>
+    stations(profile: string): Promise<Stop[]>
     abort(): void
 }

@@ -8,7 +8,7 @@ export class TestClient implements ClientInterface {
     constructor(private data: {
         departures: Trip[],
         trip: Trip,
-        locationSearch: Stop[]
+        stops: Stop[]
     }) {
     }
 
@@ -21,11 +21,15 @@ export class TestClient implements ClientInterface {
     }
 
     locationSearch(profile: string, keyword: string): Promise<Stop[]> {
-        return Promise.resolve(this.data.locationSearch);
+        return Promise.resolve(this.data.stops);
     }
 
     tripSearch(profile: string, uicPrefix: string, query: string): Promise<Trip[]> {
         return Promise.resolve([this.data.trip]);
+    }
+
+    stations(profile: string): Promise<Stop[]> {
+        return Promise.resolve(this.data.stops)
     }
 
     abort() {

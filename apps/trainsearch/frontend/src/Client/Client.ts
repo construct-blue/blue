@@ -86,16 +86,13 @@ export class Client implements ClientInterface {
         })).parse(await response.json())
     }
 
-    public async stations(profile: string) {
+    public async stations(profile: string): Promise<Stop[]> {
 
         const url = this.basePath + '/' + profile + '/composition/stations'
 
         const response = await this.fetch(url);
 
-        return z.array(z.object({
-            eva: z.string(),
-            name: z.string()
-        })).parse(await response.json())
+        return z.array(Stop).parse(await response.json())
     }
 
     private async fetch(input: RequestInfo | URL) {

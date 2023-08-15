@@ -7,6 +7,9 @@ import './StopoverTime'
 import {lineName} from "../../Directive/LineName";
 import {TrainSearchController} from "../../Client/TrainSearchController";
 import {Stopover} from "../../Models/Stopover";
+import {TimetableController} from "./TimetableController";
+import {Client} from "../../Client/Client";
+import {Stop} from "../../Models/Stop";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -16,7 +19,12 @@ declare global {
 
 @customElement('ts-timetable')
 class Timetable extends LitElement {
-    private controller = new TrainSearchController(this)
+    private controller = new TimetableController(
+            this,
+            new Client(document.body.dataset.api ?? '')
+    )
+
+    private tsController = new TrainSearchController(this)
 
     @property()
     public trip: Trip|null = null
@@ -27,9 +35,7 @@ class Timetable extends LitElement {
     @property({type: String, attribute: 'station-id'})
     public stationId: string = ''
 
-    private stations: {
-        eva: string
-    }[] = []
+    private stations: Stop[] = []
 
     @state()
     private compositions: string[] = []
@@ -47,7 +53,7 @@ class Timetable extends LitElement {
                     .map(stopover => stopover.stop.id)
             this.compositions.push(...ids)
         }
-        this.stations = await this.controller.stations(this.profile)
+        this.stations = await this.tsController.stations(this.profile)
         return super.scheduleUpdate();
     }
 
@@ -147,7 +153,7 @@ class Timetable extends LitElement {
 
     private renderComposition(stopover: Stopover) {
         const lastStopover = this.trip?.stopovers[this.trip.stopovers.length - 1]
-        if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && this.stations.map(station => station.eva).includes(stopover.stop.id)) {
+        if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && this.stations.map(station => station.id).includes(stopover.stop.id)) {
             if (!this.compositions.includes(stopover.stop.id)) {
                 return html`
                     <button @click="${() => this.onClickShowComposition(stopover)}"><i style="font-family: oebb-symbols">W</i></button>`;

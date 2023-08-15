@@ -40,7 +40,7 @@ describe('LocationBoardContextUpdater', () => {
                 trip
             ],
             trip: trip,
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         }));
         const updatedContext = await updater.update(context);
         expect(updatedContext.departures).toHaveLength(1);
@@ -93,7 +93,7 @@ describe('LocationBoardContextUpdater', () => {
                 remarks: [],
                 foreign: false,
             },
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         }));
 
         const updatedContext = await updater.update(context)
@@ -105,7 +105,7 @@ describe('LocationBoardContextUpdater', () => {
         const client = new TestClient({
             departures: [trip4711],
             trip: trip4711,
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         });
         const contextUpdater = new LocationBoardContextUpdater(client);
         await contextUpdater.update(context)

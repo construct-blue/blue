@@ -13,7 +13,7 @@ describe('LocationSearchContext', () => {
         const contextUpdater = new LocationSearchContextUpdater(new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         }));
         const updatedContext = await contextUpdater.update(context)
         expect(updatedContext.stops).toHaveLength(1)
@@ -23,7 +23,7 @@ describe('LocationSearchContext', () => {
         const client = new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         });
         const contextUpdater = new LocationSearchContextUpdater(client);
         const updatedContext = await contextUpdater.update(context)
@@ -34,7 +34,7 @@ describe('LocationSearchContext', () => {
         const client = new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         });
         const contextUpdater = new LocationSearchContextUpdater(client);
         await contextUpdater.update(context)
@@ -68,7 +68,7 @@ describe('LocationSearchContext', () => {
         const contextUpdater = new LocationSearchContextUpdater(new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [stopGrazHbf]
+            stops: [stopGrazHbf]
         }));
         expect(context.profile).toBe('oebb')
         const updatedContext = await contextUpdater.update(context, 'db')
