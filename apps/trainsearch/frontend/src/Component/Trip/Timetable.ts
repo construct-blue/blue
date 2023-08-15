@@ -27,7 +27,9 @@ class Timetable extends LitElement {
     @property({type: String, attribute: 'station-id'})
     public stationId: string = ''
 
-    private stations = []
+    private stations: {
+        eva: string
+    }[] = []
 
     @state()
     private compositions: string[] = []
@@ -145,7 +147,7 @@ class Timetable extends LitElement {
 
     private renderComposition(stopover: Stopover) {
         const lastStopover = this.trip?.stopovers[this.trip.stopovers.length - 1]
-        if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && Object.keys(this.stations).includes(stopover.stop.id)) {
+        if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && this.stations.map(station => station.eva).includes(stopover.stop.id)) {
             if (!this.compositions.includes(stopover.stop.id)) {
                 return html`
                     <button @click="${() => this.onClickShowComposition(stopover)}"><i style="font-family: oebb-symbols">W</i></button>`;

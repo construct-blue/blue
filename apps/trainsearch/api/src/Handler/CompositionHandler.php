@@ -24,8 +24,8 @@ class CompositionHandler implements RequestHandlerInterface
         $date = $request->getQueryParams()['date'] ?? null;
         $live = new OebbLive(new OebbLiveClient());
 
-        $stations = $live->stations();
-        if (!isset($stations[$station])) {
+        $stations = array_map(fn($s) => $s->eva, $live->stations());
+        if (!in_array($station, $stations)) {
             Http::throwNotFound('Invalid station');
         }
 
