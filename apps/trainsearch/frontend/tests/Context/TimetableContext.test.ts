@@ -12,4 +12,9 @@ describe('TimetableContext', () => {
         expect(context.stopovers).toContain(stopoverBruckMur)
         expect(context.stopovers).toContain(stopoverKapfenberg)
     })
+    it('should expose if a stopover should display vehicle information', () => {
+        const context = new TimetableContext('oebb', [stopoverBruckMur, stopoverKapfenberg], [stopBruckMur])
+        expect(context.hasVehicleInfo(stopoverBruckMur)).toBe(true)
+        expect(context.hasVehicleInfo(stopoverKapfenberg)).toBe(false)
+    })
 })
