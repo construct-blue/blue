@@ -1,16 +1,16 @@
 import {describe, expect, it} from "@jest/globals";
 import {LocationBoardContext} from "../../src/Context/LocationBoardContext";
-import {Location} from "../../src/Models/Location";
+import {Stop} from "../../src/Models/Stop";
 import {TestClient} from "../Client/TestClient";
 import {LocationBoardContextUpdater} from "../../src/ContextUpdater/LocationBoardContextUpdater";
-import {locationGrazHbf} from "../Models/Location";
+import {stopGrazHbf} from "../Models/Stop";
 import {trip4711} from "../Models/Trip";
 import {Client} from "../../src/Client/Client";
 import fetchMock from "jest-fetch-mock";
 
 describe('LocationBoardContextUpdater', () => {
     it('should update the departures of a location context', async () => {
-        const location: Location = {
+        const location: Stop = {
             name: 'Graz Hbf',
             id: '8100173'
         };
@@ -40,13 +40,13 @@ describe('LocationBoardContextUpdater', () => {
                 trip
             ],
             trip: trip,
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         }));
         const updatedContext = await updater.update(context);
         expect(updatedContext.departures).toHaveLength(1);
     })
     it('should update the selectedTrip of a location context', async () => {
-        const location: Location = {
+        const location: Stop = {
             name: 'Graz Hbf',
             id: '8100173'
         };
@@ -93,7 +93,7 @@ describe('LocationBoardContextUpdater', () => {
                 remarks: [],
                 foreign: false,
             },
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         }));
 
         const updatedContext = await updater.update(context)
@@ -101,11 +101,11 @@ describe('LocationBoardContextUpdater', () => {
         expect(updatedContext.selectedTrip?.direction).toBe('Graz Hbf')
     })
     it('should abort previous requests when starting a new update', async () => {
-        const context = new LocationBoardContext('oebb', locationGrazHbf, [])
+        const context = new LocationBoardContext('oebb', stopGrazHbf, [])
         const client = new TestClient({
             departures: [trip4711],
             trip: trip4711,
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         });
         const contextUpdater = new LocationBoardContextUpdater(client);
         await contextUpdater.update(context)
@@ -128,7 +128,7 @@ describe('LocationBoardContextUpdater', () => {
 
         setTimeout(() => client.abort(), 50)
 
-        const context = new LocationBoardContext('oebb', locationGrazHbf, [trip4711])
+        const context = new LocationBoardContext('oebb', stopGrazHbf, [trip4711])
         const contextUpdater = new LocationBoardContextUpdater(client);
 
         const updatedContext = await contextUpdater.update(context);

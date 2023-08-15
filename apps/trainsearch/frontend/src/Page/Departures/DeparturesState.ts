@@ -1,7 +1,7 @@
 import {State} from "@lit-app/state/src/state.js";
 import {property} from "@lit-app/state/src/decorators/property.js";
 import {storage} from "@lit-app/state/src/decorators/storage.js";
-import {Location} from "../../Models/Location";
+import {Stop} from "../../Models/Stop";
 
 export class DeparturesState extends State {
     @storage({prefix: 'departures', key: 'profile'})
@@ -14,7 +14,7 @@ export class DeparturesState extends State {
 
     @storage({prefix: 'location', key: 'keyword'})
     @property({type: Object, value: null})
-    public location!: Location|null
+    public location!: Stop|null
 }
 
 export const departuresState = new DeparturesState();

@@ -1,6 +1,6 @@
 import {ClientInterface} from "./ClientInterface";
 import {Trip} from "../Models/Trip";
-import {Location} from "../Models/Location";
+import {Stop} from "../Models/Stop";
 import {z} from "zod";
 
 export class Client implements ClientInterface {
@@ -12,7 +12,7 @@ export class Client implements ClientInterface {
         }
     }
 
-    async departures(profile: string, location: Location): Promise<Trip[]> {
+    async departures(profile: string, location: Stop): Promise<Trip[]> {
         if (!profile) {
             throw 'Missing profile for Client.departures'
         }
@@ -41,7 +41,7 @@ export class Client implements ClientInterface {
         return Trip.parse(await response.json())
     }
 
-    async locationSearch(profile: string, keyword: string): Promise<Location[]> {
+    async locationSearch(profile: string, keyword: string): Promise<Stop[]> {
         if (!profile) {
             throw 'Missing profile for Client.locationSearch'
         }
@@ -53,7 +53,7 @@ export class Client implements ClientInterface {
         const url = this.basePath + '/' + profile + '/location/' + encodeURIComponent(keyword);
         const response = await this.fetch(url)
 
-        return z.array(Location).parse(await response.json())
+        return z.array(Stop).parse(await response.json())
     }
 
     async tripSearch(profile: string, uicPrefix: string, query: string): Promise<Trip[]> {

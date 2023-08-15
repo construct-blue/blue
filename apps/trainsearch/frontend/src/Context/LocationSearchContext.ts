@@ -1,8 +1,8 @@
-import {Location} from "../Models/Location";
+import {Stop} from "../Models/Stop";
 
 export class LocationSearchContext {
 
-    constructor(public profile: string, public keyword: string, public locations: Location[]) {
+    constructor(public profile: string, public keyword: string, public stops: Stop[]) {
         if (!profile) {
             throw 'Missing profile for LocationSearchContext'
         }

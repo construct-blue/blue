@@ -1,10 +1,10 @@
-import {Location} from "../Models/Location";
+import {Stop} from "../Models/Stop";
 import {Trip} from "../Models/Trip";
 
 export class LocationBoardContext {
     private _selectedTrip: Trip|null = null;
 
-    constructor(public profile: string, public location: Location, public departures: Trip[]) {
+    constructor(public profile: string, public location: Stop, public departures: Trip[]) {
         if (!profile) {
             throw 'Missing profile for LocationBoardContext'
         }

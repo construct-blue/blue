@@ -2,7 +2,7 @@ import {describe, expect, it} from "@jest/globals";
 import {LocationSearchContext} from "../../src/Context/LocationSearchContext";
 import {TestClient} from "../Client/TestClient";
 import {trip4711} from "../Models/Trip";
-import {locationGrazHbf} from "../Models/Location";
+import {stopGrazHbf} from "../Models/Stop";
 import {LocationSearchContextUpdater} from "../../src/ContextUpdater/LocationSearchContextUpdater";
 import {Client} from "../../src/Client/Client";
 import fetchMock from "jest-fetch-mock";
@@ -13,28 +13,28 @@ describe('LocationSearchContext', () => {
         const contextUpdater = new LocationSearchContextUpdater(new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         }));
         const updatedContext = await contextUpdater.update(context)
-        expect(updatedContext.locations).toHaveLength(1)
+        expect(updatedContext.stops).toHaveLength(1)
     })
     it('should set locations to empty array when the keyword is empty', async () => {
         const context = new LocationSearchContext('oebb', '', [])
         const client = new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         });
         const contextUpdater = new LocationSearchContextUpdater(client);
         const updatedContext = await contextUpdater.update(context)
-        expect(updatedContext.locations).toHaveLength(0)
+        expect(updatedContext.stops).toHaveLength(0)
     })
     it('should abort previous requests when starting a new update', async () => {
         const context = new LocationSearchContext('oebb', '', [])
         const client = new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         });
         const contextUpdater = new LocationSearchContextUpdater(client);
         await contextUpdater.update(context)
@@ -57,18 +57,18 @@ describe('LocationSearchContext', () => {
 
         setTimeout(() => client.abort(), 50)
 
-        const context = new LocationSearchContext('oebb', 'Graz', [locationGrazHbf])
+        const context = new LocationSearchContext('oebb', 'Graz', [stopGrazHbf])
         const contextUpdater = new LocationSearchContextUpdater(client);
 
         const updatedContext = await contextUpdater.update(context);
-        expect(updatedContext.locations).toHaveLength(1)
+        expect(updatedContext.stops).toHaveLength(1)
     })
     it('should allow changing the profile', async () => {
         const context = new LocationSearchContext('oebb', 'Graz', [])
         const contextUpdater = new LocationSearchContextUpdater(new TestClient({
             departures: [],
             trip: trip4711,
-            locationSearch: [locationGrazHbf]
+            locationSearch: [stopGrazHbf]
         }));
         expect(context.profile).toBe('oebb')
         const updatedContext = await contextUpdater.update(context, 'db')

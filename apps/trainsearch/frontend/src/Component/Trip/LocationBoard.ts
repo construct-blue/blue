@@ -1,6 +1,6 @@
 import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {customElement, property, state} from "lit/decorators.js";
-import {Location} from "../../Models/Location";
+import {Stop} from "../../Models/Stop";
 import './TripList'
 import './TripDetails'
 import '../Common/ReloadButton'
@@ -12,7 +12,7 @@ import {Client} from "../../Client/Client";
 @customElement('ts-location-board')
 class LocationBoard extends LitElement {
     @property({type: Object})
-    public location!: Location
+    public location!: Stop
 
     @property({type: String})
     public profile!: string;

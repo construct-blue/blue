@@ -2,7 +2,7 @@ import {describe, expect, it, jest} from "@jest/globals";
 import {Client} from "../../src/Client/Client";
 import fetchMock from "jest-fetch-mock";
 import {trip4711} from "../Models/Trip";
-import {locationGrazHbf} from "../Models/Location";
+import {stopGrazHbf} from "../Models/Stop";
 
 describe('Client', () => {
     it('should throw error when basePath is empty', () => {
@@ -39,7 +39,7 @@ describe('Client', () => {
         )
 
         const client = new Client('https://trainsearch-api.local/test')
-        const fetchedDepartures = await client.departures('oebb', locationGrazHbf)
+        const fetchedDepartures = await client.departures('oebb', stopGrazHbf)
         expect(fetchedDepartures).toHaveLength(1)
         expect(fetchedDepartures[0].id).toBe('123')
     })
@@ -57,13 +57,13 @@ describe('Client', () => {
     it('should fetch locations matching a uri encoded keyword', async () => {
         fetchMock.mockOnceIf(
                 'https://trainsearch-api.local/test/oebb/location/Graz%20H',
-                () => new Promise(r => r({body: JSON.stringify([locationGrazHbf])}))
+                () => new Promise(r => r({body: JSON.stringify([stopGrazHbf])}))
         )
 
         const client = new Client('https://trainsearch-api.local/test')
         const fetchedLocations = await client.locationSearch('oebb', 'Graz H')
-        expect(fetchedLocations[0].name).toBe(locationGrazHbf.name)
-        expect(fetchedLocations[0].id).toBe(locationGrazHbf.id)
+        expect(fetchedLocations[0].name).toBe(stopGrazHbf.name)
+        expect(fetchedLocations[0].id).toBe(stopGrazHbf.id)
         expect(fetchedLocations).toHaveLength(1)
     })
 

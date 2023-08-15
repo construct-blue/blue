@@ -1,8 +1,8 @@
-import {Location} from "./Location";
+import {Stop} from "./Stop";
 import {Line} from "./Line";
 
 export class Favorites {
-    locations: Location[] = []
+    locations: Stop[] = []
     lines: { profile: string, uicPrefix: number, direction: string, line: Line }[] = []
 
     constructor(data: any) {
@@ -14,7 +14,7 @@ export class Favorites {
         }
     }
 
-    addLocation(location: Location) {
+    addLocation(location: Stop) {
         this.locations.push(location)
     }
 

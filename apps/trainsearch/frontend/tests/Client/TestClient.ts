@@ -1,6 +1,6 @@
 import {ClientInterface} from "../../src/Client/ClientInterface";
 import {Trip} from "../../src/Models/Trip";
-import {Location} from "../../src/Models/Location";
+import {Stop} from "../../src/Models/Stop";
 
 export class TestClient implements ClientInterface {
     public aborted: boolean = false;
@@ -8,11 +8,11 @@ export class TestClient implements ClientInterface {
     constructor(private data: {
         departures: Trip[],
         trip: Trip,
-        locationSearch: Location[]
+        locationSearch: Stop[]
     }) {
     }
 
-    departures(profile: string, location: Location): Promise<Trip[]> {
+    departures(profile: string, location: Stop): Promise<Trip[]> {
         return Promise.resolve(this.data.departures)
     }
 
@@ -20,7 +20,7 @@ export class TestClient implements ClientInterface {
         return Promise.resolve(this.data.trip)
     }
 
-    locationSearch(profile: string, keyword: string): Promise<Location[]> {
+    locationSearch(profile: string, keyword: string): Promise<Stop[]> {
         return Promise.resolve(this.data.locationSearch);
     }
 

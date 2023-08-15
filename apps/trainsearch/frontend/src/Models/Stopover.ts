@@ -2,12 +2,10 @@ import { z } from "zod";
 import {Line} from "./Line";
 import {Remark} from "./Remark";
 import {Information} from "./Information";
+import {Stop} from "./Stop";
 
 export const Stopover = z.object({
-    stop: z.object({
-        id: z.string(),
-        name: z.string()
-    }),
+    stop: Stop,
     requestStop: z.boolean().nullable(),
     changedLine: z.boolean().nullable(),
     line: Line.nullable(),
@@ -20,7 +18,9 @@ export const Stopover = z.object({
     plannedArrival: z.string().nullable(),
     reported: z.boolean(),
     remarks: z.array(Remark),
-    infos: z.array(Information)
+    infos: z.array(Information),
+    isCancelled: z.boolean().nullable(),
+    border: z.boolean().nullable()
 })
 
 

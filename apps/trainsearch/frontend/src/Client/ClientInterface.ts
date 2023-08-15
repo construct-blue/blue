@@ -1,10 +1,10 @@
-import {Location} from "../Models/Location";
+import {Stop} from "../Models/Stop";
 import {Trip} from "../Models/Trip";
 
 export interface ClientInterface {
-    departures(profile: string, location: Location): Promise<Trip[]>;
+    departures(profile: string, location: Stop): Promise<Trip[]>;
     trip(profile: string, id: string): Promise<Trip>
     tripSearch(profile: string, uicPrefix: string, query: string): Promise<Trip[]>
-    locationSearch(profile: string, keyword: string): Promise<Location[]>
+    locationSearch(profile: string, keyword: string): Promise<Stop[]>
     abort(): void
 }

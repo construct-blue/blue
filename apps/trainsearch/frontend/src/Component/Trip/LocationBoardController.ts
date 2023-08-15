@@ -1,6 +1,6 @@
 import {ReactiveController, ReactiveControllerHost} from "lit";
 import {LocationBoardContext} from "../../Context/LocationBoardContext";
-import {Location} from "../../Models/Location";
+import {Stop} from "../../Models/Stop";
 import {LocationBoardContextUpdater} from "../../ContextUpdater/LocationBoardContextUpdater";
 import {ClientInterface} from "../../Client/ClientInterface";
 import {Trip} from "../../Models/Trip";
@@ -11,7 +11,7 @@ export class LocationBoardController implements ReactiveController {
     private boardContextUpdater: LocationBoardContextUpdater
     public loading: boolean = false
 
-    constructor(private host: ReactiveControllerHost, private client: ClientInterface, profile: string, location: Location) {
+    constructor(private host: ReactiveControllerHost, private client: ClientInterface, profile: string, location: Stop) {
         host.addController(this)
         this.boardContextUpdater = new LocationBoardContextUpdater(client)
         this.boardContext = new LocationBoardContext(profile, location, [])

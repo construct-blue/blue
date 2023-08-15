@@ -1,6 +1,6 @@
 import {ReactiveController, ReactiveControllerHost} from "lit";
 import {SearchFormEvent} from "../../Component/Common/SearchForm";
-import {Location} from "../../Models/Location";
+import {Stop} from "../../Models/Stop";
 import {LocationSearchContext} from "../../Context/LocationSearchContext";
 import {LocationSearchContextUpdater} from "../../ContextUpdater/LocationSearchContextUpdater";
 import {DeparturesState} from "./DeparturesState";
@@ -57,7 +57,7 @@ export class DeparturesController implements ReactiveController {
     }
 
     get suggestions() {
-        return this.searchContext.locations;
+        return this.searchContext.stops;
     }
 
     get keyword() {
@@ -68,7 +68,7 @@ export class DeparturesController implements ReactiveController {
         return this.state.profile;
     }
 
-    get location(): Location | null {
+    get location(): Stop | null {
         return this.state.location
     }
 }
