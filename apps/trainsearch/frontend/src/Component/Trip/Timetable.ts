@@ -160,6 +160,9 @@ class Timetable extends LitElement {
     }
 
     private renderComposition(stopover: Stopover) {
+        if (!this.controller.hasVehicleInfo(stopover)) {
+            return nothing;
+        }
         const lastStopover = this.trip?.stopovers[this.trip.stopovers.length - 1]
         if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && this.stations.map(station => station.id).includes(stopover.stop.id)) {
             if (!this.compositions.includes(stopover.stop.id)) {

@@ -26,6 +26,10 @@ export class TimetableController implements ReactiveController {
         this.context.stopovers = stopovers;
     }
 
+    public hasVehicleInfo(stopover: Stopover): boolean {
+        return this.context.hasVehicleInfo(stopover)
+    }
+
     hostDisconnected() {
         this.client.abort()
     }

@@ -11,6 +11,7 @@ export const Stopover = z.object({
     line: Line.nullable(),
     departureDelay: z.number().nullable(),
     departurePlatform: z.string().nullable(),
+    arrivalPlatform: z.string().nullable(),
     arrivalDelay: z.number().nullable(),
     departure: z.string().nullable(),
     plannedDeparture: z.string().nullable(),

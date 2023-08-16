@@ -18,3 +18,8 @@ export const stopSemmering: Stop = {
     "id": "8100028",
     "name": "Semmering",
 }
+
+export const stopMuerzzuschlag: Stop = {
+    "id": "8100029",
+    "name": "Mürzzuschlag",
+}

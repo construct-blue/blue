@@ -20,12 +20,16 @@ class CompositionStationsHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $live = new OebbLive(new OebbLiveClient());
+        if ((string)$request->getAttribute('profile') === 'oebb') {
+            $live = new OebbLive(new OebbLiveClient());
 
-        $stations = $live->stations();
+            $stations = $live->stations();
 
-        $stations = array_map(fn($station) => new Stop($station->eva, $station->name), $stations);
-
+            $stations = array_map(fn($station) => new Stop($station->eva, $station->name), $stations);
+        } else {
+            $stations = [];
+        }
+        
         return new JsonResponse(
             $stations,
             200,

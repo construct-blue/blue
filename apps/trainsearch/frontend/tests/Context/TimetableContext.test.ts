@@ -1,6 +1,12 @@
 import {describe, expect, it} from "@jest/globals";
-import {stopoverBruckMur, stopoverKapfenberg, stopoverSemmering} from "../Models/Stopover";
-import {stopBruckMur, stopSemmering} from "../Models/Stop";
+import {
+    stopoverBruckMur,
+    stopoverGrazHbf,
+    stopoverKapfenberg,
+    stopoverMuerzzulschlag,
+    stopoverSemmering
+} from "../Models/Stopover";
+import {stopBruckMur, stopGrazHbf, stopKapfenberg, stopMuerzzuschlag, stopSemmering} from "../Models/Stop";
 import {TimetableContext} from "../../src/Context/TimetableContext";
 
 describe('TimetableContext', () => {
@@ -17,5 +23,18 @@ describe('TimetableContext', () => {
         expect(context.hasVehicleInfo(stopoverBruckMur)).toBe(true)
         expect(context.hasVehicleInfo(stopoverKapfenberg)).toBe(false)
         expect(context.hasVehicleInfo(stopoverSemmering)).toBe(false)
+    })
+    it('should only show vehicle info for the first stop, stops with changed line and a manually added stops', () => {
+        const context = new TimetableContext('oebb', [stopoverGrazHbf, stopoverBruckMur, stopoverKapfenberg, stopoverMuerzzulschlag, stopoverSemmering], [stopGrazHbf, stopBruckMur, stopKapfenberg, stopMuerzzuschlag, stopSemmering])
+        expect(context.displayVehicleInfo(stopoverGrazHbf)).toBe(true)
+        // changed line but last
+        expect(context.displayVehicleInfo(stopoverSemmering)).toBe(false)
+        // changed line
+        expect(context.displayVehicleInfo(stopoverMuerzzulschlag)).toBe(true)
+        expect(context.displayVehicleInfo(stopoverBruckMur)).toBe(false)
+        expect(context.displayVehicleInfo(stopoverKapfenberg)).toBe(false)
+        // manually added
+        context.addDisplayVehicleInfo(stopoverKapfenberg)
+        expect(context.displayVehicleInfo(stopoverKapfenberg)).toBe(true)
     })
 })
