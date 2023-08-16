@@ -6,6 +6,9 @@ global $time;
 $time = time();
 
 const API = 'pipedapi.kavin.rocks';
+
+const STREAM_API = 'pipedapi.adminforge.de';
+
 const PROXY = 'pipedproxy.kavin.rocks';
 
 const API_FALLBACK = 'api.piped.yt';
@@ -417,6 +420,8 @@ function fetch_items(
 ): string
 {
     static $videoIds = [];
+
+    $api = STREAM_API;
 
     $items = '';
     foreach ($videos as $video) {
