@@ -12,9 +12,9 @@ export class DeparturesState extends State {
     @property({type: String, value: ''})
     public keyword!: string
 
-    @storage({prefix: 'location', key: 'keyword'})
+    @storage({prefix: 'stop', key: 'keyword'})
     @property({type: Object, value: null})
-    public location!: Stop|null
+    public stop!: Stop|null
 }
 
 export const departuresState = new DeparturesState();

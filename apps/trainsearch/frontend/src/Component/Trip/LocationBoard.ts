@@ -73,7 +73,7 @@ class LocationBoard extends LitElement {
                 <span>
                     <button @click="${() => this.controller.onBack()}">&larr; ${this.location?.name ? this.location.name : 'Zurück'}</button>
                     <span style="gap: .5rem">
-                        <ts-favorite-button></ts-favorite-button>
+                        <ts-favorite-button @click="${() => this.controller.onFavorite()}" ?added="${this.controller.isFavorite()}"></ts-favorite-button>
                         <ts-reload-button @click="${() => this.controller.onRefresh()}"
                                           ?loading="${this.controller.loading}">
                         </ts-reload-button>
@@ -88,7 +88,7 @@ class LocationBoard extends LitElement {
             <span>
                 <slot></slot>
                 <span>
-                    <ts-favorite-button></ts-favorite-button>
+                    <ts-favorite-button @click="${() => this.controller.onFavorite()}" ?added="${this.controller.isFavorite()}"></ts-favorite-button>
                     <ts-reload-button @click="${() => this.controller.onRefresh()}"
                                       ?loading="${this.controller.loading}">
                     </ts-reload-button>

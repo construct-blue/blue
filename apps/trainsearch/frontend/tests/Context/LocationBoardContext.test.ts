@@ -31,6 +31,6 @@ describe('LocationBoardContext', () => {
     })
     it('should throw error for locations missing name or id', () => {
         expect(() => new LocationBoardContext('oebb', {name: '', id: ''}, []))
-                .toThrow('Missing location for LocationBoardContext')
+                .toThrow('Missing stop for LocationBoardContext')
     })
 })

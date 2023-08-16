@@ -11,8 +11,8 @@ export class LocationBoardContextUpdater {
         try {
             const updatedContext = new LocationBoardContext(
                     context.profile,
-                    context.location,
-                    await this.client.departures(context.profile, context.location)
+                    context.stop,
+                    await this.client.departures(context.profile, context.stop)
             )
 
             if (context.selectedTrip) {

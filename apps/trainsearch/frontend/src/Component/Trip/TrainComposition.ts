@@ -80,11 +80,6 @@ export class TrainComposition extends LitElement {
         }
     `
 
-    protected willUpdate(_changedProperties: PropertyValues) {
-        super.willUpdate(_changedProperties);
-        console.log(this.stopover)
-    }
-
     protected async scheduleUpdate(): Promise<unknown> {
         if (this.stopover && this.stopover.line) {
             const date = this.stopover.departure ?? this.stopover.arrival ?? ''

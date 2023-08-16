@@ -44,16 +44,12 @@ export class DeparturesController implements ReactiveController {
 
     public onChange(event: SearchFormEvent) {
         if (event.id && event.value) {
-            this.state.location = {
+            this.state.stop = {
                 id: event.id,
                 name: event.value
             };
             this.host.requestUpdate()
         }
-    }
-
-    public onBack() {
-
     }
 
     get suggestions() {
@@ -69,6 +65,6 @@ export class DeparturesController implements ReactiveController {
     }
 
     get location(): Stop | null {
-        return this.state.location
+        return this.state.stop
     }
 }
