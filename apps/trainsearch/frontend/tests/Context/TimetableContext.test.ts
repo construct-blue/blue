@@ -25,16 +25,17 @@ describe('TimetableContext', () => {
         expect(context.hasVehicleInfo(stopoverSemmering)).toBe(false)
     })
     it('should only show vehicle info for the first stop, stops with changed line and a manually added stops', () => {
-        const context = new TimetableContext('oebb', [stopoverGrazHbf, stopoverBruckMur, stopoverKapfenberg, stopoverMuerzzulschlag, stopoverSemmering], [stopGrazHbf, stopBruckMur, stopKapfenberg, stopMuerzzuschlag, stopSemmering])
+        const context = new TimetableContext('oebb', [stopoverGrazHbf, stopoverBruckMur, stopoverKapfenberg, stopoverMuerzzulschlag, stopoverSemmering], [stopGrazHbf, stopBruckMur, stopKapfenberg, stopMuerzzuschlag, stopSemmering], '8100031')
         expect(context.displayVehicleInfo(stopoverGrazHbf)).toBe(true)
         // changed line but last
         expect(context.displayVehicleInfo(stopoverSemmering)).toBe(false)
         // changed line
         expect(context.displayVehicleInfo(stopoverMuerzzulschlag)).toBe(true)
         expect(context.displayVehicleInfo(stopoverBruckMur)).toBe(false)
-        expect(context.displayVehicleInfo(stopoverKapfenberg)).toBe(false)
-        // manually added
-        context.addDisplayVehicleInfo(stopoverKapfenberg)
+        context.addDisplayVehicleInfo(stopoverBruckMur)
+        expect(context.displayVehicleInfo(stopoverBruckMur)).toBe(true)
+
+        // added via constructor
         expect(context.displayVehicleInfo(stopoverKapfenberg)).toBe(true)
     })
 })

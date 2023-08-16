@@ -65,7 +65,7 @@ class TripDetails extends LitElement {
             <h2><span>${lineName(this.trip.line)}</span> <small>${datetime(this.trip.date.toString(), "date")}</small></h2>
             <slot></slot>
             <ts-collapsable summary="Fahrplan" id="timetable">
-                <ts-timetable .trip="${this.trip}" profile="${this.profile}" station-id="${this.stationId}"></ts-timetable>
+                <ts-timetable .stopovers="${this.trip.stopovers}" profile="${this.profile}" station-id="${this.stationId}"></ts-timetable>
             </ts-collapsable>
             <ts-collapsable summary="Infos" id="remarks">
                 <ts-remarks .remarks="${this.trip.remarks}"></ts-remarks>

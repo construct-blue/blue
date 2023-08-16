@@ -5,7 +5,7 @@ export class TimetableContext {
     private stopIdsWithVehicleInfo = new Set<string>
     private stopIdsThatDisplayVehicleInfo = new Set<string>
 
-    constructor(public profile: string, public stopovers: Stopover[], stopsWithVehicleInfo: Stop[]) {
+    constructor(public profile: string, public stopovers: Stopover[], stopsWithVehicleInfo: Stop[], public stationId: string = '') {
         if (!profile) {
             throw 'Missing profile for TimetableContext'
         }
@@ -20,6 +20,9 @@ export class TimetableContext {
                 this.stopIdsThatDisplayVehicleInfo.add(stopover.stop.id)
             }
         })
+        if (stationId) {
+            this.stopIdsThatDisplayVehicleInfo.add(stationId)
+        }
     }
 
     hasVehicleInfo(stopover: Stopover): boolean {

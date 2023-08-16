@@ -1,4 +1,4 @@
-import {css, html, LitElement, nothing, PropertyValues} from "lit";
+import {css, html, LitElement, PropertyValues} from "lit";
 import {customElement, property, state} from "lit/decorators.js";
 import {Stop} from "../../Models/Stop";
 import './TripList'

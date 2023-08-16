@@ -1,15 +1,12 @@
 import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {classMap} from "lit/directives/class-map.js"
-import {customElement, property, state} from "lit/decorators.js";
-import {Trip} from "../../Models/Trip";
+import {customElement, property} from "lit/decorators.js";
 import './TrainComposition';
 import './StopoverTime'
 import {lineName} from "../../Directive/LineName";
-import {TrainSearchController} from "../../Client/TrainSearchController";
 import {Stopover} from "../../Models/Stopover";
 import {TimetableController} from "./TimetableController";
 import {Client} from "../../Client/Client";
-import {Stop} from "../../Models/Stop";
 
 declare global {
     interface HTMLElementTagNameMap {
@@ -19,63 +16,28 @@ declare global {
 
 @customElement('ts-timetable')
 class Timetable extends LitElement {
-    private controller = new TimetableController(
-            this,
-            new Client(document.body.dataset.api ?? '')
-    )
-
-    protected willUpdate(_changedProperties: PropertyValues) {
-        super.willUpdate(_changedProperties);
-        if (this.trip?.stopovers) {
-            this.controller.stopovers = this.trip?.stopovers;
-        }
-    }
-
-    private tsController = new TrainSearchController(this)
-
-    @property()
-    public trip: Trip | null = null
-
     @property({type: String})
-    public profile: string = ''
+    public profile!: string
+
+    @property({type: Array<Stopover>})
+    public stopovers!: Stopover[]
 
     @property({type: String, attribute: 'station-id'})
     public stationId: string = ''
 
-    private stations: Stop[] = []
+    private controller!: TimetableController
 
-    @state()
-    private compositions: string[] = []
-
-    protected async scheduleUpdate(): Promise<unknown> {
-        if (this.stationId && !this.compositions.includes(this.stationId)) {
-            this.compositions.push(this.stationId)
+    protected willUpdate(_changedProperties: PropertyValues) {
+        super.willUpdate(_changedProperties);
+        if (_changedProperties.size) {
+            this.controller = new TimetableController(
+                    this,
+                    new Client(document.body.dataset.api ?? ''),
+                    this.profile,
+                    this.stopovers,
+                    this.stationId
+            )
         }
-        if (this.trip && this.trip.stopovers && this.trip.stopovers.length) {
-            if (this.trip.stopovers[0]) {
-                this.compositions.push(this.trip.stopovers[0].stop.id)
-            }
-            const ids = this.trip.stopovers
-                    .filter(stopover => stopover.changedLine)
-                    .map(stopover => stopover.stop.id)
-            this.compositions.push(...ids)
-        }
-        this.stations = await this.tsController.stations(this.profile)
-        return super.scheduleUpdate();
-    }
-
-    protected render() {
-        if (!this.trip) {
-            return nothing;
-        }
-        return html`
-            ${this.controller.stopovers.map(stopover => this.renderStopover(stopover))}
-            <ul>
-                <li><span class="green">•</span> = punktlich gemeldet</li>
-                <li><span class="red">•</span> = verspätet gemeldet</li>
-                <li><span>&#10005;</span> = Bedarfshalt</li>
-            </ul>
-        `;
     }
 
     static styles = css`
@@ -139,12 +101,18 @@ class Timetable extends LitElement {
         .green {
             color: var(--green);
         }
-
-        .delay {
-            font-family: FrutigerNextPro-Bold, sans-serif;
-            font-weight: bold;
-        }
     `
+
+    protected render() {
+        return html`
+            ${this.controller.stopovers.map(stopover => this.renderStopover(stopover))}
+            <ul>
+                <li><span class="green">•</span> = punktlich gemeldet</li>
+                <li><span class="red">•</span> = verspätet gemeldet</li>
+                <li><span>&#10005;</span> = Bedarfshalt</li>
+            </ul>
+        `;
+    }
 
     protected renderStopover(stopover: Stopover) {
         return html`
@@ -163,21 +131,14 @@ class Timetable extends LitElement {
         if (!this.controller.hasVehicleInfo(stopover)) {
             return nothing;
         }
-        const lastStopover = this.trip?.stopovers[this.trip.stopovers.length - 1]
-        if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && this.stations.map(station => station.id).includes(stopover.stop.id)) {
-            if (!this.compositions.includes(stopover.stop.id)) {
-                return html`
-                    <button @click="${() => this.onClickShowComposition(stopover)}"><i
-                            style="font-family: oebb-symbols">W</i></button>`;
-            }
+        if (this.controller.displayVehicleInfo(stopover)) {
             return html`
                 <ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`
+        } else {
+            return html`
+                <button @click="${() => this.controller.addDisplayVehicleInfo(stopover)}">
+                    <i style="font-family: oebb-symbols">W</i>
+                </button>`;
         }
-        return nothing;
-    }
-
-    private onClickShowComposition(stopover: Stopover) {
-        this.compositions.push(stopover.stop.id)
-        this.requestUpdate()
     }
 }

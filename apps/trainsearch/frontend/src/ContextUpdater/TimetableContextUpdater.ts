@@ -9,7 +9,8 @@ export class TimetableContextUpdater {
         return new TimetableContext(
                 context.profile,
                 context.stopovers,
-                await this.client.stopsWithVehicleInfo(context.profile)
+                await this.client.stopsWithVehicleInfo(context.profile),
+                context.stationId
         )
     }
 }
