@@ -28,7 +28,7 @@ class FavoritesHandler implements RequestHandlerInterface
                 new LayoutView(
                     $request->getAttribute(AssetsLoader::class),
                     $api,
-                    '<ts-home></ts-home>'
+                    '<ts-favorites></ts-favorites>'
                 )
             )
         );

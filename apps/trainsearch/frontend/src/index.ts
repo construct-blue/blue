@@ -1,4 +1,6 @@
 import 'sw/registerSW'
 import './Component/Layout/Layout.css'
-import './Page/Departures/Departures'
 import './Component/Navigation/Navigation'
+import './Page/Departures/Departures'
+import './Page/Trip/Trip'
+import './Page/Favorites/Favorites'

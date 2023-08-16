@@ -4,7 +4,7 @@ import '../../Component/Trip/TripList'
 import '../../Component/Trip/TripDetails'
 import "../../Component/Common/ReloadButton"
 
-@customElement('ts-home')
+@customElement('ts-favorites')
 class Favorites extends LitElement {
     static styles = css`
         :host(ts-home) {

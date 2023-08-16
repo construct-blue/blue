@@ -28,7 +28,7 @@ class TripHandler implements RequestHandlerInterface
                 new LayoutView(
                     $request->getAttribute(AssetsLoader::class),
                     $api,
-                    '<ts-number></ts-number>'
+                    '<ts-trip></ts-trip>'
                 )
             )
         );

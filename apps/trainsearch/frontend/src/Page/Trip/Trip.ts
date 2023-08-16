@@ -37,11 +37,6 @@ export class TripView extends LitElement {
         }
     `
 
-    connectedCallback() {
-        super.connectedCallback();
-
-    }
-
     protected render() {
         return html`
             <h1><i style="font-family: oebb-symbols">–</i>Zug</h1>

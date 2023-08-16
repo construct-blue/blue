@@ -9,8 +9,8 @@ class Navigation extends LitElement {
             <nav>
                 <ul>
                     <li><a href="/"><i>&starf;</i>Favoriten</a></li>
-                    <li><a href="/train"><i style="font-family: oebb-symbols">–</i>Zug</a></li>
-                    <li><a href="/station"><i style="font-family: mav-symbols">ȫ</i>Abfahrten</a></li>
+                    <li><a href="/trip"><i style="font-family: oebb-symbols">–</i>Zug</a></li>
+                    <li><a href="/departures"><i style="font-family: mav-symbols">ȫ</i>Abfahrten</a></li>
                 </ul>
             </nav>
         `;
