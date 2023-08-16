@@ -1,4 +1,4 @@
-import {css, html, LitElement, nothing} from "lit";
+import {css, html, LitElement, nothing, PropertyValues} from "lit";
 import {classMap} from "lit/directives/class-map.js"
 import {customElement, property, state} from "lit/decorators.js";
 import {Trip} from "../../Models/Trip";
@@ -24,10 +24,17 @@ class Timetable extends LitElement {
             new Client(document.body.dataset.api ?? '')
     )
 
+    protected willUpdate(_changedProperties: PropertyValues) {
+        super.willUpdate(_changedProperties);
+        if (this.trip?.stopovers) {
+            this.controller.stopovers = this.trip?.stopovers;
+        }
+    }
+
     private tsController = new TrainSearchController(this)
 
     @property()
-    public trip: Trip|null = null
+    public trip: Trip | null = null
 
     @property({type: String})
     public profile: string = ''
@@ -62,7 +69,7 @@ class Timetable extends LitElement {
             return nothing;
         }
         return html`
-            ${this.trip.stopovers.map(stopover => this.renderStopover(stopover))}
+            ${this.controller.stopovers.map(stopover => this.renderStopover(stopover))}
             <ul>
                 <li><span class="green">•</span> = punktlich gemeldet</li>
                 <li><span class="red">•</span> = verspätet gemeldet</li>
@@ -119,7 +126,7 @@ class Timetable extends LitElement {
             padding: .25rem;
             align-self: end;
         }
-        
+
         .red, .green {
             font-size: 2.5rem;
             line-height: 0;
@@ -143,7 +150,8 @@ class Timetable extends LitElement {
         return html`
             <p class=${classMap({selected: stopover.stop.id == this.stationId})}>
                 ${stopover.stop.name}${stopover.departurePlatform ? ` (Bst. ${stopover.departurePlatform})` : nothing}
-                ${stopover.changedLine && stopover.line ? html`<span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
+                ${stopover.changedLine && stopover.line ? html`
+                    <span>&rarr; ${lineName(stopover.line)}</span>` : nothing}
                 <ts-stopover-time .stopover="${stopover}"></ts-stopover-time>
                 ${this.renderComposition(stopover)}
                 <ts-remarks muted .remarks="${stopover.remarks}"></ts-remarks>
@@ -156,7 +164,8 @@ class Timetable extends LitElement {
         if (lastStopover && this.stations && this.profile === 'oebb' && !this.trip?.foreign && stopover.stop.id !== lastStopover.stop.id && this.stations.map(station => station.id).includes(stopover.stop.id)) {
             if (!this.compositions.includes(stopover.stop.id)) {
                 return html`
-                    <button @click="${() => this.onClickShowComposition(stopover)}"><i style="font-family: oebb-symbols">W</i></button>`;
+                    <button @click="${() => this.onClickShowComposition(stopover)}"><i
+                            style="font-family: oebb-symbols">W</i></button>`;
             }
             return html`
                 <ts-composition profile="${this.profile}" .stopover="${stopover}"></ts-composition>`

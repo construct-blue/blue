@@ -86,7 +86,7 @@ export class Client implements ClientInterface {
         })).parse(await response.json())
     }
 
-    public async stations(profile: string): Promise<Stop[]> {
+    public async stopsWithVehicleInfo(profile: string): Promise<Stop[]> {
 
         const url = this.basePath + '/' + profile + '/composition/stations'
 

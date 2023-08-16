@@ -8,6 +8,8 @@ export class TimetableContext {
         if (!profile) {
             throw 'Missing profile for TimetableContext'
         }
+
+        stopsWithVehicleInfo = stopsWithVehicleInfo.slice(0, stopsWithVehicleInfo.length - 1)
         this.stopIdsWithVehicleInfo = new Set<string>(stopsWithVehicleInfo.map(stop => stop.id))
     }
 

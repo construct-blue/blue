@@ -28,7 +28,7 @@ export class TestClient implements ClientInterface {
         return Promise.resolve([this.data.trip]);
     }
 
-    stations(profile: string): Promise<Stop[]> {
+    stopsWithVehicleInfo(profile: string): Promise<Stop[]> {
         return Promise.resolve(this.data.stops)
     }
 

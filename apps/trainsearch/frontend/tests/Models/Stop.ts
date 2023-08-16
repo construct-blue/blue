@@ -13,3 +13,8 @@ export const stopKapfenberg: Stop = {
     id: "8100031",
     name: "Kapfenberg",
 }
+
+export const stopSemmering: Stop = {
+    "id": "8100028",
+    "name": "Semmering",
+}
