@@ -31,6 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@jest/globals", "npm:29.6.2"],\
             ["@lit-app/state", "npm:0.8.4"],\
             ["@lit-labs/context", "npm:0.3.3"],\
+            ["@lit/reactive-element", "npm:1.6.3"],\
             ["@web-types/lit", "npm:2.0.0-3"],\
             ["css-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:6.8.1"],\
             ["jest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:29.5.0"],\
@@ -7811,6 +7812,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@jest/globals", "npm:29.6.2"],\
             ["@lit-app/state", "npm:0.8.4"],\
             ["@lit-labs/context", "npm:0.3.3"],\
+            ["@lit/reactive-element", "npm:1.6.3"],\
             ["@web-types/lit", "npm:2.0.0-3"],\
             ["css-loader", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:6.8.1"],\
             ["jest", "virtual:04f359ef7d0a7ecc54609293656a259544af0bca5a8a19764ae07a8f29abcddadf41bae98f5bed2b940424121e87803e0b92aa55030457748669986659d3b666#npm:29.5.0"],\

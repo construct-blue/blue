@@ -101,7 +101,7 @@ class SearchForm extends LitElement {
                 })}" .value="${this.uicPrefix}" @change="${this.onChangeUicProfix}"></ts-select>` : nothing}
             <ts-search-input @suggest="${this.onSuggest}" @change="${this.onChange}"
                              .suggestions="${this.suggestions}"
-                             .value="${this.value}"
+
             ></ts-search-input>
         `;
     }

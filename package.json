@@ -31,6 +31,7 @@
   "dependencies": {
     "@lit-app/state": "^0.8.4",
     "@lit-labs/context": "^0.3.3",
+    "@lit/reactive-element": "^1.6.3",
     "lit": "^2.8.0",
     "zod": "^3.21.4"
   }

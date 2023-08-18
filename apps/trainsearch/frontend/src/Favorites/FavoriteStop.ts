@@ -6,3 +6,10 @@ export const FavoriteStop = Stop.extend({
 })
 
 export type FavoriteStop = z.infer<typeof FavoriteStop>
+
+export const equals = (a: FavoriteStop, b: FavoriteStop) =>
+        a.profile === b.profile && a.id === b.id
+
+export const create = (stop: Stop, profile: string): FavoriteStop => {
+    return {...stop, profile: profile}
+}
