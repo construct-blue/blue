@@ -5,16 +5,22 @@ import {LocationBoardContextUpdater} from "../../ContextUpdater/LocationBoardCon
 import {ClientInterface} from "../../Client/ClientInterface";
 import {Trip} from "../../Models/Trip";
 import {TripEvent} from "./TripList";
+import {FavoritesState} from "../../Favorites/FavoritesState";
+import {FavoritesStateStorage} from "../../Favorites/FavoritesStateStorage";
 
 export class LocationBoardController implements ReactiveController {
     private boardContext!: LocationBoardContext;
     private boardContextUpdater: LocationBoardContextUpdater
+    private favoritesState: FavoritesState
+    private favoritesStateStorage = new FavoritesStateStorage(localStorage)
+
     public loading: boolean = false
 
-    constructor(private host: ReactiveControllerHost, private client: ClientInterface, profile: string, location: Stop) {
+    constructor(private host: ReactiveControllerHost, private client: ClientInterface, private profile: string, location: Stop) {
         host.addController(this)
         this.boardContextUpdater = new LocationBoardContextUpdater(client)
         this.boardContext = new LocationBoardContext(profile, location, [])
+        this.favoritesState = this.favoritesStateStorage.load()
         this.updateBoard()
     }
 
@@ -52,18 +58,19 @@ export class LocationBoardController implements ReactiveController {
 
     public onFavorite() {
         if (this.selectedTrip) {
-           // favoritesState.addTrip(this.selectedTrip)
+            this.favoritesState.toggleTrip(this.profile, this.selectedTrip)
         } else {
-           // favoritesState.addStop(this.boardContext.stop)
+            this.favoritesState.toggleStop(this.profile, this.boardContext.stop)
         }
+        this.host.requestUpdate()
+        this.favoritesStateStorage.save(this.favoritesState)
     }
 
     public isFavorite(): boolean {
-        return false;
         if (this.selectedTrip) {
-           // return favoritesState.hasTrip(this.selectedTrip)
+            return this.favoritesState.hasTrip(this.profile, this.selectedTrip)
         } else {
-           // return favoritesState.hasStop(this.boardContext.stop)
+            return this.favoritesState.hasStop(this.profile, this.boardContext.stop)
         }
     }
 

@@ -14,12 +14,22 @@ export class FavoritesState {
         this.stops = new ImmutableList<FavoriteStop>(equals, stops)
     }
 
-    addTrip(profile: string, trip: Trip) {
-        this.trips = this.trips.with(createTrip(trip, profile))
+    toggleTrip(profile: string, trip: Trip) {
+        const favoriteTrip = createTrip(trip, profile);
+        if (this.trips.has(favoriteTrip)) {
+            this.trips = this.trips.without(favoriteTrip)
+        } else {
+            this.trips = this.trips.with(favoriteTrip)
+        }
     }
 
-    addStop(profile: string, stop: Stop) {
-        this.stops = this.stops.with(createStop(stop, profile))
+    toggleStop(profile: string, stop: Stop) {
+        const favoriteStop = createStop(stop, profile)
+        if (this.stops.has(favoriteStop)) {
+            this.stops = this.stops.without(favoriteStop)
+        } else {
+            this.stops = this.stops.with(favoriteStop)
+        }
     }
 
     hasTrip(profile: string, trip: Trip) {
