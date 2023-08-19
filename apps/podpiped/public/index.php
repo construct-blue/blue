@@ -7,7 +7,7 @@ $time = time();
 
 const API = 'pipedapi.kavin.rocks';
 
-const STREAM_API = 'api-piped.mha.fi';
+const STREAM_API = 'https://api-piped.mha.fi';
 
 const PROXY = 'pipedproxy.kavin.rocks';
 
