@@ -5,7 +5,8 @@ declare(strict_types=1);
 global $time;
 $time = time();
 
-const API = 'pipedapi.kavin.rocks';
+//const API = 'pipedapi.kavin.rocks';
+const API = 'api-piped.mha.fi';
 
 const STREAM_API = 'https://api-piped.mha.fi';
 
@@ -421,7 +422,7 @@ function fetch_items(
 {
     static $videoIds = [];
 
-    $api = STREAM_API;
+    //$api = STREAM_API;
 
     $items = '';
     foreach ($videos as $video) {
