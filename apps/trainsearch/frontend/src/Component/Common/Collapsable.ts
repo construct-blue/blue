@@ -1,13 +1,15 @@
-import {css, html, LitElement, PropertyValues, TemplateResult} from "lit";
+import {css, html, LitElement, TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {classMap} from "lit/directives/class-map.js";
+import {storage} from "../../Decorator/storage";
 
 @customElement('ts-collapsable')
 class Collapsable extends LitElement {
     @property()
     public summary: string = ''
 
-    @property()
+    @storage({useId: true})
+    @property({type: Boolean})
     public open: boolean = false
 
     @property({type: Boolean})
@@ -48,29 +50,5 @@ class Collapsable extends LitElement {
                 </section>
             </details>
         `;
-    }
-
-
-    protected firstUpdated(_changedProperties: PropertyValues) {
-        super.firstUpdated(_changedProperties);
-        if (this.id) {
-            this.open = this.open || localStorage.getItem(this.storageId) === 'open'
-        }
-    }
-
-    get storageId(): string
-    {
-        return this.tagName.toLowerCase() + '-' + this.id;
-    }
-
-    protected updated(_changedProperties: PropertyValues) {
-        super.updated(_changedProperties);
-        if (this.id) {
-            if (this.open) {
-                localStorage.setItem(this.storageId, 'open')
-            } else {
-                localStorage.removeItem(this.storageId)
-            }
-        }
     }
 }

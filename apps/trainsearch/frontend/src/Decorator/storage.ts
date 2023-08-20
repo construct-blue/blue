@@ -1,11 +1,56 @@
 import {decorateProperty} from '@lit/reactive-element/decorators/base.js';
-import {ComplexAttributeConverter, defaultConverter, ReactiveElement} from "@lit/reactive-element";
+import {ReactiveController, ReactiveElement} from "lit";
 
 export type StorageOptions = {
-    key?: string,
+    key?: string
     prefix?: string
+    serialize?: (value: unknown) => string
+    unserialize?: (value: string) => unknown
+    parse?: (value: unknown) => unknown
+    useId?: boolean
 }
 
+const buildKey = (host: ReactiveElement, property: PropertyKey, options?: StorageOptions) => {
+    let id = null
+    if (options?.useId && 'id' in host) {
+        id = host.id
+    }
+    return `${options?.prefix || host.constructor.name}_${options?.key || String(property)}${id ? `_${id}` : ''}`
+}
+
+class StorageController implements ReactiveController {
+    private key!: string
+
+    constructor(private host: ReactiveElement, private property: PropertyKey, private descriptor: PropertyDescriptor, private options?: StorageOptions) {
+        host.addController(this)
+    }
+
+    hostConnected() {
+        this.updateValue()
+    }
+
+    private keyChanged() {
+        return this.key !== buildKey(this.host, this.property, this.options)
+    }
+
+    private updatedKey(): string {
+        return this.key = buildKey(this.host, this.property, this.options)
+    }
+
+    private updateValue() {
+        const value = localStorage.getItem(this.updatedKey())
+        if (value && this.descriptor?.set) {
+            const unserializedValue = this.options?.unserialize ? this.options.unserialize(value) : JSON.parse(value);
+            this.descriptor.set.call(this.host, this.options?.parse ? this.options.parse(unserializedValue) : unserializedValue)
+        }
+    }
+
+    hostUpdate() {
+        if (this.keyChanged()) {
+            this.updateValue();
+        }
+    }
+}
 
 /**
  * A decorator for syncing state values with localStorage
@@ -25,52 +70,23 @@ export type StorageOptions = {
 export function storage(options?: StorageOptions) {
     return decorateProperty({
         finisher: (ctor: typeof ReactiveElement, property: PropertyKey) => {
-            const descriptor = Object.getOwnPropertyDescriptor(ctor.prototype, property);
-
+            const descriptor = Object.getOwnPropertyDescriptor(ctor.prototype, property)
             if (!descriptor) {
                 throw new Error('@storage decorator needs to be called before @property')
             }
 
-            const key: string = `${options?.prefix || ctor.name}_${options?.key || String(property)}`;
-            const definition = ctor.elementProperties.get(property);
-            const type = definition?.type ?? String
-
-            const converter = definition?.converter
-                ? definition.converter as ComplexAttributeConverter
-                : defaultConverter
-
-            const storedValue = localStorage.getItem(key)
-                ? converter.fromAttribute
-                    ? converter.fromAttribute(localStorage.getItem(key), type)
-                    : JSON.parse(localStorage.getItem(key) as string)
-                : undefined;
-
-            ctor.addInitializer((element: ReactiveElement) => {
-                if (storedValue !== undefined) {
-                    (element as any)[property] = storedValue
-                }
-            })
+            ctor.addInitializer((host: ReactiveElement) =>
+                new StorageController(host, property, descriptor, options))
 
             Object.defineProperty(ctor.prototype, property, {
                 ...descriptor,
                 set: function (this: ReactiveElement, value: unknown) {
-                    if (!this.isConnected && storedValue !== undefined) {
-                        value = storedValue;
-                    }
-
                     if (descriptor?.set) {
                         descriptor.set.call(this, value)
                     }
 
-                    if (value !== undefined && this.isConnected) {
-                        const stringValue = converter.toAttribute
-                            ? converter.toAttribute(value, type) as string
-                            : JSON.stringify(value);
-
-                        localStorage.setItem(
-                            key,
-                            stringValue
-                        );
+                    if (this.isConnected && value !== undefined) {
+                        localStorage.setItem(buildKey(this, property, options), options?.serialize ? options.serialize(value) : JSON.stringify(value));
                     }
                 }
             });
