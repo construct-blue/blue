@@ -5,8 +5,8 @@ declare(strict_types=1);
 global $time;
 $time = time();
 
-//const API = 'pipedapi.kavin.rocks';
-const API = 'api-piped.mha.fi';
+const API = 'pipedapi.kavin.rocks';
+//const API = 'api-piped.mha.fi';
 
 const STREAM_API = 'https://api-piped.mha.fi';
 
