@@ -2,6 +2,7 @@ import {ClientInterface} from "./ClientInterface";
 import {Trip} from "../Models/Trip";
 import {Stop} from "../Models/Stop";
 import {z} from "zod";
+import {UicPrefix} from "../Models/UicPrefix";
 
 export class Client implements ClientInterface {
     private controllers: AbortController[] = []
@@ -80,10 +81,7 @@ export class Client implements ClientInterface {
         const url = this.basePath + '/' + profile + '/uicprefixes'
         const response = await this.fetch(url);
 
-        return z.array(z.object({
-            id: z.string(),
-            name: z.string()
-        })).parse(await response.json())
+        return z.array(UicPrefix).parse(await response.json())
     }
 
     public async stopsWithVehicleInfo(profile: string): Promise<Stop[]> {

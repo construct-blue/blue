@@ -24,29 +24,6 @@ export class Departures extends LitElement {
         h1, h2 {
             margin: .5rem 0;
         }
-
-        button {
-            font-size: 1rem;
-            background: var(--dark-grey);
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            padding: .25rem;
-        }
-
-        span {
-            display: flex;
-            justify-content: space-between;
-            gap: .25rem;
-        }
-
-        span button {
-            padding: .5rem;
-        }
-
-        span span {
-            justify-content: end;
-        }
     `
 
 

@@ -1,7 +1,7 @@
 import {z} from "zod";
 
 export const UicPrefix = z.object({
-    prefix: z.string(),
+    prefix: z.coerce.number(),
     name: z.string()
 })
 
