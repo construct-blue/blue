@@ -1,5 +1,17 @@
 {
   "name": "construct-blue/snappy-renderer-smarty",
+  "description": "Rendering strategy with the smarty/smarty template engine for construct-blue/snappy-renderer.",
+  "homepage": "https://github.com/construct-blue/snappy-renderer-smarty",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robert Kleinschuster",
+      "email": "snappy@kleinschuster.de",
+      "homepage": "https://www.robs.social",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "php": "^8.2",
     "construct-blue/snappy-renderer": "self.version",
