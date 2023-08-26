@@ -6,26 +6,6 @@ on:
       - split
 
 jobs:
-  provide_packages_json:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.2
-          coverage: none
-
-      - uses: "ramsey/composer-install@v1"
-
-      # get package json list
-      - id: output_data
-        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json)"
-
-    outputs:
-      matrix: ${{ steps.output_data.outputs.matrix }}
-
   split_monorepo:
     needs: provide_packages_json
 
@@ -33,7 +13,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
+        package:
+          - snappy-renderer
+          - snappy-renderer-smarty
+          - snappy-core
 
     steps:
       - uses: actions/checkout@v2
