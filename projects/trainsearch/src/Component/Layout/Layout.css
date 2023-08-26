@@ -75,30 +75,30 @@ main > *, footer > * {
 
 @font-face {
     font-family: "FrutigerNextPro-Regular";
-    src: url("FrutigerNextPro-Regular.otf") format("opentype")
+    src: url("../../fonts/FrutigerNextPro-Regular.otf") format("opentype")
 }
 
 @font-face {
     font-family: "FrutigerNextPro-Bold";
-    src: url("FrutigerNextPro-Bold.otf") format("opentype")
+    src: url("../../fonts/FrutigerNextPro-Bold.otf") format("opentype")
 }
 
 @font-face {
     font-family: "oebb-symbols";
-    src: url("oebb.ttf") format("truetype");
+    src: url("../../fonts/oebb.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "oebb-light-symbols";
-    src: url("oebb-light.ttf") format("truetype");
+    src: url("../../fonts/oebb-light.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "mav-symbols";
-    src: url("mav.ttf") format("truetype");
+    src: url("../../fonts/mav.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "db-symbols";
-    src: url("db.ttf") format("truetype");
+    src: url("../../fonts/db.ttf") format("truetype");
 }

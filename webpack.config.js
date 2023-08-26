@@ -8,9 +8,9 @@ module.exports = [
         },
     }),
     common({
-        entry: './projects/trainsearch/frontend/src/index.ts',
+        entry: './projects/trainsearch/src/index.ts',
         output: {
-            path: './projects/trainsearch/frontend',
+            path: './projects/trainsearch',
         },
     })
 ];
