@@ -1,0 +1,29 @@
+{
+  "name": "construct-blue/snappy-core",
+  "require": {
+    "php": "^8.2",
+    "ext-json": "*",
+    "construct-blue/snappy-renderer": "@dev",
+    "league/route": "^5.1",
+    "laminas/laminas-diactoros": "^3.0",
+    "laminas/laminas-httphandlerrunner": "^2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Blue\\Snappy\\Core\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BlueTest\\Snappy\\Core\\": "tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.2",
+    "phpstan/phpstan": "^1.10.21"
+  },
+  "scripts": {
+    "phpunit": "phpunit",
+    "phpstan": "phpstan analyse"
+  }
+}

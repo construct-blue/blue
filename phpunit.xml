@@ -11,21 +11,21 @@
          failOnWarning="true">
     <testsuites>
         <testsuite name="default">
-            <directory>apps/example/tests</directory>
-            <directory>libs/hafas-client/tests</directory>
-            <directory>libs/oebb-live-client/tests</directory>
-            <directory>libs/snappy-core/tests</directory>
-            <directory>libs/snappy-renderer/tests</directory>
+            <directory>projects/example/tests</directory>
+            <directory>packages/hafas-client/tests</directory>
+            <directory>packages/oebb-live-client/tests</directory>
+            <directory>packages/snappy-core/tests</directory>
+            <directory>packages/snappy-renderer/tests</directory>
         </testsuite>
     </testsuites>
 
     <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
-            <directory>apps/example/src</directory>
-            <directory>libs/hafas-client/src</directory>
-            <directory>libs/oebb-live-client/src</directory>
-            <directory>libs/snappy-core/src</directory>
-            <directory>libs/snappy-renderer/src</directory>
+            <directory>projects/example/src</directory>
+            <directory>packages/hafas-client/src</directory>
+            <directory>packages/oebb-live-client/src</directory>
+            <directory>packages/snappy-core/src</directory>
+            <directory>packages/snappy-renderer/src</directory>
         </include>
     </source>
 </phpunit>

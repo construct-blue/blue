@@ -1,12 +1,12 @@
 parameters:
 	level: 6
 	paths:
-		- apps/example/src
-		- apps/example/tests
-		- apps/trainsearch/api/src
-		- libs/oebb-live-client/src
-		- libs/oebb-live-client/tests
-		- libs/snappy-core/src
-		- libs/snappy-core/tests
-		- libs/snappy-renderer/src
-		- libs/snappy-renderer/tests
+		- projects/example/src
+		- projects/example/tests
+		- projects/trainsearch-api/src
+		- packages/oebb-live-client/src
+		- packages/oebb-live-client/tests
+		- packages/snappy-core/src
+		- packages/snappy-core/tests
+		- packages/snappy-renderer/src
+		- packages/snappy-renderer/tests

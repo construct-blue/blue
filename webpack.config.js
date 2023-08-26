@@ -2,15 +2,15 @@ const common = require('./common.webpack.config')
 
 module.exports = [
     common({
-        entry: './apps/example/src/app.ts',
+        entry: './projects/example/src/app.ts',
         output: {
-            path: './apps/example',
+            path: './projects/example',
         },
     }),
     common({
-        entry: './apps/trainsearch/frontend/src/index.ts',
+        entry: './projects/trainsearch/frontend/src/index.ts',
         output: {
-            path: './apps/trainsearch/frontend',
+            path: './projects/trainsearch/frontend',
         },
     })
 ];

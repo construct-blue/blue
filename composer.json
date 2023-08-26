@@ -1,52 +1,56 @@
 {
-  "require": {
-    "php": "^8.2",
-    "ext-json": "*",
-    "guzzlehttp/guzzle": "^7.3",
-    "nesbot/carbon": "^2.0",
-    "league/route": "^5.1",
-    "league/event": "^3.0",
-    "league/container": "^4.2",
-    "league/config": "^1.2",
-    "laminas/laminas-diactoros": "^3.0",
-    "laminas/laminas-httphandlerrunner": "^2.6",
-    "league/fractal": "^0.20.1",
-    "league/monga": "^1.2",
-    "league/iso3166": "^4.2",
-    "psr/log": "^3.0.0",
-    "monolog/monolog": "^2.9",
-    "smarty/smarty": "^4.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "Blue\\Snappy\\Core\\": "libs/snappy-core/src",
-      "Blue\\Snappy\\Renderer\\": "libs/snappy-renderer/src",
-      "Blue\\Snappy\\Renderer\\Strategy\\Smarty\\": "libs/snappy-renderer-smarty/src",
-      "Blue\\Example\\": "apps/example/src",
-      "Blue\\HafasClient\\": "libs/hafas-client/src",
-      "Blue\\OebbLive\\": "libs/oebb-live-client/src",
-      "Blue\\TrainsearchApi\\": "apps/trainsearch/api/src",
-      "Blue\\TrainsearchFrontend\\": "apps/trainsearch/frontend/src"
+    "name": "construct-blue/blue",
+    "require": {
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "laminas/laminas-diactoros": "^3.0",
+        "laminas/laminas-httphandlerrunner": "^2.6",
+        "league/route": "^5.1",
+        "nesbot/carbon": "^2.0",
+        "php": "^8.2",
+        "smarty/smarty": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blue\\Example\\": "projects/example/src",
+            "Blue\\HafasClient\\": "packages/hafas-client/src",
+            "Blue\\OebbLive\\": "packages/oebb-live-client/src",
+            "Blue\\Snappy\\Core\\": "packages/snappy-core/src",
+            "Blue\\Snappy\\Renderer\\": "packages/snappy-renderer/src",
+            "Blue\\Snappy\\Renderer\\Strategy\\Smarty\\": "packages/snappy-renderer-smarty/src",
+            "Blue\\TrainsearchApi\\": "projects/trainsearch-api/src",
+            "Blue\\TrainsearchFrontend\\": "projects/trainsearch/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BlueTest\\Example\\": "projects/example/tests",
+            "BlueTest\\HafasClient\\": "packages/hafas-client/tests",
+            "BlueTest\\OebbLive\\": "packages/oebb-live-client/tests",
+            "BlueTest\\Snappy\\Core\\": "packages/snappy-core/tests",
+            "BlueTest\\Snappy\\Renderer\\": "packages/snappy-renderer/tests",
+            "BlueTest\\Snappy\\Renderer\\Strategy\\Smarty\\": "packages/snappy-renderer-smarty/tests",
+            "BlueTest\\TrainsearchApi\\": "projects/trainsearch-api/tests",
+            "BlueTest\\TrainsearchFrontend\\": "projects/trainsearch/tests"
+        }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10.21",
+        "phpunit/phpunit": "^10.2",
+        "symplify/monorepo-builder": "^11.2"
+    },
+    "scripts": {
+        "phpunit": "phpunit",
+        "phpstan": "phpstan analyse"
+    },
+    "replace": {
+        "construct-blue/example": "self.version",
+        "construct-blue/hafas-client": "self.version",
+        "construct-blue/oebb-live-client": "self.version",
+        "construct-blue/snappy-core": "self.version",
+        "construct-blue/snappy-renderer": "self.version",
+        "construct-blue/snappy-renderer-smarty": "self.version",
+        "construct-blue/trainsearch": "self.version",
+        "construct-blue/trainsearch-api": "self.version"
     }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "BlueTest\\Snappy\\Core\\": "libs/snappy-core/tests",
-      "BlueTest\\Snappy\\Renderer\\": "libs/snappy-renderer/tests",
-      "BlueTest\\Snappy\\Renderer\\Strategy\\Smarty\\": "libs/snappy-renderer-smarty/tests",
-      "BlueTest\\Example\\": "apps/example/tests",
-      "BlueTest\\HafasClient\\": "libs/hafas-client/tests",
-      "BlueTest\\OebbLive\\": "libs/oebb-live-client/tests",
-      "BlueTest\\TrainsearchApi\\": "apps/trainsearch/api/tests",
-      "BlueTest\\TrainsearchFrontend\\": "apps/trainsearch/frontend/tests"
-    }
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^10.2",
-    "phpstan/phpstan": "^1.10.21"
-  },
-  "scripts": {
-    "phpunit": "phpunit",
-    "phpstan": "phpstan analyse"
-  }
 }
