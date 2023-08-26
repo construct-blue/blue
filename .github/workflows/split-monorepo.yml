@@ -32,7 +32,7 @@ jobs:
             split_repository: 'snappy-renderer-smarty'
 
     steps:
-      -   uses: actions/checkout@v2
+      -   uses: actions/checkout@v3.6.0
 
       # no tag
       -

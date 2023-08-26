@@ -2,7 +2,7 @@
   "name": "construct-blue/snappy-renderer-smarty",
   "require": {
     "php": "^8.2",
-    "construct-blue/snappy-renderer": "@dev",
+    "construct-blue/snappy-renderer": "self.version",
     "smarty/smarty": "^4.3"
   },
   "autoload": {

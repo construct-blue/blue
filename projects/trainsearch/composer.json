@@ -2,7 +2,7 @@
   "name": "construct-blue/trainsearch",
   "require": {
     "php": "^8.2",
-    "construct-blue/snappy-core": "@dev"
+    "construct-blue/snappy-core": "self.version"
   },
   "autoload": {
     "psr-4": {
