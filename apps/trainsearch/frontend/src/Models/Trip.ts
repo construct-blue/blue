@@ -7,7 +7,7 @@ import {Stopover} from "./Stopover";
 export const Trip = z.object({
     id: z.string(),
     date: z.date({coerce: true}),
-    direction: z.string(),
+    direction: z.string().nullable(),
     foreign: z.boolean().nullable(),
     line: Line,
     stopovers: z.array(Stopover),

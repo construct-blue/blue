@@ -1,29 +1,44 @@
 import {css, html, LitElement, nothing} from "lit";
 import {customElement, property, query, state} from "lit/decorators.js";
 
-interface SearchEventInit extends EventInit {
+interface SearchSuggestEventInit extends EventInit {
     value: string
-    id?: string
 }
 
-export class SearchInputEvent extends Event {
+export class SearchSuggestEvent extends Event {
     public value: string
-    public id?: string
 
-    constructor(type: string, eventInitDict: SearchEventInit) {
+    constructor(type: string, eventInitDict: SearchSuggestEventInit) {
         super(type, eventInitDict);
         this.value = eventInitDict.value
-        this.id = eventInitDict.id
     }
 }
 
-export interface SearchSuggestion {
+interface SearchChangeEventInit<T> extends EventInit {
+    id: string
+    value: T
+}
+
+export class SearchChangeEvent<T> extends Event {
+    public id: string
+    public value: T
+
+    constructor(type: string, eventInitDict: SearchChangeEventInit<T>) {
+        super(type, eventInitDict);
+        this.id = eventInitDict.id
+        this.value = eventInitDict.value
+    }
+}
+
+
+export interface SearchSuggestion<T> {
     id: string,
-    name: string
+    name: string,
+    value: T
 }
 
 @customElement('ts-search-input')
-class SearchInput extends LitElement {
+class SearchInput<T> extends LitElement {
     @property({type: String})
     public value: string = ''
 
@@ -31,7 +46,7 @@ class SearchInput extends LitElement {
     public placeholder: string = ''
 
     @property({type: Array})
-    public suggestions: SearchSuggestion[] = [];
+    public suggestions: SearchSuggestion<T>[] = [];
 
     @query('input')
     private input!: HTMLInputElement
@@ -151,16 +166,16 @@ class SearchInput extends LitElement {
 
     private changeKeyword() {
         this.value = this.input?.value ?? ''
-        this.dispatchEvent(new SearchInputEvent(
+        this.dispatchEvent(new SearchSuggestEvent(
                 'suggest',
                 {composed: true, bubbles: true, value: this.input?.value ?? ''}
         ))
     }
 
-    private clickSuggestion(suggestion: SearchSuggestion) {
-        this.dispatchEvent(new SearchInputEvent(
+    private clickSuggestion(suggestion: SearchSuggestion<T>) {
+        this.dispatchEvent(new SearchChangeEvent<T>(
                 'change',
-                {composed: true, bubbles: true, value: suggestion.name, id: suggestion.id}
+                {composed: true, bubbles: true, value: suggestion.value, id: suggestion.id}
         ))
         this.focused = false;
     }

@@ -70,7 +70,7 @@ export class Client implements ClientInterface {
             throw 'Missing uicPrefix for Client.tripSearch'
         }
 
-        const url = this.basePath + '/' + profile + '/tripsearch/' + encodeURIComponent(query);
+        const url = this.basePath + '/' + profile + '/tripsearch/' + encodeURIComponent(query) + '?uicPrefix=' + uicPrefix;
         const response = await this.fetch(url)
 
         return z.array(Trip).parse(await response.json())

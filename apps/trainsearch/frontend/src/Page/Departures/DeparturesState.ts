@@ -12,7 +12,7 @@ export class DeparturesState extends State {
     @property({type: String, value: ''})
     public keyword!: string
 
-    @storage({prefix: 'stop', key: 'keyword'})
+    @storage({prefix: 'departures', key: 'stop'})
     @property({type: Object, value: null})
     public stop!: Stop|null
 }

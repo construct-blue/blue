@@ -3,33 +3,52 @@ import {customElement, property} from "lit/decorators.js";
 import "./Select"
 import "./SearchInput"
 import {SelectEvent} from "./Select";
-import {SearchInputEvent, SearchSuggestion} from "./SearchInput";
+import {SearchChangeEvent, SearchSuggestEvent, SearchSuggestion} from "./SearchInput";
 import {UicPrefix} from "../../Models/UicPrefix";
 
-interface SearchEventInit extends EventInit {
-    value: string
-    id?: string
+interface SearchEventInit<T> extends EventInit {
+    id: string
+    value: T
     profile: string
     uicPrefix: string
 }
 
-export class SearchFormEvent extends Event {
-    public value: string
-    public id?: string
+export class SearchFormEvent<T> extends Event {
+    public id: string
+    public value: T
     public profile: string
     public uicPrefix: string
 
-    constructor(type: string, eventInitDict: SearchEventInit) {
+    constructor(type: string, eventInitDict: SearchEventInit<T>) {
+        super(type, eventInitDict);
+        this.id = eventInitDict.id
+        this.value = eventInitDict.value
+        this.profile = eventInitDict.profile
+        this.uicPrefix = eventInitDict.uicPrefix
+    }
+}
+
+interface SearchSuggestEventInit extends EventInit {
+    value: string
+    profile: string
+    uicPrefix: string
+}
+
+export class SearchFormSuggestEvent extends Event {
+    public value: string
+    public profile: string
+    public uicPrefix: string
+
+    constructor(type: string, eventInitDict: SearchSuggestEventInit) {
         super(type, eventInitDict);
         this.value = eventInitDict.value
-        this.id = eventInitDict.id
         this.profile = eventInitDict.profile
         this.uicPrefix = eventInitDict.uicPrefix
     }
 }
 
 @customElement('ts-search-form')
-class SearchForm extends LitElement {
+class SearchForm<T> extends LitElement {
     @property({type: Array})
     public profiles = [
         {
@@ -55,7 +74,7 @@ class SearchForm extends LitElement {
     public value: string = ''
 
     @property({type: Array})
-    public suggestions: SearchSuggestion[] = []
+    public suggestions: SearchSuggestion<T>[] = []
 
     static styles = css`
         :host(ts-search-form) {
@@ -101,7 +120,7 @@ class SearchForm extends LitElement {
                 })}" .value="${this.uicPrefix}" @change="${this.onChangeUicProfix}"></ts-select>` : nothing}
             <ts-search-input @suggest="${this.onSuggest}" @change="${this.onChange}"
                              .suggestions="${this.suggestions}"
-
+                             .value="${this.value}"
             ></ts-search-input>
         `;
     }
@@ -109,7 +128,7 @@ class SearchForm extends LitElement {
     private onChangeProfile(event: SelectEvent) {
         event.stopPropagation()
         this.profile = event.value
-        this.dispatchEvent(new SearchFormEvent('suggest', {
+        this.dispatchEvent(new SearchFormSuggestEvent('suggest', {
             value: this.value,
             profile: this.profile,
             uicPrefix: this.uicPrefix
@@ -119,26 +138,26 @@ class SearchForm extends LitElement {
     private onChangeUicProfix(event: SelectEvent) {
         event.stopPropagation()
         this.uicPrefix = event.value
-        this.dispatchEvent(new SearchFormEvent('suggest', {
+        this.dispatchEvent(new SearchFormSuggestEvent('suggest', {
             value: this.value,
             profile: this.profile,
             uicPrefix: this.uicPrefix
         }))
     }
 
-    private onSuggest(event: SearchInputEvent) {
+    private onSuggest(event: SearchSuggestEvent) {
         event.stopPropagation()
         this.value = event.value
-        this.dispatchEvent(new SearchFormEvent(event.type, {
+        this.dispatchEvent(new SearchFormSuggestEvent(event.type, {
             value: event.value,
             profile: this.profile,
             uicPrefix: this.uicPrefix
         }))
     }
 
-    private onChange(event: SearchInputEvent) {
+    private onChange(event: SearchChangeEvent<T>) {
         event.stopPropagation()
-        this.dispatchEvent(new SearchFormEvent(event.type, {
+        this.dispatchEvent(new SearchFormEvent<T>(event.type, {
             value: event.value,
             id: event.id,
             profile: this.profile,

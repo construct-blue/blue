@@ -69,7 +69,7 @@ describe('Client', () => {
 
     it('should fetch trips matching a query', async () => {
         fetchMock.mockOnceIf(
-                'https://trainsearch-api.local/test/oebb/tripsearch/S%204711',
+                'https://trainsearch-api.local/test/oebb/tripsearch/S%204711?uicPrefix=81',
                 () => new Promise(r => r({body: JSON.stringify([trip4711])}))
         )
 

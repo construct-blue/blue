@@ -2,10 +2,11 @@ import {css, html, LitElement} from "lit";
 import {customElement} from "lit/decorators.js";
 import "../../Component/Common/SearchForm"
 import {DeparturesController} from "./DeparturesController";
-import {SearchFormEvent} from "../../Component/Common/SearchForm";
+import {SearchFormEvent, SearchFormSuggestEvent} from "../../Component/Common/SearchForm";
 import {departuresState} from "./DeparturesState";
 import {Client} from "../../Client/Client";
 import "../../Component/Trip/LocationBoard"
+import {Stop} from "../../Models/Stop";
 
 @customElement('ts-departures')
 export class Departures extends LitElement {
@@ -31,8 +32,8 @@ export class Departures extends LitElement {
         const result = [
             html`
                 <h1><i style="font-family: mav-symbols">ȫ</i> Abfahrten</h1>
-                <ts-search-form @suggest="${(event: SearchFormEvent) => this.controller.onSuggest(event)}"
-                                @change="${(event: SearchFormEvent) => this.controller.onChange(event)}"
+                <ts-search-form @suggest="${(event: SearchFormSuggestEvent) => this.controller.onSuggest(event)}"
+                                @change="${(event: SearchFormEvent<Stop>) => this.controller.onChange(event)}"
                                 .suggestions="${this.controller.suggestions}"
                                 .value="${this.controller.keyword}"
                                 .profile="${this.controller.profile}"

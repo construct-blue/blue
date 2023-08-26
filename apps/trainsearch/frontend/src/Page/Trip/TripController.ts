@@ -1,51 +1,79 @@
 import {ReactiveController, ReactiveControllerHost} from "lit";
-import {SearchFormEvent} from "../../Component/Common/SearchForm";
+import {SearchFormEvent, SearchFormSuggestEvent} from "../../Component/Common/SearchForm";
 import {TripSearchContext} from "../../Context/TripSearchContext";
 import {UicPrefix} from "../../Models/UicPrefix";
-import {Client} from "../../Client/Client";
+import {TripSearchContextUpdater} from "../../ContextUpdater/TripSearchContextUpdater";
+import {ClientInterface} from "../../Client/ClientInterface";
+import {TripState} from "./TripState";
+import {Trip} from "../../Models/Trip";
 
 export class TripController implements ReactiveController {
-    private searchContext = new TripSearchContext('oebb', '81', '', [])
-    private client: Client = new Client(document.body.dataset.api ?? '')
+    private searchContextUpdater: TripSearchContextUpdater
+    private searchContext: TripSearchContext
 
-    constructor(host: ReactiveControllerHost) {
+    constructor(private host: ReactiveControllerHost, private client: ClientInterface, private state: TripState) {
         host.addController(this)
+        this.searchContextUpdater = new TripSearchContextUpdater(client)
+        this.searchContext = this.createSearchContext(state)
     }
+
+    private createSearchContext(state: TripState) {
+        return new TripSearchContext(state.profile, state.uicPrefix.toString(), state.query, [])
+    }
+
 
     hostConnected() {
+        this.updateSearch()
     }
 
-    onSuggest(event: SearchFormEvent) {
-
+    hostDisconnected() {
+        this.client.abort()
     }
 
-    onChange(event: SearchFormEvent) {
+    private async updateSearch() {
+        this.searchContext = await this.searchContextUpdater.update(this.searchContext);
+        this.host.requestUpdate()
+    }
 
+    onSuggest(event: SearchFormSuggestEvent) {
+        this.state.profile = event.profile
+        this.state.uicPrefix = Number.parseInt(event.uicPrefix)
+        this.state.query = event.value
+        this.searchContext = this.createSearchContext(this.state)
+        this.host.requestUpdate()
+        this.updateSearch()
+    }
+
+    onChange(event: SearchFormEvent<Trip>) {
+        if (event.value) {
+            this.state.trip = event.value;
+            this.host.requestUpdate()
+        }
     }
 
     get profile() {
-        return this.searchContext.profile
+        return this.state.profile
     }
 
     get uicPrefix() {
-        return this.searchContext.uicPrefix
+        return this.state.uicPrefix
     }
 
     get keyword() {
-        return this.searchContext.query
+        return this.state.query
     }
 
     get suggestions() {
-        return this.searchContext.trips
+        return this.searchContext.trips.map(trip => {
+            return {
+                id: trip.id,
+                name: trip.line.name,
+                value: trip
+            }
+        })
     }
 
     async loadUicPrefixes(): Promise<UicPrefix[]> {
-        try {
-
-            return await this.client.uicPrefixes(this.profile)
-        } catch (e) {
-            console.log(e)
-            throw e
-        }
+        return await this.client.uicPrefixes(this.profile)
     }
 }

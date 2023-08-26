@@ -1,6 +1,7 @@
 import {ClientInterface} from "../../src/Client/ClientInterface";
 import {Trip} from "../../src/Models/Trip";
 import {Stop} from "../../src/Models/Stop";
+import {UicPrefix} from "../../src/Models/UicPrefix";
 
 export class TestClient implements ClientInterface {
     public aborted: boolean = false;
@@ -30,6 +31,10 @@ export class TestClient implements ClientInterface {
 
     stopsWithVehicleInfo(profile: string): Promise<Stop[]> {
         return Promise.resolve(this.data.stops)
+    }
+
+    uicPrefixes(profile: string): Promise<UicPrefix[]> {
+        return Promise.reject('not implemented')
     }
 
     abort() {

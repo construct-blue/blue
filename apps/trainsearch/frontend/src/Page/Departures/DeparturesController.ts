@@ -1,5 +1,5 @@
 import {ReactiveController, ReactiveControllerHost} from "lit";
-import {SearchFormEvent} from "../../Component/Common/SearchForm";
+import {SearchFormEvent, SearchFormSuggestEvent} from "../../Component/Common/SearchForm";
 import {Stop} from "../../Models/Stop";
 import {LocationSearchContext} from "../../Context/LocationSearchContext";
 import {LocationSearchContextUpdater} from "../../ContextUpdater/LocationSearchContextUpdater";
@@ -8,7 +8,7 @@ import {StateController} from "@lit-app/state/src/state-controller.js";
 import {ClientInterface} from "../../Client/ClientInterface";
 
 export class DeparturesController implements ReactiveController {
-    private searchContextUpdater
+    private searchContextUpdater: LocationSearchContextUpdater
     private searchContext: LocationSearchContext
 
     constructor(private host: ReactiveControllerHost, private client: ClientInterface, private state: DeparturesState) {
@@ -35,25 +35,28 @@ export class DeparturesController implements ReactiveController {
         this.host.requestUpdate()
     }
 
-    public onSuggest(event: SearchFormEvent) {
+    public onSuggest(event: SearchFormSuggestEvent) {
         this.state.profile = event.profile
         this.state.keyword = event.value
         this.searchContext = this.createSearchContext(this.state)
         this.updateSearch()
     }
 
-    public onChange(event: SearchFormEvent) {
-        if (event.id && event.value) {
-            this.state.stop = {
-                id: event.id,
-                name: event.value
-            };
+    public onChange(event: SearchFormEvent<Stop>) {
+        if (event.value) {
+            this.state.stop = event.value;
             this.host.requestUpdate()
         }
     }
 
     get suggestions() {
-        return this.searchContext.stops;
+        return this.searchContext.stops.map(stop => {
+            return {
+                id: stop.id,
+                name: stop.name,
+                value: stop
+            }
+        });
     }
 
     get keyword() {
