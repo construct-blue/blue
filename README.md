@@ -1,1 +1,2 @@
-# construct-blue/monorepo
+# The monorepo where all blue packages are developed.
+
