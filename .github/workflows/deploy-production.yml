@@ -52,5 +52,6 @@ jobs:
             **/.git*/**
             **/*.ts
             **/.yarn/**
+            **/node_modules/**
             composer.json
             composer.lock
