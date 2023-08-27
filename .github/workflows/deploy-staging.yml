@@ -54,6 +54,6 @@ jobs:
             **/*.ts
             **/.yarn/**              
             **/node_modules/**
-            vendor/**/docs/*
+            **/docs/**/*.md
             composer.json
             composer.lock
