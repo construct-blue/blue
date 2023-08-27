@@ -1,10 +1,13 @@
 {
   "name": "trainsearch",
   "private": true,
+  "version": "0.0.1",
   "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.8.4",
     "@jest/globals": "^29.6.2",
     "@web-types/lit": "^2.0.0-3",
     "css-loader": "^6.8.1",
+    "custom-element-jet-brains-integration": "^1.1.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "jest-fetch-mock": "^3.0.3",
@@ -23,9 +26,10 @@
     "workbox-webpack-plugin": "^7.0.0"
   },
   "scripts": {
-    "watch": "yarn webpack --mode=development --watch",
+    "watch": "yarn analyze --watch & yarn webpack --mode=development --watch",
     "build": "yarn webpack --mode=production",
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "analyze": "cem analyze"
   },
   "dependencies": {
     "@lit-app/state": "^0.8.4",
@@ -34,5 +38,7 @@
     "@shoelace-style/shoelace": "^2.8.0",
     "lit": "^2.8.0",
     "zod": "^3.21.4"
-  }
+  },
+  "web-types": "./web-types.json",
+  "customElements": "custom-elements.json"
 }

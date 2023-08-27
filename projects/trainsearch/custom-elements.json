@@ -1,0 +1,4145 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/registerSW.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Client/Client.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Client",
+          "members": [
+            {
+              "kind": "field",
+              "name": "controllers",
+              "type": {
+                "text": "AbortController[]"
+              },
+              "privacy": "private",
+              "default": "[]"
+            },
+            {
+              "kind": "method",
+              "name": "departures",
+              "return": {
+                "type": {
+                  "text": "Promise<Trip[]>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "location",
+                  "type": {
+                    "text": "Stop"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "trip",
+              "return": {
+                "type": {
+                  "text": "Promise<Trip>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "locationSearch",
+              "return": {
+                "type": {
+                  "text": "Promise<Stop[]>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "keyword",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "tripSearch",
+              "return": {
+                "type": {
+                  "text": "Promise<Trip[]>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "uicPrefix",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "query",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "uicPrefixes",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "stopsWithVehicleInfo",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "Promise<Stop[]>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "fetch",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "input",
+                  "type": {
+                    "text": "RequestInfo | URL"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "abort",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Client",
+          "declaration": {
+            "name": "Client",
+            "module": "src/Client/Client.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Client/ClientInterface.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Client/TrainSearchClient.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TrainSearchClient",
+          "members": [
+            {
+              "kind": "method",
+              "name": "tripdetails",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "tripsearch",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "nr",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "uicPrefix",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "uicPrefixes",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "compostion",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "nr",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "stationId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "dateTime",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "stations",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "location",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "query",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "departures",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "fetch",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "input",
+                  "type": {
+                    "text": "RequestInfo|URL"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "TrainSearchClient",
+            "module": "src/Client/TrainSearchClient.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Client/TrainSearchController.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TrainSearchController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "client",
+              "privacy": "private",
+              "default": "new TrainSearchClient(document.body.dataset.api ?? '')"
+            },
+            {
+              "kind": "field",
+              "name": "favorites",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "controllers",
+              "type": {
+                "text": "AbortController[]"
+              },
+              "privacy": "private",
+              "default": "[]"
+            },
+            {
+              "kind": "method",
+              "name": "tripdetails",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "tripsearch",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "nr",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "uicPrefix",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "optional": true,
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "uicPrefixes",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "composition",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "nr",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "stationId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "date",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "source",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "stations",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "location",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "any"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "any"
+                  }
+                },
+                {
+                  "name": "controller",
+                  "optional": true,
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "departures",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getController",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "AbortController"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "controller",
+                  "optional": true,
+                  "type": {
+                    "text": "AbortController"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "abort",
+              "privacy": "public"
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TrainSearchController",
+          "declaration": {
+            "name": "TrainSearchController",
+            "module": "src/Client/TrainSearchController.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Decorator/storage.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "storage",
+          "parameters": [
+            {
+              "name": "options",
+              "optional": true,
+              "type": {
+                "text": "StorageOptions"
+              }
+            }
+          ],
+          "description": "A decorator for syncing state values with localStorage\n\nA state property marked with @storage will read the value\nfrom the associated localStorage item, parse it depending on\nits type and make it available to the state.\n\nAnytime the state propery changes, the change is reflected\nto localStorage.",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "storage",
+          "declaration": {
+            "name": "storage",
+            "module": "src/Decorator/storage.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Directive/DateTime.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "datetime"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "datetime",
+          "declaration": {
+            "name": "datetime",
+            "module": "src/Directive/DateTime.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Directive/LineName.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "lineName"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "lineName",
+          "declaration": {
+            "name": "lineName",
+            "module": "src/Directive/LineName.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Favorites/FavoriteStop.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "FavoriteStop"
+        },
+        {
+          "kind": "function",
+          "name": "equals",
+          "parameters": [
+            {
+              "name": "a",
+              "type": {
+                "text": "FavoriteStop"
+              }
+            },
+            {
+              "name": "b",
+              "type": {
+                "text": "FavoriteStop"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "create",
+          "return": {
+            "type": {
+              "text": "FavoriteStop"
+            }
+          },
+          "parameters": [
+            {
+              "name": "stop",
+              "type": {
+                "text": "Stop"
+              }
+            },
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FavoriteStop",
+          "declaration": {
+            "name": "FavoriteStop",
+            "module": "src/Favorites/FavoriteStop.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "equals",
+          "declaration": {
+            "name": "equals",
+            "module": "src/Favorites/FavoriteStop.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "create",
+          "declaration": {
+            "name": "create",
+            "module": "src/Favorites/FavoriteStop.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Favorites/FavoriteTrip.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "FavoriteTrip"
+        },
+        {
+          "kind": "function",
+          "name": "similar",
+          "parameters": [
+            {
+              "name": "a",
+              "type": {
+                "text": "FavoriteTrip"
+              }
+            },
+            {
+              "name": "b",
+              "type": {
+                "text": "FavoriteTrip"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "create",
+          "return": {
+            "type": {
+              "text": "FavoriteTrip"
+            }
+          },
+          "parameters": [
+            {
+              "name": "trip",
+              "type": {
+                "text": "Trip"
+              }
+            },
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FavoriteTrip",
+          "declaration": {
+            "name": "FavoriteTrip",
+            "module": "src/Favorites/FavoriteTrip.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "similar",
+          "declaration": {
+            "name": "similar",
+            "module": "src/Favorites/FavoriteTrip.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "create",
+          "declaration": {
+            "name": "create",
+            "module": "src/Favorites/FavoriteTrip.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Favorites/FavoritesState.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "FavoritesState",
+          "members": [
+            {
+              "kind": "field",
+              "name": "stops",
+              "type": {
+                "text": "ImmutableList<FavoriteStop>"
+              },
+              "privacy": "public",
+              "default": "new ImmutableList<FavoriteStop>(equals, stops)"
+            },
+            {
+              "kind": "field",
+              "name": "trips",
+              "type": {
+                "text": "ImmutableList<FavoriteTrip>"
+              },
+              "privacy": "public",
+              "default": "new ImmutableList<FavoriteTrip>(similar, trips)"
+            },
+            {
+              "kind": "method",
+              "name": "toggleTrip",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "toggleStop",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "stop",
+                  "type": {
+                    "text": "Stop"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hasTrip",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hasStop",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "stop",
+                  "type": {
+                    "text": "Stop"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FavoritesState",
+          "declaration": {
+            "name": "FavoritesState",
+            "module": "src/Favorites/FavoritesState.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Favorites/FavoritesStateStorage.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "FavoritesStateStorage",
+          "members": [
+            {
+              "kind": "method",
+              "name": "save",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "state",
+                  "type": {
+                    "text": "FavoritesState"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "load",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "FavoritesState"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FavoritesStateStorage",
+          "declaration": {
+            "name": "FavoritesStateStorage",
+            "module": "src/Favorites/FavoritesStateStorage.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Favorites/ImmutableList.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ImmutableList",
+          "members": [
+            {
+              "kind": "method",
+              "name": "with",
+              "return": {
+                "type": {
+                  "text": "ImmutableList<T>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "T"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "without",
+              "return": {
+                "type": {
+                  "text": "ImmutableList<T>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "T"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "has",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "T"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ImmutableList",
+          "declaration": {
+            "name": "ImmutableList",
+            "module": "src/Favorites/ImmutableList.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Context/LocationBoardContext.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LocationBoardContext",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_selectedTrip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "id",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "selectedTrip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "selectTrip",
+              "parameters": [
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip|null"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LocationBoardContext",
+          "declaration": {
+            "name": "LocationBoardContext",
+            "module": "src/Context/LocationBoardContext.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Context/LocationSearchContext.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LocationSearchContext"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LocationSearchContext",
+          "declaration": {
+            "name": "LocationSearchContext",
+            "module": "src/Context/LocationSearchContext.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Context/TimetableContext.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TimetableContext",
+          "members": [
+            {
+              "kind": "field",
+              "name": "stopIdsWithVehicleInfo",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "stopIdsThatDisplayVehicleInfo"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TimetableContext",
+          "declaration": {
+            "name": "TimetableContext",
+            "module": "src/Context/TimetableContext.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Context/TripDetailsContext.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripDetailsContext",
+          "members": [
+            {
+              "kind": "field",
+              "name": "id",
+              "readonly": true
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripDetailsContext",
+          "declaration": {
+            "name": "TripDetailsContext",
+            "module": "src/Context/TripDetailsContext.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Context/TripSearchContext.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripSearchContext"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripSearchContext",
+          "declaration": {
+            "name": "TripSearchContext",
+            "module": "src/Context/TripSearchContext.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ContextUpdater/LocationBoardContextUpdater.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LocationBoardContextUpdater",
+          "members": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LocationBoardContextUpdater",
+          "declaration": {
+            "name": "LocationBoardContextUpdater",
+            "module": "src/ContextUpdater/LocationBoardContextUpdater.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ContextUpdater/LocationSearchContextUpdater.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LocationSearchContextUpdater",
+          "members": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LocationSearchContextUpdater",
+          "declaration": {
+            "name": "LocationSearchContextUpdater",
+            "module": "src/ContextUpdater/LocationSearchContextUpdater.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ContextUpdater/TimetableContextUpdater.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TimetableContextUpdater",
+          "members": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TimetableContextUpdater",
+          "declaration": {
+            "name": "TimetableContextUpdater",
+            "module": "src/ContextUpdater/TimetableContextUpdater.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ContextUpdater/TripDetailsContextUpdater.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripDetailsContextUpdater",
+          "members": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripDetailsContextUpdater",
+          "declaration": {
+            "name": "TripDetailsContextUpdater",
+            "module": "src/ContextUpdater/TripDetailsContextUpdater.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/ContextUpdater/TripSearchContextUpdater.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripSearchContextUpdater",
+          "members": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripSearchContextUpdater",
+          "declaration": {
+            "name": "TripSearchContextUpdater",
+            "module": "src/ContextUpdater/TripSearchContextUpdater.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Composition.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Composition"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Composition",
+          "declaration": {
+            "name": "Composition",
+            "module": "src/Models/Composition.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Favorites.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Favorites",
+          "members": [
+            {
+              "kind": "field",
+              "name": "locations",
+              "type": {
+                "text": "Stop[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "lines",
+              "type": {
+                "text": "{ profile: string, uicPrefix: number, direction: string, line: Line }[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "method",
+              "name": "addLocation",
+              "parameters": [
+                {
+                  "name": "location",
+                  "type": {
+                    "text": "Stop"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hasLocation",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string|null"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "deleteLocation",
+              "parameters": [
+                {
+                  "name": "id",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "addLine",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "uicPrefix",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "direction",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "line",
+                  "type": {
+                    "text": "Line"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hasLine",
+              "parameters": [
+                {
+                  "name": "line",
+                  "type": {
+                    "text": "Line|null"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "compareLine",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "a",
+                  "type": {
+                    "text": "Line"
+                  }
+                },
+                {
+                  "name": "b",
+                  "type": {
+                    "text": "Line"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "deleteLine",
+              "parameters": [
+                {
+                  "name": "line",
+                  "type": {
+                    "text": "Line"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "fromStorage",
+              "static": true,
+              "parameters": [
+                {
+                  "name": "storage",
+                  "type": {
+                    "text": "Storage"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "save",
+              "parameters": [
+                {
+                  "name": "storage",
+                  "type": {
+                    "text": "Storage"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            }
+          ],
+          "tagName": "ts-favorites",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Favorites",
+          "declaration": {
+            "name": "Favorites",
+            "module": "src/Models/Favorites.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Information.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Information"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Information",
+          "declaration": {
+            "name": "Information",
+            "module": "src/Models/Information.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Line.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Line"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Line",
+          "declaration": {
+            "name": "Line",
+            "module": "src/Models/Line.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Remark.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Remark"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Remark",
+          "declaration": {
+            "name": "Remark",
+            "module": "src/Models/Remark.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Stop.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Stop"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Stop",
+          "declaration": {
+            "name": "Stop",
+            "module": "src/Models/Stop.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Stopover.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Stopover"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Stopover",
+          "declaration": {
+            "name": "Stopover",
+            "module": "src/Models/Stopover.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/Trip.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Trip"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Trip",
+          "declaration": {
+            "name": "Trip",
+            "module": "src/Models/Trip.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Models/UicPrefix.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "UicPrefix"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "UicPrefix",
+          "declaration": {
+            "name": "UicPrefix",
+            "module": "src/Models/UicPrefix.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/Collapsable.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Collapsable",
+          "members": [
+            {
+              "kind": "field",
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "summary"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false",
+              "attribute": "open"
+            },
+            {
+              "kind": "field",
+              "name": "warning",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false",
+              "attribute": "warning"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "summary"
+            },
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "open"
+            },
+            {
+              "name": "warning",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "warning"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-collapsable",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-collapsable",
+          "declaration": {
+            "name": "Collapsable",
+            "module": "src/Component/Common/Collapsable.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/FavoriteButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "FavoriteButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "added",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false",
+              "attribute": "added"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "added",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "added"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-favorite-button",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-favorite-button",
+          "declaration": {
+            "name": "FavoriteButton",
+            "module": "src/Component/Common/FavoriteButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/Profile.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Profile",
+          "members": [
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "profile"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "profile"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-profile",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-profile",
+          "declaration": {
+            "name": "Profile",
+            "module": "src/Component/Common/Profile.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/ReloadButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ReloadButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false",
+              "attribute": "loading"
+            },
+            {
+              "kind": "field",
+              "name": "clicked",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "onClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "onAnimationEnd",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "loading"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-reload-button",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-reload-button",
+          "declaration": {
+            "name": "ReloadButton",
+            "module": "src/Component/Common/ReloadButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/SearchForm.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchFormEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "id",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "T"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefix",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/Component/Common/SearchForm.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchFormSuggestEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefix",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/Component/Common/SearchForm.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchForm",
+          "members": [
+            {
+              "kind": "field",
+              "name": "profiles",
+              "type": {
+                "text": "array"
+              },
+              "privacy": "public",
+              "default": "[\n        {\n            id: 'oebb',\n            name: 'ÖBB'\n        },\n        {\n            id: 'db',\n            name: 'DB'\n        }\n    ]",
+              "attribute": "profiles"
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefixes",
+              "type": {
+                "text": "UicPrefix[]"
+              },
+              "privacy": "public",
+              "default": "[]",
+              "attribute": "uicPrefixes"
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "'oebb'",
+              "attribute": "profile"
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefix",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "'81'",
+              "attribute": "uicPrefix"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "suggestions",
+              "type": {
+                "text": "SearchSuggestion<T>[]"
+              },
+              "privacy": "public",
+              "default": "[]",
+              "attribute": "suggestions"
+            },
+            {
+              "kind": "method",
+              "name": "getFlagEmoji",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "countryCode",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onChangeProfile",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SelectEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onChangeUicProfix",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SelectEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onSuggest",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SearchSuggestEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SearchChangeEvent<T>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "suggest",
+              "type": {
+                "text": "SearchFormSuggestEvent"
+              }
+            },
+            {
+              "type": {
+                "text": "SearchFormSuggestEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profiles",
+              "type": {
+                "text": "array"
+              },
+              "default": "[\n        {\n            id: 'oebb',\n            name: 'ÖBB'\n        },\n        {\n            id: 'db',\n            name: 'DB'\n        }\n    ]",
+              "fieldName": "profiles"
+            },
+            {
+              "name": "uicPrefixes",
+              "type": {
+                "text": "UicPrefix[]"
+              },
+              "default": "[]",
+              "fieldName": "uicPrefixes"
+            },
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "default": "'oebb'",
+              "fieldName": "profile"
+            },
+            {
+              "name": "uicPrefix",
+              "type": {
+                "text": "string"
+              },
+              "default": "'81'",
+              "fieldName": "uicPrefix"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "value"
+            },
+            {
+              "name": "suggestions",
+              "type": {
+                "text": "SearchSuggestion<T>[]"
+              },
+              "default": "[]",
+              "fieldName": "suggestions"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-search-form",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchFormEvent",
+          "declaration": {
+            "name": "SearchFormEvent",
+            "module": "src/Component/Common/SearchForm.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SearchFormSuggestEvent",
+          "declaration": {
+            "name": "SearchFormSuggestEvent",
+            "module": "src/Component/Common/SearchForm.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-search-form",
+          "declaration": {
+            "name": "SearchForm",
+            "module": "src/Component/Common/SearchForm.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/SearchInput.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchSuggestEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/Component/Common/SearchInput.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchChangeEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "id",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "T"
+              },
+              "privacy": "public"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/Component/Common/SearchInput.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchInput",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "suggestions",
+              "type": {
+                "text": "SearchSuggestion<T>[]"
+              },
+              "privacy": "public",
+              "default": "[]",
+              "attribute": "suggestions"
+            },
+            {
+              "kind": "field",
+              "name": "input",
+              "type": {
+                "text": "HTMLInputElement"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "focused",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "onclick"
+            },
+            {
+              "kind": "field",
+              "name": "onOutsideClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "onDelete",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "renderSuggestions",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "changeKeyword",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "clickSuggestion",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "suggestion",
+                  "type": {
+                    "text": "SearchSuggestion<T>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "suggest",
+              "type": {
+                "text": "SearchSuggestEvent"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "SearchChangeEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "value"
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "placeholder"
+            },
+            {
+              "name": "suggestions",
+              "type": {
+                "text": "SearchSuggestion<T>[]"
+              },
+              "default": "[]",
+              "fieldName": "suggestions"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-search-input",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchSuggestEvent",
+          "declaration": {
+            "name": "SearchSuggestEvent",
+            "module": "src/Component/Common/SearchInput.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SearchChangeEvent",
+          "declaration": {
+            "name": "SearchChangeEvent",
+            "module": "src/Component/Common/SearchInput.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-search-input",
+          "declaration": {
+            "name": "SearchInput",
+            "module": "src/Component/Common/SearchInput.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Common/Select.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SelectEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/Component/Common/Select.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Select",
+          "members": [
+            {
+              "kind": "field",
+              "name": "options",
+              "type": {
+                "text": "{ id: string, name: string }[]"
+              },
+              "privacy": "public",
+              "default": "[]",
+              "attribute": "options"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "input",
+              "type": {
+                "text": "HTMLSelectElement"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "onChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "SelectEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "options",
+              "type": {
+                "text": "{ id: string, name: string }[]"
+              },
+              "default": "[]",
+              "fieldName": "options"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-select",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SelectEvent",
+          "declaration": {
+            "name": "SelectEvent",
+            "module": "src/Component/Common/Select.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-select",
+          "declaration": {
+            "name": "Select",
+            "module": "src/Component/Common/Select.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Navigation/Navigation.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Navigation",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-nav",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-nav",
+          "declaration": {
+            "name": "Navigation",
+            "module": "src/Component/Navigation/Navigation.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/LocationBoard.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LocationBoard",
+          "members": [
+            {
+              "kind": "field",
+              "name": "location",
+              "type": {
+                "text": "Stop"
+              },
+              "privacy": "public",
+              "attribute": "location"
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "attribute": "profile"
+            },
+            {
+              "kind": "field",
+              "name": "controller",
+              "type": {
+                "text": "LocationBoardController"
+              },
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "location",
+              "type": {
+                "text": "Stop"
+              },
+              "fieldName": "location"
+            },
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "profile"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-location-board",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-location-board",
+          "declaration": {
+            "name": "LocationBoard",
+            "module": "src/Component/Trip/LocationBoard.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/LocationBoardController.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LocationBoardController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "boardContext",
+              "type": {
+                "text": "LocationBoardContext"
+              },
+              "privacy": "private",
+              "default": "new LocationBoardContext(profile, location, [])"
+            },
+            {
+              "kind": "field",
+              "name": "boardContextUpdater",
+              "type": {
+                "text": "LocationBoardContextUpdater"
+              },
+              "privacy": "private",
+              "default": "new LocationBoardContextUpdater(client)"
+            },
+            {
+              "kind": "field",
+              "name": "favoritesState",
+              "type": {
+                "text": "FavoritesState"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "favoritesStateStorage",
+              "privacy": "private",
+              "default": "new FavoritesStateStorage(localStorage)"
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "updateBoard",
+              "privacy": "public"
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            },
+            {
+              "kind": "field",
+              "name": "departures",
+              "type": {
+                "text": "Trip[]"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "onSelect",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "TripEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onRefresh",
+              "privacy": "public"
+            },
+            {
+              "kind": "method",
+              "name": "onBack",
+              "privacy": "public"
+            },
+            {
+              "kind": "method",
+              "name": "onFavorite",
+              "privacy": "public"
+            },
+            {
+              "kind": "method",
+              "name": "isFavorite",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selectedTrip",
+              "readonly": true
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LocationBoardController",
+          "declaration": {
+            "name": "LocationBoardController",
+            "module": "src/Component/Trip/LocationBoardController.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/Remarks.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Remarks",
+          "members": [
+            {
+              "kind": "field",
+              "name": "remarks",
+              "type": {
+                "text": "Remark[]"
+              },
+              "privacy": "public",
+              "default": "[]",
+              "attribute": "remarks"
+            },
+            {
+              "kind": "field",
+              "name": "muted",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "public",
+              "default": "false",
+              "attribute": "muted"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "remarks",
+              "type": {
+                "text": "Remark[]"
+              },
+              "default": "[]",
+              "fieldName": "remarks"
+            },
+            {
+              "name": "muted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "muted"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-remarks",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-remarks",
+          "declaration": {
+            "name": "Remarks",
+            "module": "src/Component/Trip/Remarks.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/StopoverTime.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "StopoverTime",
+          "members": [
+            {
+              "kind": "field",
+              "name": "stopover",
+              "type": {
+                "text": "Stopover|null"
+              },
+              "privacy": "public",
+              "default": "null",
+              "attribute": "stopover"
+            },
+            {
+              "kind": "method",
+              "name": "renderTimeInfo",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "current",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "planned",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "delay",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "reported",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "stopover",
+              "type": {
+                "text": "Stopover|null"
+              },
+              "default": "null",
+              "fieldName": "stopover"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-stopover-time",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-stopover-time",
+          "declaration": {
+            "name": "StopoverTime",
+            "module": "src/Component/Trip/StopoverTime.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/Timetable.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Timetable",
+          "members": [
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "attribute": "profile"
+            },
+            {
+              "kind": "field",
+              "name": "stopovers",
+              "type": {
+                "text": "Stopover[]"
+              },
+              "privacy": "public",
+              "attribute": "stopovers"
+            },
+            {
+              "kind": "field",
+              "name": "stationId",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "station-id"
+            },
+            {
+              "kind": "field",
+              "name": "controller",
+              "type": {
+                "text": "TimetableController"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "renderStopover",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "stopover",
+                  "type": {
+                    "text": "Stopover"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderComposition",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "stopover",
+                  "type": {
+                    "text": "Stopover"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "profile"
+            },
+            {
+              "name": "stopovers",
+              "type": {
+                "text": "Stopover[]"
+              },
+              "fieldName": "stopovers"
+            },
+            {
+              "name": "station-id",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "stationId"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-timetable",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-timetable",
+          "declaration": {
+            "name": "Timetable",
+            "module": "src/Component/Trip/Timetable.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/TimetableController.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TimetableController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "contextUpdater",
+              "type": {
+                "text": "TimetableContextUpdater"
+              },
+              "privacy": "private",
+              "default": "new TimetableContextUpdater(client)"
+            },
+            {
+              "kind": "field",
+              "name": "context",
+              "type": {
+                "text": "TimetableContext"
+              },
+              "privacy": "private",
+              "default": "new TimetableContext(profile, stopovers, [], stationId)"
+            },
+            {
+              "kind": "method",
+              "name": "updateTimetable"
+            },
+            {
+              "kind": "field",
+              "name": "stopovers",
+              "type": {
+                "text": "Stopover[]"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "hasVehicleInfo",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "stopover",
+                  "type": {
+                    "text": "Stopover"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "displayVehicleInfo",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "stopover",
+                  "type": {
+                    "text": "Stopover"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "addDisplayVehicleInfo",
+              "parameters": [
+                {
+                  "name": "stopover",
+                  "type": {
+                    "text": "Stopover"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TimetableController",
+          "declaration": {
+            "name": "TimetableController",
+            "module": "src/Component/Trip/TimetableController.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/TrainComposition.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TrainComposition",
+          "members": [
+            {
+              "kind": "field",
+              "name": "controller",
+              "privacy": "private",
+              "default": "new TrainSearchController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "profile"
+            },
+            {
+              "kind": "field",
+              "name": "stopover",
+              "type": {
+                "text": "Stopover | null"
+              },
+              "privacy": "public",
+              "default": "null",
+              "attribute": "stopover"
+            },
+            {
+              "kind": "field",
+              "name": "compostion",
+              "type": {
+                "text": "Composition | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "attribute": "compostion"
+            },
+            {
+              "kind": "method",
+              "name": "scheduleUpdate",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Promise<unknown>"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formatUIC",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "uic",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "profile"
+            },
+            {
+              "name": "stopover",
+              "type": {
+                "text": "Stopover | null"
+              },
+              "default": "null",
+              "fieldName": "stopover"
+            },
+            {
+              "name": "compostion",
+              "type": {
+                "text": "Composition | null"
+              },
+              "default": "null",
+              "fieldName": "compostion"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-composition",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TrainComposition",
+          "declaration": {
+            "name": "TrainComposition",
+            "module": "src/Component/Trip/TrainComposition.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-composition",
+          "declaration": {
+            "name": "TrainComposition",
+            "module": "src/Component/Trip/TrainComposition.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/TripDetails.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripDetails",
+          "members": [
+            {
+              "kind": "field",
+              "name": "trip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "privacy": "public",
+              "default": "null",
+              "attribute": "trip"
+            },
+            {
+              "kind": "field",
+              "name": "stationId",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "station-id"
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "default": "''",
+              "attribute": "profile"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "trip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "default": "null",
+              "fieldName": "trip"
+            },
+            {
+              "name": "station-id",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "stationId"
+            },
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "profile"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-details",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-details",
+          "declaration": {
+            "name": "TripDetails",
+            "module": "src/Component/Trip/TripDetails.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Component/Trip/TripList.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "trip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "default": "null"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/Component/Trip/TripList.ts"
+          }
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripList",
+          "members": [
+            {
+              "kind": "field",
+              "name": "trips",
+              "type": {
+                "text": "Trip[]"
+              },
+              "privacy": "public",
+              "default": "[]",
+              "attribute": "trips"
+            },
+            {
+              "kind": "field",
+              "name": "interval",
+              "type": {
+                "text": "any"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "method",
+              "name": "missed",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "seconds",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "soon",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip"
+                  }
+                },
+                {
+                  "name": "threshold",
+                  "default": "600",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "trip",
+                  "type": {
+                    "text": "Trip"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "select",
+              "type": {
+                "text": "TripEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "trips",
+              "type": {
+                "text": "Trip[]"
+              },
+              "default": "[]",
+              "fieldName": "trips"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-trip-list",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripEvent",
+          "declaration": {
+            "name": "TripEvent",
+            "module": "src/Component/Trip/TripList.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-trip-list",
+          "declaration": {
+            "name": "TripList",
+            "module": "src/Component/Trip/TripList.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Departures/Departures.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Departures",
+          "members": [
+            {
+              "kind": "field",
+              "name": "controller",
+              "privacy": "private",
+              "default": "new DeparturesController(\n            this,\n            new Client(document.body.dataset.api ?? ''),\n            departuresState\n    )"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-departures",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Departures",
+          "declaration": {
+            "name": "Departures",
+            "module": "src/Page/Departures/Departures.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-departures",
+          "declaration": {
+            "name": "Departures",
+            "module": "src/Page/Departures/Departures.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Departures/DeparturesController.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "DeparturesController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "searchContextUpdater",
+              "type": {
+                "text": "LocationSearchContextUpdater"
+              },
+              "privacy": "private",
+              "default": "new LocationSearchContextUpdater(client)"
+            },
+            {
+              "kind": "field",
+              "name": "searchContext",
+              "type": {
+                "text": "LocationSearchContext"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "createSearchContext",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "state",
+                  "type": {
+                    "text": "DeparturesState"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hostConnected"
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            },
+            {
+              "kind": "method",
+              "name": "updateSearch",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "onSuggest",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SearchFormSuggestEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onChange",
+              "privacy": "public",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SearchFormEvent<Stop>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "suggestions",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "keyword",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "location",
+              "type": {
+                "text": "Stop | null"
+              },
+              "readonly": true
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "DeparturesController",
+          "declaration": {
+            "name": "DeparturesController",
+            "module": "src/Page/Departures/DeparturesController.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Departures/DeparturesState.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "DeparturesState",
+          "members": [
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "attribute": "profile"
+            },
+            {
+              "kind": "field",
+              "name": "keyword",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "attribute": "keyword"
+            },
+            {
+              "kind": "field",
+              "name": "stop",
+              "type": {
+                "text": "Stop|null"
+              },
+              "privacy": "public",
+              "attribute": "stop"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "profile"
+            },
+            {
+              "name": "keyword",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "keyword"
+            },
+            {
+              "name": "stop",
+              "type": {
+                "text": "Stop|null"
+              },
+              "fieldName": "stop"
+            }
+          ],
+          "superclass": {
+            "name": "State",
+            "package": "@lit-app/state/src/state.js"
+          }
+        },
+        {
+          "kind": "variable",
+          "name": "departuresState",
+          "default": "new DeparturesState()"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "DeparturesState",
+          "declaration": {
+            "name": "DeparturesState",
+            "module": "src/Page/Departures/DeparturesState.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "departuresState",
+          "declaration": {
+            "name": "departuresState",
+            "module": "src/Page/Departures/DeparturesState.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Favorites/Favorites.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Favorites",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-favorites",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-favorites",
+          "declaration": {
+            "name": "Favorites",
+            "module": "src/Page/Favorites/Favorites.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Trip/Trip.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripView",
+          "members": [
+            {
+              "kind": "field",
+              "name": "controller",
+              "privacy": "private",
+              "default": "new TripController(\n        this,\n        new Client(document.body.dataset.api ?? ''),\n        tripState\n    )"
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefixes",
+              "type": {
+                "text": "UicPrefix[]"
+              },
+              "privacy": "private",
+              "default": "[]"
+            },
+            {
+              "kind": "method",
+              "name": "scheduleUpdate",
+              "privacy": "protected"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "ts-trip",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripView",
+          "declaration": {
+            "name": "TripView",
+            "module": "src/Page/Trip/Trip.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ts-trip",
+          "declaration": {
+            "name": "TripView",
+            "module": "src/Page/Trip/Trip.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Trip/TripController.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "searchContextUpdater",
+              "type": {
+                "text": "TripSearchContextUpdater"
+              },
+              "privacy": "private",
+              "default": "new TripSearchContextUpdater(client)"
+            },
+            {
+              "kind": "field",
+              "name": "searchContext",
+              "type": {
+                "text": "TripSearchContext"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "createSearchContext",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "state",
+                  "type": {
+                    "text": "TripState"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "hostConnected"
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            },
+            {
+              "kind": "method",
+              "name": "updateSearch",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "onSuggest",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SearchFormSuggestEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "onChange",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SearchFormEvent<Trip>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "profile",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefix",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "keyword",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "suggestions",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "loadUicPrefixes",
+              "return": {
+                "type": {
+                  "text": "Promise<UicPrefix[]>"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripController",
+          "declaration": {
+            "name": "TripController",
+            "module": "src/Page/Trip/TripController.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/Page/Trip/TripState.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TripState",
+          "members": [
+            {
+              "kind": "field",
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "attribute": "profile"
+            },
+            {
+              "kind": "field",
+              "name": "uicPrefix",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "public",
+              "attribute": "uicPrefix"
+            },
+            {
+              "kind": "field",
+              "name": "query",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public",
+              "attribute": "query"
+            },
+            {
+              "kind": "field",
+              "name": "trip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "privacy": "public",
+              "attribute": "trip"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profile",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "profile"
+            },
+            {
+              "name": "uicPrefix",
+              "type": {
+                "text": "number"
+              },
+              "fieldName": "uicPrefix"
+            },
+            {
+              "name": "query",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "query"
+            },
+            {
+              "name": "trip",
+              "type": {
+                "text": "Trip|null"
+              },
+              "fieldName": "trip"
+            }
+          ],
+          "superclass": {
+            "name": "State",
+            "package": "@lit-app/state/src/state.js"
+          }
+        },
+        {
+          "kind": "variable",
+          "name": "tripState",
+          "default": "new TripState()"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TripState",
+          "declaration": {
+            "name": "TripState",
+            "module": "src/Page/Trip/TripState.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tripState",
+          "declaration": {
+            "name": "tripState",
+            "module": "src/Page/Trip/TripState.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

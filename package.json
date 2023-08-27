@@ -7,5 +7,8 @@
   ],
   "scripts": {
     "build": "yarn workspaces foreach -pt run build"
+  },
+  "devDependencies": {
+    "@web-types/lit": "^2.0.0-3"
   }
 }

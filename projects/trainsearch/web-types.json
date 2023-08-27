@@ -1,0 +1,323 @@
+{
+  "$schema": "https://json.schemastore.org/web-types",
+  "name": "trainsearch",
+  "version": "0.0.1",
+  "description-markup": "markdown",
+  "contributions": {
+    "html": {
+      "elements": [
+        {
+          "name": "ts-favorites",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [],
+          "js": {
+            "properties": [
+              { "name": "locations", "value": { "type": "Stop[]" } },
+              {
+                "name": "lines",
+                "value": {
+                  "type": "{ profile: string, uicPrefix: number, direction: string, line: Line }[]"
+                }
+              },
+              { "name": "addLocation", "value": {} },
+              { "name": "hasLocation", "value": {} },
+              { "name": "deleteLocation", "value": {} },
+              { "name": "addLine", "value": {} },
+              { "name": "hasLine", "value": {} },
+              { "name": "compareLine", "value": {} },
+              { "name": "deleteLine", "value": {} },
+              { "name": "fromStorage", "value": {} },
+              { "name": "save", "value": {} },
+              { "name": "isEmpty", "value": {} }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-collapsable",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "summary", "value": { "type": "string" } },
+            { "name": "open", "value": { "type": "boolean" } },
+            { "name": "warning", "value": { "type": "boolean" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "summary", "value": { "type": "string" } },
+              { "name": "open", "value": { "type": "boolean" } },
+              { "name": "warning", "value": { "type": "boolean" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-favorite-button",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [{ "name": "added", "value": { "type": "boolean" } }],
+          "js": {
+            "properties": [{ "name": "added", "value": { "type": "boolean" } }],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-profile",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [{ "name": "profile", "value": { "type": "string" } }],
+          "js": {
+            "properties": [
+              { "name": "profile", "value": { "type": "string" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-reload-button",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [{ "name": "loading", "value": { "type": "boolean" } }],
+          "js": {
+            "properties": [
+              { "name": "loading", "value": { "type": "boolean" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-search-form",
+          "description": "\n\n\n---\n\n\n\n\n### **Events:**\n - **suggest** - undefined\n- **undefined** - undefined",
+          "doc-url": "",
+          "attributes": [
+            { "name": "profiles", "value": { "type": "array" } },
+            { "name": "uicPrefixes", "value": { "type": "UicPrefix[]" } },
+            { "name": "profile", "value": { "type": "string" } },
+            { "name": "uicPrefix", "value": { "type": "string" } },
+            { "name": "value", "value": { "type": "string" } },
+            {
+              "name": "suggestions",
+              "value": { "type": "SearchSuggestion<T>[]" }
+            }
+          ],
+          "js": {
+            "properties": [
+              { "name": "profiles", "value": { "type": "array" } },
+              { "name": "uicPrefixes", "value": { "type": "UicPrefix[]" } },
+              { "name": "profile", "value": { "type": "string" } },
+              { "name": "uicPrefix", "value": { "type": "string" } },
+              { "name": "value", "value": { "type": "string" } },
+              {
+                "name": "suggestions",
+                "value": { "type": "SearchSuggestion<T>[]" }
+              }
+            ],
+            "events": [{ "name": "suggest" }, {}]
+          }
+        },
+        {
+          "name": "ts-search-input",
+          "description": "\n\n\n---\n\n\n\n\n### **Events:**\n - **suggest** - undefined\n- **change** - undefined",
+          "doc-url": "",
+          "attributes": [
+            { "name": "value", "value": { "type": "string" } },
+            { "name": "placeholder", "value": { "type": "string" } },
+            {
+              "name": "suggestions",
+              "value": { "type": "SearchSuggestion<T>[]" }
+            }
+          ],
+          "js": {
+            "properties": [
+              { "name": "value", "value": { "type": "string" } },
+              { "name": "placeholder", "value": { "type": "string" } },
+              {
+                "name": "suggestions",
+                "value": { "type": "SearchSuggestion<T>[]" }
+              }
+            ],
+            "events": [{ "name": "suggest" }, { "name": "change" }]
+          }
+        },
+        {
+          "name": "ts-select",
+          "description": "\n\n\n---\n\n\n\n\n### **Events:**\n - **change** - undefined",
+          "doc-url": "",
+          "attributes": [
+            {
+              "name": "options",
+              "value": { "type": "{ id: string, name: string }[]" }
+            },
+            { "name": "value", "value": { "type": "string" } }
+          ],
+          "js": {
+            "properties": [
+              {
+                "name": "options",
+                "value": { "type": "{ id: string, name: string }[]" }
+              },
+              { "name": "value", "value": { "type": "string" } }
+            ],
+            "events": [{ "name": "change" }]
+          }
+        },
+        {
+          "name": "ts-nav",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [],
+          "js": { "properties": [], "events": [] }
+        },
+        {
+          "name": "ts-location-board",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "location", "value": { "type": "Stop" } },
+            { "name": "profile", "value": { "type": "string" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "location", "value": { "type": "Stop" } },
+              { "name": "profile", "value": { "type": "string" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-remarks",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "remarks", "value": { "type": "Remark[]" } },
+            { "name": "muted", "value": { "type": "boolean" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "remarks", "value": { "type": "Remark[]" } },
+              { "name": "muted", "value": { "type": "boolean" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-stopover-time",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "stopover", "value": { "type": "Stopover|null" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "stopover", "value": { "type": "Stopover|null" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-timetable",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "profile", "value": { "type": "string" } },
+            { "name": "stopovers", "value": { "type": "Stopover[]" } },
+            { "name": "station-id", "value": { "type": "string" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "profile", "value": { "type": "string" } },
+              { "name": "stopovers", "value": { "type": "Stopover[]" } },
+              { "name": "station-id", "value": { "type": "string" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-composition",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "profile", "value": { "type": "string" } },
+            { "name": "stopover", "value": { "type": "Stopover | null" } },
+            { "name": "compostion", "value": { "type": "Composition | null" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "profile", "value": { "type": "string" } },
+              { "name": "stopover", "value": { "type": "Stopover | null" } },
+              {
+                "name": "compostion",
+                "value": { "type": "Composition | null" }
+              }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-details",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [
+            { "name": "trip", "value": { "type": "Trip|null" } },
+            { "name": "station-id", "value": { "type": "string" } },
+            { "name": "profile", "value": { "type": "string" } }
+          ],
+          "js": {
+            "properties": [
+              { "name": "trip", "value": { "type": "Trip|null" } },
+              { "name": "station-id", "value": { "type": "string" } },
+              { "name": "profile", "value": { "type": "string" } }
+            ],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-trip-list",
+          "description": "\n\n\n---\n\n\n\n\n### **Events:**\n - **select** - undefined",
+          "doc-url": "",
+          "attributes": [{ "name": "trips", "value": { "type": "Trip[]" } }],
+          "js": {
+            "properties": [{ "name": "trips", "value": { "type": "Trip[]" } }],
+            "events": [{ "name": "select" }]
+          }
+        },
+        {
+          "name": "ts-departures",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [],
+          "js": {
+            "properties": [{ "name": "controller", "value": {} }],
+            "events": []
+          }
+        },
+        {
+          "name": "ts-favorites",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [],
+          "js": { "properties": [], "events": [] }
+        },
+        {
+          "name": "ts-trip",
+          "description": "\n\n\n---\n\n\n",
+          "doc-url": "",
+          "attributes": [],
+          "js": {
+            "properties": [
+              { "name": "controller", "value": {} },
+              { "name": "uicPrefixes", "value": { "type": "UicPrefix[]" } },
+              { "name": "scheduleUpdate", "value": {} }
+            ],
+            "events": []
+          }
+        }
+      ]
+    },
+    "css": {
+      "properties": [],
+      "pseudo-elements": []
+    }
+  }
+}
