@@ -55,5 +55,6 @@ jobs:
             **/.yarn/**              
             **/node_modules/**
             **/docs/**/*.md
+            **/tests/**
             composer.json
             composer.lock
