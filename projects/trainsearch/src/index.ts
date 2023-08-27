@@ -1,4 +1,4 @@
-import 'sw/registerSW'
+import './registerSW'
 import './Component/Layout/Layout.css'
 import './Component/Navigation/Navigation'
 import './Page/Departures/Departures'

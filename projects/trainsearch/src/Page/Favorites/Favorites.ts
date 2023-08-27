@@ -64,6 +64,7 @@ class Favorites extends LitElement {
     protected render() {
         return html`
             <h1>&starf; Favoriten</h1>
+            <h2>Hello world!</h2>
             <div>
                 <h2><i style="font-family: mav-symbols">ȫ</i>&nbsp;Abfahrten</h2>
                 <h2><i style="font-family: oebb-symbols">–</i>&nbsp;Züge</h2>

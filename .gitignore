@@ -4,3 +4,4 @@ vendor
 .phpunit.cache
 yarn-error.log
 .yarn/unplugged
+node_modules
